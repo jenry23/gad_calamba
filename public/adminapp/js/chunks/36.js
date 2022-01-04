@@ -531,15 +531,410 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      status: '',
-      activeField: ''
+      status: "",
+      activeField: ""
     };
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('GadListSingle', ['entry', 'loading'])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])("GadListSingle", ["entry", "loading"])), {}, {
     total_age: function total_age() {
       var today = new Date();
       var birthDate = new Date(this.entry.birthdate);
@@ -557,7 +952,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.resetState();
   },
   watch: {
-    '$route.params.id': {
+    "$route.params.id": {
       immediate: true,
       handler: function handler() {
         this.resetState();
@@ -565,25 +960,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     }
   },
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('GadListSingle', ['fetchEditData', 'updateData', 'resetState', 'setTitle'])), {}, {
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("GadListSingle", ["fetchEditData", "updateData", "resetState", "setTitle"])), {}, {
     switchSelect: function switchSelect(e) {
       var value = e.target.value;
-      $('#myTab li a').eq(value).tab('show');
+      $("#myTab li a").eq(value).tab("show");
     },
     submitForm: function submitForm() {
       var _this = this;
 
       this.updateData().then(function () {
         _this.$router.push({
-          name: 'permissions.index'
+          name: "permissions.index"
         });
 
-        _this.$eventHub.$emit('update-success');
+        _this.$eventHub.$emit("update-success");
       })["catch"](function (error) {
-        _this.status = 'failed';
+        _this.status = "failed";
 
         _.delay(function () {
-          _this.status = '';
+          _this.status = "";
         }, 3000);
       });
     },
@@ -591,7 +986,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.activeField = name;
     },
     clearFocus: function clearFocus() {
-      this.activeField = '';
+      this.activeField = "";
     }
   })
 });
@@ -610,7 +1005,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\ninput[type=text][data-v-a0ec2ea8], select[data-v-a0ec2ea8] {\r\n  width: 100%;\r\n  padding: 5px;\r\n  margin-bottom: -40px;\r\n  display: inline-block;\r\n  border: 1px solid #000000;\r\n  border-radius: 4px;\r\n  box-sizing: border-box;\n}\nlabel[data-v-a0ec2ea8]{\r\n  color:black;\n}\nhr[data-v-a0ec2ea8] {\r\n  margin-top: 1rem;\r\n  margin-bottom: 1rem;\r\n  border: 0;\r\n  border-top: 1px solid rgba(0,0,0.1);\n}\r\n", ""]);
+exports.push([module.i, "\ninput[type=\"text\"][data-v-a0ec2ea8],\r\nselect[data-v-a0ec2ea8] {\r\n    width: 100%;\r\n    padding: 5px;\r\n    margin-bottom: -40px;\r\n    display: inline-block;\r\n    border: 1px solid #000000;\r\n    border-radius: 4px;\r\n    box-sizing: border-box;\n}\nlabel[data-v-a0ec2ea8] {\r\n    color: black;\n}\nhr[data-v-a0ec2ea8] {\r\n    margin-top: 1rem;\r\n    margin-bottom: 1rem;\r\n    border: 0;\r\n    border-top: 1px solid rgba(0, 0, 0.1);\n}\r\n", ""]);
 
 // exports
 
@@ -684,7 +1079,9 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("option", { attrs: { value: "2" } }, [
-            _vm._v("Educational Information / Organizations")
+            _vm._v(
+              "\n                Educational Information / Employee Information\n            "
+            )
           ]),
           _vm._v(" "),
           _c("option", { attrs: { value: "3" } }, [
@@ -770,7 +1167,28 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-md-5" }, [
+                  _c("div", { staticClass: "col-md-3" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "form-group bmd-form-group",
+                        class: {
+                          "is-focused": true
+                        }
+                      },
+                      [
+                        _c("label", [_vm._v("Sex")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.entry.gender_name }
+                        })
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-3" }, [
                     _c(
                       "div",
                       {
@@ -791,7 +1209,7 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "col-md-7" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
                     _c(
                       "div",
                       {
@@ -852,27 +1270,6 @@ var render = function() {
                         }
                       },
                       [
-                        _c("label", [_vm._v("Sex")]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.entry.gender_name }
-                        })
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-4" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "form-group bmd-form-group",
-                        class: {
-                          "is-focused": true
-                        }
-                      },
-                      [
                         _c("label", [_vm._v("Gender Preference")]),
                         _vm._v(" "),
                         _c("input", {
@@ -882,15 +1279,9 @@ var render = function() {
                         })
                       ]
                     )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("hr"),
-                _vm._v(" "),
-                _c("div", { staticClass: "line" }),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-md-6" }, [
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-4" }, [
                     _c(
                       "div",
                       {
@@ -916,6 +1307,12 @@ var render = function() {
                     )
                   ])
                 ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
+                _c("div", { staticClass: "line" }),
                 _vm._v(" "),
                 _c("div", { staticClass: "row" }, [
                   _c("div", { staticClass: "col-md-3" }, [
@@ -1045,6 +1442,58 @@ var render = function() {
                       ]
                     )
                   ])
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
+                _c("div", { staticClass: "line" }),
+                _vm._v(" "),
+                _vm._m(2),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "form-group bmd-form-group",
+                        class: {
+                          "is-focused": true
+                        }
+                      },
+                      [
+                        _c("label", [_vm._v("City/Municipality")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.entry.sector_name }
+                        })
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "form-group bmd-form-group",
+                        class: {
+                          "is-focused": true
+                        }
+                      },
+                      [
+                        _c("label", [_vm._v(" Province Register")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.entry.sector_name }
+                        })
+                      ]
+                    )
+                  ])
                 ])
               ])
             ])
@@ -1053,7 +1502,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "tab-pane", attrs: { id: "address" } }, [
           _c("div", { staticClass: "card" }, [
-            _vm._m(2),
+            _vm._m(3),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
               _c("form", [
@@ -1068,7 +1517,11 @@ var render = function() {
                         }
                       },
                       [
-                        _c("label", [_vm._v("Building Numbers/House Unit")]),
+                        _c("label", [
+                          _vm._v(
+                            "Building Numbers/House\n                                            Unit"
+                          )
+                        ]),
                         _vm._v(" "),
                         _c("input", {
                           staticClass: "form-control",
@@ -1096,7 +1549,11 @@ var render = function() {
                         }
                       },
                       [
-                        _c("label", [_vm._v("Block No/Lot No/Street Name")]),
+                        _c("label", [
+                          _vm._v(
+                            "Block No/Lot No/Street\n                                            Name"
+                          )
+                        ]),
                         _vm._v(" "),
                         _c("input", {
                           staticClass: "form-control",
@@ -1153,49 +1610,49 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("table", { staticClass: "table table-bordered" }, [
-                  _vm._m(3),
+                  _vm._m(4),
                   _vm._v(" "),
                   _c("tbody", [
                     _c("tr", [
                       _c("td", [_vm._v("CALAMBA")]),
                       _vm._v(" "),
                       _c("td", [
-                        _vm._v(_vm._s(_vm.entry.no_of_years_in_calamba))
+                        _vm._v(
+                          "\n                                            " +
+                            _vm._s(_vm.entry.no_of_years_in_calamba) +
+                            "\n                                        "
+                        )
                       ]),
                       _vm._v(" "),
                       _vm.entry.no_of_years_in_calamba ==
                       new Date().getFullYear()
                         ? _c("td", [
                             _vm._v(
-                              "\n                                    Immigrant\n                                  "
+                              "\n                                            Immigrant\n                                        "
                             )
                           ])
-                        : _c("td", [
-                            _vm._v(
-                              "\n                                    Native\n                                  "
-                            )
-                          ])
+                        : _c("td", [_vm._v("Native")])
                     ]),
                     _vm._v(" "),
                     _c("tr", [
                       _c("td", [_vm._v("BARANGAY")]),
                       _vm._v(" "),
                       _c("td", [
-                        _vm._v(_vm._s(_vm.entry.barangay_residence_year))
+                        _vm._v(
+                          "\n                                            " +
+                            _vm._s(_vm.entry.barangay_residence_year) +
+                            "\n                                        "
+                        )
                       ]),
                       _vm._v(" "),
                       _vm.entry.barangay_residence_year ==
                       new Date().getFullYear()
                         ? _c("td", [
                             _vm._v(
-                              "\n                                    Immigrant\n                                  "
+                              "\n                                            Immigrant\n                                        "
                             )
                           ])
-                        : _c("td", [
-                            _vm._v(
-                              "\n                                    Native\n                                  "
-                            )
-                          ])
+                        : _c("td", [_vm._v("Native")])
                     ])
                   ])
                 ]),
@@ -1225,7 +1682,11 @@ var render = function() {
                     staticClass: "btn btn-primary pull-right",
                     attrs: { type: "submit" }
                   },
-                  [_vm._v("Update Profile")]
+                  [
+                    _vm._v(
+                      "\n                                Update Profile\n                            "
+                    )
+                  ]
                 )
               ])
             ])
@@ -1234,7 +1695,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "tab-pane", attrs: { id: "educational" } }, [
           _c("div", { staticClass: "card" }, [
-            _vm._m(4),
+            _vm._m(5),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
               _c("div", { staticClass: "row" }, [
@@ -1248,7 +1709,11 @@ var render = function() {
                       }
                     },
                     [
-                      _c("label", [_vm._v("Highest Educational Attaintment")]),
+                      _c("label", [
+                        _vm._v(
+                          "Highest Educational\n                                        Attaintment"
+                        )
+                      ]),
                       _vm._v(" "),
                       _c("input", {
                         staticClass: "form-control",
@@ -1318,7 +1783,9 @@ var render = function() {
                     },
                     [
                       _c("label", [
-                        _vm._v("Government Educational Assistance")
+                        _vm._v(
+                          "Government Educational\n                                        Assistance"
+                        )
                       ]),
                       _vm._v(" "),
                       _c("input", {
@@ -1352,19 +1819,125 @@ var render = function() {
                     ]
                   )
                 ])
-              ])
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("hr"),
+              _vm._v(" "),
+              _c("div", { staticClass: "line" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group bmd-form-group",
+                      class: {
+                        "is-focused": true
+                      }
+                    },
+                    [
+                      _c("label", [_vm._v("Occupation")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.entry.occupation }
+                      })
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group bmd-form-group",
+                      class: {
+                        "is-focused": true
+                      }
+                    },
+                    [
+                      _c("label", [_vm._v("Employer")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.entry.employer }
+                      })
+                    ]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group bmd-form-group",
+                      class: {
+                        "is-focused": true
+                      }
+                    },
+                    [
+                      _c("label", [
+                        _vm._v(
+                          "Work Location (City,\n                                        Province)"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.entry.work_locations }
+                      })
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group bmd-form-group",
+                      class: {
+                        "is-focused": true
+                      }
+                    },
+                    [
+                      _c("label", [
+                        _vm._v(
+                          "Monthly Income (Econimic\n                                        Status)"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.entry.monthly_income }
+                      })
+                    ]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _vm._m(6)
             ])
           ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "tab-pane", attrs: { id: "health" } }, [
           _c("div", { staticClass: "card" }, [
-            _vm._m(5),
+            _vm._m(7),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
               _c("form", [
                 _c("div", { staticClass: "row" }, [
-                  _vm._m(6),
+                  _vm._m(8),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-8" }, [
                     _c("input", {
@@ -1378,7 +1951,7 @@ var render = function() {
                 _c("br"),
                 _vm._v(" "),
                 _c("div", { staticClass: "row" }, [
-                  _vm._m(7),
+                  _vm._m(9),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-8" }, [
                     _c("input", {
@@ -1394,7 +1967,7 @@ var render = function() {
                 _c("h3", [_vm._v("For Female Only")]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row" }, [
-                  _vm._m(8),
+                  _vm._m(10),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-4" }, [
                     _c("input", {
@@ -1406,7 +1979,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row" }, [
-                  _vm._m(9),
+                  _vm._m(11),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-4" }, [
                     _c("input", {
@@ -1418,7 +1991,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row" }, [
-                  _vm._m(10),
+                  _vm._m(12),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-4" }, [
                     _c("input", {
@@ -1433,7 +2006,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("h3", [_vm._v("VACCINE FOR COVID-19")]),
                 _vm._v(" "),
-                _vm._m(11)
+                _vm._m(13)
               ])
             ])
           ])
@@ -1476,7 +2049,7 @@ var render = function() {
                 _vm._s(_vm.entry.last_name) +
                   "," +
                   _vm._s(_vm.entry.first_name) +
-                  " " +
+                  "\n                        " +
                   _vm._s(_vm.entry.middle_name)
               )
             ])
@@ -1488,9 +2061,9 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "col" }, [
             _vm._v(
-              "\n                        " +
+              "\n                    " +
                 _vm._s(_vm.entry.resident_no) +
-                "\n                      "
+                "\n                "
             )
           ]),
           _vm._v(" "),
@@ -1501,11 +2074,11 @@ var render = function() {
           _c("div", { staticClass: "col" }, [
             _c("i", { staticClass: "fa fa-home fa-2x" }),
             _vm._v(
-              "\n                      " +
+              "\n                    " +
                 _vm._s(_vm.entry.barangay_id) +
                 " - " +
                 _vm._s(_vm.entry.barangays_name) +
-                "\n                      "
+                "\n                "
             )
           ]),
           _vm._v(" "),
@@ -1516,9 +2089,9 @@ var render = function() {
           _c("div", { staticClass: "col" }, [
             _c("i", { staticClass: "fa fa-intersex fa-2x" }),
             _vm._v(
-              "\n                      " +
+              "\n                    " +
                 _vm._s(_vm.entry.gender_name) +
-                "\n                 "
+                "\n                "
             )
           ]),
           _vm._v(" "),
@@ -1532,7 +2105,7 @@ var render = function() {
           _vm._v(" "),
           _c("p", { staticClass: "card-description" }, [
             _vm._v(
-              "\n                    Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...\n                  "
+              "\n                    Don't be scared of the truth because we need to restart\n                    the human foundation in truth And I love you like Kanye\n                    loves Kanye I love Rick Owens’ bed design but the back\n                    is...\n                "
             )
           ]),
           _vm._v(" "),
@@ -1623,6 +2196,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("h4", { staticStyle: { "text-transform": "uppercase" } }, [
+      _c("b", [_vm._v("Political Info")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header card-header-primary" }, [
       _c("h4", { staticClass: "card-title" }, [
         _vm._v("Residential Information")
@@ -1660,11 +2241,62 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header card-header-primary" }, [
       _c("h4", { staticClass: "card-title" }, [
-        _vm._v("Educational Information / Organizations")
+        _vm._v(
+          "\n                            Educational Information / Educational\n                            Information\n                        "
+        )
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "card-category" }, [
         _vm._v("Complete your profile")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("table", { staticClass: "table table-bordered" }, [
+          _c(
+            "thead",
+            {
+              staticClass: "black text-white",
+              staticStyle: { "background-color": "#462066" }
+            },
+            [
+              _c("tr", [
+                _c("th", { attrs: { scope: "col" } }, [
+                  _vm._v(
+                    "\n                                                Government Assistance\n                                            "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("th", { attrs: { scope: "col" } }, [_vm._v("Date")]),
+                _vm._v(" "),
+                _c("th", { attrs: { scope: "col" } }, [_vm._v("Amount")])
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("tbody", [
+            _c("tr", [
+              _c("td", [_vm._v("SAP")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("January 20, 2020")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("₱13,000")])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("CAP")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("October 20, 2020")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("₱4,000")])
+            ])
+          ])
+        ])
       ])
     ])
   },
