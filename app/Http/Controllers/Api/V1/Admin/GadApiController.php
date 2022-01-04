@@ -24,7 +24,7 @@ class GadApiController extends Controller
     {
         abort_if(Gate::denies('gad_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-  
+
         return new GadResource(Gad::advancedFilter());
     }
 
@@ -43,14 +43,14 @@ class GadApiController extends Controller
                            ->orWhere('last_name', 'like', '%' . $search . '%')
                            ->orWhere('middle_name', 'like', '%' . $search . '%')
                            ->get();
-        
+
         foreach($gad_search as $gad){
             $barangay = Barangay::where('id',$gad->barangay_id)->first();
-            $gad->barangay_name = !empty($barangay->barangay_name) ? $barangay->barangay_name :''; 
+            $gad->barangay_name = !empty($barangay->barangay_name) ? $barangay->barangay_name :'';
         }
         return response()->json($gad_search);
     }
-    
+
     public function getData($id)
     {
 
@@ -67,6 +67,7 @@ class GadApiController extends Controller
     public function show($id)
     {
         $gads = Gad::where('building_no',$id)->get();
+        $gad = Gad::where('building_no',$id)->first();
         foreach($gads as $gad){
             $gad->id = !empty($gad->id) ? $gad->id : '';
             $gad->full_name = $gad->last_name.' , '.$gad->first_name.' '.$gad->middle_name;
@@ -113,7 +114,8 @@ class GadApiController extends Controller
             $gad->medicine_name =  !empty($gads->medicine) ? $gads->medicine->medicine_name : '';
             $gad->organization_name =  !empty($gads->organization) ? $gads->organization->organization_name : '';
         }
-        return new GadResource($gads);
+        $gad->barangay_name = !empty($gad) ? $gad->barangay->barangay_name : '';
+        return new GadResource([$gads,$gad]);
     }
 
     public function update(UpdateGadRequest $request, Gad $Gad)

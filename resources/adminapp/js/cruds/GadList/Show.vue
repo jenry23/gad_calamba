@@ -36,15 +36,15 @@ table, th, td {
                             </tr>
                             <tr>
                             <th><b>Brgy ID:</b></th>
-                            <td>{{entry[0].barangay_id+' - '+entry[0].barangays_name }}</td>
+                            <td>{{entry.barangay_id+' - '+entry.barangay_name}}</td>
                              </tr>
                             <tr>
                             <th><b>Family ID:</b></th>
-                            <td>{{entry[0].family_code}}</td>
+                            <td>{{entry.family_code}}</td>
                              </tr>
                             <tr>
                             <th><b>Purok</b></th>
-                            <td>{{entry[0].purok_names}}</td>
+                            <td>{{entry.purok_names}}</td>
                             </tr>
                     </table>
                 </div>
@@ -67,8 +67,8 @@ table, th, td {
                    <th><b>Residence Status</b></th>
                  </tr>
                  </thead>
-                 <tbody>
-                   <tr v-for="val in entry" :key="val.id">
+                  <tbody>
+                   <tr v-for="val in lists" :key="val.id">
                      <td>{{val.family_code}}</td>
                     <td style="text-transform: uppercase;">
                       <router-link  :to="{ name: 'gad_list.edit', params: { id: val.id } }">
@@ -108,13 +108,15 @@ export default {
     DatatableList
   },
   data() {
-    return {}
+    return {
+      data: []
+    }
   },
   beforeDestroy() {
     this.resetState()
   },
   computed: {
-    ...mapGetters('GadListSingle', ['entry'])
+    ...mapGetters('GadListSingle', ['lists','entry']),
   },
   watch: {
     '$route.params.id': {

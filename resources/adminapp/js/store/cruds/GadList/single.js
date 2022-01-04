@@ -8,26 +8,24 @@ function initialState() {
         updated_at: '',
         deleted_at: ''
       },
-      lists: {
-        permissions: []
-      },
+      lists: [],
       loading: false
     }
   }
-  
+
   const route = 'gad'
-  
+
   const getters = {
     entry: state => state.entry,
     lists: state => state.lists,
     loading: state => state.loading
   }
-  
+
   const actions = {
     storeData({ commit, state, dispatch }) {
       commit('setLoading', true)
       dispatch('Alert/resetState', null, { root: true })
-  
+
       return new Promise((resolve, reject) => {
         let params = objectToFormData(state.entry, {
           indices: true,
@@ -41,13 +39,13 @@ function initialState() {
           .catch(error => {
             let message = error.response.data.message || error.message
             let errors = error.response.data.errors
-  
+
             dispatch(
               'Alert/setAlert',
               { message: message, errors: errors, color: 'danger' },
               { root: true }
             )
-  
+
             reject(error)
           })
           .finally(() => {
@@ -58,7 +56,7 @@ function initialState() {
     updateData({ commit, state, dispatch }) {
       commit('setLoading', true)
       dispatch('Alert/resetState', null, { root: true })
-  
+
       return new Promise((resolve, reject) => {
         let params = objectToFormData(state.entry, {
           indices: true,
@@ -73,13 +71,13 @@ function initialState() {
           .catch(error => {
             let message = error.response.data.message || error.message
             let errors = error.response.data.errors
-  
+
             dispatch(
               'Alert/setAlert',
               { message: message, errors: errors, color: 'danger' },
               { root: true }
             )
-  
+
             reject(error)
           })
           .finally(() => {
@@ -114,14 +112,15 @@ function initialState() {
     },
     fetchShowData({ commit, dispatch }, id) {
       axios.get(`${route}/${id}`).then(response => {
-        commit('setEntry', response.data.data)
+        commit('setLists', response.data.data[0])
+        commit('setEntry', response.data.data[1])
       })
     },
     resetState({ commit }) {
       commit('resetState')
     }
   }
-  
+
   const mutations = {
     setEntry(state, entry) {
       state.entry = entry
@@ -151,7 +150,7 @@ function initialState() {
       state = Object.assign(state, initialState())
     }
   }
-  
+
   export default {
     namespaced: true,
     state: initialState,
@@ -159,4 +158,3 @@ function initialState() {
     actions,
     mutations
   }
-  

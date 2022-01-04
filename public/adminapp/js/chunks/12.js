@@ -168,12 +168,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     DatatableList: _components_Datatables_DatatableList__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
-    return {};
+    return {
+      data: []
+    };
   },
   beforeDestroy: function beforeDestroy() {
     this.resetState();
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('GadListSingle', ['entry'])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('GadListSingle', ['lists', 'entry'])),
   watch: {
     '$route.params.id': {
       immediate: true,
@@ -445,9 +447,9 @@ var render = function() {
                           _c("td", [
                             _vm._v(
                               _vm._s(
-                                _vm.entry[0].barangay_id +
+                                _vm.entry.barangay_id +
                                   " - " +
-                                  _vm.entry[0].barangays_name
+                                  _vm.entry.barangay_name
                               )
                             )
                           ])
@@ -456,13 +458,13 @@ var render = function() {
                         _c("tr", [
                           _c("th", [_c("b", [_vm._v("Family ID:")])]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(_vm.entry[0].family_code))])
+                          _c("td", [_vm._v(_vm._s(_vm.entry.family_code))])
                         ]),
                         _vm._v(" "),
                         _c("tr", [
                           _c("th", [_c("b", [_vm._v("Purok")])]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(_vm.entry[0].purok_names))])
+                          _c("td", [_vm._v(_vm._s(_vm.entry.purok_names))])
                         ])
                       ]
                     )
@@ -495,7 +497,7 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "tbody",
-                        _vm._l(_vm.entry, function(val) {
+                        _vm._l(_vm.lists, function(val) {
                           return _c("tr", { key: val.id }, [
                             _c("td", [_vm._v(_vm._s(val.family_code))]),
                             _vm._v(" "),
