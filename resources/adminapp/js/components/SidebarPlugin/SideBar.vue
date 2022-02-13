@@ -12,9 +12,14 @@
   >
     <div class="logo">
       <a href="/" class=" logo-normal">
-        <img class="img-fluid" src="/images/calamba-logo.png">
+        <img class="img-fluid" v-if="!$can('powered_gad_access')" src="/images/popcom.png">
+        <img class="img-fluid" v-else src="/images/gad-logo-login.png">
       </a>
-      <center><b><h1 style="color:white;">GAD</h1></b></center>
+      <center><b>
+        <h1 style="color:white;" v-if="!$can('powered_gad_access')">POPCOM</h1>
+        <h1 style="color:white;" v-else>GAD</h1>
+      </b></center>
+
     </div>
     <div class="sidebar-wrapper">
       <slot name="content"></slot>

@@ -1,5 +1,5 @@
 <template>
-    <form>
+    <form :model="model" :rules="rules" ref="form">
         <div class="tab-pane active" id="personal">
             <div class="card">
                 <div class="card-header card-header-primary">
@@ -12,14 +12,64 @@
                             <div
                                 class="form-group bmd-form-group"
                                 :class="{
-                                    'is-focused': true,
+                                    'is-focused': true
                                 }"
                             >
-                                <label>House No:</label>
+                                <label>Last Name</label>
+                                <input type="text" class="form-control popcom-input" v-model="model.last_name" />
+                            </div>
+                        </div>
+                         <div class="col-md-3">
+                            <div
+                                class="form-group bmd-form-group"
+                                :class="{
+                                    'is-focused': true
+                                }"
+                            >
+                                <label>First Name</label>
+                                <input type="text" class="form-control popcom-input" v-model="model.first_name" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div
+                                class="form-group bmd-form-group"
+                                :class="{
+                                    'is-focused': true
+                                }"
+                            >
+                                <label>Middle Name</label>
+                                <input type="text" class="form-control popcom-input" v-model="model.middle_name" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div
+                                class="form-group bmd-form-group"
+                                :class="{
+                                    'is-focused': true
+                                }"
+                            >
+                                <label>Extension Name</label>
+                                <input type="text" class="form-control popcom-input" v-model="model.extension_name" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div
+                                class="form-group bmd-form-group"
+                                :class="{
+                                    'is-focused': true
+                                }"
+                            >
+                                <label>Household Entry No:</label>
                                 <input
                                     type="text"
-                                    class="form-control"
-                                    :value="entry.house_no"
+                                    class="form-control popcom-input"
+                                    readonly
+                                    v-model="model.household_no"
                                 />
                             </div>
                         </div>
@@ -27,15 +77,11 @@
                             <div
                                 class="form-group bmd-form-group"
                                 :class="{
-                                    'is-focused': true,
+                                    'is-focused': true
                                 }"
                             >
                                 <label>Family Code</label>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    :value="entry.family_code"
-                                />
+                                <input type="text" class="form-control popcom-input" v-model="model.family_code" />
                             </div>
                         </div>
 
@@ -43,14 +89,19 @@
                             <div
                                 class="form-group bmd-form-group"
                                 :class="{
-                                    'is-focused': true,
+                                    'is-focused': true
                                 }"
                             >
                                 <label>Relation To Main Household</label>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    :value="entry.household_names"
+                                <v-select
+                                    class="form-control popcom-input"
+                                    name="relation_household"
+                                    label="household_name"
+                                    :key="'relation_household_id-field'"
+                                    v-model="model.household_id"
+                                    :options="lists.relation_household"
+                                    @focus="focusField('relation_household')"
+                                    @blur="clearFocus"
                                 />
                             </div>
                         </div>
@@ -61,154 +112,131 @@
                             <div
                                 class="form-group bmd-form-group"
                                 :class="{
-                                    'is-focused': true,
-                                }"
-                            >
-                                <label>Birthday</label>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    :value="entry.birthdate"
-                                />
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div
-                                class="form-group bmd-form-group"
-                                :class="{
-                                    'is-focused': true,
-                                }"
-                            >
-                                <label>Cellphone Number:</label>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    :value="entry.mobile_no"
-                                />
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div
-                                class="form-group bmd-form-group"
-                                :class="{
-                                    'is-focused': true,
-                                }"
-                            >
-                                <label>Valid ID</label>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    :value="entry.valid_id_names"
-                                />
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div
-                                class="form-group bmd-form-group"
-                                :class="{
-                                    'is-focused': true,
-                                }"
-                            >
-                                <label>ID Number</label>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    :value="entry.id_number"
-                                />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-5">
-                            <div
-                                class="form-group bmd-form-group"
-                                :class="{
-                                    'is-focused': true,
-                                }"
-                            >
-                                <label>Civil Status</label>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    :value="entry.civil_status_names"
-                                />
-                            </div>
-                        </div>
-                        <div class="col-md-7">
-                            <div
-                                class="form-group bmd-form-group"
-                                :class="{
-                                    'is-focused': true,
-                                }"
-                            >
-                                <label>Spouse Name</label>
-                                <input type="text" class="form-control" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div
-                                class="form-group bmd-form-group"
-                                :class="{
-                                    'is-focused': true,
+                                    'is-focused': true
                                 }"
                             >
                                 <label>Sex</label>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    :value="entry.gender_name"
+                                <v-select
+                                    class="form-control popcom-input"
+                                    name="gender"
+                                    label="gender_name"
+                                    :key="'gender_id-field'"
+                                    :options="lists.gender"
+                                    v-model="model.gender_id"
+                                    @focus="focusField('gender')"
+                                    @blur="clearFocus"
                                 />
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div
                                 class="form-group bmd-form-group"
                                 :class="{
-                                    'is-focused': true,
+                                    'is-focused': true
                                 }"
                             >
-                                <label>Gender Preference</label>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    :value="entry.gender_preference_name"
+                                <label>Civil Status</label>
+                                <v-select
+                                    class="form-control popcom-input"
+                                    name="civil_status"
+                                    label="civil_status_name"
+                                    :key="'civil_status_id-field'"
+                                    v-model="model.civil_status_id"
+                                    :options="lists.civil_status"
+                                    @focus="focusField('civil_status')"
+                                    @blur="clearFocus"
                                 />
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div
                                 class="form-group bmd-form-group"
                                 :class="{
-                                    'is-focused': true,
+                                    'is-focused': true
                                 }"
                             >
-                                <label>Sector Member</label>
+                                <label>Spouse Name</label>
                                 <input
                                     type="text"
-                                    class="form-control"
-                                    :value="entry.sector_name"
+                                    class="form-control popcom-input"
+                                    v-model="model.spouse_first_name"
                                 />
                             </div>
                         </div>
                     </div>
+
+                    <br />
+                    <hr />
+                    <div class="line"></div>
 
                     <div class="row">
                         <div class="col-md-4">
                             <div
                                 class="form-group bmd-form-group"
                                 :class="{
-                                    'is-focused': true,
+                                    'is-focused': true
                                 }"
                             >
-                                <label>Ethnicity</label>
+                                <label>Birthday</label>
+                                <datetime-picker
+                                    class="form-control popcom-input"
+                                    type="text"
+                                    picker="date"
+                                    format="yyyy"
+                                    v-bind:v-model="model.birthdate"
+                                ></datetime-picker>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div
+                                class="form-group bmd-form-group"
+                                :class="{
+                                    'is-focused': true
+                                }"
+                            >
+                                <label>Valid ID</label>
+                                <input type="text" class="form-control popcom-input" v-model="model.valid_id" />
+                            </div>
+                        </div>
+
+                            <div class="col-md-4">
+                            <div
+                                class="form-group bmd-form-group"
+                                :class="{
+                                    'is-focused': true
+                                }"
+                            >
+                                <label>ID Number</label>
+                                <input type="text" class="form-control popcom-input" v-model="model.id_number" />
+                            </div>
+                        </div>
+                    </div>
+
+                           <div class="row">
+                        <div class="col-md-4">
+                            <div
+                                class="form-group bmd-form-group"
+                                :class="{
+                                    'is-focused': true
+                                }"
+                            >
+                                <label>Cellphone Number</label>
+                                <input type="text" class="form-control popcom-input" v-model="model.mobile_no" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div
+                                class="form-group bmd-form-group"
+                                :class="{
+                                    'is-focused': true
+                                }"
+                            >
+                                <label>Landline</label>
                                 <input
                                     type="text"
-                                    class="form-control"
-                                    :value="entry.ethnicity_name"
+                                    class="form-control popcom-input"
+                                    v-model="model.landline_number"
                                 />
                             </div>
                         </div>
@@ -216,14 +244,143 @@
                             <div
                                 class="form-group bmd-form-group"
                                 :class="{
-                                    'is-focused': true,
+                                    'is-focused': true
                                 }"
                             >
-                                <label>Religion</label>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    :value="entry.religion"
+                                <label>Email Address</label>
+                                <input type="text" class="form-control popcom-input" v-model="model.email" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div
+                                class="form-group bmd-form-group"
+                                :class="{
+                                    'is-focused': true
+                                }"
+                            >
+                                <label>Sector Member</label>
+                                <v-select
+                                    class="form-control popcom-input"
+                                    name="sector"
+                                    label="sector_name"
+                                    :key="'sector_id-field'"
+                                    v-model="model.sector_id"
+                                    :options="lists.sector"
+                                    @focus="focusField('sector')"
+                                    @blur="clearFocus"
+                                />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div
+                                class="form-group bmd-form-group"
+                                :class="{
+                                    'is-focused': true
+                                }"
+                            >
+                                <label>Ethnicity:</label>
+                                <v-select
+                                    class="form-control popcom-input"
+                                    name="ethnicity"
+                                    label="ethnicity_name"
+                                    :key="'ethnicity_id-field'"
+                                    v-model="model.ethnicity_id"
+                                    :options="lists.ethnicity"
+                                    @focus="focusField('ethnicity')"
+                                    @blur="clearFocus"
+                                />
+                            </div>
+                        </div>
+                          <div class="col-md-3">
+                            <div
+                                class="form-group bmd-form-group"
+                                :class="{
+                                    'is-focused': true
+                                }"
+                            >
+                                <label>Gender Preference</label>
+                                <v-select
+                                    class="form-control popcom-input"
+                                    name="gender_preference"
+                                    label="gender_preference_name"
+                                    :key="'gender_preference_id-field'"
+                                    v-model="model.gender_preference_id"
+                                    :options="lists.gender_preference"
+                                    @focus="focusField('gender_preference')"
+                                    @blur="clearFocus"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div
+                                class="form-group bmd-form-group"
+                                :class="{
+                                    'is-focused': true
+                                }"
+                            >
+                                <label>Religion:</label>
+                                <v-select
+                                    class="form-control popcom-input"
+                                    name="religion"
+                                    label="religion_name"
+                                    :key="'religion_id-field'"
+                                    v-model="model.religion"
+                                    :options="lists.religion"
+                                    @focus="focusField('religion')"
+                                    @blur="clearFocus"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <br />
+                    <hr />
+                    <div class="line"></div>
+                    <h4 style="text-transform: uppercase">
+                        <b>Political Info</b>
+                    </h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div
+                                class="form-group bmd-form-group"
+                                :class="{
+                                    'is-focused': true
+                                }"
+                            >
+                                <label>City/Municipality</label>
+                                <v-select
+                                    class="form-control popcom-input"
+                                    name="city_name"
+                                    label="city_name"
+                                    :key="'city_register_id-field'"
+                                    v-model="model.poltical_city_registered_id"
+                                    :options="lists.city_register"
+                                    @focus="focusField('city_register')"
+                                    @blur="clearFocus"
+                                />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div
+                                class="form-group bmd-form-group"
+                                :class="{
+                                    'is-focused': true
+                                }"
+                            >
+                                <label> Province Register</label>
+                                <v-select
+                                    class="form-control popcom-input"
+                                    name="province_register"
+                                    label="province_name"
+                                    :key="'province_register_id-field'"
+                                    v-model="model.poltical_province_registered_id"
+                                    :options="lists.province_register"
+                                    @focus="focusField('province_register')"
+                                    @blur="clearFocus"
                                 />
                             </div>
                         </div>
@@ -234,8 +391,7 @@
     </form>
 </template>
 <style scoped>
-input[type="text"],
-select {
+.popcom-input {
     width: 100%;
     padding: 5px;
     margin-bottom: -40px;
@@ -244,6 +400,7 @@ select {
     border-radius: 4px;
     box-sizing: border-box;
 }
+
 label {
     color: black;
 }
@@ -252,26 +409,58 @@ label {
 import { mapGetters, mapActions } from "vuex";
 
 export default {
-    data() {
-        return {};
+    data () {
+        return {
+            model: {
+                first_name: '',
+                last_name: '',
+                middle_name: '',
+                extension_name: '',
+                household_no: '',
+                family_code: '',
+                household_id: '',
+                gender_id: '',
+                civil_status_id: '',
+                spouse_first_name: '',
+                birthdate: '',
+                gender_preference_id: '',
+                valid_id: '',
+                sector_id: '',
+                ethnicity_id: '',
+                religion: '',
+                mobile_no: '',
+                landline_number: '',
+                email: '',
+                poltical_city_registered_id: '',
+                poltical_province_registered_id: '',
+                id_number: '',
+            },
+            rules: {}
+        };
+    },
+    mounted () {
+        this.fetchFirstData()
     },
     computed: {
-        ...mapGetters("GadListSingle", ["entry", "loading"]),
+        ...mapGetters("GadListSingle", ["loading", "lists"]),
     },
     methods: {
-        validate() {
+        ...mapActions("GadListSingle", [
+            "fetchFirstData",
+        ]),
+        validate () {
             return new Promise((resolve, reject) => {
-                this.$refs.form.validate((valid) => {
-                    this.$emit("on-validate", valid, this.model);
-                    resolve(valid);
-                });
+                console.log(this.model);
+                const valid = true;
+                this.$emit("on-validate", valid, this.model);
+                resolve(valid);
             });
         },
 
-        focusField(name) {
+        focusField (name) {
             this.activeField = name;
         },
-        clearFocus() {
+        clearFocus () {
             this.activeField = "";
         },
     },

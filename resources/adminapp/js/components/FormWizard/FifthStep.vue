@@ -90,9 +90,9 @@ export default {
         };
     },
     mounted() {
-        axios.get('survey').then(response => {
-            // console.log(response.data);
-        })
+        // axios.get('survey').then(response => {
+        //     // console.log(response.data);
+        // })
     },
     methods: {
         validate() {

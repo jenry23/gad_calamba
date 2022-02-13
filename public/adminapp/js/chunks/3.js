@@ -95,9 +95,9 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
-  mounted: function mounted() {
-    axios.get('survey').then(function (response) {// console.log(response.data);
-    });
+  mounted: function mounted() {// axios.get('survey').then(response => {
+    //     // console.log(response.data);
+    // })
   },
   methods: {
     validate: function validate() {
@@ -388,51 +388,50 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {};
-  },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])("GadListSingle", ["entry", "loading"])),
-  methods: {
-    validate: function validate() {
-      var _this = this;
-
-      return new Promise(function (resolve, reject) {
-        _this.$refs.form.validate(function (valid) {
-          _this.$emit("on-validate", valid, _this.model);
-
-          resolve(valid);
-        });
-      });
-    },
-    focusField: function focusField(name) {
-      this.activeField = name;
-    },
-    clearFocus: function clearFocus() {
-      this.activeField = "";
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/adminapp/js/components/FormWizard/FourthStep.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/adminapp/js/components/FormWizard/FourthStep.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -551,25 +550,180 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       model: {
-        language: "",
-        website: ""
+        first_name: '',
+        last_name: '',
+        middle_name: '',
+        extension_name: '',
+        household_no: '',
+        family_code: '',
+        household_id: '',
+        gender_id: '',
+        civil_status_id: '',
+        spouse_first_name: '',
+        birthdate: '',
+        gender_preference_id: '',
+        valid_id: '',
+        sector_id: '',
+        ethnicity_id: '',
+        religion: '',
+        mobile_no: '',
+        landline_number: '',
+        email: '',
+        poltical_city_registered_id: '',
+        poltical_province_registered_id: '',
+        id_number: ''
       },
-      rules: {
-        language: [{
-          required: true,
-          message: "Language name is required",
-          trigger: "change"
-        }],
-        website: [{
-          required: true,
-          message: "Website is required",
-          trigger: "blur"
-        }, {
-          type: "url",
-          message: "Invalid url",
-          trigger: "change"
-        }]
-      }
+      rules: {}
+    };
+  },
+  mounted: function mounted() {
+    this.fetchFirstData();
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])("GadListSingle", ["loading", "lists"])),
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("GadListSingle", ["fetchFirstData"])), {}, {
+    validate: function validate() {
+      var _this = this;
+
+      return new Promise(function (resolve, reject) {
+        console.log(_this.model);
+        var valid = true;
+
+        _this.$emit("on-validate", valid, _this.model);
+
+        resolve(valid);
+      });
+    },
+    focusField: function focusField(name) {
+      this.activeField = name;
+    },
+    clearFocus: function clearFocus() {
+      this.activeField = "";
+    }
+  })
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/adminapp/js/components/FormWizard/FourthStep.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/adminapp/js/components/FormWizard/FourthStep.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      model: {
+        full_immunization: "",
+        medical_id: "",
+        pregnancy_age: "",
+        prental_checkup: "",
+        postnatal_checkup: "",
+        brand: "",
+        brand2: ""
+      },
+      rules: {}
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])("GadListSingle", ["entry", "loading"])),
@@ -793,54 +947,61 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      date1: "",
+      calamba_residence: "",
+      barangay_residence: "",
       model: {
-        language: "",
-        website: ""
+        building_no: '',
+        house_unit: '',
+        block_lot_house_id: '',
+        sitio_names: '',
+        purok_id: '',
+        barangay_id: '',
+        no_of_years_in_calamba: '',
+        barangay_residence_year: '',
+        remarks: ''
       },
-      rules: {
-        language: [{
-          required: true,
-          message: "Language name is required",
-          trigger: "change"
-        }],
-        website: [{
-          required: true,
-          message: "Website is required",
-          trigger: "blur"
-        }, {
-          type: "url",
-          message: "Invalid url",
-          trigger: "change"
-        }]
-      }
+      rules: {}
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])("GadListSingle", ["entry", "loading"])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])("GadListSingle", ["entry", "loading", "lists"])),
   methods: {
     validate: function validate() {
       var _this = this;
 
       return new Promise(function (resolve, reject) {
-        _this.$refs.form.validate(function (valid) {
-          _this.$emit("on-validate", valid, _this.model);
+        var valid = true;
 
-          resolve(valid);
-        });
+        _this.$emit("on-validate", valid, _this.model);
+
+        resolve(valid);
       });
+      a;
     },
     changeDate: function changeDate(e) {
+      var date = e.target.value;
+      var current_date = date.substr(date.length - 4);
+      console.log(date);
+
+      if (current_date > new Date().getFullYear() - 1) {
+        this.calamba_residence = "Immigrant";
+      } else if (current_date < new Date().getFullYear() - 2) {
+        this.calamba_residence = "Native";
+      } else {
+        this.calamba_residence = "Transient";
+      }
+    },
+    changeDate1: function changeDate1(e) {
       var date = e.target.value;
       var current_date = date.substr(date.length - 4);
       console.log(current_date);
       console.log(new Date().getFullYear() + 1);
 
       if (current_date == new Date().getFullYear() - 1) {
-        this.date1 = "Immigrant";
+        this.barangay_residence = "Immigrant";
       } else if (current_date == new Date().getFullYear() - 2) {
-        this.date1 = "Native";
+        this.barangay_residence = "Native";
       } else {
-        this.date1 = "Transient";
+        this.barangay_residence = "Transient";
       }
     },
     focusField: function focusField(name) {
@@ -978,43 +1139,116 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       model: {
-        language: "",
-        website: ""
+        educational_attaintment_name: "",
+        educational_status_name: "",
+        government_educational_assistance_id: "",
+        organization_id: "",
+        occupation_id: "",
+        work_location_city_id: ""
       },
-      rules: {
-        language: [{
-          required: true,
-          message: "Language name is required",
-          trigger: "change"
-        }],
-        website: [{
-          required: true,
-          message: "Website is required",
-          trigger: "blur"
-        }, {
-          type: "url",
-          message: "Invalid url",
-          trigger: "change"
-        }]
-      }
+      rules: {}
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])("GadListSingle", ["entry", "loading"])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])("GadListSingle", ["entry", "loading", "lists"])),
   methods: {
     validate: function validate() {
       var _this = this;
 
+      console.log('test');
       return new Promise(function (resolve, reject) {
-        _this.$refs.form.validate(function (valid) {
-          _this.$emit("on-validate", valid, _this.model);
+        var valid = true;
 
-          resolve(valid);
-        });
+        _this.$emit("on-validate", valid, _this.model);
+
+        resolve(valid);
       });
     },
     focusField: function focusField(name) {
@@ -1084,6 +1318,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1112,7 +1357,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     onComplete: function onComplete() {
-      alert("Yay. Done!");
+      var _this = this;
+
+      axios.post('gad', this.finalModel).then(function (response) {
+        // this.$router.push({ name: 'gad_list.index' })
+        _this.$eventHub.$emit('create-success');
+      })["catch"](function (error) {
+        console.log(error);
+      });
     },
     forceClearError: function forceClearError() {
       this.$refs.wizard.tabs[this.activeTabIndex].validationError = null;
@@ -1161,7 +1413,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\ninput[type=\"text\"][data-v-0d90bfa4],\r\nselect[data-v-0d90bfa4] {\r\n    width: 100%;\r\n    padding: 5px;\r\n    margin-bottom: -40px;\r\n    display: inline-block;\r\n    border: 1px solid #000000;\r\n    border-radius: 4px;\r\n    box-sizing: border-box;\n}\nlabel[data-v-0d90bfa4] {\r\n    color: black;\n}\r\n", ""]);
+exports.push([module.i, "\n.popcom-input[data-v-0d90bfa4] {\r\n    width: 100%;\r\n    padding: 5px;\r\n    margin-bottom: -40px;\r\n    display: inline-block;\r\n    border: 1px solid #000000;\r\n    border-radius: 4px;\r\n    box-sizing: border-box;\n}\nlabel[data-v-0d90bfa4] {\r\n    color: black;\n}\r\n", ""]);
 
 // exports
 
@@ -1180,7 +1432,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\ninput[type=\"text\"][data-v-e4cd1fa4],\r\nselect[data-v-e4cd1fa4] {\r\n    width: 100%;\r\n    padding: 5px;\r\n    margin-bottom: -40px;\r\n    display: inline-block;\r\n    border: 1px solid #000000;\r\n    border-radius: 4px;\r\n    box-sizing: border-box;\n}\nlabel[data-v-e4cd1fa4] {\r\n    color: black;\n}\r\n", ""]);
+exports.push([module.i, "\ninput[type='text'][data-v-e4cd1fa4],\r\nselect[data-v-e4cd1fa4] {\r\n    width: 100%;\r\n    padding: 5px;\r\n    margin-bottom: -40px;\r\n    display: inline-block;\r\n    border: 1px solid #000000;\r\n    border-radius: 4px;\r\n    box-sizing: border-box;\n}\nlabel[data-v-e4cd1fa4] {\r\n    color: black;\n}\r\n", ""]);
 
 // exports
 
@@ -1199,7 +1451,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\ninput[type=\"text\"][data-v-60c85088],\r\nselect[data-v-60c85088] {\r\n    width: 100%;\r\n    padding: 5px;\r\n    margin-bottom: -40px;\r\n    display: inline-block;\r\n    border: 1px solid #000000;\r\n    border-radius: 4px;\r\n    box-sizing: border-box;\n}\nlabel[data-v-60c85088] {\r\n    color: black;\n}\r\n", ""]);
+exports.push([module.i, "\n.popcom-input[data-v-60c85088] {\r\n    width: 100%;\r\n    padding: 5px;\r\n    margin-bottom: -40px;\r\n    display: inline-block;\r\n    border: 1px solid #000000;\r\n    border-radius: 4px;\r\n    box-sizing: border-box;\n}\nlabel[data-v-60c85088] {\r\n    color: black;\n}\r\n", ""]);
 
 // exports
 
@@ -1218,7 +1470,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\ninput[type=\"text\"][data-v-c722694a],\r\nselect[data-v-c722694a] {\r\n    width: 100%;\r\n    padding: 5px;\r\n    margin-bottom: -40px;\r\n    display: inline-block;\r\n    border: 1px solid #000000;\r\n    border-radius: 4px;\r\n    box-sizing: border-box;\n}\nlabel[data-v-c722694a] {\r\n    color: black;\n}\r\n", ""]);
+exports.push([module.i, "\n.popcom-input[data-v-c722694a] {\n    width: 100%;\n    padding: 5px;\n    margin-bottom: -40px;\n    display: inline-block;\n    border: 1px solid #000000;\n    border-radius: 4px;\n    box-sizing: border-box;\n}\nlabel[data-v-c722694a] {\n    color: black;\n}\n\n", ""]);
 
 // exports
 
@@ -1431,318 +1683,900 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("form", [
-    _c("div", { staticClass: "tab-pane active", attrs: { id: "personal" } }, [
-      _c("div", { staticClass: "card" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-body" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-3" }, [
-              _c(
-                "div",
-                {
-                  staticClass: "form-group bmd-form-group",
-                  class: {
-                    "is-focused": true
-                  }
-                },
-                [
-                  _c("label", [_vm._v("House No:")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.entry.house_no }
-                  })
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-3" }, [
-              _c(
-                "div",
-                {
-                  staticClass: "form-group bmd-form-group",
-                  class: {
-                    "is-focused": true
-                  }
-                },
-                [
-                  _c("label", [_vm._v("Family Code")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.entry.family_code }
-                  })
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-6" }, [
-              _c(
-                "div",
-                {
-                  staticClass: "form-group bmd-form-group",
-                  class: {
-                    "is-focused": true
-                  }
-                },
-                [
-                  _c("label", [_vm._v("Relation To Main Household")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.entry.household_names }
-                  })
-                ]
-              )
-            ])
-          ]),
+  return _c(
+    "form",
+    { ref: "form", attrs: { model: _vm.model, rules: _vm.rules } },
+    [
+      _c("div", { staticClass: "tab-pane active", attrs: { id: "personal" } }, [
+        _c("div", { staticClass: "card" }, [
+          _vm._m(0),
           _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-3" }, [
-              _c(
-                "div",
-                {
-                  staticClass: "form-group bmd-form-group",
-                  class: {
-                    "is-focused": true
-                  }
-                },
-                [
-                  _c("label", [_vm._v("Birthday")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.entry.birthdate }
-                  })
-                ]
-              )
+          _c("div", { staticClass: "card-body" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-3" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group bmd-form-group",
+                    class: {
+                      "is-focused": true
+                    }
+                  },
+                  [
+                    _c("label", [_vm._v("Last Name")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.model.last_name,
+                          expression: "model.last_name"
+                        }
+                      ],
+                      staticClass: "form-control popcom-input",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.model.last_name },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.model, "last_name", $event.target.value)
+                        }
+                      }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-3" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group bmd-form-group",
+                    class: {
+                      "is-focused": true
+                    }
+                  },
+                  [
+                    _c("label", [_vm._v("First Name")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.model.first_name,
+                          expression: "model.first_name"
+                        }
+                      ],
+                      staticClass: "form-control popcom-input",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.model.first_name },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.model, "first_name", $event.target.value)
+                        }
+                      }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-3" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group bmd-form-group",
+                    class: {
+                      "is-focused": true
+                    }
+                  },
+                  [
+                    _c("label", [_vm._v("Middle Name")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.model.middle_name,
+                          expression: "model.middle_name"
+                        }
+                      ],
+                      staticClass: "form-control popcom-input",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.model.middle_name },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.model,
+                            "middle_name",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-3" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group bmd-form-group",
+                    class: {
+                      "is-focused": true
+                    }
+                  },
+                  [
+                    _c("label", [_vm._v("Extension Name")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.model.extension_name,
+                          expression: "model.extension_name"
+                        }
+                      ],
+                      staticClass: "form-control popcom-input",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.model.extension_name },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.model,
+                            "extension_name",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]
+                )
+              ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-md-3" }, [
-              _c(
-                "div",
-                {
-                  staticClass: "form-group bmd-form-group",
-                  class: {
-                    "is-focused": true
-                  }
-                },
-                [
-                  _c("label", [_vm._v("Cellphone Number:")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.entry.mobile_no }
-                  })
-                ]
-              )
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-3" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group bmd-form-group",
+                    class: {
+                      "is-focused": true
+                    }
+                  },
+                  [
+                    _c("label", [_vm._v("Household Entry No:")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.model.household_no,
+                          expression: "model.household_no"
+                        }
+                      ],
+                      staticClass: "form-control popcom-input",
+                      attrs: { type: "text", readonly: "" },
+                      domProps: { value: _vm.model.household_no },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.model,
+                            "household_no",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-3" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group bmd-form-group",
+                    class: {
+                      "is-focused": true
+                    }
+                  },
+                  [
+                    _c("label", [_vm._v("Family Code")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.model.family_code,
+                          expression: "model.family_code"
+                        }
+                      ],
+                      staticClass: "form-control popcom-input",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.model.family_code },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.model,
+                            "family_code",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group bmd-form-group",
+                    class: {
+                      "is-focused": true
+                    }
+                  },
+                  [
+                    _c("label", [_vm._v("Relation To Main Household")]),
+                    _vm._v(" "),
+                    _c("v-select", {
+                      key: "relation_household_id-field",
+                      staticClass: "form-control popcom-input",
+                      attrs: {
+                        name: "relation_household",
+                        label: "household_name",
+                        options: _vm.lists.relation_household
+                      },
+                      on: {
+                        focus: function($event) {
+                          return _vm.focusField("relation_household")
+                        },
+                        blur: _vm.clearFocus
+                      },
+                      model: {
+                        value: _vm.model.household_id,
+                        callback: function($$v) {
+                          _vm.$set(_vm.model, "household_id", $$v)
+                        },
+                        expression: "model.household_id"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-md-3" }, [
-              _c(
-                "div",
-                {
-                  staticClass: "form-group bmd-form-group",
-                  class: {
-                    "is-focused": true
-                  }
-                },
-                [
-                  _c("label", [_vm._v("Valid ID")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.entry.valid_id_names }
-                  })
-                ]
-              )
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-3" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group bmd-form-group",
+                    class: {
+                      "is-focused": true
+                    }
+                  },
+                  [
+                    _c("label", [_vm._v("Sex")]),
+                    _vm._v(" "),
+                    _c("v-select", {
+                      key: "gender_id-field",
+                      staticClass: "form-control popcom-input",
+                      attrs: {
+                        name: "gender",
+                        label: "gender_name",
+                        options: _vm.lists.gender
+                      },
+                      on: {
+                        focus: function($event) {
+                          return _vm.focusField("gender")
+                        },
+                        blur: _vm.clearFocus
+                      },
+                      model: {
+                        value: _vm.model.gender_id,
+                        callback: function($$v) {
+                          _vm.$set(_vm.model, "gender_id", $$v)
+                        },
+                        expression: "model.gender_id"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-3" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group bmd-form-group",
+                    class: {
+                      "is-focused": true
+                    }
+                  },
+                  [
+                    _c("label", [_vm._v("Civil Status")]),
+                    _vm._v(" "),
+                    _c("v-select", {
+                      key: "civil_status_id-field",
+                      staticClass: "form-control popcom-input",
+                      attrs: {
+                        name: "civil_status",
+                        label: "civil_status_name",
+                        options: _vm.lists.civil_status
+                      },
+                      on: {
+                        focus: function($event) {
+                          return _vm.focusField("civil_status")
+                        },
+                        blur: _vm.clearFocus
+                      },
+                      model: {
+                        value: _vm.model.civil_status_id,
+                        callback: function($$v) {
+                          _vm.$set(_vm.model, "civil_status_id", $$v)
+                        },
+                        expression: "model.civil_status_id"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group bmd-form-group",
+                    class: {
+                      "is-focused": true
+                    }
+                  },
+                  [
+                    _c("label", [_vm._v("Spouse Name")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.model.spouse_first_name,
+                          expression: "model.spouse_first_name"
+                        }
+                      ],
+                      staticClass: "form-control popcom-input",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.model.spouse_first_name },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.model,
+                            "spouse_first_name",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]
+                )
+              ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-md-3" }, [
-              _c(
-                "div",
-                {
-                  staticClass: "form-group bmd-form-group",
-                  class: {
-                    "is-focused": true
-                  }
-                },
-                [
-                  _c("label", [_vm._v("ID Number")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.entry.id_number }
-                  })
-                ]
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-5" }, [
-              _c(
-                "div",
-                {
-                  staticClass: "form-group bmd-form-group",
-                  class: {
-                    "is-focused": true
-                  }
-                },
-                [
-                  _c("label", [_vm._v("Civil Status")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.entry.civil_status_names }
-                  })
-                ]
-              )
+            _c("br"),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c("div", { staticClass: "line" }),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-4" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group bmd-form-group",
+                    class: {
+                      "is-focused": true
+                    }
+                  },
+                  [
+                    _c("label", [_vm._v("Birthday")]),
+                    _vm._v(" "),
+                    _c("datetime-picker", {
+                      staticClass: "form-control popcom-input",
+                      attrs: {
+                        type: "text",
+                        picker: "date",
+                        format: "yyyy",
+                        "v-model": _vm.model.birthdate
+                      }
+                    })
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group bmd-form-group",
+                    class: {
+                      "is-focused": true
+                    }
+                  },
+                  [
+                    _c("label", [_vm._v("Valid ID")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.model.valid_id,
+                          expression: "model.valid_id"
+                        }
+                      ],
+                      staticClass: "form-control popcom-input",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.model.valid_id },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.model, "valid_id", $event.target.value)
+                        }
+                      }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group bmd-form-group",
+                    class: {
+                      "is-focused": true
+                    }
+                  },
+                  [
+                    _c("label", [_vm._v("ID Number")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.model.id_number,
+                          expression: "model.id_number"
+                        }
+                      ],
+                      staticClass: "form-control popcom-input",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.model.id_number },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.model, "id_number", $event.target.value)
+                        }
+                      }
+                    })
+                  ]
+                )
+              ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-md-7" }, [
-              _c(
-                "div",
-                {
-                  staticClass: "form-group bmd-form-group",
-                  class: {
-                    "is-focused": true
-                  }
-                },
-                [
-                  _c("label", [_vm._v("Spouse Name")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: { type: "text" }
-                  })
-                ]
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-4" }, [
-              _c(
-                "div",
-                {
-                  staticClass: "form-group bmd-form-group",
-                  class: {
-                    "is-focused": true
-                  }
-                },
-                [
-                  _c("label", [_vm._v("Sex")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.entry.gender_name }
-                  })
-                ]
-              )
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-4" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group bmd-form-group",
+                    class: {
+                      "is-focused": true
+                    }
+                  },
+                  [
+                    _c("label", [_vm._v("Cellphone Number")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.model.mobile_no,
+                          expression: "model.mobile_no"
+                        }
+                      ],
+                      staticClass: "form-control popcom-input",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.model.mobile_no },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.model, "mobile_no", $event.target.value)
+                        }
+                      }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group bmd-form-group",
+                    class: {
+                      "is-focused": true
+                    }
+                  },
+                  [
+                    _c("label", [_vm._v("Landline")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.model.landline_number,
+                          expression: "model.landline_number"
+                        }
+                      ],
+                      staticClass: "form-control popcom-input",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.model.landline_number },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.model,
+                            "landline_number",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group bmd-form-group",
+                    class: {
+                      "is-focused": true
+                    }
+                  },
+                  [
+                    _c("label", [_vm._v("Email Address")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.model.email,
+                          expression: "model.email"
+                        }
+                      ],
+                      staticClass: "form-control popcom-input",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.model.email },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.model, "email", $event.target.value)
+                        }
+                      }
+                    })
+                  ]
+                )
+              ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-md-4" }, [
-              _c(
-                "div",
-                {
-                  staticClass: "form-group bmd-form-group",
-                  class: {
-                    "is-focused": true
-                  }
-                },
-                [
-                  _c("label", [_vm._v("Gender Preference")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.entry.gender_preference_name }
-                  })
-                ]
-              )
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-3" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group bmd-form-group",
+                    class: {
+                      "is-focused": true
+                    }
+                  },
+                  [
+                    _c("label", [_vm._v("Sector Member")]),
+                    _vm._v(" "),
+                    _c("v-select", {
+                      key: "sector_id-field",
+                      staticClass: "form-control popcom-input",
+                      attrs: {
+                        name: "sector",
+                        label: "sector_name",
+                        options: _vm.lists.sector
+                      },
+                      on: {
+                        focus: function($event) {
+                          return _vm.focusField("sector")
+                        },
+                        blur: _vm.clearFocus
+                      },
+                      model: {
+                        value: _vm.model.sector_id,
+                        callback: function($$v) {
+                          _vm.$set(_vm.model, "sector_id", $$v)
+                        },
+                        expression: "model.sector_id"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-3" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group bmd-form-group",
+                    class: {
+                      "is-focused": true
+                    }
+                  },
+                  [
+                    _c("label", [_vm._v("Ethnicity:")]),
+                    _vm._v(" "),
+                    _c("v-select", {
+                      key: "ethnicity_id-field",
+                      staticClass: "form-control popcom-input",
+                      attrs: {
+                        name: "ethnicity",
+                        label: "ethnicity_name",
+                        options: _vm.lists.ethnicity
+                      },
+                      on: {
+                        focus: function($event) {
+                          return _vm.focusField("ethnicity")
+                        },
+                        blur: _vm.clearFocus
+                      },
+                      model: {
+                        value: _vm.model.ethnicity_id,
+                        callback: function($$v) {
+                          _vm.$set(_vm.model, "ethnicity_id", $$v)
+                        },
+                        expression: "model.ethnicity_id"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-3" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group bmd-form-group",
+                    class: {
+                      "is-focused": true
+                    }
+                  },
+                  [
+                    _c("label", [_vm._v("Gender Preference")]),
+                    _vm._v(" "),
+                    _c("v-select", {
+                      key: "gender_preference_id-field",
+                      staticClass: "form-control popcom-input",
+                      attrs: {
+                        name: "gender_preference",
+                        label: "gender_preference_name",
+                        options: _vm.lists.gender_preference
+                      },
+                      on: {
+                        focus: function($event) {
+                          return _vm.focusField("gender_preference")
+                        },
+                        blur: _vm.clearFocus
+                      },
+                      model: {
+                        value: _vm.model.gender_preference_id,
+                        callback: function($$v) {
+                          _vm.$set(_vm.model, "gender_preference_id", $$v)
+                        },
+                        expression: "model.gender_preference_id"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-3" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group bmd-form-group",
+                    class: {
+                      "is-focused": true
+                    }
+                  },
+                  [
+                    _c("label", [_vm._v("Religion:")]),
+                    _vm._v(" "),
+                    _c("v-select", {
+                      key: "religion_id-field",
+                      staticClass: "form-control popcom-input",
+                      attrs: {
+                        name: "religion",
+                        label: "religion_name",
+                        options: _vm.lists.religion
+                      },
+                      on: {
+                        focus: function($event) {
+                          return _vm.focusField("religion")
+                        },
+                        blur: _vm.clearFocus
+                      },
+                      model: {
+                        value: _vm.model.religion,
+                        callback: function($$v) {
+                          _vm.$set(_vm.model, "religion", $$v)
+                        },
+                        expression: "model.religion"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-md-4" }, [
-              _c(
-                "div",
-                {
-                  staticClass: "form-group bmd-form-group",
-                  class: {
-                    "is-focused": true
-                  }
-                },
-                [
-                  _c("label", [_vm._v("Sector Member")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.entry.sector_name }
-                  })
-                ]
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-4" }, [
-              _c(
-                "div",
-                {
-                  staticClass: "form-group bmd-form-group",
-                  class: {
-                    "is-focused": true
-                  }
-                },
-                [
-                  _c("label", [_vm._v("Ethnicity")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.entry.ethnicity_name }
-                  })
-                ]
-              )
-            ]),
+            _c("br"),
             _vm._v(" "),
-            _c("div", { staticClass: "col-md-4" }, [
-              _c(
-                "div",
-                {
-                  staticClass: "form-group bmd-form-group",
-                  class: {
-                    "is-focused": true
-                  }
-                },
-                [
-                  _c("label", [_vm._v("Religion")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.entry.religion }
-                  })
-                ]
-              )
+            _c("hr"),
+            _vm._v(" "),
+            _c("div", { staticClass: "line" }),
+            _vm._v(" "),
+            _vm._m(1),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-6" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group bmd-form-group",
+                    class: {
+                      "is-focused": true
+                    }
+                  },
+                  [
+                    _c("label", [_vm._v("City/Municipality")]),
+                    _vm._v(" "),
+                    _c("v-select", {
+                      key: "city_register_id-field",
+                      staticClass: "form-control popcom-input",
+                      attrs: {
+                        name: "city_name",
+                        label: "city_name",
+                        options: _vm.lists.city_register
+                      },
+                      on: {
+                        focus: function($event) {
+                          return _vm.focusField("city_register")
+                        },
+                        blur: _vm.clearFocus
+                      },
+                      model: {
+                        value: _vm.model.poltical_city_registered_id,
+                        callback: function($$v) {
+                          _vm.$set(
+                            _vm.model,
+                            "poltical_city_registered_id",
+                            $$v
+                          )
+                        },
+                        expression: "model.poltical_city_registered_id"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group bmd-form-group",
+                    class: {
+                      "is-focused": true
+                    }
+                  },
+                  [
+                    _c("label", [_vm._v(" Province Register")]),
+                    _vm._v(" "),
+                    _c("v-select", {
+                      key: "province_register_id-field",
+                      staticClass: "form-control popcom-input",
+                      attrs: {
+                        name: "province_register",
+                        label: "province_name",
+                        options: _vm.lists.province_register
+                      },
+                      on: {
+                        focus: function($event) {
+                          return _vm.focusField("province_register")
+                        },
+                        blur: _vm.clearFocus
+                      },
+                      model: {
+                        value: _vm.model.poltical_province_registered_id,
+                        callback: function($$v) {
+                          _vm.$set(
+                            _vm.model,
+                            "poltical_province_registered_id",
+                            $$v
+                          )
+                        },
+                        expression: "model.poltical_province_registered_id"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ])
             ])
           ])
         ])
       ])
-    ])
-  ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -1755,6 +2589,14 @@ var staticRenderFns = [
       _c("p", { staticClass: "card-category" }, [
         _vm._v("Complete your profile")
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h4", { staticStyle: { "text-transform": "uppercase" } }, [
+      _c("b", [_vm._v("Political Info")])
     ])
   }
 ]
@@ -1779,85 +2621,110 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "card-body" }, [
-      _c("form", [
-        _c("div", { staticClass: "row" }, [
-          _vm._m(1),
+  return _c(
+    "form",
+    { ref: "form", attrs: { model: _vm.model, rules: _vm.rules } },
+    [
+      _c("div", { staticClass: "card" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c("div", { staticClass: "row" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-8" }, [
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", "v-model": _vm.model.full_immunization }
+              })
+            ])
+          ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-8" }, [
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "text" },
-              domProps: { value: _vm.entry.full_immunization }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _vm._m(2),
+          _c("br"),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-8" }, [
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "text" },
-              domProps: { value: _vm.entry.maintining }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _c("h3", [_vm._v("For Female Only")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _vm._m(3),
+          _c("div", { staticClass: "row" }, [
+            _vm._m(2),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-8" }, [
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", "v-model": _vm.model.medical_id }
+              })
+            ])
+          ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-4" }, [
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "text" },
-              domProps: { value: _vm.entry.pegnacy_age }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _vm._m(4),
+          _c("br"),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-4" }, [
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "text" },
-              domProps: { value: _vm.entry.with_prental }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _vm._m(5),
+          _c("h3", [_vm._v("For Female Only")]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-4" }, [
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "text" },
-              domProps: { value: _vm.entry.with_postpartum }
-            })
+          _c("div", { staticClass: "row" }, [
+            _vm._m(3),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-4" }, [
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", "v-model": _vm.model.pregnancy_age }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _vm._m(4),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-4" }, [
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", "v-model": _vm.model.prental_checkup }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _vm._m(5),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-4" }, [
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", "v-model": _vm.model.postnatal_checkup }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("h3", [_vm._v("VACCINE FOR COVID-19")]),
+          _vm._v(" "),
+          _c("table", { staticClass: "table table-bordered" }, [
+            _vm._m(6),
+            _vm._v(" "),
+            _c("tbody", [
+              _c("tr", [
+                _c("td", [
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: { type: "text", "v-model": _vm.model.brand }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("td")
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: { type: "text", "v-model": _vm.model.brand2 }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("td")
+              ])
+            ])
           ])
-        ]),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _c("h3", [_vm._v("VACCINE FOR COVID-19")]),
-        _vm._v(" "),
-        _vm._m(6)
+        ])
       ])
-    ])
-  ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -1916,28 +2783,20 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("table", { staticClass: "table table-bordered" }, [
-      _c(
-        "thead",
-        {
-          staticClass: "black text-white",
-          staticStyle: { "background-color": "#462066" }
-        },
-        [
-          _c("tr", [
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("Brand")]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("Date")])
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c("tbody", [
-        _c("tr", [_c("td"), _vm._v(" "), _c("td")]),
-        _vm._v(" "),
-        _c("tr", [_c("td"), _vm._v(" "), _c("td")])
-      ])
-    ])
+    return _c(
+      "thead",
+      {
+        staticClass: "black text-white",
+        staticStyle: { "background-color": "#462066" }
+      },
+      [
+        _c("tr", [
+          _c("th", { attrs: { scope: "col" } }, [_vm._v("Brand")]),
+          _vm._v(" "),
+          _c("th", { attrs: { scope: "col" } }, [_vm._v("Date")])
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -1961,206 +2820,335 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "card-body" }, [
-      _c("form", [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-5" }, [
-            _c(
-              "div",
-              {
-                staticClass: "form-group bmd-form-group",
-                class: {
-                  "is-focused": true
-                }
-              },
-              [
-                _c("label", [_vm._v("Building Number")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.entry.building_no }
-                })
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-3" }, [
-            _c(
-              "div",
-              {
-                staticClass: "form-group bmd-form-group",
-                class: {
-                  "is-focused": true
-                }
-              },
-              [
-                _c("label", [_vm._v("House/Room Unit No")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.entry.building_no }
-                })
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-4" }, [
-            _c(
-              "div",
-              {
-                staticClass: "form-group bmd-form-group",
-                class: {
-                  "is-focused": true
-                }
-              },
-              [
-                _c("label", [_vm._v("Block No/Lot No/Street Name")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.entry.block_lot_house_id }
-                })
-              ]
-            )
-          ])
-        ]),
+  return _c(
+    "form",
+    { ref: "form", attrs: { model: _vm.model, rules: _vm.rules } },
+    [
+      _c("div", { staticClass: "card" }, [
+        _vm._m(0),
         _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-5" }, [
-            _c(
-              "div",
-              {
-                staticClass: "form-group bmd-form-group",
-                class: {
-                  "is-focused": true
-                }
-              },
-              [
-                _c("label", [_vm._v("Sitio")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.entry.sitio_names }
-                })
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-3" }, [
-            _c(
-              "div",
-              {
-                staticClass: "form-group bmd-form-group",
-                class: {
-                  "is-focused": true
-                }
-              },
-              [
-                _c("label", [_vm._v("Purok")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.entry.purok_names }
-                })
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-3" }, [
-            _c(
-              "div",
-              {
-                staticClass: "form-group bmd-form-group",
-                class: {
-                  "is-focused": true
-                }
-              },
-              [
-                _c("label", [_vm._v("Subdivision Name")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.entry.subdivision_name }
-                })
-              ]
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("table", { staticClass: "table table-bordered" }, [
-          _vm._m(1),
-          _vm._v(" "),
-          _c("tbody", [
-            _c("tr", [
-              _c("td", [_vm._v("CALAMBA")]),
-              _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-3" }, [
               _c(
-                "td",
+                "div",
+                {
+                  staticClass: "form-group bmd-form-group",
+                  class: {
+                    "is-focused": true
+                  }
+                },
                 [
-                  _c("datetime-picker", {
-                    staticClass: "form-control",
-                    attrs: { type: "text", picker: "date", format: "yyyy" },
-                    on: { input: _vm.changeDate }
+                  _c("label", [_vm._v("Building Number")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.model.building_no,
+                        expression: "model.building_no"
+                      }
+                    ],
+                    staticClass: "form-control popcom-input",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.model.building_no },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.model, "building_no", $event.target.value)
+                      }
+                    }
+                  })
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-3" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "form-group bmd-form-group",
+                  class: {
+                    "is-focused": true
+                  }
+                },
+                [
+                  _c("label", [_vm._v("House/Room Unit No")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.model.house_unit,
+                        expression: "model.house_unit"
+                      }
+                    ],
+                    staticClass: "form-control popcom-input",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.model.house_unit },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.model, "house_unit", $event.target.value)
+                      }
+                    }
+                  })
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-6" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "form-group bmd-form-group",
+                  class: {
+                    "is-focused": true
+                  }
+                },
+                [
+                  _c("label", [_vm._v("Block No/Lot No/Street Name")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.model.block_lot_house_id,
+                        expression: "model.block_lot_house_id"
+                      }
+                    ],
+                    staticClass: "form-control popcom-input",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.model.block_lot_house_id },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.model,
+                          "block_lot_house_id",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-3" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "form-group bmd-form-group",
+                  class: {
+                    "is-focused": true
+                  }
+                },
+                [
+                  _c("label", [_vm._v("Barangay")]),
+                  _vm._v(" "),
+                  _c("v-select", {
+                    key: "barangay_id-field",
+                    staticClass: "form-control popcom-input",
+                    attrs: {
+                      name: "barangay_id",
+                      label: "barangay_name",
+                      options: _vm.lists.barangay
+                    },
+                    on: {
+                      focus: function($event) {
+                        return _vm.focusField("barangay_id")
+                      },
+                      blur: _vm.clearFocus
+                    },
+                    model: {
+                      value: _vm.model.barangay_id,
+                      callback: function($$v) {
+                        _vm.$set(_vm.model, "barangay_id", $$v)
+                      },
+                      expression: "model.barangay_id"
+                    }
                   })
                 ],
                 1
-              ),
-              _vm._v(" "),
-              _c("td", [
-                _vm._v(
-                  "\n                            " +
-                    _vm._s(this.date1) +
-                    "\n                        "
-                )
-              ])
+              )
             ]),
             _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("BARANGAY")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(_vm.entry.barangay_residence_year))]),
-              _vm._v(" "),
-              _vm.entry.barangay_residence_year == new Date().getFullYear()
-                ? _c("td", [
-                    _vm._v(
-                      "\n                            Immigrant\n                        "
-                    )
-                  ])
-                : _c("td", [_vm._v("Native")])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "form-group bmd-form-group",
-            class: {
-              "is-focused": true
-            }
-          },
-          [
-            _c("label", [_vm._v(" Remarks")]),
+            _c("div", { staticClass: "col-md-3" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "form-group bmd-form-group",
+                  class: {
+                    "is-focused": true
+                  }
+                },
+                [
+                  _c("label", [_vm._v("Purok")]),
+                  _vm._v(" "),
+                  _c("v-select", {
+                    key: "purok_id_id-field",
+                    staticClass: "form-control popcom-input",
+                    attrs: {
+                      name: "purok_id",
+                      label: "purok_name",
+                      options: _vm.lists.purok
+                    },
+                    on: {
+                      focus: function($event) {
+                        return _vm.focusField("purok_id")
+                      },
+                      blur: _vm.clearFocus
+                    },
+                    model: {
+                      value: _vm.model.purok_id,
+                      callback: function($$v) {
+                        _vm.$set(_vm.model, "purok_id", $$v)
+                      },
+                      expression: "model.purok_id"
+                    }
+                  })
+                ],
+                1
+              )
+            ]),
             _vm._v(" "),
-            _c("textarea", {
-              staticClass: "form-control",
-              attrs: { rows: "5" },
-              domProps: { value: _vm.entry.remarks }
-            })
-          ]
-        )
+            _c("div", { staticClass: "col-md-6" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "form-group bmd-form-group",
+                  class: {
+                    "is-focused": true
+                  }
+                },
+                [
+                  _c("label", [_vm._v("Sitio / Subdivsion Name")]),
+                  _vm._v(" "),
+                  _c("v-select", {
+                    key: "sitio_id_id-field",
+                    staticClass: "form-control popcom-input",
+                    attrs: {
+                      name: "sitio_id",
+                      label: "sitio_name",
+                      options: _vm.lists.sitio
+                    },
+                    on: {
+                      focus: function($event) {
+                        return _vm.focusField("sitio_id")
+                      },
+                      blur: _vm.clearFocus
+                    },
+                    model: {
+                      value: _vm.model.sitio_id,
+                      callback: function($$v) {
+                        _vm.$set(_vm.model, "sitio_id", $$v)
+                      },
+                      expression: "model.sitio_id"
+                    }
+                  })
+                ],
+                1
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("table", { staticClass: "table table-bordered" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c("tbody", [
+              _c("tr", [
+                _c("td", [_vm._v("CALAMBA")]),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  [
+                    _c("datetime-picker", {
+                      staticClass: "form-control popcom-input",
+                      attrs: {
+                        type: "text",
+                        picker: "date",
+                        format: "yyyy",
+                        "v-model": _vm.model.no_of_years_in_calamba
+                      },
+                      on: { input: _vm.changeDate }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("td", [
+                  _vm._v(
+                    "\n                            " +
+                      _vm._s(this.calamba_residence) +
+                      "\n                        "
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [_vm._v("BARANGAY")]),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  [
+                    _c("datetime-picker", {
+                      staticClass: "form-control popcom-input",
+                      attrs: {
+                        type: "text",
+                        picker: "date",
+                        format: "yyyy",
+                        "v-model": _vm.model.barangay_residence_year
+                      },
+                      on: { input: _vm.changeDate1 }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("td", [
+                  _vm._v(
+                    "\n                            " +
+                      _vm._s(this.barangay_residence) +
+                      "\n                        "
+                  )
+                ])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "form-group bmd-form-group",
+              class: {
+                "is-focused": true
+              }
+            },
+            [
+              _c("label", [_vm._v(" Remarks")]),
+              _vm._v(" "),
+              _c("textarea", {
+                staticClass: "form-control popcom-input",
+                attrs: { rows: "5", "v-model": _vm.model.remarks }
+              })
+            ]
+          )
+        ])
       ])
-    ])
-  ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -2220,122 +3208,298 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "card-body" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-6" }, [
-          _c(
-            "div",
-            {
-              staticClass: "form-group bmd-form-group",
-              class: {
-                "is-focused": true
-              }
-            },
-            [
-              _c("label", [_vm._v("Highest Educational Attaintment")]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "form-control",
-                attrs: { type: "text" },
-                domProps: { value: _vm.entry.educational_attaintment_name }
-              })
-            ]
-          )
-        ]),
+  return _c(
+    "form",
+    { ref: "form", attrs: { model: _vm.model, rules: _vm.rules } },
+    [
+      _c("div", { staticClass: "card" }, [
+        _vm._m(0),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-6" }, [
-          _c(
-            "div",
-            {
-              staticClass: "form-group bmd-form-group",
-              class: {
-                "is-focused": true
-              }
-            },
-            [
-              _c("label", [_vm._v("Educational Status")]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "form-control",
-                attrs: { type: "text" },
-                domProps: { value: _vm.entry.educational_status_name }
-              })
-            ]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c(
-            "div",
-            {
-              staticClass: "form-group bmd-form-group",
-              class: {
-                "is-focused": true
-              }
-            },
-            [
-              _c("label", [_vm._v("Last School Attended")]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "form-control",
-                attrs: { type: "text" },
-                domProps: { value: _vm.entry.last_school_attended }
-              })
-            ]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-6" }, [
-          _c(
-            "div",
-            {
-              staticClass: "form-group bmd-form-group",
-              class: {
-                "is-focused": true
-              }
-            },
-            [
-              _c("label", [_vm._v("Government Educational Assistance")]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "form-control",
-                attrs: { type: "text" },
-                domProps: { value: _vm.entry.government_assistance_name }
-              })
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-6" }, [
-          _c(
-            "div",
-            {
-              staticClass: "form-group bmd-form-group",
-              class: {
-                "is-focused": true
-              }
-            },
-            [
-              _c("label", [_vm._v("Organizations")]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "form-control",
-                attrs: { type: "text" },
-                domProps: { value: _vm.entry.organization_name }
-              })
-            ]
-          )
+        _c("div", { staticClass: "card-body" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-6" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "form-group bmd-form-group",
+                  class: {
+                    "is-focused": true
+                  }
+                },
+                [
+                  _c("label", [_vm._v("Highest Educational Attaintment")]),
+                  _vm._v(" "),
+                  _c("v-select", {
+                    key: "educational_attaintment_id-field",
+                    staticClass: "form-control popcom-input",
+                    attrs: {
+                      name: "educational_attaintment",
+                      label: "educational_attaintment_name",
+                      "v-model": _vm.model.educational_attaintment_name,
+                      options: _vm.lists.educational_attaintment
+                    },
+                    on: {
+                      focus: function($event) {
+                        return _vm.focusField("educational_attaintment")
+                      },
+                      blur: _vm.clearFocus
+                    }
+                  })
+                ],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-6" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "form-group bmd-form-group ",
+                  class: {
+                    "is-focused": true
+                  }
+                },
+                [
+                  _c("label", [_vm._v("Educational Status")]),
+                  _vm._v(" "),
+                  _c("v-select", {
+                    key: "educational_status_id-field",
+                    staticClass: "form-control popcom-input",
+                    attrs: {
+                      name: "educational_status",
+                      label: "educational_status_name",
+                      "v-model": _vm.model.educational_status_name,
+                      options: _vm.lists.educational_status
+                    },
+                    on: {
+                      focus: function($event) {
+                        return _vm.focusField("educational_status")
+                      },
+                      blur: _vm.clearFocus
+                    }
+                  })
+                ],
+                1
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-12" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "form-group bmd-form-group",
+                  class: {
+                    "is-focused": true
+                  }
+                },
+                [
+                  _c("label", [_vm._v("Last School Attended")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control popcom-input",
+                    attrs: {
+                      type: "text",
+                      "v-model": _vm.model.last_school_attended
+                    }
+                  })
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-6" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "form-group bmd-form-group",
+                  class: {
+                    "is-focused": true
+                  }
+                },
+                [
+                  _c("label", [_vm._v("Government Educational Assistance")]),
+                  _vm._v(" "),
+                  _c("v-select", {
+                    key: "government_assistance_id-field",
+                    staticClass: "form-control popcom-input",
+                    attrs: {
+                      name: "government_assistance",
+                      label: "government_assistance_name",
+                      "v-model": _vm.model.government_educational_assistance_id,
+                      options: _vm.lists.government_assistance
+                    },
+                    on: {
+                      focus: function($event) {
+                        return _vm.focusField("government_assistance")
+                      },
+                      blur: _vm.clearFocus
+                    }
+                  })
+                ],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-6" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "form-group bmd-form-group",
+                  class: {
+                    "is-focused": true
+                  }
+                },
+                [
+                  _c("label", [_vm._v("Organizations")]),
+                  _vm._v(" "),
+                  _c("v-select", {
+                    key: "organization_id-field",
+                    staticClass: "form-control popcom-input",
+                    attrs: {
+                      name: "organization",
+                      label: "organization_name",
+                      "v-model": _vm.model.organization_id,
+                      options: _vm.lists.organization
+                    },
+                    on: {
+                      focus: function($event) {
+                        return _vm.focusField("organization")
+                      },
+                      blur: _vm.clearFocus
+                    }
+                  })
+                ],
+                1
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c("div", { staticClass: "line" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-6" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "form-group bmd-form-group",
+                  class: {
+                    "is-focused": true
+                  }
+                },
+                [
+                  _c("label", [_vm._v("Occupation")]),
+                  _vm._v(" "),
+                  _c("v-select", {
+                    key: "occupation_id-field",
+                    staticClass: "form-control popcom-input",
+                    attrs: {
+                      name: "occupation",
+                      label: "occupation_name",
+                      "v-model": _vm.model.occupation_id,
+                      options: _vm.lists.occupation
+                    },
+                    on: {
+                      focus: function($event) {
+                        return _vm.focusField("occupation")
+                      },
+                      blur: _vm.clearFocus
+                    }
+                  })
+                ],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-6" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "form-group bmd-form-group",
+                  class: {
+                    "is-focused": true
+                  }
+                },
+                [
+                  _c("label", [_vm._v("Employer")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control popcom-input",
+                    attrs: { type: "text", "v-model": _vm.model.employer }
+                  })
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-6" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "form-group bmd-form-group",
+                  class: {
+                    "is-focused": true
+                  }
+                },
+                [
+                  _c("label", [_vm._v("Work Location (City, Province)")]),
+                  _vm._v(" "),
+                  _c("v-select", {
+                    key: "work_city_id-field",
+                    staticClass: "form-control popcom-input",
+                    attrs: {
+                      name: "city_name",
+                      label: "city_name",
+                      "v-model": _vm.model.work_location_city_id,
+                      options: _vm.lists.work_location_city
+                    },
+                    on: {
+                      focus: function($event) {
+                        return _vm.focusField("work_city")
+                      },
+                      blur: _vm.clearFocus
+                    }
+                  })
+                ],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-6" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "form-group bmd-form-group",
+                  class: {
+                    "is-focused": true
+                  }
+                },
+                [
+                  _c("label", [_vm._v("Monthly Income (Econimic Status)")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control popcom-input",
+                    attrs: { type: "text", "v-model": _vm.model.monthly_income }
+                  })
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _vm._m(1)
         ])
       ])
-    ])
-  ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -2344,11 +3508,58 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header card-header-primary" }, [
       _c("h4", { staticClass: "card-title" }, [
-        _vm._v("Educational Information / Organizations")
+        _vm._v("Educational Information / Educational Information")
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "card-category" }, [
         _vm._v("Complete your profile")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("table", { staticClass: "table table-bordered" }, [
+          _c(
+            "thead",
+            {
+              staticClass: "black text-white",
+              staticStyle: { "background-color": "#462066" }
+            },
+            [
+              _c("tr", [
+                _c("th", { attrs: { scope: "col" } }, [
+                  _vm._v("Government Assistance")
+                ]),
+                _vm._v(" "),
+                _c("th", { attrs: { scope: "col" } }, [_vm._v("Date")]),
+                _vm._v(" "),
+                _c("th", { attrs: { scope: "col" } }, [_vm._v("Amount")])
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("tbody", [
+            _c("tr", [
+              _c("td", [_vm._v("Social Amelioration Program (SAP)")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("January 20, 2020")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("₱13,000")])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("Calamba City Cash Assistance Program (CAP)")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("October 20, 2020")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("₱4,000")])
+            ])
+          ])
+        ])
       ])
     ])
   }
@@ -2403,7 +3614,15 @@ var render = function() {
           [
             _c(
               "tab-content",
-              { attrs: { title: "Personal details", icon: "fa fa-user" } },
+              {
+                attrs: {
+                  title: "Personal details",
+                  icon: "fa fa-user",
+                  "before-change": function() {
+                    return _vm.validate("firstStep")
+                  }
+                }
+              },
               [
                 _c("first-step", {
                   ref: "firstStep",
@@ -2415,7 +3634,15 @@ var render = function() {
             _vm._v(" "),
             _c(
               "tab-content",
-              { attrs: { title: "Additional Info", icon: "fa fa-cog" } },
+              {
+                attrs: {
+                  title: "Additional Info",
+                  icon: "fa fa-cog",
+                  "before-change": function() {
+                    return _vm.validate("secondStep")
+                  }
+                }
+              },
               [
                 _c("second-step", {
                   ref: "secondStep",
@@ -2430,7 +3657,10 @@ var render = function() {
               {
                 attrs: {
                   title: "Educational Information / Organizations",
-                  icon: "fa fa-book"
+                  icon: "fa fa-book",
+                  "before-change": function() {
+                    return _vm.validate("thirdStep")
+                  }
                 }
               },
               [
@@ -2444,7 +3674,15 @@ var render = function() {
             _vm._v(" "),
             _c(
               "tab-content",
-              { attrs: { title: "Health Info", icon: "fa fa-address-card" } },
+              {
+                attrs: {
+                  title: "Health Info",
+                  icon: "fa fa-address-card",
+                  "before-change": function() {
+                    return _vm.validate("thirdStep")
+                  }
+                }
+              },
               [
                 _c("fourth-step", {
                   ref: "fourthStep",
@@ -2472,7 +3710,7 @@ var render = function() {
               "tab-content",
               { attrs: { title: "Last step", icon: "fa fa-check" } },
               [
-                _vm._v("\n\t\t\t\tYour data\n\t\t\t "),
+                _vm._v("\n                Your data\n                "),
                 _c("pre", { domProps: { innerHTML: _vm._s(_vm.prettyJSON) } })
               ]
             )

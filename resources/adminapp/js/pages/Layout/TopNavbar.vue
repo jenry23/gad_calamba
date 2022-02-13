@@ -36,7 +36,7 @@
             />
           </div>
           <div class="col-md-9">
-            <h5>DATABASE POWERED BY GAD</h5>
+            <h5 v-if="!$can('powered_gad_access')">DATABASE POWERED BY GAD</h5>
           </div>
         </div>
       </div>

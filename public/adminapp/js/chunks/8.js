@@ -612,7 +612,19 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _vm._m(0)
+          _c("div", [
+            _c("br"),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-9" }, [
+                !_vm.$can("powered_gad_access")
+                  ? _c("h5", [_vm._v("DATABASE POWERED BY GAD")])
+                  : _vm._e()
+              ])
+            ])
+          ])
         ],
         1
       )
@@ -624,22 +636,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("br"),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-3" }, [
-          _c("img", {
-            staticClass: "img-fluid",
-            staticStyle: { width: "50px", height: "50px" },
-            attrs: { src: "/images/gad-logo-login.png" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-9" }, [
-          _c("h5", [_vm._v("DATABASE POWERED BY GAD")])
-        ])
-      ])
+    return _c("div", { staticClass: "col-md-3" }, [
+      _c("img", {
+        staticClass: "img-fluid",
+        staticStyle: { width: "50px", height: "50px" },
+        attrs: { src: "/images/gad-logo-login.png" }
+      })
     ])
   }
 ]

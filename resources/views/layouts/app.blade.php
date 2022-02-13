@@ -17,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ url('/md/css/material-dashboard.css') }}">
-    
+
     <link rel="stylesheet" href="{{ url('/css/custom.css') }}">
     <script src="{{ url('/md/js/core/jquery.min.js') }} "></script>
     <script src="{{ url('/md/js/core/popper.min.js') }} "></script>
@@ -29,7 +29,7 @@
 
 <body class="off-canvas-sidebar">
     @yield('content')
-    
+
 </body>
 
 </html>

@@ -110,6 +110,16 @@ function initialState() {
         commit('setEntry', response.data.data)
       })
     },
+    fetchFirstData({ commit }) {
+      axios.get(`${route}/first-data`).then(response => {
+        commit('setLists', response.data.meta)
+      })
+    },
+    fetchThirdData ({ commit }) {
+      axios.get(`${route}/third-data`).then(response => {
+        commit('setLists', response.data.meta)
+      })
+    },
     fetchShowData({ commit, dispatch }, id) {
       axios.get(`${route}/${id}`).then(response => {
         commit('setLists', response.data.data[0])

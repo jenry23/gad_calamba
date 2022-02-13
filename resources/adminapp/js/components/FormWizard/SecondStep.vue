@@ -1,111 +1,111 @@
 <template>
-    <div class="card">
-        <div class="card-header card-header-primary">
-            <h4 class="card-title">Residential Information</h4>
-            <p class="card-category">Complete your profile</p>
-        </div>
-        <div class="card-body">
-            <form>
+    <form :model="model" :rules="rules" ref="form">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title">Residential Information</h4>
+                <p class="card-category">Complete your profile</p>
+            </div>
+            <div class="card-body">
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-3">
                         <div
                             class="form-group bmd-form-group"
                             :class="{
-                                'is-focused': true,
+                                'is-focused': true
                             }"
                         >
                             <label>Building Number</label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                :value="entry.building_no"
-                            />
+                            <input type="text" class="form-control popcom-input" v-model="model.building_no" />
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div
                             class="form-group bmd-form-group"
                             :class="{
-                                'is-focused': true,
+                                'is-focused': true
                             }"
                         >
                             <label>House/Room Unit No</label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                :value="entry.building_no"
-                            />
+                            <input type="text" class="form-control popcom-input" v-model="model.house_unit" />
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div
                             class="form-group bmd-form-group"
                             :class="{
-                                'is-focused': true,
+                                'is-focused': true
                             }"
                         >
                             <label>Block No/Lot No/Street Name</label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                :value="entry.block_lot_house_id"
-                            />
+                            <input type="text" class="form-control popcom-input" v-model="model.block_lot_house_id" />
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-3">
                         <div
                             class="form-group bmd-form-group"
                             :class="{
-                                'is-focused': true,
+                                'is-focused': true
                             }"
                         >
-                            <label>Sitio</label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                :value="entry.sitio_names"
-                            />
+                            <label>Barangay</label>
+                             <v-select
+                                    class="form-control popcom-input"
+                                    name="barangay_id"
+                                    label="barangay_name"
+                                    :key="'barangay_id-field'"
+                                    v-model="model.barangay_id"
+                                    :options="lists.barangay"
+                                    @focus="focusField('barangay_id')"
+                                    @blur="clearFocus"
+                                />
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div
                             class="form-group bmd-form-group"
                             :class="{
-                                'is-focused': true,
+                                'is-focused': true
                             }"
                         >
                             <label>Purok</label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                :value="entry.purok_names"
-                            />
+                                <v-select
+                                    class="form-control popcom-input"
+                                    name="purok_id"
+                                    label="purok_name"
+                                    :key="'purok_id_id-field'"
+                                    v-model="model.purok_id"
+                                    :options="lists.purok"
+                                    @focus="focusField('purok_id')"
+                                    @blur="clearFocus"
+                                />
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <div
                             class="form-group bmd-form-group"
                             :class="{
-                                'is-focused': true,
+                                'is-focused': true
                             }"
                         >
-                            <label>Subdivision Name</label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                :value="entry.subdivision_name"
-                            />
+                            <label>Sitio / Subdivsion Name</label>
+                             <v-select
+                                    class="form-control popcom-input"
+                                    name="sitio_id"
+                                    label="sitio_name"
+                                    :key="'sitio_id_id-field'"
+                                    v-model="model.sitio_id"
+                                    :options="lists.sitio"
+                                    @focus="focusField('sitio_id')"
+                                    @blur="clearFocus"
+                                />
                         </div>
                     </div>
                 </div>
                 <table class="table table-bordered">
-                    <thead
-                        class="black text-white"
-                        style="background-color: #462066"
-                    >
+                    <thead class="black text-white" style="background-color: #462066">
                         <tr>
                             <th scope="col">Reidency</th>
                             <th scope="col">Date</th>
@@ -117,52 +117,51 @@
                             <td>CALAMBA</td>
                             <td>
                                 <datetime-picker
-                                    class="form-control"
+                                    class="form-control popcom-input"
                                     type="text"
                                     picker="date"
                                     format="yyyy"
                                     @input="changeDate"
+                                    v-bind:v-model="model.no_of_years_in_calamba"
                                 ></datetime-picker>
                             </td>
                             <td>
-                                {{ this.date1 }}
+                                {{ this.calamba_residence }}
                             </td>
                         </tr>
                         <tr>
                             <td>BARANGAY</td>
-                            <td>{{ entry.barangay_residence_year }}</td>
-                            <td
-                                v-if="
-                                    entry.barangay_residence_year ==
-                                    new Date().getFullYear()
-                                "
-                            >
-                                Immigrant
+                            <td>
+                                <datetime-picker
+                                    class="form-control popcom-input"
+                                    type="text"
+                                    picker="date"
+                                    format="yyyy"
+                                    @input="changeDate1"
+                                    v-bind:v-model="model.barangay_residence_year"
+                                ></datetime-picker>
                             </td>
-                            <td v-else>Native</td>
+                            <td>
+                                {{ this.barangay_residence }}
+                            </td>
                         </tr>
                     </tbody>
                 </table>
                 <div
                     class="form-group bmd-form-group"
                     :class="{
-                        'is-focused': true,
+                        'is-focused': true
                     }"
                 >
                     <label> Remarks</label>
-                    <textarea
-                        class="form-control"
-                        rows="5"
-                        v-bind:value="entry.remarks"
-                    ></textarea>
+                    <textarea class="form-control popcom-input" rows="5" v-bind:v-model="model.remarks"></textarea>
                 </div>
-            </form>
+            </div>
         </div>
-    </div>
+    </form>
 </template>
 <style scoped>
-input[type="text"],
-select {
+.popcom-input {
     width: 100%;
     padding: 5px;
     margin-bottom: -40px;
@@ -171,6 +170,7 @@ select {
     border-radius: 4px;
     box-sizing: border-box;
 }
+
 label {
     color: black;
 }
@@ -178,65 +178,64 @@ label {
 <script>
 import { mapGetters, mapActions } from "vuex";
 export default {
-    data() {
+    data () {
         return {
-            date1: "",
+            calamba_residence: "",
+            barangay_residence: "",
             model: {
-                language: "",
-                website: "",
+                building_no: '',
+                house_unit: '',
+                block_lot_house_id: '',
+                sitio_names: '',
+                purok_id: '',
+                barangay_id: '',
+                no_of_years_in_calamba: '',
+                barangay_residence_year: '',
+                remarks: '',
             },
-            rules: {
-                language: [
-                    {
-                        required: true,
-                        message: "Language name is required",
-                        trigger: "change",
-                    },
-                ],
-                website: [
-                    {
-                        required: true,
-                        message: "Website is required",
-                        trigger: "blur",
-                    },
-                    {
-                        type: "url",
-                        message: "Invalid url",
-                        trigger: "change",
-                    },
-                ],
-            },
+            rules:{}
         };
     },
     computed: {
-        ...mapGetters("GadListSingle", ["entry", "loading"]),
+        ...mapGetters("GadListSingle", ["entry", "loading", "lists"]),
     },
     methods: {
-        validate() {
+        validate () {
             return new Promise((resolve, reject) => {
-                this.$refs.form.validate((valid) => {
-                    this.$emit("on-validate", valid, this.model);
-                    resolve(valid);
-                });
-            });
+                const valid = true;
+                this.$emit("on-validate", valid, this.model);
+                resolve(valid);
+            });a
         },
-        changeDate(e) {
+        changeDate (e) {
+            var date = e.target.value;
+            var current_date = date.substr(date.length - 4);
+            console.log(date);
+            if (current_date > new Date().getFullYear() - 1) {
+                this.calamba_residence = "Immigrant";
+            } else if (current_date < new Date().getFullYear() - 2) {
+                this.calamba_residence = "Native";
+            } else {
+                this.calamba_residence = "Transient";
+            }
+        },
+        changeDate1 (e) {
             var date = e.target.value;
             var current_date = date.substr(date.length - 4);
             console.log(current_date);
             console.log(new Date().getFullYear() + 1);
             if (current_date == new Date().getFullYear() - 1) {
-                this.date1 = "Immigrant";
+                this.barangay_residence = "Immigrant";
             } else if (current_date == new Date().getFullYear() - 2) {
-                this.date1 = "Native";
+                this.barangay_residence = "Native";
             } else {
-                this.date1 = "Transient";
+                this.barangay_residence = "Transient";
             }
         },
-        focusField(name) {
+        focusField (name) {
             this.activeField = name;
         },
-        clearFocus() {
+        clearFocus () {
             this.activeField = "";
         },
     },

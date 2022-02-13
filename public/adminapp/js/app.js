@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "adminapp/js/chunks/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"6d88c41e289e0b27bf9e","1":"022c5517e54ab72dfcb7","2":"63702a3359cb7bbdb71d","3":"71409cf7c7a00b40c7f9","4":"8785eb7bbb6d2f5df753","5":"3ae2105aef135159c47f","6":"07d342f8ca4ff22ee323","7":"add2788dfcddd927d0aa","8":"b66fed6b5570e5a4be88","9":"f8ea18c9a7a08730c9b1","10":"57f848da23f750578b96","11":"329ce4b0df58f65b07d4","12":"b50ce013a015872c20fb","13":"29dbf33dc39fe7190a81","14":"5af092211c4941de4f50","15":"4f117720cab9dd5f05de","16":"920864b64f30e145f527","17":"7c7a8cc46be1c2104244","18":"74ff9b60fd81efc606fe","19":"329d4ede147b08c7997b","20":"c555a0f965f55ab5c285","21":"bd83e2f8093daafc09fb","22":"cedf41130bc95f7548b2","23":"1cebf2dee4afcb07334a","24":"bf4bc60d77885368926c","25":"1e68213ee9aceadcd7a9","26":"323f21dc985af04e3cef","27":"c04b87ad81614a5ca351","28":"2e8bc5eb4cc51ca226e2","29":"3390c915c16913776b76","30":"23569b44dc080576b02d","31":"6b492cc157c0238e3152","32":"e72b06f0b109a10356ec","33":"90960c6401d9eeadf340","34":"e38c5bf35ddc040c16bc","35":"d98577e90ea9156ae409","36":"2706729f9a957483c539","37":"f289f383fbbf98dea908","38":"29d09fc6dd7ef5c1596d","39":"b317bca6cd02314aca0b","40":"4d850eadf73a497361e4","41":"8af1d7f8a01d2f7022db","42":"ac43dd0c4cecbed2c696","43":"8a21ad4598c811b8bc30","44":"2ea30267c1843c1f9447","45":"5840c96ff59147fd03be","46":"fa7032bb595d9e390cd7","47":"13801b11e99092870ee7","48":"a84638f5f5cbdaeaa0f9","49":"b225f3d4330df85f096f","50":"cf9e80ec1223a71dfe6d","51":"ba3b658514c3d3bd6691","52":"8cf4583dae59f0f92155","53":"c7eadb4315445e270ad3","54":"4ba6ec08d78c598a7d2f","55":"b3f4ae2de771390b5c5b","56":"3175304c3e404e52fa70","57":"b6b3bd9e7f17e0342237","58":"6dbe9495455be469fd3f","59":"2396b61a781ac0c31563","60":"dbd9dce9c2c1047645cf","61":"7fc1dcb5f1b7c80367f5","62":"206bd1b87d287de572a5","63":"d4755a08dfee85d000f2","64":"7d8b59fe9256a7c4164e","65":"948f228d2ac187b1bfa1","66":"538174181a163cc7fab3","67":"848e7534a1e4a5c6c878","68":"bfcde0e59f608e1d408c","69":"16ac8139b9b62999965e","70":"ef2fa851052ee669d02c","71":"daf5f3182c7862a0ce08","72":"fcfb170177f999dc518d","73":"96cf2ce6a518992477db","74":"dbf5332b2debac7fdae9","75":"43a93261c12ac1058ffa","76":"e3b13c00454d274300d8","77":"4cde6c5ffb81034dd293","78":"b57bc715491db4fbc509","79":"48eb3bad1bbe69122c51","80":"7c482b01c14abde0f62f","81":"bf9b7a7b63bc55846f3a","82":"feb7414d7d721b8f75a7","83":"95e399495920a8f71603","84":"937d16130a73e94117a3","85":"75e4a4a0d8bd38b73011","86":"747947150829dbd3dfe3","87":"bb2bf5bc6bfe4ce842bd","88":"a0aa05bb021a94da3de9","89":"d11f09d32f3ceaea07dc","90":"bdd2f9ced7814cf64231","91":"6c4ca61e6dd4ca2f8ba2","92":"cf9226a9c19b3099f67b","93":"0124129eef32eb8b7c70","94":"752e9ee2ad20dacbc691","95":"ce9e33c95daee08a2654","96":"67b2f4066f2bde4bb10d","97":"1b7f0d5a0643208d5e1c","98":"bd9c1230aa75680229ba","99":"89fc109e953aa607d26c","100":"844a2d860c2c5aed0dcc","101":"31acfdb28200a89acf9f","102":"e2fe50780d6b1e7553b9","103":"1f74e54035a8c9b70372","104":"6bb9cadeb3aef65e744b","105":"179eaa99d06bf21439bd","106":"7260ce29199cf5e160d3","107":"ba9033d463694a280032","108":"1247e6f6b6b77517b9d1","109":"dda0206e8ec227c0fcbb","110":"f1f789d416612d3977f3","111":"2ffba0fef92bb595ab0c"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "adminapp/js/chunks/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"6d88c41e289e0b27bf9e","1":"022c5517e54ab72dfcb7","2":"63702a3359cb7bbdb71d","3":"49153257896118c5f5f8","4":"8785eb7bbb6d2f5df753","5":"3ae2105aef135159c47f","7":"add2788dfcddd927d0aa","8":"1efc256151023611048f","9":"f8ea18c9a7a08730c9b1","10":"57f848da23f750578b96","11":"329ce4b0df58f65b07d4","12":"736c8fa7d25cbe67fabb","13":"29dbf33dc39fe7190a81","14":"5af092211c4941de4f50","15":"4f117720cab9dd5f05de","16":"920864b64f30e145f527","17":"7c7a8cc46be1c2104244","18":"74ff9b60fd81efc606fe","19":"329d4ede147b08c7997b","20":"c555a0f965f55ab5c285","21":"bd83e2f8093daafc09fb","22":"cedf41130bc95f7548b2","23":"1cebf2dee4afcb07334a","24":"bf4bc60d77885368926c","25":"1e68213ee9aceadcd7a9","26":"323f21dc985af04e3cef","27":"c04b87ad81614a5ca351","28":"2e8bc5eb4cc51ca226e2","29":"3390c915c16913776b76","30":"23569b44dc080576b02d","31":"6b492cc157c0238e3152","32":"e72b06f0b109a10356ec","33":"90960c6401d9eeadf340","34":"e38c5bf35ddc040c16bc","35":"d98577e90ea9156ae409","36":"2706729f9a957483c539","38":"29d09fc6dd7ef5c1596d","39":"b317bca6cd02314aca0b","40":"4d850eadf73a497361e4","41":"8af1d7f8a01d2f7022db","42":"ac43dd0c4cecbed2c696","43":"8a21ad4598c811b8bc30","44":"2ea30267c1843c1f9447","45":"5840c96ff59147fd03be","46":"fa7032bb595d9e390cd7","47":"13801b11e99092870ee7","48":"a84638f5f5cbdaeaa0f9","49":"b225f3d4330df85f096f","50":"cf9e80ec1223a71dfe6d","51":"ba3b658514c3d3bd6691","52":"8cf4583dae59f0f92155","53":"c7eadb4315445e270ad3","54":"4ba6ec08d78c598a7d2f","55":"b3f4ae2de771390b5c5b","56":"3175304c3e404e52fa70","57":"b6b3bd9e7f17e0342237","58":"6dbe9495455be469fd3f","59":"2396b61a781ac0c31563","60":"dbd9dce9c2c1047645cf","61":"7fc1dcb5f1b7c80367f5","62":"206bd1b87d287de572a5","63":"d4755a08dfee85d000f2","64":"7d8b59fe9256a7c4164e","65":"948f228d2ac187b1bfa1","66":"538174181a163cc7fab3","67":"848e7534a1e4a5c6c878","68":"bfcde0e59f608e1d408c","69":"16ac8139b9b62999965e","70":"ef2fa851052ee669d02c","71":"daf5f3182c7862a0ce08","72":"fcfb170177f999dc518d","73":"96cf2ce6a518992477db","74":"dbf5332b2debac7fdae9","75":"43a93261c12ac1058ffa","76":"e3b13c00454d274300d8","77":"4cde6c5ffb81034dd293","78":"b57bc715491db4fbc509","79":"48eb3bad1bbe69122c51","80":"7c482b01c14abde0f62f","81":"bf9b7a7b63bc55846f3a","82":"feb7414d7d721b8f75a7","83":"95e399495920a8f71603","84":"937d16130a73e94117a3","85":"75e4a4a0d8bd38b73011","86":"747947150829dbd3dfe3","87":"bb2bf5bc6bfe4ce842bd","88":"a0aa05bb021a94da3de9","89":"d11f09d32f3ceaea07dc","90":"bdd2f9ced7814cf64231","91":"6c4ca61e6dd4ca2f8ba2","92":"cf9226a9c19b3099f67b","93":"0124129eef32eb8b7c70","94":"752e9ee2ad20dacbc691","95":"ce9e33c95daee08a2654","96":"67b2f4066f2bde4bb10d","97":"1b7f0d5a0643208d5e1c","98":"bd9c1230aa75680229ba","99":"89fc109e953aa607d26c","100":"844a2d860c2c5aed0dcc","101":"31acfdb28200a89acf9f","102":"e2fe50780d6b1e7553b9","103":"1f74e54035a8c9b70372","104":"6bb9cadeb3aef65e744b","105":"179eaa99d06bf21439bd","106":"7260ce29199cf5e160d3","107":"ba9033d463694a280032","108":"1247e6f6b6b77517b9d1","109":"dda0206e8ec227c0fcbb","110":"f1f789d416612d3977f3","111":"2ffba0fef92bb595ab0c","112":"b8b6e072090d18dc88cc","113":"397824050eb7b0b3b925","114":"6ab7dee08e8e21372b2c"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -3978,6 +3978,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -37876,11 +37881,25 @@ var render = function() {
         "div",
         { staticClass: "logo" },
         [
-          _vm._m(0),
+          _c("a", { staticClass: " logo-normal", attrs: { href: "/" } }, [
+            !_vm.$can("powered_gad_access")
+              ? _c("img", {
+                  staticClass: "img-fluid",
+                  attrs: { src: "/images/popcom.png" }
+                })
+              : _c("img", {
+                  staticClass: "img-fluid",
+                  attrs: { src: "/images/gad-logo-login.png" }
+                })
+          ]),
           _vm._v(" "),
           _c("center", [
             _c("b", [
-              _c("h1", { staticStyle: { color: "white" } }, [_vm._v("GAD")])
+              !_vm.$can("powered_gad_access")
+                ? _c("h1", { staticStyle: { color: "white" } }, [
+                    _vm._v("POPCOM")
+                  ])
+                : _c("h1", { staticStyle: { color: "white" } }, [_vm._v("GAD")])
             ])
           ])
         ],
@@ -37950,19 +37969,7 @@ var render = function() {
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { staticClass: " logo-normal", attrs: { href: "/" } }, [
-      _c("img", {
-        staticClass: "img-fluid",
-        attrs: { src: "/images/calamba-logo.png" }
-      })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -58952,7 +58959,7 @@ var routes = [{
       path: 'gad-list/:id',
       name: 'gad_list.show',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! @cruds/GadList/Show.vue */ "./resources/adminapp/js/cruds/GadList/Show.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(12), __webpack_require__.e(113)]).then(__webpack_require__.bind(null, /*! @cruds/GadList/Show.vue */ "./resources/adminapp/js/cruds/GadList/Show.vue"));
       },
       meta: {
         title: 'Gad'
@@ -59778,7 +59785,7 @@ var routes = [{
       path: 'generate-reports',
       name: 'generate_reports.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(37), __webpack_require__.e(0), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! @cruds/Reports/Index.vue */ "./resources/adminapp/js/cruds/Reports/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(12), __webpack_require__.e(114), __webpack_require__.e(0), __webpack_require__.e(112)]).then(__webpack_require__.bind(null, /*! @cruds/Reports/Index.vue */ "./resources/adminapp/js/cruds/Reports/Index.vue"));
       },
       meta: {
         title: 'Generate Reports'
@@ -62105,16 +62112,28 @@ var actions = {
       commit('setEntry', response.data.data);
     });
   },
-  fetchShowData: function fetchShowData(_ref10, id) {
-    var commit = _ref10.commit,
-        dispatch = _ref10.dispatch;
+  fetchFirstData: function fetchFirstData(_ref10) {
+    var commit = _ref10.commit;
+    axios.get("".concat(route, "/first-data")).then(function (response) {
+      commit('setLists', response.data.meta);
+    });
+  },
+  fetchThirdData: function fetchThirdData(_ref11) {
+    var commit = _ref11.commit;
+    axios.get("".concat(route, "/third-data")).then(function (response) {
+      commit('setLists', response.data.meta);
+    });
+  },
+  fetchShowData: function fetchShowData(_ref12, id) {
+    var commit = _ref12.commit,
+        dispatch = _ref12.dispatch;
     axios.get("".concat(route, "/").concat(id)).then(function (response) {
       commit('setLists', response.data.data[0]);
       commit('setEntry', response.data.data[1]);
     });
   },
-  resetState: function resetState(_ref11) {
-    var commit = _ref11.commit;
+  resetState: function resetState(_ref13) {
+    var commit = _ref13.commit;
     commit('resetState');
   }
 };
