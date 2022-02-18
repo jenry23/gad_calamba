@@ -585,7 +585,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       return new Promise(function (resolve, reject) {
-        console.log(_this.model);
         var valid = true;
 
         _this.$emit("on-validate", valid, _this.model);
@@ -1015,6 +1014,128 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/adminapp/js/components/FormWizard/SixthStep.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/adminapp/js/components/FormWizard/SixthStep.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      survey: [],
+      model: {
+        language: "",
+        website: ""
+      },
+      rules: {
+        language: [{
+          required: true,
+          message: "Language name is required",
+          trigger: "change"
+        }],
+        website: [{
+          required: true,
+          message: "Website is required",
+          trigger: "blur"
+        }, {
+          type: "url",
+          message: "Invalid url",
+          trigger: "change"
+        }]
+      }
+    };
+  },
+  mounted: function mounted() {// axios.get('survey').then(response => {
+    //     // console.log(response.data);
+    // })
+  },
+  methods: {
+    validate: function validate() {
+      var _this = this;
+
+      return new Promise(function (resolve, reject) {
+        _this.$refs.form.validate(function (valid) {
+          _this.$emit("on-validate", valid, _this.model);
+
+          resolve(valid);
+        });
+      });
+    },
+    focusField: function focusField(name) {
+      this.activeField = name;
+    },
+    clearFocus: function clearFocus() {
+      this.activeField = "";
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/adminapp/js/components/FormWizard/ThirdStep.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/adminapp/js/components/FormWizard/ThirdStep.vue?vue&type=script&lang=js& ***!
@@ -1276,9 +1397,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_FormWizard_ThirdStep_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @components/FormWizard/ThirdStep.vue */ "./resources/adminapp/js/components/FormWizard/ThirdStep.vue");
 /* harmony import */ var _components_FormWizard_FourthStep_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @components/FormWizard/FourthStep.vue */ "./resources/adminapp/js/components/FormWizard/FourthStep.vue");
 /* harmony import */ var _components_FormWizard_FifthStep_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @components/FormWizard/FifthStep.vue */ "./resources/adminapp/js/components/FormWizard/FifthStep.vue");
-/* harmony import */ var _components_FormWizard_prettyJson_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @components/FormWizard/prettyJson.js */ "./resources/adminapp/js/components/FormWizard/prettyJson.js");
-/* harmony import */ var vue_form_wizard_dist_vue_form_wizard_min_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-form-wizard/dist/vue-form-wizard.min.css */ "./node_modules/vue-form-wizard/dist/vue-form-wizard.min.css");
-/* harmony import */ var vue_form_wizard_dist_vue_form_wizard_min_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vue_form_wizard_dist_vue_form_wizard_min_css__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _components_FormWizard_SixthStep_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @components/FormWizard/SixthStep.vue */ "./resources/adminapp/js/components/FormWizard/SixthStep.vue");
+/* harmony import */ var _components_FormWizard_prettyJson_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @components/FormWizard/prettyJson.js */ "./resources/adminapp/js/components/FormWizard/prettyJson.js");
+/* harmony import */ var vue_form_wizard_dist_vue_form_wizard_min_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-form-wizard/dist/vue-form-wizard.min.css */ "./node_modules/vue-form-wizard/dist/vue-form-wizard.min.css");
+/* harmony import */ var vue_form_wizard_dist_vue_form_wizard_min_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(vue_form_wizard_dist_vue_form_wizard_min_css__WEBPACK_IMPORTED_MODULE_7__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -1329,6 +1451,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+
 
 
 
@@ -1342,7 +1470,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     SecondStep: _components_FormWizard_SecondStep_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     ThirdStep: _components_FormWizard_ThirdStep_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     FourthStep: _components_FormWizard_FourthStep_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    FifthStep: _components_FormWizard_FifthStep_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+    FifthStep: _components_FormWizard_FifthStep_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    SixthStep: _components_FormWizard_SixthStep_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   data: function data() {
     return {
@@ -1352,7 +1481,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: {
     prettyJSON: function prettyJSON() {
-      return Object(_components_FormWizard_prettyJson_js__WEBPACK_IMPORTED_MODULE_5__["default"])(this.finalModel);
+      return Object(_components_FormWizard_prettyJson_js__WEBPACK_IMPORTED_MODULE_6__["default"])(this.finalModel);
     }
   },
   methods: {
@@ -3193,6 +3322,47 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/adminapp/js/components/FormWizard/SixthStep.vue?vue&type=template&id=aeaefc6c&":
+/*!********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/adminapp/js/components/FormWizard/SixthStep.vue?vue&type=template&id=aeaefc6c& ***!
+  \********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card-header card-header-primary" }, [
+        _c("h4", { staticClass: "card-title" }, [_vm._v("Hobbies")]),
+        _vm._v(" "),
+        _c("p", { staticClass: "card-category" }, [
+          _vm._v("Complete your profile")
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" })
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/adminapp/js/components/FormWizard/ThirdStep.vue?vue&type=template&id=c722694a&scoped=true&":
 /*!********************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/adminapp/js/components/FormWizard/ThirdStep.vue?vue&type=template&id=c722694a&scoped=true& ***!
@@ -3599,6 +3769,8 @@ var render = function() {
               "start-index": _vm.activeTabIndex,
               shape: "circle",
               color: "#20a0ff",
+              subtitle: "New Household",
+              title: "New Household",
               "error-color": "#ff4949"
             },
             on: {
@@ -3699,6 +3871,18 @@ var render = function() {
               },
               [
                 _c("fifth-step", {
+                  ref: "fifthStep",
+                  on: { "on-validate": _vm.onStepValidate }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "tab-content",
+              { attrs: { title: "Hobbies", icon: "fa fa-futbol-o" } },
+              [
+                _c("sixth-step", {
                   ref: "fifthStep",
                   on: { "on-validate": _vm.onStepValidate }
                 })
@@ -4054,6 +4238,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SecondStep_vue_vue_type_template_id_60c85088_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SecondStep_vue_vue_type_template_id_60c85088_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/adminapp/js/components/FormWizard/SixthStep.vue":
+/*!*******************************************************************!*\
+  !*** ./resources/adminapp/js/components/FormWizard/SixthStep.vue ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SixthStep_vue_vue_type_template_id_aeaefc6c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SixthStep.vue?vue&type=template&id=aeaefc6c& */ "./resources/adminapp/js/components/FormWizard/SixthStep.vue?vue&type=template&id=aeaefc6c&");
+/* harmony import */ var _SixthStep_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SixthStep.vue?vue&type=script&lang=js& */ "./resources/adminapp/js/components/FormWizard/SixthStep.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _SixthStep_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _SixthStep_vue_vue_type_template_id_aeaefc6c___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _SixthStep_vue_vue_type_template_id_aeaefc6c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/adminapp/js/components/FormWizard/SixthStep.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/adminapp/js/components/FormWizard/SixthStep.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************!*\
+  !*** ./resources/adminapp/js/components/FormWizard/SixthStep.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SixthStep_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./SixthStep.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/adminapp/js/components/FormWizard/SixthStep.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SixthStep_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/adminapp/js/components/FormWizard/SixthStep.vue?vue&type=template&id=aeaefc6c&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/adminapp/js/components/FormWizard/SixthStep.vue?vue&type=template&id=aeaefc6c& ***!
+  \**************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SixthStep_vue_vue_type_template_id_aeaefc6c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./SixthStep.vue?vue&type=template&id=aeaefc6c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/adminapp/js/components/FormWizard/SixthStep.vue?vue&type=template&id=aeaefc6c&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SixthStep_vue_vue_type_template_id_aeaefc6c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SixthStep_vue_vue_type_template_id_aeaefc6c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -8,6 +8,8 @@
                 :start-index.sync="activeTabIndex"
                 shape="circle"
                 color="#20a0ff"
+                subtitle="New Household"
+                title="New Household"
                 error-color="#ff4949"
             >
                 <tab-content title="Personal details" icon="fa fa-user" :before-change="() => validate('firstStep')">
@@ -33,6 +35,9 @@
                 <tab-content title="Survey Questions" icon="fa fa-address-card">
                     <fifth-step ref="fifthStep" @on-validate="onStepValidate"></fifth-step>
                 </tab-content>
+                <tab-content title="Hobbies" icon="fa fa-futbol-o">
+                    <sixth-step ref="fifthStep" @on-validate="onStepValidate"></sixth-step>
+                </tab-content>
                 <tab-content title="Last step" icon="fa fa-check">
                     Your data
                     <pre v-html="prettyJSON"></pre>
@@ -48,6 +53,7 @@ import SecondStep from "@components/FormWizard/SecondStep.vue";
 import ThirdStep from "@components/FormWizard/ThirdStep.vue";
 import FourthStep from "@components/FormWizard/FourthStep.vue";
 import FifthStep from "@components/FormWizard/FifthStep.vue";
+import SixthStep from "@components/FormWizard/SixthStep.vue";
 import prettyJSON from "@components/FormWizard/prettyJson.js";
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 
@@ -57,7 +63,8 @@ export default {
         SecondStep,
         ThirdStep,
         FourthStep,
-        FifthStep
+        FifthStep,
+        SixthStep
     },
     data () {
         return {

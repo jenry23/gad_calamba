@@ -450,7 +450,6 @@ export default {
         ]),
         validate () {
             return new Promise((resolve, reject) => {
-                console.log(this.model);
                 const valid = true;
                 this.$emit("on-validate", valid, this.model);
                 resolve(valid);

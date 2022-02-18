@@ -78,48 +78,48 @@ class ReportsApiController extends Controller
         $age_from = !empty($request->age_from) ? $request->age_from : '';
         $age_to = !empty($request->age_to) ? $request->age_to : '';
         $gads = Gad::where('barangay_id', $barangay_id)
-            ->where('sector_id', $sector_id)
-            ->where('sitio_id', $sitio_id)
-            ->where('gender_id', $gender_id)
+            ->orWhere('sector_id', $sector_id)
+            ->orWhere('sitio_id', $sitio_id)
+            ->orWhere('gender_id', $gender_id)
             ->orderBy('gender_id', 'DESC')
             ->paginate();
 
         $all_gads = Gad::where('barangay_id', $barangay_id)
-            ->where('sector_id', $sector_id)
-            ->where('sitio_id', $sitio_id)
-            ->where('gender_id', $gender_id)
+            ->orWhere('sector_id', $sector_id)
+            ->orWhere('sitio_id', $sitio_id)
+            ->orWhere('gender_id', $gender_id)
             ->orderBy('gender_id', 'DESC')
             ->get();
         if ($gender_id) {
             if ($gender_id == '1') {
                 $male = Gad::where('barangay_id', $barangay_id)
-                    ->where('sector_id', $sector_id)
-                    ->where('sitio_id', $sitio_id)
-                    ->where('gender_id', $gender_id)
+                    ->orWhere('sector_id', $sector_id)
+                    ->orWhere('sitio_id', $sitio_id)
+                    ->orWhere('gender_id', $gender_id)
                     ->orderBy('gender_id', 'DESC')
                     ->count();
                 $female = 0;
             } else {
                 $male = Gad::where('barangay_id', $barangay_id)
-                    ->where('sector_id', $sector_id)
-                    ->where('sitio_id', $sitio_id)
-                    ->where('gender_id', $gender_id)
+                    ->orWhere('sector_id', $sector_id)
+                    ->orWhere('sitio_id', $sitio_id)
+                    ->orWhere('gender_id', $gender_id)
                     ->orderBy('gender_id', 'DESC')
                     ->count();
                 $female = 0;
             }
         } else {
             $male = Gad::where('barangay_id', $barangay_id)
-                ->where('sector_id', $sector_id)
-                ->where('sitio_id', $sitio_id)
-                ->where('gender_id', '1')
+                ->orWhere('sector_id', $sector_id)
+                ->orWhere('sitio_id', $sitio_id)
+                ->orWhere('gender_id', '1')
                 ->orderBy('gender_id', 'DESC')
                 ->count();
 
             $female = Gad::where('barangay_id', $barangay_id)
-                ->where('sector_id', $sector_id)
-                ->where('sitio_id', $sitio_id)
-                ->where('gender_id', '2')
+                ->orWhere('sector_id', $sector_id)
+                ->orWhere('sitio_id', $sitio_id)
+                ->orWhere('gender_id', '2')
                 ->orderBy('gender_id', 'DESC')
                 ->count();
         }
