@@ -197,7 +197,7 @@ class Gad extends Model
 
     public function sitio()
     {
-        return $this->belongsTo(sitio::class, 'sitio_id');
+        return $this->belongsTo(Sitio::class, 'sitio_id');
     }
     public function ethinicity()
     {
