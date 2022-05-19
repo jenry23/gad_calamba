@@ -162,8 +162,8 @@ class GadApiController extends Controller
 
     public function show($id)
     {
-        $gads = Gad::where('building_no', $id)->get();
-        $gad = Gad::where('building_no', $id)->first();
+        $gads = Gad::where('household_no', $id)->get();
+        $gad = Gad::where('household_no', $id)->first();
         foreach ($gads as $gad) {
             $gad->id = !empty($gad->id) ? $gad->id : '';
             $gad->full_name = $gad->last_name . ' , ' . $gad->first_name . ' ' . $gad->middle_name;

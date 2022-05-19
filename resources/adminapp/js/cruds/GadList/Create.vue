@@ -1,7 +1,15 @@
 <template>
     <div id="row">
+        <div class="loader" v-if="loading"></div>
         <div class="float-right">
-            <input type="file" @change="importFile($event)"  class="form-control" />
+            <input type="file" @change="importFile($event)" class="form-control" />
+        </div>
+        <div class="contact-form-success alert alert-success mt-4" v-if="success">
+            <strong>Success!</strong> Your post is created.
+        </div>
+
+        <div class="contact-form-error alert alert-danger mt-4" v-if="error">
+            <strong>Error!</strong> There was an error sending your request.
         </div>
         <div class="card">
             <form-wizard
@@ -49,7 +57,23 @@
         </div>
     </div>
 </template>
-
+<style scoped>
+.loader{
+    position: absolute;
+    top:0px;
+    right:0px;
+    width:100%;
+    height:100%;
+    background-color:#eceaea;
+    background-image: url('https://04.cadwork.com/wp-content/uploads/2019/08/ajax-loader.gif');
+    background-size: 300px;
+    background-repeat:no-repeat;
+    background-position:center;
+    z-index:10000000;
+    opacity: 0.8;
+    filter: alpha(opacity=40);
+}
+</style>
 <script>
 import FirstStep from "@components/FormWizard/FirstStep.vue";
 import SecondStep from "@components/FormWizard/SecondStep.vue";
@@ -73,7 +97,10 @@ export default {
         return {
             finalModel: {},
             activeTabIndex: 0,
-            import_file: {}
+            import_file: {},
+            loading: false,
+            success: false,
+            error: false,
         };
     },
     computed: {
@@ -104,6 +131,7 @@ export default {
         },
 
         importFile (event) {
+            this.loading = true;
             let file = event.target.files
             const formData = new FormData()
             formData.append('import_file', file[0])
@@ -112,7 +140,9 @@ export default {
                     // this.$router.push({ name: 'gad_list.index' })
                 }).catch(error => {
                     console.log(error);
-                })
+                }).finally(() => {
+                    this.loading = false
+                });
         }
     }
 };

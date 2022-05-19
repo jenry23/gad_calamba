@@ -2,7 +2,7 @@
   <div>
     <span>
     <router-link
-      :to="{ name: 'gad_list.show', params: { id: item.building_no } }"
+      :to="{ name: 'gad_list.show', params: { id: item.household_no } }"
       style="text-transform: uppercase;"
       class="form-control"
       :event="['click', 'keydown.enter']"

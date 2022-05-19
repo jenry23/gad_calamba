@@ -16,6 +16,8 @@ use App\Models\GenderPreference;
 use App\Models\ValidID;
 use App\Models\GovernmentAssistance;
 use App\Models\MonthlyIncome;
+use App\Models\Medicine;
+use App\Models\Health;
 use App\Models\EducationalAssistance;
 use App\Models\EducationalAttaintment;
 use App\Models\EducationalStatus;
@@ -121,7 +123,7 @@ class ImportGads implements ToModel, WithHeadingRow, WithCalculatedFormulas, Wit
             "appliance_no2" => $this->convertStringToID(Appliances::class, 'appliance_name', $row["appliances_no_02_not_required_dropdown_option"]),
             "appliance_no3" => $this->convertStringToID(Appliances::class, 'appliance_name', $row["appliances_no_03_not_required_dropdown_option"]),
             "appliance_no4" => $this->convertStringToID(Appliances::class, 'appliance_name', $row["appliances_no_04_not_required_dropdown_option"]),
-            "vehicle_no" => $this->convertStringToID(Vehicles::class, 'vehicle_name', $row["vehicles_no_01_not_required_dropdown_option"]),
+            "vehicle_no" => $this->convertStringToID(Vehicles::class, 'vehicles_name', $row["vehicles_no_01_not_required_dropdown_option"]),
             // "" => $row["vehicles_no_02_not_required_dropdown_option"]),
             "full_immunization" => $row["full_immunization_yes_public_hosp_center_yes_private_hosp_clinic_no"],
             "covid_19_test" => $row["covid_19_test_no_covid_test_tested_positive_for_covid19_tested_negative_for_covid19"],
@@ -131,8 +133,12 @@ class ImportGads implements ToModel, WithHeadingRow, WithCalculatedFormulas, Wit
             "pregnancy_age" => $row["pregnancy_age"],
             "prental_checkup" => $row["with_prenatal_check_up_yes_public_hosp_center_yes_private_hosp_clinic_no"],
             "postnatal_checkup" => $row["with_postnatal_check_up_yes_public_hosp_center_yes_private_hosp_clinic_no"],
-            "medical_id" => $row["maintaining_medicine_no_01"],
-            "organization_id" => $row["organizations_involved_no_01_not_required"],
+            "medical_id" => $this->convertStringToID(Medicine::class, 'medicine_name', $row["maintaining_medicine_no_01"]),
+            "organization_id" => $this->convertStringToID(
+                Organization::class,
+                'organization_name',
+                $row["organizations_involved_no_01_not_required"]
+            ),
             // "" => $row["organizations_involved_no_02_not_required"],
             "barangay_residence_year" => $row["barangay_residence_year"],
             "no_of_years_in_calamba" => $row["calamba_residence_year"],
@@ -158,6 +164,7 @@ class ImportGads implements ToModel, WithHeadingRow, WithCalculatedFormulas, Wit
     {
         return 3;
     }
+
     public function chunkSize(): int
     {
         return 1000;
