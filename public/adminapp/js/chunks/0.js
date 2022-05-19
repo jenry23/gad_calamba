@@ -183,7 +183,7 @@ if(false) {}
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -193,12 +193,12 @@ var render = function() {
       staticClass: "form-group bmd-form-group",
       class: {
         "has-items": _vm.query.s,
-        "is-focused": _vm.focus
-      }
+        "is-focused": _vm.focus,
+      },
     },
     [
       _c("label", { staticClass: "bmd-label-floating" }, [
-        _vm._v("\n    " + _vm._s(_vm.$t("global.search")) + "\n  ")
+        _vm._v("\n    " + _vm._s(_vm.$t("global.search")) + "\n  "),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "input-group" }, [
@@ -207,16 +207,16 @@ var render = function() {
           attrs: { type: "text", name: "search" },
           domProps: { value: _vm.query.s },
           on: {
-            input: function($event) {
+            input: function ($event) {
               return _vm.debounceSearch($event.target.value)
             },
-            focus: function($event) {
+            focus: function ($event) {
               _vm.focus = true
             },
-            blur: function($event) {
+            blur: function ($event) {
               _vm.focus = false
-            }
-          }
+            },
+          },
         }),
         _vm._v(" "),
         _vm.query.s.length !== 0
@@ -227,15 +227,15 @@ var render = function() {
                   "btn btn-just-icon btn-round btn-link text-dark d-inline-block input-group-append m-0",
                 staticStyle: { height: "36px" },
                 on: {
-                  click: function($event) {
+                  click: function ($event) {
                     _vm.query.s = ""
-                  }
-                }
+                  },
+                },
               },
               [_c("i", { staticClass: "material-icons" }, [_vm._v("clear")])]
             )
-          : _vm._e()
-      ])
+          : _vm._e(),
+      ]),
     ]
   )
 }
@@ -257,7 +257,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -271,24 +271,24 @@ var render = function() {
         _c("h5", { staticClass: "ml-2 mb-1" }, [
           _vm._v(
             "\n      " + _vm._s(_vm.$t("global.datatables.colvis")) + "\n    "
-          )
+          ),
         ]),
         _vm._v(" "),
         _c("hr", { staticClass: "my-1" }),
         _vm._v(" "),
-        _vm._l(_vm.columns, function(col, idx) {
+        _vm._l(_vm.columns, function (col, idx) {
           return _c("div", { key: col.title + idx }, [
             _c(
               "div",
               {
                 staticClass: "dropdown-item px-2 mt-0 mb-1",
                 on: {
-                  click: function($event) {
+                  click: function ($event) {
                     $event.stopPropagation()
                     $event.preventDefault()
                     return _vm.handleChange(col)
-                  }
-                }
+                  },
+                },
               },
               [
                 _vm.isColVisible(col)
@@ -298,11 +298,11 @@ var render = function() {
                       [_vm._v("\n          done\n        ")]
                     )
                   : _c("i", { staticClass: "material-icons text-rose mr-2" }, [
-                      _vm._v("close")
+                      _vm._v("close"),
                     ]),
-                _vm._v("\n        " + _vm._s(_vm.$t(col.title)) + "\n      ")
+                _vm._v("\n        " + _vm._s(_vm.$t(col.title)) + "\n      "),
               ]
-            )
+            ),
           ])
         }),
         _vm._v(" "),
@@ -312,17 +312,17 @@ var render = function() {
           "button",
           {
             staticClass: "btn btn-default btn-sm pull-right",
-            attrs: { type: "button" }
+            attrs: { type: "button" },
           },
           [_vm._v("\n      " + _vm._s(_vm.$t("global.close")) + "\n    ")]
-        )
+        ),
       ],
       2
-    )
+    ),
   ])
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -330,15 +330,15 @@ var staticRenderFns = [
       "button",
       {
         staticClass: "btn btn-default dropdown-toggle",
-        attrs: { type: "button", "data-toggle": "dropdown" }
+        attrs: { type: "button", "data-toggle": "dropdown" },
       },
       [
         _c("i", { staticClass: "fa fa-cog" }),
         _vm._v(" "),
-        _c("span", { staticClass: "caret" })
+        _c("span", { staticClass: "caret" }),
       ]
     )
-  }
+  },
 ]
 render._withStripped = true
 

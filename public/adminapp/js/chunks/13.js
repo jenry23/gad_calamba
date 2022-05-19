@@ -58,9 +58,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var html2canvas__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(html2canvas__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var html2pdf_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! html2pdf.js */ "./node_modules/html2pdf.js/dist/html2pdf.js");
 /* harmony import */ var html2pdf_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(html2pdf_js__WEBPACK_IMPORTED_MODULE_3__);
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -348,14 +348,14 @@ if(false) {}
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
     "div",
     [
-      _vm._l(_vm.row[_vm.entry.key], function(item, key) {
+      _vm._l(_vm.row[_vm.entry.key], function (item, key) {
         return _c(
           "span",
           { key: key, staticClass: "badge badge-pill badge-azure mr-1" },
@@ -365,9 +365,9 @@ var render = function() {
       _vm._v(" "),
       _vm.row[_vm.entry.key].length === 0
         ? _c("span", { staticClass: "badge badge-pill badge-orange" }, [
-            _vm._v("\n    Not Assigned\n  ")
+            _vm._v("\n    Not Assigned\n  "),
           ])
-        : _vm._e()
+        : _vm._e(),
     ],
     2
   )
@@ -390,7 +390,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -409,8 +409,8 @@ var render = function() {
             staticClass: "card",
             staticStyle: {
               border: "1px solid black",
-              "background-color": "#f0f8ff"
-            }
+              "background-color": "#f0f8ff",
+            },
           },
           [
             _vm._m(0),
@@ -428,19 +428,19 @@ var render = function() {
                         attrs: {
                           src: "/images/cap.jpg",
                           height: "104px",
-                          width: "110px"
-                        }
+                          width: "110px",
+                        },
                       }),
                       _vm._v(" "),
                       _c("img", {
                         attrs: {
                           src: "/images/gad-logo-login.png",
                           height: "95px",
-                          width: "100px"
-                        }
+                          width: "100px",
+                        },
                       }),
                       _vm._v(" "),
-                      _c("b")
+                      _c("b"),
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "col-md-5" }, [
@@ -458,8 +458,8 @@ var render = function() {
                             {
                               staticStyle: {
                                 "text-transform": "uppercase",
-                                "margin-right": "50px"
-                              }
+                                "margin-right": "50px",
+                              },
                             },
                             [_vm._v("Gender and Development")]
                           ),
@@ -470,13 +470,13 @@ var render = function() {
                             {
                               staticStyle: {
                                 "text-transform": "uppercase",
-                                "margin-right": "130px"
-                              }
+                                "margin-right": "130px",
+                              },
                             },
                             [_vm._v("Household Profile")]
-                          )
-                        ])
-                      ])
+                          ),
+                        ]),
+                      ]),
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "col-md-4" }, [
@@ -484,13 +484,13 @@ var render = function() {
                         "table",
                         {
                           staticClass: "table-bordered",
-                          staticStyle: { "margin-right": "10px" }
+                          staticStyle: { "margin-right": "10px" },
                         },
                         [
                           _c("tr", [
                             _c("th", [_c("b", [_vm._v("Household ID:")])]),
                             _vm._v(" "),
-                            _c("td", [_vm._v("LAG-CAL-260400-0059-A1-01")])
+                            _c("td", [_vm._v("LAG-CAL-260400-0059-A1-01")]),
                           ]),
                           _vm._v(" "),
                           _c("tr", [
@@ -506,27 +506,27 @@ var render = function() {
                                           _vm.entry.barangay.barangay_name
                                       ) +
                                       "\n                                        "
-                                  )
+                                  ),
                                 ])
-                              : _c("td")
+                              : _c("td"),
                           ]),
                           _vm._v(" "),
                           _c("tr", [
                             _c("th", [_c("b", [_vm._v("Family ID:")])]),
                             _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(_vm.entry.family_code))])
+                            _c("td", [_vm._v(_vm._s(_vm.entry.family_code))]),
                           ]),
                           _vm._v(" "),
                           _c("tr", [
                             _c("th", [_c("b", [_vm._v("Purok")])]),
                             _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(_vm.entry.purok_names))])
-                          ])
+                            _c("td", [_vm._v(_vm._s(_vm.entry.purok_names))]),
+                          ]),
                         ]
-                      )
-                    ])
-                  ])
-                ])
+                      ),
+                    ]),
+                  ]),
+                ]),
               ],
               1
             ),
@@ -535,7 +535,7 @@ var render = function() {
               "div",
               {
                 staticClass: "card",
-                staticStyle: { "background-color": "#f0f8ff" }
+                staticStyle: { "background-color": "#f0f8ff" },
               },
               [
                 _c("div", { staticClass: "card-body" }, [
@@ -546,21 +546,23 @@ var render = function() {
                       "table",
                       {
                         staticClass: "table table-border table-stripe",
-                        staticStyle: { color: "black" }
+                        staticStyle: { color: "black" },
                       },
                       [
                         _vm._m(1),
                         _vm._v(" "),
                         _c(
                           "tbody",
-                          _vm._l(_vm.lists, function(val) {
+                          _vm._l(_vm.lists, function (val) {
                             return _c("tr", { key: val.id }, [
                               _c("td", [_vm._v(_vm._s(val.family_code))]),
                               _vm._v(" "),
                               _c(
                                 "td",
                                 {
-                                  staticStyle: { "text-transform": "uppercase" }
+                                  staticStyle: {
+                                    "text-transform": "uppercase",
+                                  },
                                 },
                                 [
                                   _c(
@@ -569,9 +571,9 @@ var render = function() {
                                       attrs: {
                                         to: {
                                           name: "gad_list.edit",
-                                          params: { id: val.id }
-                                        }
-                                      }
+                                          params: { id: val.id },
+                                        },
+                                      },
                                     },
                                     [
                                       _vm._v(
@@ -580,15 +582,15 @@ var render = function() {
                                           " " +
                                           _vm._s(val.last_name) +
                                           "\n                                            "
-                                      )
+                                      ),
                                     ]
-                                  )
+                                  ),
                                 ],
                                 1
                               ),
                               _vm._v(" "),
                               _c("td", [
-                                _vm._v(_vm._s(_vm.formatDate(val.birthdate)))
+                                _vm._v(_vm._s(_vm.formatDate(val.birthdate))),
                               ]),
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(val.gender_name))]),
@@ -600,39 +602,39 @@ var render = function() {
                                 ? _c("td", [
                                     _vm._v(
                                       "\n                                            Immigrant\n                                        "
-                                    )
+                                    ),
                                   ])
-                                : _c("td", [_vm._v("Native")])
+                                : _c("td", [_vm._v("Native")]),
                             ])
                           }),
                           0
-                        )
+                        ),
                       ]
-                    )
-                  ])
-                ])
+                    ),
+                  ]),
+                ]),
               ]
-            )
+            ),
           ]
-        )
+        ),
       ]),
       _vm._v(" "),
-      _vm._m(2)
-    ])
+      _vm._m(2),
+    ]),
   ])
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header card-header-primary" }, [
       _c("h4", { staticClass: "card-title" }, [_vm._v("Family Information")]),
       _vm._v(" "),
-      _c("p", { staticClass: "card-category" }, [_vm._v("Household Members")])
+      _c("p", { staticClass: "card-category" }, [_vm._v("Household Members")]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -651,12 +653,12 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("th", [_c("b", [_vm._v("Relation to Household")])]),
           _vm._v(" "),
-          _c("th", [_c("b", [_vm._v("Residence Status")])])
+          _c("th", [_c("b", [_vm._v("Residence Status")])]),
         ]
-      )
+      ),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -664,12 +666,12 @@ var staticRenderFns = [
       _c("option", { attrs: { value: "0" } }, [_vm._v("Family Information")]),
       _vm._v(" "),
       _c("option", { attrs: { value: "1" } }, [
-        _vm._v("Address and Residential Information")
+        _vm._v("Address and Residential Information"),
       ]),
       _vm._v(" "),
-      _c("option", { attrs: { value: "2" } }, [_vm._v("Others Information")])
+      _c("option", { attrs: { value: "2" } }, [_vm._v("Others Information")]),
     ])
-  }
+  },
 ]
 render._withStripped = true
 

@@ -456,7 +456,7 @@ if(false) {}
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -485,7 +485,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -508,10 +508,10 @@ var render = function() {
         [
           _c("top-navbar"),
           _vm._v(" "),
-          _c("div", { staticClass: "content" }, [_c("dashboard-content")], 1)
+          _c("div", { staticClass: "content" }, [_c("dashboard-content")], 1),
         ],
         1
-      )
+      ),
     ],
     1
   )
@@ -534,7 +534,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -558,7 +558,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -566,7 +566,7 @@ var render = function() {
     "nav",
     {
       staticClass:
-        "navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top"
+        "navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top",
     },
     [
       _c(
@@ -579,8 +579,8 @@ var render = function() {
                 "\n        " +
                   _vm._s(_vm.$t(_vm.$route.meta.title)) +
                   "\n      "
-              )
-            ])
+              ),
+            ]),
           ]),
           _vm._v(" "),
           _c("autocomplete"),
@@ -595,20 +595,20 @@ var render = function() {
                 "data-toggle": "collapse",
                 "aria-controls": "navigation-index",
                 "aria-expanded": "false",
-                "aria-label": "Toggle navigation"
+                "aria-label": "Toggle navigation",
               },
-              on: { click: _vm.toggleSidebar }
+              on: { click: _vm.toggleSidebar },
             },
             [
               _c("span", { staticClass: "sr-only" }, [
-                _vm._v("Toggle navigation")
+                _vm._v("Toggle navigation"),
               ]),
               _vm._v(" "),
               _c("span", { staticClass: "navbar-toggler-icon icon-bar" }),
               _vm._v(" "),
               _c("span", { staticClass: "navbar-toggler-icon icon-bar" }),
               _vm._v(" "),
-              _c("span", { staticClass: "navbar-toggler-icon icon-bar" })
+              _c("span", { staticClass: "navbar-toggler-icon icon-bar" }),
             ]
           ),
           _vm._v(" "),
@@ -621,18 +621,18 @@ var render = function() {
               _c("div", { staticClass: "col-md-9" }, [
                 !_vm.$can("powered_gad_access")
                   ? _c("h5", [_vm._v("DATABASE POWERED BY GAD")])
-                  : _vm._e()
-              ])
-            ])
-          ])
+                  : _vm._e(),
+              ]),
+            ]),
+          ]),
         ],
         1
-      )
+      ),
     ]
   )
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -640,10 +640,10 @@ var staticRenderFns = [
       _c("img", {
         staticClass: "img-fluid",
         staticStyle: { width: "50px", height: "50px" },
-        attrs: { src: "/images/gad-logo-login.png" }
-      })
+        attrs: { src: "/images/gad-logo-login.png" },
+      }),
     ])
-  }
+  },
 ]
 render._withStripped = true
 

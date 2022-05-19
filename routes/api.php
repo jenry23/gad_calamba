@@ -22,6 +22,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     Route::get('gad/get-name', 'GadApiController@getName')->name('gad.getName');
     Route::get('gad/first-data', 'GadApiController@firstData')->name('gad.firstData');
     Route::get('gad/third-data', 'GadApiController@thirdData')->name('gad.thirdData');
+    Route::post('gad/import-excel', 'GadApiController@importExcel');
     Route::resource('gad', 'GadApiController');
 
     //Barangay

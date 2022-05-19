@@ -180,9 +180,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Charts_Bar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @components/Charts/Bar */ "./resources/adminapp/js/components/Charts/Bar.vue");
 /* harmony import */ var _components_Charts_Pie__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @components/Charts/Pie */ "./resources/adminapp/js/components/Charts/Pie.vue");
 /* harmony import */ var _components_Charts_AreaChart__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @components/Charts/AreaChart */ "./resources/adminapp/js/components/Charts/AreaChart.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -963,13 +963,13 @@ if(false) {}
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm.row[_vm.entry.key]
     ? _c("div", [
-        _vm._v("\n  " + _vm._s(_vm.row[_vm.entry.key][_vm.entry.field]) + "\n")
+        _vm._v("\n  " + _vm._s(_vm.row[_vm.entry.key][_vm.entry.field]) + "\n"),
       ])
     : _c("div")
 }
@@ -991,7 +991,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -1004,22 +1004,22 @@ var render = function() {
             staticClass: "card card-stats",
             staticStyle: {
               "background-color": "#00AAA0!important",
-              color: "white"
-            }
+              color: "white",
+            },
           },
           [
             _c("center", [
               _c(
                 "div",
                 {
-                  staticClass: "card-header card-header-info card-header-icon"
+                  staticClass: "card-header card-header-info card-header-icon",
                 },
                 [
                   _c("div", { staticClass: "card-icon" }, [
                     _c("i", { staticClass: "material-icons" }, [
-                      _vm._v("equalizer")
-                    ])
-                  ])
+                      _vm._v("equalizer"),
+                    ]),
+                  ]),
                 ]
               ),
               _vm._v(" "),
@@ -1029,10 +1029,10 @@ var render = function() {
                   "h3",
                   {
                     staticClass: "card-title",
-                    staticStyle: { color: "white" }
+                    staticStyle: { color: "white" },
                   },
                   [_vm._v(_vm._s(_vm.data.total_people_count))]
-                )
+                ),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "row" }, [
@@ -1040,22 +1040,22 @@ var render = function() {
                   _c("h5", [_vm._v("Male")]),
                   _vm._v(" "),
                   _c("h3", { staticStyle: { "margin-top": "-20px" } }, [
-                    _vm._v(_vm._s(_vm.data.total_male_count))
-                  ])
+                    _vm._v(_vm._s(_vm.data.total_male_count)),
+                  ]),
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-6" }, [
                   _c("h5", [_vm._v("Female")]),
                   _vm._v(" "),
                   _c("h3", { staticStyle: { "margin-top": "-20px" } }, [
-                    _vm._v(_vm._s(_vm.data.total_female_count))
-                  ])
-                ])
-              ])
-            ])
+                    _vm._v(_vm._s(_vm.data.total_female_count)),
+                  ]),
+                ]),
+              ]),
+            ]),
           ],
           1
-        )
+        ),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-lg-3 col-md-6 col-sm-6" }, [
@@ -1065,22 +1065,23 @@ var render = function() {
             staticClass: "card card-stats",
             staticStyle: {
               "background-color": "#FF7A5A!important",
-              color: "white"
-            }
+              color: "white",
+            },
           },
           [
             _c("center", [
               _c(
                 "div",
                 {
-                  staticClass: "card-header card-header-danger card-header-icon"
+                  staticClass:
+                    "card-header card-header-danger card-header-icon",
                 },
                 [
                   _c("div", { staticClass: "card-icon" }, [
                     _c("i", { staticClass: "material-icons" }, [
-                      _vm._v("accessible")
-                    ])
-                  ])
+                      _vm._v("accessible"),
+                    ]),
+                  ]),
                 ]
               ),
               _vm._v(" "),
@@ -1090,10 +1091,10 @@ var render = function() {
                   "h3",
                   {
                     staticClass: "card-title",
-                    staticStyle: { color: "white" }
+                    staticStyle: { color: "white" },
                   },
                   [_vm._v(_vm._s(_vm.data.total_person_disability_count))]
-                )
+                ),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "row" }, [
@@ -1101,22 +1102,22 @@ var render = function() {
                   _c("h5", [_vm._v("Male")]),
                   _vm._v(" "),
                   _c("h3", { staticStyle: { "margin-top": "-20px" } }, [
-                    _vm._v(_vm._s(_vm.data.total_male_disablity_count))
-                  ])
+                    _vm._v(_vm._s(_vm.data.total_male_disablity_count)),
+                  ]),
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-6" }, [
                   _c("h5", [_vm._v("Female")]),
                   _vm._v(" "),
                   _c("h3", { staticStyle: { "margin-top": "-20px" } }, [
-                    _vm._v(_vm._s(_vm.data.total_female_disablity_count))
-                  ])
-                ])
-              ])
-            ])
+                    _vm._v(_vm._s(_vm.data.total_female_disablity_count)),
+                  ]),
+                ]),
+              ]),
+            ]),
           ],
           1
-        )
+        ),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-lg-3 col-md-6 col-sm-6" }, [
@@ -1126,8 +1127,8 @@ var render = function() {
             staticClass: "card card-stats",
             staticStyle: {
               "background-color": "#462066!important",
-              color: "white"
-            }
+              color: "white",
+            },
           },
           [
             _c("center", [
@@ -1135,14 +1136,14 @@ var render = function() {
                 "div",
                 {
                   staticClass:
-                    "card-header card-header-primary card-header-icon"
+                    "card-header card-header-primary card-header-icon",
                 },
                 [
                   _c("div", { staticClass: "card-icon" }, [
                     _c("i", { staticClass: "material-icons" }, [
-                      _vm._v("contacts")
-                    ])
-                  ])
+                      _vm._v("contacts"),
+                    ]),
+                  ]),
                 ]
               ),
               _vm._v(" "),
@@ -1152,10 +1153,10 @@ var render = function() {
                   "h3",
                   {
                     staticClass: "card-title",
-                    staticStyle: { color: "white" }
+                    staticStyle: { color: "white" },
                   },
                   [_vm._v(_vm._s(_vm.data.total_senior_count))]
-                )
+                ),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "row" }, [
@@ -1163,22 +1164,22 @@ var render = function() {
                   _c("h5", [_vm._v("Male")]),
                   _vm._v(" "),
                   _c("h3", { staticStyle: { "margin-top": "-20px" } }, [
-                    _vm._v(_vm._s(_vm.data.total_male_senior_count))
-                  ])
+                    _vm._v(_vm._s(_vm.data.total_male_senior_count)),
+                  ]),
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-6" }, [
                   _c("h5", [_vm._v("Female")]),
                   _vm._v(" "),
                   _c("h3", { staticStyle: { "margin-top": "-20px" } }, [
-                    _vm._v(_vm._s(_vm.data.total_female_senior_count))
-                  ])
-                ])
-              ])
-            ])
+                    _vm._v(_vm._s(_vm.data.total_female_senior_count)),
+                  ]),
+                ]),
+              ]),
+            ]),
           ],
           1
-        )
+        ),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-lg-3 col-md-6 col-sm-6" }, [
@@ -1188,8 +1189,8 @@ var render = function() {
             staticClass: "card card-stats",
             staticStyle: {
               "background-color": "#FFB85F!important",
-              color: "white"
-            }
+              color: "white",
+            },
           },
           [
             _c("center", [
@@ -1197,14 +1198,14 @@ var render = function() {
                 "div",
                 {
                   staticClass:
-                    "card-header card-header-warning card-header-icon"
+                    "card-header card-header-warning card-header-icon",
                 },
                 [
                   _c("div", { staticClass: "card-icon" }, [
                     _c("i", { staticClass: "material-icons" }, [
-                      _vm._v("attribution")
-                    ])
-                  ])
+                      _vm._v("attribution"),
+                    ]),
+                  ]),
                 ]
               ),
               _vm._v(" "),
@@ -1214,10 +1215,10 @@ var render = function() {
                   "h3",
                   {
                     staticClass: "card-title",
-                    staticStyle: { color: "white" }
+                    staticStyle: { color: "white" },
                   },
                   [_vm._v(_vm._s(_vm.data.total_person_disability_count))]
-                )
+                ),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "row" }, [
@@ -1227,7 +1228,7 @@ var render = function() {
                     "\r\n                  " +
                       _vm._s(_vm.data.total_male_disablity_count) +
                       "\r\n              "
-                  )
+                  ),
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-6" }, [
@@ -1236,14 +1237,14 @@ var render = function() {
                     "\r\n                " +
                       _vm._s(_vm.data.total_female_disablity_count) +
                       "\r\n              "
-                  )
-                ])
-              ])
-            ])
+                  ),
+                ]),
+              ]),
+            ]),
           ],
           1
-        )
-      ])
+        ),
+      ]),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
@@ -1259,7 +1260,7 @@ var render = function() {
                 "div",
                 {
                   staticClass: "col-md-4",
-                  staticStyle: { "margin-top": "-70px" }
+                  staticStyle: { "margin-top": "-70px" },
                 },
                 [
                   _c("div", { staticClass: "card" }, [
@@ -1269,8 +1270,8 @@ var render = function() {
                       [
                         _c("center", [
                           _c("h4", { staticClass: "card-title " }, [
-                            _vm._v("LIST OF BARANGAY")
-                          ])
+                            _vm._v("LIST OF BARANGAY"),
+                          ]),
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "card-body" }, [
@@ -1280,36 +1281,36 @@ var render = function() {
                               _vm._v(" "),
                               _c(
                                 "tbody",
-                                _vm._l(_vm.data.barangays, function(barangay) {
+                                _vm._l(_vm.data.barangays, function (barangay) {
                                   return _c("tr", { key: barangay.id }, [
                                     _c("td", [
-                                      _vm._v(_vm._s(barangay.barangay_name))
+                                      _vm._v(_vm._s(barangay.barangay_name)),
                                     ]),
                                     _vm._v(" "),
                                     _c("td", [
-                                      _vm._v(_vm._s(barangay.count_resident))
+                                      _vm._v(_vm._s(barangay.count_resident)),
                                     ]),
                                     _vm._v(" "),
                                     _c("td", [
-                                      _vm._v(_vm._s(barangay.percent) + "%")
-                                    ])
+                                      _vm._v(_vm._s(barangay.percent) + "%"),
+                                    ]),
                                   ])
                                 }),
                                 0
-                              )
-                            ])
-                          ])
-                        ])
+                              ),
+                            ]),
+                          ]),
+                        ]),
                       ],
                       1
-                    )
-                  ])
+                    ),
+                  ]),
                 ]
-              )
-            ])
-          ])
-        ])
-      ])
+              ),
+            ]),
+          ]),
+        ]),
+      ]),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
@@ -1325,7 +1326,7 @@ var render = function() {
                   "\r\n                        " +
                     _vm._s(_vm.data.total_male_count) +
                     "\r\n                    "
-                )
+                ),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-6" }, [
@@ -1334,13 +1335,13 @@ var render = function() {
                   "\r\n                      " +
                     _vm._s(_vm.data.total_female_count) +
                     "\r\n                    "
-                )
-              ])
-            ])
+                ),
+              ]),
+            ]),
           ]),
           _vm._v(" "),
-          _vm._m(4)
-        ])
+          _vm._m(4),
+        ]),
       ]),
       _vm._v(" "),
       _vm._m(5),
@@ -1357,7 +1358,7 @@ var render = function() {
                   "\r\n                        " +
                     _vm._s(_vm.data.total_male_count) +
                     "\r\n                    "
-                )
+                ),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-6" }, [
@@ -1366,14 +1367,14 @@ var render = function() {
                   "\r\n                      " +
                     _vm._s(_vm.data.total_female_count) +
                     "\r\n                    "
-                )
-              ])
-            ])
+                ),
+              ]),
+            ]),
           ]),
           _vm._v(" "),
-          _vm._m(7)
-        ])
-      ])
+          _vm._m(7),
+        ]),
+      ]),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
@@ -1385,11 +1386,13 @@ var render = function() {
             "div",
             { staticClass: "card-body" },
             [
-              _c("line-chart", { attrs: { "chart-data": _vm.data_assistance } })
+              _c("line-chart", {
+                attrs: { "chart-data": _vm.data_assistance },
+              }),
             ],
             1
-          )
-        ])
+          ),
+        ]),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-6" }, [
@@ -1401,9 +1404,9 @@ var render = function() {
             { staticClass: "card-body" },
             [_c("bar-chart", { attrs: { "chart-data": _vm.data_income } })],
             1
-          )
-        ])
-      ])
+          ),
+        ]),
+      ]),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
@@ -1416,26 +1419,26 @@ var render = function() {
             { staticClass: "card-body" },
             [
               _c("pie-chart", {
-                attrs: { "chart-data": _vm.chartData, options: _vm.options }
-              })
+                attrs: { "chart-data": _vm.chartData, options: _vm.options },
+              }),
             ],
             1
-          )
-        ])
+          ),
+        ]),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-6" }, [
         _c("div", { staticClass: "card card-stats" }, [
           _vm._m(11),
           _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [_c("AreaChart")], 1)
-        ])
-      ])
-    ])
+          _c("div", { staticClass: "card-body" }, [_c("AreaChart")], 1),
+        ]),
+      ]),
+    ]),
   ])
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -1448,16 +1451,16 @@ var staticRenderFns = [
             attrs: {
               src: "/images/calamba-logo.png",
               height: "50px;",
-              width: "50px;"
-            }
-          })
+              width: "50px;",
+            },
+          }),
         ]),
         _vm._v(" "),
-        _c("h4", { staticClass: "card-title" }, [_vm._v("Calamba Map")])
+        _c("h4", { staticClass: "card-title" }, [_vm._v("Calamba Map")]),
       ]
     )
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -1466,12 +1469,12 @@ var staticRenderFns = [
         attrs: {
           src: "/images/calamba-map.png",
           width: "750px",
-          height: "380px;"
-        }
-      })
+          height: "380px;",
+        },
+      }),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -1480,24 +1483,24 @@ var staticRenderFns = [
         _c("th", [
           _vm._v(
             "\r\n                                Name\r\n                              "
-          )
+          ),
         ]),
         _vm._v(" "),
         _c("th", [
           _vm._v(
             "\r\n                                Total Resident\r\n                              "
-          )
+          ),
         ]),
         _vm._v(" "),
         _c("th", [
           _vm._v(
             "\r\n                                Percent\r\n                              "
-          )
-        ])
-      ])
+          ),
+        ]),
+      ]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -1506,21 +1509,21 @@ var staticRenderFns = [
         "div",
         { staticClass: "ct-chart", attrs: { id: "websiteViewsChart" } },
         [_vm._v("Migration Rate")]
-      )
+      ),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-footer" }, [
       _c("div", { staticClass: "stats" }, [
         _c("i", { staticClass: "material-icons" }, [_vm._v("access_time")]),
-        _vm._v(" updated 4 minutes ago\r\n                  ")
-      ])
+        _vm._v(" updated 4 minutes ago\r\n                  "),
+      ]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -1531,7 +1534,7 @@ var staticRenderFns = [
             "div",
             { staticClass: "ct-chart", attrs: { id: "websiteViewsChart" } },
             [_vm._v("Resident Status")]
-          )
+          ),
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
@@ -1542,8 +1545,8 @@ var staticRenderFns = [
                 _vm._v(" "),
                 _c("th", [_vm._v("Male")]),
                 _vm._v(" "),
-                _c("th", [_vm._v("Female")])
-              ])
+                _c("th", [_vm._v("Female")]),
+              ]),
             ]),
             _vm._v(" "),
             _c("tbody", [
@@ -1552,7 +1555,7 @@ var staticRenderFns = [
                 _vm._v(" "),
                 _c("td", [_vm._v("50")]),
                 _vm._v(" "),
-                _c("td", [_vm._v("10")])
+                _c("td", [_vm._v("10")]),
               ]),
               _vm._v(" "),
               _c("tr", [
@@ -1560,7 +1563,7 @@ var staticRenderFns = [
                 _vm._v(" "),
                 _c("td", [_vm._v("6")]),
                 _vm._v(" "),
-                _c("td", [_vm._v("10")])
+                _c("td", [_vm._v("10")]),
               ]),
               _vm._v(" "),
               _c("tr", [
@@ -1568,22 +1571,22 @@ var staticRenderFns = [
                 _vm._v(" "),
                 _c("td", [_vm._v("40")]),
                 _vm._v(" "),
-                _c("td", [_vm._v("20")])
-              ])
-            ])
-          ])
+                _c("td", [_vm._v("20")]),
+              ]),
+            ]),
+          ]),
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-footer" }, [
           _c("div", { staticClass: "stats" }, [
             _c("i", { staticClass: "material-icons" }, [_vm._v("access_time")]),
-            _vm._v(" campaign sent 2 days ago\r\n                  ")
-          ])
-        ])
-      ])
+            _vm._v(" campaign sent 2 days ago\r\n                  "),
+          ]),
+        ]),
+      ]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -1592,58 +1595,58 @@ var staticRenderFns = [
         "div",
         { staticClass: "ct-chart", attrs: { id: "completedTasksChart" } },
         [_vm._v("Total Number Of")]
-      )
+      ),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-footer" }, [
       _c("div", { staticClass: "stats" }, [
         _c("i", { staticClass: "material-icons" }, [_vm._v("access_time")]),
-        _vm._v(" campaign sent 2 days ago\r\n                  ")
-      ])
+        _vm._v(" campaign sent 2 days ago\r\n                  "),
+      ]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header card-header-info" }, [
       _c("h3", { staticClass: "card-title" }, [
-        _vm._v("Government Assistance Graph")
-      ])
+        _vm._v("Government Assistance Graph"),
+      ]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header card-header-info" }, [
       _c("h3", { staticClass: "card-title" }, [
-        _vm._v("Resident Monthly Income Graph")
-      ])
+        _vm._v("Resident Monthly Income Graph"),
+      ]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header card-header-info" }, [
       _c("h3", { staticClass: "card-title" }, [
-        _vm._v("EDUCATIONAL ATTAINTMENT")
-      ])
+        _vm._v("EDUCATIONAL ATTAINTMENT"),
+      ]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header card-header-info" }, [
-      _c("h3", { staticClass: "card-title" }, [_vm._v("SENIOR CITIZEN")])
+      _c("h3", { staticClass: "card-title" }, [_vm._v("SENIOR CITIZEN")]),
     ])
-  }
+  },
 ]
 render._withStripped = true
 

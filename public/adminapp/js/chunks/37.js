@@ -10,9 +10,9 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -1053,7 +1053,7 @@ if(false) {}
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -1064,29 +1064,29 @@ var render = function() {
         {
           staticClass: "custom-select my-1 mr-sm-2",
           on: {
-            change: function($event) {
+            change: function ($event) {
               return _vm.switchSelect($event)
-            }
-          }
+            },
+          },
         },
         [
           _c("option", { attrs: { value: "0" } }, [
-            _vm._v("Personal Information")
+            _vm._v("Personal Information"),
           ]),
           _vm._v(" "),
           _c("option", { attrs: { value: "1" } }, [
-            _vm._v("Residential Information")
+            _vm._v("Residential Information"),
           ]),
           _vm._v(" "),
           _c("option", { attrs: { value: "2" } }, [
             _vm._v(
               "\n                Educational Information / Employee Information\n            "
-            )
+            ),
           ]),
           _vm._v(" "),
           _c("option", { attrs: { value: "3" } }, [
-            _vm._v("Other Medical Information")
-          ])
+            _vm._v("Other Medical Information"),
+          ]),
         ]
       ),
       _vm._v(" "),
@@ -1108,8 +1108,8 @@ var render = function() {
                       {
                         staticClass: "form-group bmd-form-group",
                         class: {
-                          "is-focused": true
-                        }
+                          "is-focused": true,
+                        },
                       },
                       [
                         _c("label", [_vm._v("Household Entry No:")]),
@@ -1117,10 +1117,10 @@ var render = function() {
                         _c("input", {
                           staticClass: "form-control",
                           attrs: { type: "text" },
-                          domProps: { value: _vm.entry.household_no }
-                        })
+                          domProps: { value: _vm.entry.household_no },
+                        }),
                       ]
-                    )
+                    ),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-3" }, [
@@ -1129,8 +1129,8 @@ var render = function() {
                       {
                         staticClass: "form-group bmd-form-group",
                         class: {
-                          "is-focused": true
-                        }
+                          "is-focused": true,
+                        },
                       },
                       [
                         _c("label", [_vm._v("Family Code")]),
@@ -1138,10 +1138,10 @@ var render = function() {
                         _c("input", {
                           staticClass: "form-control",
                           attrs: { type: "text" },
-                          domProps: { value: _vm.entry.family_code }
-                        })
+                          domProps: { value: _vm.entry.family_code },
+                        }),
                       ]
-                    )
+                    ),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-6" }, [
@@ -1150,8 +1150,8 @@ var render = function() {
                       {
                         staticClass: "form-group bmd-form-group",
                         class: {
-                          "is-focused": true
-                        }
+                          "is-focused": true,
+                        },
                       },
                       [
                         _c("label", [_vm._v("Relation To Main Household")]),
@@ -1159,11 +1159,11 @@ var render = function() {
                         _c("input", {
                           staticClass: "form-control",
                           attrs: { type: "text" },
-                          domProps: { value: _vm.entry.household_names }
-                        })
+                          domProps: { value: _vm.entry.household_names },
+                        }),
                       ]
-                    )
-                  ])
+                    ),
+                  ]),
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row" }, [
@@ -1173,8 +1173,8 @@ var render = function() {
                       {
                         staticClass: "form-group bmd-form-group",
                         class: {
-                          "is-focused": true
-                        }
+                          "is-focused": true,
+                        },
                       },
                       [
                         _c("label", [_vm._v("Sex")]),
@@ -1182,10 +1182,10 @@ var render = function() {
                         _c("input", {
                           staticClass: "form-control",
                           attrs: { type: "text" },
-                          domProps: { value: _vm.entry.gender_name }
-                        })
+                          domProps: { value: _vm.entry.gender_name },
+                        }),
                       ]
-                    )
+                    ),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-3" }, [
@@ -1194,8 +1194,8 @@ var render = function() {
                       {
                         staticClass: "form-group bmd-form-group",
                         class: {
-                          "is-focused": true
-                        }
+                          "is-focused": true,
+                        },
                       },
                       [
                         _c("label", [_vm._v("Civil Status")]),
@@ -1203,10 +1203,10 @@ var render = function() {
                         _c("input", {
                           staticClass: "form-control",
                           attrs: { type: "text" },
-                          domProps: { value: _vm.entry.civil_status_names }
-                        })
+                          domProps: { value: _vm.entry.civil_status_names },
+                        }),
                       ]
-                    )
+                    ),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-6" }, [
@@ -1215,8 +1215,8 @@ var render = function() {
                       {
                         staticClass: "form-group bmd-form-group",
                         class: {
-                          "is-focused": true
-                        }
+                          "is-focused": true,
+                        },
                       },
                       [
                         _c("label", [_vm._v("Spouse Name")]),
@@ -1230,12 +1230,12 @@ var render = function() {
                               " " +
                               _vm.entry.spouse_last_name +
                               "," +
-                              _vm.entry.spouse_middle_name
-                          }
-                        })
+                              _vm.entry.spouse_middle_name,
+                          },
+                        }),
                       ]
-                    )
-                  ])
+                    ),
+                  ]),
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row" }, [
@@ -1245,8 +1245,8 @@ var render = function() {
                       {
                         staticClass: "form-group bmd-form-group",
                         class: {
-                          "is-focused": true
-                        }
+                          "is-focused": true,
+                        },
                       },
                       [
                         _c("label", [_vm._v("Birthday")]),
@@ -1254,10 +1254,10 @@ var render = function() {
                         _c("input", {
                           staticClass: "form-control",
                           attrs: { type: "text" },
-                          domProps: { value: _vm.entry.birthdate }
-                        })
+                          domProps: { value: _vm.entry.birthdate },
+                        }),
                       ]
-                    )
+                    ),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-4" }, [
@@ -1266,8 +1266,8 @@ var render = function() {
                       {
                         staticClass: "form-group bmd-form-group",
                         class: {
-                          "is-focused": true
-                        }
+                          "is-focused": true,
+                        },
                       },
                       [
                         _c("label", [_vm._v("Gender Preference")]),
@@ -1275,10 +1275,10 @@ var render = function() {
                         _c("input", {
                           staticClass: "form-control",
                           attrs: { type: "text" },
-                          domProps: { value: _vm.entry.gender_preference_name }
-                        })
+                          domProps: { value: _vm.entry.gender_preference_name },
+                        }),
                       ]
-                    )
+                    ),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-4" }, [
@@ -1287,8 +1287,8 @@ var render = function() {
                       {
                         staticClass: "form-group bmd-form-group",
                         class: {
-                          "is-focused": true
-                        }
+                          "is-focused": true,
+                        },
                       },
                       [
                         _c("label", [_vm._v("Valid ID / ID Number")]),
@@ -1300,12 +1300,12 @@ var render = function() {
                             value:
                               _vm.entry.id_number +
                               " " +
-                              _vm.entry.valid_id_names
-                          }
-                        })
+                              _vm.entry.valid_id_names,
+                          },
+                        }),
                       ]
-                    )
-                  ])
+                    ),
+                  ]),
                 ]),
                 _vm._v(" "),
                 _c("br"),
@@ -1321,8 +1321,8 @@ var render = function() {
                       {
                         staticClass: "form-group bmd-form-group",
                         class: {
-                          "is-focused": true
-                        }
+                          "is-focused": true,
+                        },
                       },
                       [
                         _c("label", [_vm._v("Religion:")]),
@@ -1330,10 +1330,10 @@ var render = function() {
                         _c("input", {
                           staticClass: "form-control",
                           attrs: { type: "text" },
-                          domProps: { value: _vm.entry.religion }
-                        })
+                          domProps: { value: _vm.entry.religion },
+                        }),
                       ]
-                    )
+                    ),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-3" }, [
@@ -1342,8 +1342,8 @@ var render = function() {
                       {
                         staticClass: "form-group bmd-form-group",
                         class: {
-                          "is-focused": true
-                        }
+                          "is-focused": true,
+                        },
                       },
                       [
                         _c("label", [_vm._v("Ethnicity:")]),
@@ -1351,10 +1351,10 @@ var render = function() {
                         _c("input", {
                           staticClass: "form-control",
                           attrs: { type: "text" },
-                          domProps: { value: _vm.entry.ethnicity }
-                        })
+                          domProps: { value: _vm.entry.ethnicity },
+                        }),
                       ]
-                    )
+                    ),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-4" }, [
@@ -1363,8 +1363,8 @@ var render = function() {
                       {
                         staticClass: "form-group bmd-form-group",
                         class: {
-                          "is-focused": true
-                        }
+                          "is-focused": true,
+                        },
                       },
                       [
                         _c("label", [_vm._v("Sector Member")]),
@@ -1372,11 +1372,11 @@ var render = function() {
                         _c("input", {
                           staticClass: "form-control",
                           attrs: { type: "text" },
-                          domProps: { value: _vm.entry.sector_name }
-                        })
+                          domProps: { value: _vm.entry.sector_name },
+                        }),
                       ]
-                    )
-                  ])
+                    ),
+                  ]),
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row" }, [
@@ -1386,8 +1386,8 @@ var render = function() {
                       {
                         staticClass: "form-group bmd-form-group",
                         class: {
-                          "is-focused": true
-                        }
+                          "is-focused": true,
+                        },
                       },
                       [
                         _c("label", [_vm._v("Cellphone Number")]),
@@ -1395,10 +1395,10 @@ var render = function() {
                         _c("input", {
                           staticClass: "form-control",
                           attrs: { type: "text" },
-                          domProps: { value: _vm.entry.mobile_ni }
-                        })
+                          domProps: { value: _vm.entry.mobile_ni },
+                        }),
                       ]
-                    )
+                    ),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-4" }, [
@@ -1407,8 +1407,8 @@ var render = function() {
                       {
                         staticClass: "form-group bmd-form-group",
                         class: {
-                          "is-focused": true
-                        }
+                          "is-focused": true,
+                        },
                       },
                       [
                         _c("label", [_vm._v("Landline")]),
@@ -1416,10 +1416,10 @@ var render = function() {
                         _c("input", {
                           staticClass: "form-control",
                           attrs: { type: "text" },
-                          domProps: { value: _vm.entry.landline }
-                        })
+                          domProps: { value: _vm.entry.landline },
+                        }),
                       ]
-                    )
+                    ),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-4" }, [
@@ -1428,8 +1428,8 @@ var render = function() {
                       {
                         staticClass: "form-group bmd-form-group",
                         class: {
-                          "is-focused": true
-                        }
+                          "is-focused": true,
+                        },
                       },
                       [
                         _c("label", [_vm._v("Email Address")]),
@@ -1437,11 +1437,11 @@ var render = function() {
                         _c("input", {
                           staticClass: "form-control",
                           attrs: { type: "text" },
-                          domProps: { value: _vm.entry.email_address }
-                        })
+                          domProps: { value: _vm.entry.email_address },
+                        }),
                       ]
-                    )
-                  ])
+                    ),
+                  ]),
                 ]),
                 _vm._v(" "),
                 _c("br"),
@@ -1459,8 +1459,8 @@ var render = function() {
                       {
                         staticClass: "form-group bmd-form-group",
                         class: {
-                          "is-focused": true
-                        }
+                          "is-focused": true,
+                        },
                       },
                       [
                         _c("label", [_vm._v("City/Municipality")]),
@@ -1468,10 +1468,10 @@ var render = function() {
                         _c("input", {
                           staticClass: "form-control",
                           attrs: { type: "text" },
-                          domProps: { value: _vm.entry.sector_name }
-                        })
+                          domProps: { value: _vm.entry.sector_name },
+                        }),
                       ]
-                    )
+                    ),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-6" }, [
@@ -1480,8 +1480,8 @@ var render = function() {
                       {
                         staticClass: "form-group bmd-form-group",
                         class: {
-                          "is-focused": true
-                        }
+                          "is-focused": true,
+                        },
                       },
                       [
                         _c("label", [_vm._v(" Province Register")]),
@@ -1489,14 +1489,14 @@ var render = function() {
                         _c("input", {
                           staticClass: "form-control",
                           attrs: { type: "text" },
-                          domProps: { value: _vm.entry.sector_name }
-                        })
+                          domProps: { value: _vm.entry.sector_name },
+                        }),
                       ]
-                    )
-                  ])
-                ])
-              ])
-            ])
+                    ),
+                  ]),
+                ]),
+              ]),
+            ]),
           ]
         ),
         _vm._v(" "),
@@ -1513,14 +1513,14 @@ var render = function() {
                       {
                         staticClass: "form-group bmd-form-group",
                         class: {
-                          "is-focused": true
-                        }
+                          "is-focused": true,
+                        },
                       },
                       [
                         _c("label", [
                           _vm._v(
                             "Building Numbers/House\n                                            Unit"
-                          )
+                          ),
                         ]),
                         _vm._v(" "),
                         _c("input", {
@@ -1532,11 +1532,11 @@ var render = function() {
                               _vm.entry.building_no +
                               " " +
                               "UNIT " +
-                              _vm.entry.building_no
-                          }
-                        })
+                              _vm.entry.building_no,
+                          },
+                        }),
                       ]
-                    )
+                    ),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-6" }, [
@@ -1545,24 +1545,24 @@ var render = function() {
                       {
                         staticClass: "form-group bmd-form-group",
                         class: {
-                          "is-focused": true
-                        }
+                          "is-focused": true,
+                        },
                       },
                       [
                         _c("label", [
                           _vm._v(
                             "Block No/Lot No/Street\n                                            Name"
-                          )
+                          ),
                         ]),
                         _vm._v(" "),
                         _c("input", {
                           staticClass: "form-control",
                           attrs: { type: "text" },
-                          domProps: { value: _vm.entry.block_lot_house_id }
-                        })
+                          domProps: { value: _vm.entry.block_lot_house_id },
+                        }),
                       ]
-                    )
-                  ])
+                    ),
+                  ]),
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row" }, [
@@ -1572,8 +1572,8 @@ var render = function() {
                       {
                         staticClass: "form-group bmd-form-group",
                         class: {
-                          "is-focused": true
-                        }
+                          "is-focused": true,
+                        },
                       },
                       [
                         _c("label", [_vm._v("Purok")]),
@@ -1581,10 +1581,10 @@ var render = function() {
                         _c("input", {
                           staticClass: "form-control",
                           attrs: { type: "text" },
-                          domProps: { value: _vm.entry.purok_names }
-                        })
+                          domProps: { value: _vm.entry.purok_names },
+                        }),
                       ]
-                    )
+                    ),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-6" }, [
@@ -1593,8 +1593,8 @@ var render = function() {
                       {
                         staticClass: "form-group bmd-form-group",
                         class: {
-                          "is-focused": true
-                        }
+                          "is-focused": true,
+                        },
                       },
                       [
                         _c("label", [_vm._v("Subdivsion / Sitio")]),
@@ -1602,11 +1602,11 @@ var render = function() {
                         _c("input", {
                           staticClass: "form-control",
                           attrs: { type: "text" },
-                          domProps: { value: _vm.entry.sitio_names }
-                        })
+                          domProps: { value: _vm.entry.sitio_names },
+                        }),
                       ]
-                    )
-                  ])
+                    ),
+                  ]),
                 ]),
                 _vm._v(" "),
                 _c("table", { staticClass: "table table-bordered" }, [
@@ -1621,7 +1621,7 @@ var render = function() {
                           "\n                                            " +
                             _vm._s(_vm.entry.no_of_years_in_calamba) +
                             "\n                                        "
-                        )
+                        ),
                       ]),
                       _vm._v(" "),
                       _vm.entry.no_of_years_in_calamba ==
@@ -1629,9 +1629,9 @@ var render = function() {
                         ? _c("td", [
                             _vm._v(
                               "\n                                            Immigrant\n                                        "
-                            )
+                            ),
                           ])
-                        : _c("td", [_vm._v("Native")])
+                        : _c("td", [_vm._v("Native")]),
                     ]),
                     _vm._v(" "),
                     _c("tr", [
@@ -1642,7 +1642,7 @@ var render = function() {
                           "\n                                            " +
                             _vm._s(_vm.entry.barangay_residence_year) +
                             "\n                                        "
-                        )
+                        ),
                       ]),
                       _vm._v(" "),
                       _vm.entry.barangay_residence_year ==
@@ -1650,11 +1650,11 @@ var render = function() {
                         ? _c("td", [
                             _vm._v(
                               "\n                                            Immigrant\n                                        "
-                            )
+                            ),
                           ])
-                        : _c("td", [_vm._v("Native")])
-                    ])
-                  ])
+                        : _c("td", [_vm._v("Native")]),
+                    ]),
+                  ]),
                 ]),
                 _vm._v(" "),
                 _c(
@@ -1662,8 +1662,8 @@ var render = function() {
                   {
                     staticClass: "form-group bmd-form-group",
                     class: {
-                      "is-focused": true
-                    }
+                      "is-focused": true,
+                    },
                   },
                   [
                     _c("label", [_vm._v(" Remarks")]),
@@ -1671,8 +1671,8 @@ var render = function() {
                     _c("textarea", {
                       staticClass: "form-control",
                       attrs: { rows: "5" },
-                      domProps: { value: _vm.entry.remarks }
-                    })
+                      domProps: { value: _vm.entry.remarks },
+                    }),
                   ]
                 ),
                 _vm._v(" "),
@@ -1680,17 +1680,17 @@ var render = function() {
                   "button",
                   {
                     staticClass: "btn btn-primary pull-right",
-                    attrs: { type: "submit" }
+                    attrs: { type: "submit" },
                   },
                   [
                     _vm._v(
                       "\n                                Update Profile\n                            "
-                    )
+                    ),
                   ]
-                )
-              ])
-            ])
-          ])
+                ),
+              ]),
+            ]),
+          ]),
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "tab-pane", attrs: { id: "educational" } }, [
@@ -1705,25 +1705,25 @@ var render = function() {
                     {
                       staticClass: "form-group bmd-form-group",
                       class: {
-                        "is-focused": true
-                      }
+                        "is-focused": true,
+                      },
                     },
                     [
                       _c("label", [
                         _vm._v(
                           "Highest Educational\n                                        Attaintment"
-                        )
+                        ),
                       ]),
                       _vm._v(" "),
                       _c("input", {
                         staticClass: "form-control",
                         attrs: { type: "text" },
                         domProps: {
-                          value: _vm.entry.educational_attaintment_name
-                        }
-                      })
+                          value: _vm.entry.educational_attaintment_name,
+                        },
+                      }),
                     ]
-                  )
+                  ),
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-6" }, [
@@ -1732,8 +1732,8 @@ var render = function() {
                     {
                       staticClass: "form-group bmd-form-group",
                       class: {
-                        "is-focused": true
-                      }
+                        "is-focused": true,
+                      },
                     },
                     [
                       _c("label", [_vm._v("Educational Status")]),
@@ -1741,11 +1741,11 @@ var render = function() {
                       _c("input", {
                         staticClass: "form-control",
                         attrs: { type: "text" },
-                        domProps: { value: _vm.entry.educational_status_name }
-                      })
+                        domProps: { value: _vm.entry.educational_status_name },
+                      }),
                     ]
-                  )
-                ])
+                  ),
+                ]),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "row" }, [
@@ -1755,8 +1755,8 @@ var render = function() {
                     {
                       staticClass: "form-group bmd-form-group",
                       class: {
-                        "is-focused": true
-                      }
+                        "is-focused": true,
+                      },
                     },
                     [
                       _c("label", [_vm._v("Last School Attended")]),
@@ -1764,11 +1764,11 @@ var render = function() {
                       _c("input", {
                         staticClass: "form-control",
                         attrs: { type: "text" },
-                        domProps: { value: _vm.entry.last_school_attended }
-                      })
+                        domProps: { value: _vm.entry.last_school_attended },
+                      }),
                     ]
-                  )
-                ])
+                  ),
+                ]),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "row" }, [
@@ -1778,25 +1778,25 @@ var render = function() {
                     {
                       staticClass: "form-group bmd-form-group",
                       class: {
-                        "is-focused": true
-                      }
+                        "is-focused": true,
+                      },
                     },
                     [
                       _c("label", [
                         _vm._v(
                           "Government Educational\n                                        Assistance"
-                        )
+                        ),
                       ]),
                       _vm._v(" "),
                       _c("input", {
                         staticClass: "form-control",
                         attrs: { type: "text" },
                         domProps: {
-                          value: _vm.entry.government_assistance_name
-                        }
-                      })
+                          value: _vm.entry.government_assistance_name,
+                        },
+                      }),
                     ]
-                  )
+                  ),
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-6" }, [
@@ -1805,8 +1805,8 @@ var render = function() {
                     {
                       staticClass: "form-group bmd-form-group",
                       class: {
-                        "is-focused": true
-                      }
+                        "is-focused": true,
+                      },
                     },
                     [
                       _c("label", [_vm._v("Organizations")]),
@@ -1814,11 +1814,11 @@ var render = function() {
                       _c("input", {
                         staticClass: "form-control",
                         attrs: { type: "text" },
-                        domProps: { value: _vm.entry.organization_name }
-                      })
+                        domProps: { value: _vm.entry.organization_name },
+                      }),
                     ]
-                  )
-                ])
+                  ),
+                ]),
               ]),
               _vm._v(" "),
               _c("br"),
@@ -1834,8 +1834,8 @@ var render = function() {
                     {
                       staticClass: "form-group bmd-form-group",
                       class: {
-                        "is-focused": true
-                      }
+                        "is-focused": true,
+                      },
                     },
                     [
                       _c("label", [_vm._v("Occupation")]),
@@ -1843,10 +1843,10 @@ var render = function() {
                       _c("input", {
                         staticClass: "form-control",
                         attrs: { type: "text" },
-                        domProps: { value: _vm.entry.occupation }
-                      })
+                        domProps: { value: _vm.entry.occupation },
+                      }),
                     ]
-                  )
+                  ),
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-6" }, [
@@ -1855,8 +1855,8 @@ var render = function() {
                     {
                       staticClass: "form-group bmd-form-group",
                       class: {
-                        "is-focused": true
-                      }
+                        "is-focused": true,
+                      },
                     },
                     [
                       _c("label", [_vm._v("Employer")]),
@@ -1864,11 +1864,11 @@ var render = function() {
                       _c("input", {
                         staticClass: "form-control",
                         attrs: { type: "text" },
-                        domProps: { value: _vm.entry.employer }
-                      })
+                        domProps: { value: _vm.entry.employer },
+                      }),
                     ]
-                  )
-                ])
+                  ),
+                ]),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "row" }, [
@@ -1878,23 +1878,23 @@ var render = function() {
                     {
                       staticClass: "form-group bmd-form-group",
                       class: {
-                        "is-focused": true
-                      }
+                        "is-focused": true,
+                      },
                     },
                     [
                       _c("label", [
                         _vm._v(
                           "Work Location (City,\n                                        Province)"
-                        )
+                        ),
                       ]),
                       _vm._v(" "),
                       _c("input", {
                         staticClass: "form-control",
                         attrs: { type: "text" },
-                        domProps: { value: _vm.entry.work_locations }
-                      })
+                        domProps: { value: _vm.entry.work_locations },
+                      }),
                     ]
-                  )
+                  ),
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-6" }, [
@@ -1903,31 +1903,31 @@ var render = function() {
                     {
                       staticClass: "form-group bmd-form-group",
                       class: {
-                        "is-focused": true
-                      }
+                        "is-focused": true,
+                      },
                     },
                     [
                       _c("label", [
                         _vm._v(
                           "Monthly Income (Econimic\n                                        Status)"
-                        )
+                        ),
                       ]),
                       _vm._v(" "),
                       _c("input", {
                         staticClass: "form-control",
                         attrs: { type: "text" },
-                        domProps: { value: _vm.entry.monthly_income }
-                      })
+                        domProps: { value: _vm.entry.monthly_income },
+                      }),
                     ]
-                  )
-                ])
+                  ),
+                ]),
               ]),
               _vm._v(" "),
               _c("br"),
               _vm._v(" "),
-              _vm._m(6)
-            ])
-          ])
+              _vm._m(6),
+            ]),
+          ]),
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "tab-pane", attrs: { id: "health" } }, [
@@ -1943,9 +1943,9 @@ var render = function() {
                     _c("input", {
                       staticClass: "form-control",
                       attrs: { type: "text" },
-                      domProps: { value: _vm.entry.full_immunization }
-                    })
-                  ])
+                      domProps: { value: _vm.entry.full_immunization },
+                    }),
+                  ]),
                 ]),
                 _vm._v(" "),
                 _c("br"),
@@ -1957,9 +1957,9 @@ var render = function() {
                     _c("input", {
                       staticClass: "form-control",
                       attrs: { type: "text" },
-                      domProps: { value: _vm.entry.maintining }
-                    })
-                  ])
+                      domProps: { value: _vm.entry.maintining },
+                    }),
+                  ]),
                 ]),
                 _vm._v(" "),
                 _c("br"),
@@ -1973,9 +1973,9 @@ var render = function() {
                     _c("input", {
                       staticClass: "form-control",
                       attrs: { type: "text" },
-                      domProps: { value: _vm.entry.pegnacy_age }
-                    })
-                  ])
+                      domProps: { value: _vm.entry.pegnacy_age },
+                    }),
+                  ]),
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row" }, [
@@ -1985,9 +1985,9 @@ var render = function() {
                     _c("input", {
                       staticClass: "form-control",
                       attrs: { type: "text" },
-                      domProps: { value: _vm.entry.with_prental }
-                    })
-                  ])
+                      domProps: { value: _vm.entry.with_prental },
+                    }),
+                  ]),
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row" }, [
@@ -1997,21 +1997,21 @@ var render = function() {
                     _c("input", {
                       staticClass: "form-control",
                       attrs: { type: "text" },
-                      domProps: { value: _vm.entry.with_postpartum }
-                    })
-                  ])
+                      domProps: { value: _vm.entry.with_postpartum },
+                    }),
+                  ]),
                 ]),
                 _vm._v(" "),
                 _c("br"),
                 _vm._v(" "),
                 _c("h3", [_vm._v("VACCINE FOR COVID-19")]),
                 _vm._v(" "),
-                _vm._m(13)
-              ])
-            ])
-          ])
-        ])
-      ])
+                _vm._m(13),
+              ]),
+            ]),
+          ]),
+        ]),
+      ]),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "col-md-4" }, [
@@ -2023,24 +2023,24 @@ var render = function() {
                   _c("img", {
                     staticClass: "img",
                     staticStyle: { height: "150px" },
-                    attrs: { src: "/images/" + _vm.entry.images }
-                  })
-                ])
+                    attrs: { src: "/images/" + _vm.entry.images },
+                  }),
+                ]),
               ])
             : _c("div", [
                 _c("a", { attrs: { href: "javascript:;" } }, [
                   _c("img", {
                     staticClass: "img",
                     staticStyle: { height: "150px" },
-                    attrs: { src: "/images/none-image.png" }
-                  })
-                ])
-              ])
+                    attrs: { src: "/images/none-image.png" },
+                  }),
+                ]),
+              ]),
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
           _c("h6", { staticClass: "card-category text-gray" }, [
-            _vm._v("Profile")
+            _vm._v("Profile"),
           ]),
           _vm._v(" "),
           _c("h5", { staticStyle: { "text-transform": "uppercase" } }, [
@@ -2051,12 +2051,12 @@ var render = function() {
                   _vm._s(_vm.entry.first_name) +
                   "\n                        " +
                   _vm._s(_vm.entry.middle_name)
-              )
-            ])
+              ),
+            ]),
           ]),
           _vm._v(" "),
           _c("h6", { staticClass: "card-category text-gray" }, [
-            _vm._v("Resident ID")
+            _vm._v("Resident ID"),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col" }, [
@@ -2064,11 +2064,11 @@ var render = function() {
               "\n                    " +
                 _vm._s(_vm.entry.resident_no) +
                 "\n                "
-            )
+            ),
           ]),
           _vm._v(" "),
           _c("h6", { staticClass: "card-category text-gray" }, [
-            _vm._v("Barangay")
+            _vm._v("Barangay"),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col" }, [
@@ -2079,11 +2079,11 @@ var render = function() {
                 " - " +
                 _vm._s(_vm.entry.barangays_name) +
                 "\n                "
-            )
+            ),
           ]),
           _vm._v(" "),
           _c("h6", { staticClass: "card-category text-gray" }, [
-            _vm._v("Gender")
+            _vm._v("Gender"),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col" }, [
@@ -2092,13 +2092,13 @@ var render = function() {
               "\n                    " +
                 _vm._s(_vm.entry.gender_name) +
                 "\n                "
-            )
+            ),
           ]),
           _vm._v(" "),
           _c("h6", { staticClass: "card-category text-gray" }, [_vm._v("Age")]),
           _vm._v(" "),
           _c("div", { staticClass: "col" }, [
-            _c("h4", [_vm._v(_vm._s(this.total_age))])
+            _c("h4", [_vm._v(_vm._s(this.total_age))]),
           ]),
           _vm._v(" "),
           _c("br"),
@@ -2106,24 +2106,24 @@ var render = function() {
           _c("p", { staticClass: "card-description" }, [
             _vm._v(
               "\n                    Don't be scared of the truth because we need to restart\n                    the human foundation in truth And I love you like Kanye\n                    loves Kanye I love Rick Owens’ bed design but the back\n                    is...\n                "
-            )
+            ),
           ]),
           _vm._v(" "),
           _c(
             "a",
             {
               staticClass: "btn btn-info btn-round",
-              attrs: { href: "javascript:;" }
+              attrs: { href: "javascript:;" },
             },
             [_vm._v("Follow")]
-          )
-        ])
-      ])
-    ])
+          ),
+        ]),
+      ]),
+    ]),
   ])
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -2131,7 +2131,7 @@ var staticRenderFns = [
       "ul",
       {
         staticClass: "nav nav-tabs d-none",
-        attrs: { id: "myTab", role: "tablist" }
+        attrs: { id: "myTab", role: "tablist" },
       },
       [
         _c("li", { staticClass: "nav-item" }, [
@@ -2139,10 +2139,10 @@ var staticRenderFns = [
             "a",
             {
               staticClass: "nav-link active",
-              attrs: { "data-toggle": "tab", href: "#personal" }
+              attrs: { "data-toggle": "tab", href: "#personal" },
             },
             [_vm._v("personal")]
-          )
+          ),
         ]),
         _vm._v(" "),
         _c("li", { staticClass: "nav-item" }, [
@@ -2150,10 +2150,10 @@ var staticRenderFns = [
             "a",
             {
               staticClass: "nav-link",
-              attrs: { "data-toggle": "tab", href: "#address" }
+              attrs: { "data-toggle": "tab", href: "#address" },
             },
             [_vm._v("address")]
-          )
+          ),
         ]),
         _vm._v(" "),
         _c("li", { staticClass: "nav-item" }, [
@@ -2161,10 +2161,10 @@ var staticRenderFns = [
             "a",
             {
               staticClass: "nav-link",
-              attrs: { "data-toggle": "tab", href: "#educational" }
+              attrs: { "data-toggle": "tab", href: "#educational" },
             },
             [_vm._v("educational")]
-          )
+          ),
         ]),
         _vm._v(" "),
         _c("li", { staticClass: "nav-item" }, [
@@ -2172,15 +2172,15 @@ var staticRenderFns = [
             "a",
             {
               staticClass: "nav-link",
-              attrs: { "data-toggle": "tab", href: "#health", role: "tab" }
+              attrs: { "data-toggle": "tab", href: "#health", role: "tab" },
             },
             [_vm._v("health")]
-          )
-        ])
+          ),
+        ]),
       ]
     )
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -2188,33 +2188,33 @@ var staticRenderFns = [
       _c("h4", { staticClass: "card-title" }, [_vm._v("Personal Information")]),
       _vm._v(" "),
       _c("p", { staticClass: "card-category" }, [
-        _vm._v("Complete your profile")
-      ])
+        _vm._v("Complete your profile"),
+      ]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("h4", { staticStyle: { "text-transform": "uppercase" } }, [
-      _c("b", [_vm._v("Political Info")])
+      _c("b", [_vm._v("Political Info")]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header card-header-primary" }, [
       _c("h4", { staticClass: "card-title" }, [
-        _vm._v("Residential Information")
+        _vm._v("Residential Information"),
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "card-category" }, [
-        _vm._v("Complete your profile")
-      ])
+        _vm._v("Complete your profile"),
+      ]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -2222,7 +2222,7 @@ var staticRenderFns = [
       "thead",
       {
         staticClass: "black text-white",
-        staticStyle: { "background-color": "#462066" }
+        staticStyle: { "background-color": "#462066" },
       },
       [
         _c("tr", [
@@ -2230,12 +2230,12 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("th", { attrs: { scope: "col" } }, [_vm._v("Year")]),
           _vm._v(" "),
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("Status")])
-        ])
+          _c("th", { attrs: { scope: "col" } }, [_vm._v("Status")]),
+        ]),
       ]
     )
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -2243,15 +2243,15 @@ var staticRenderFns = [
       _c("h4", { staticClass: "card-title" }, [
         _vm._v(
           "\n                            Educational Information / Educational\n                            Information\n                        "
-        )
+        ),
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "card-category" }, [
-        _vm._v("Complete your profile")
-      ])
+        _vm._v("Complete your profile"),
+      ]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -2262,20 +2262,20 @@ var staticRenderFns = [
             "thead",
             {
               staticClass: "black text-white",
-              staticStyle: { "background-color": "#462066" }
+              staticStyle: { "background-color": "#462066" },
             },
             [
               _c("tr", [
                 _c("th", { attrs: { scope: "col" } }, [
                   _vm._v(
                     "\n                                                Government Assistance\n                                            "
-                  )
+                  ),
                 ]),
                 _vm._v(" "),
                 _c("th", { attrs: { scope: "col" } }, [_vm._v("Date")]),
                 _vm._v(" "),
-                _c("th", { attrs: { scope: "col" } }, [_vm._v("Amount")])
-              ])
+                _c("th", { attrs: { scope: "col" } }, [_vm._v("Amount")]),
+              ]),
             ]
           ),
           _vm._v(" "),
@@ -2285,7 +2285,7 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("td", [_vm._v("January 20, 2020")]),
               _vm._v(" "),
-              _c("td", [_vm._v("₱13,000")])
+              _c("td", [_vm._v("₱13,000")]),
             ]),
             _vm._v(" "),
             _c("tr", [
@@ -2293,14 +2293,14 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("td", [_vm._v("October 20, 2020")]),
               _vm._v(" "),
-              _c("td", [_vm._v("₱4,000")])
-            ])
-          ])
-        ])
-      ])
+              _c("td", [_vm._v("₱4,000")]),
+            ]),
+          ]),
+        ]),
+      ]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -2308,51 +2308,51 @@ var staticRenderFns = [
       _c("h4", { staticClass: "card-title" }, [_vm._v("Health Information")]),
       _vm._v(" "),
       _c("p", { staticClass: "card-category" }, [
-        _vm._v("Complete your profile")
-      ])
+        _vm._v("Complete your profile"),
+      ]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-3 mt-2 mr-3" }, [
-      _c("label", [_vm._v("Full Immunization")])
+      _c("label", [_vm._v("Full Immunization")]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-3 mt-2 mr-3" }, [
-      _c("label", [_vm._v("Maintaining Medicine")])
+      _c("label", [_vm._v("Maintaining Medicine")]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-3 mt-2 mr-3" }, [
-      _c("label", [_vm._v("Pregnancy Age")])
+      _c("label", [_vm._v("Pregnancy Age")]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-3 mt-2 mr-3" }, [
-      _c("label", [_vm._v("With Prental Check-up")])
+      _c("label", [_vm._v("With Prental Check-up")]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-3 mt-2 mr-3" }, [
-      _c("label", [_vm._v("With Postpartum Check-up")])
+      _c("label", [_vm._v("With Postpartum Check-up")]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -2361,24 +2361,24 @@ var staticRenderFns = [
         "thead",
         {
           staticClass: "black text-white",
-          staticStyle: { "background-color": "#462066" }
+          staticStyle: { "background-color": "#462066" },
         },
         [
           _c("tr", [
             _c("th", { attrs: { scope: "col" } }, [_vm._v("Brand")]),
             _vm._v(" "),
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("Date")])
-          ])
+            _c("th", { attrs: { scope: "col" } }, [_vm._v("Date")]),
+          ]),
         ]
       ),
       _vm._v(" "),
       _c("tbody", [
         _c("tr", [_c("td", [_vm._v("1st Dose")]), _vm._v(" "), _c("td")]),
         _vm._v(" "),
-        _c("tr", [_c("td", [_vm._v("2nd Dose")]), _vm._v(" "), _c("td")])
-      ])
+        _c("tr", [_c("td", [_vm._v("2nd Dose")]), _vm._v(" "), _c("td")]),
+      ]),
     ])
-  }
+  },
 ]
 render._withStripped = true
 

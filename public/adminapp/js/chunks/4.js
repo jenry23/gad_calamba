@@ -132,9 +132,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -613,9 +613,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -759,9 +759,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -1146,9 +1146,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -1401,12 +1401,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_FormWizard_prettyJson_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @components/FormWizard/prettyJson.js */ "./resources/adminapp/js/components/FormWizard/prettyJson.js");
 /* harmony import */ var vue_form_wizard_dist_vue_form_wizard_min_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-form-wizard/dist/vue-form-wizard.min.css */ "./node_modules/vue-form-wizard/dist/vue-form-wizard.min.css");
 /* harmony import */ var vue_form_wizard_dist_vue_form_wizard_min_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(vue_form_wizard_dist_vue_form_wizard_min_css__WEBPACK_IMPORTED_MODULE_7__);
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
 //
 //
 //
@@ -1476,7 +1479,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       finalModel: {},
-      activeTabIndex: 0
+      activeTabIndex: 0,
+      import_file: {}
     };
   },
   computed: {
@@ -1505,6 +1509,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (validated) {
         this.finalModel = _objectSpread(_objectSpread({}, this.finalModel), model);
       }
+    },
+    importFile: function importFile(event) {
+      var file = event.target.files;
+      var formData = new FormData();
+      formData.append('import_file', file[0]);
+      axios.post('gad/import-excel', formData).then(function (response) {// this.$router.push({ name: 'gad_list.index' })
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   }
 });
@@ -1767,14 +1780,14 @@ if(false) {}
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm._m(0)
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -1783,13 +1796,13 @@ var staticRenderFns = [
         _c("h4", { staticClass: "card-title" }, [_vm._v("Survey Questions")]),
         _vm._v(" "),
         _c("p", { staticClass: "card-category" }, [
-          _vm._v("Complete your profile")
-        ])
+          _vm._v("Complete your profile"),
+        ]),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "card-body" })
+      _c("div", { staticClass: "card-body" }),
     ])
-  }
+  },
 ]
 render._withStripped = true
 
@@ -1808,7 +1821,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -1828,8 +1841,8 @@ var render = function() {
                   {
                     staticClass: "form-group bmd-form-group",
                     class: {
-                      "is-focused": true
-                    }
+                      "is-focused": true,
+                    },
                   },
                   [
                     _c("label", [_vm._v("Last Name")]),
@@ -1840,23 +1853,23 @@ var render = function() {
                           name: "model",
                           rawName: "v-model",
                           value: _vm.model.last_name,
-                          expression: "model.last_name"
-                        }
+                          expression: "model.last_name",
+                        },
                       ],
                       staticClass: "form-control popcom-input",
                       attrs: { type: "text" },
                       domProps: { value: _vm.model.last_name },
                       on: {
-                        input: function($event) {
+                        input: function ($event) {
                           if ($event.target.composing) {
                             return
                           }
                           _vm.$set(_vm.model, "last_name", $event.target.value)
-                        }
-                      }
-                    })
+                        },
+                      },
+                    }),
                   ]
-                )
+                ),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-3" }, [
@@ -1865,8 +1878,8 @@ var render = function() {
                   {
                     staticClass: "form-group bmd-form-group",
                     class: {
-                      "is-focused": true
-                    }
+                      "is-focused": true,
+                    },
                   },
                   [
                     _c("label", [_vm._v("First Name")]),
@@ -1877,23 +1890,23 @@ var render = function() {
                           name: "model",
                           rawName: "v-model",
                           value: _vm.model.first_name,
-                          expression: "model.first_name"
-                        }
+                          expression: "model.first_name",
+                        },
                       ],
                       staticClass: "form-control popcom-input",
                       attrs: { type: "text" },
                       domProps: { value: _vm.model.first_name },
                       on: {
-                        input: function($event) {
+                        input: function ($event) {
                           if ($event.target.composing) {
                             return
                           }
                           _vm.$set(_vm.model, "first_name", $event.target.value)
-                        }
-                      }
-                    })
+                        },
+                      },
+                    }),
                   ]
-                )
+                ),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-3" }, [
@@ -1902,8 +1915,8 @@ var render = function() {
                   {
                     staticClass: "form-group bmd-form-group",
                     class: {
-                      "is-focused": true
-                    }
+                      "is-focused": true,
+                    },
                   },
                   [
                     _c("label", [_vm._v("Middle Name")]),
@@ -1914,14 +1927,14 @@ var render = function() {
                           name: "model",
                           rawName: "v-model",
                           value: _vm.model.middle_name,
-                          expression: "model.middle_name"
-                        }
+                          expression: "model.middle_name",
+                        },
                       ],
                       staticClass: "form-control popcom-input",
                       attrs: { type: "text" },
                       domProps: { value: _vm.model.middle_name },
                       on: {
-                        input: function($event) {
+                        input: function ($event) {
                           if ($event.target.composing) {
                             return
                           }
@@ -1930,11 +1943,11 @@ var render = function() {
                             "middle_name",
                             $event.target.value
                           )
-                        }
-                      }
-                    })
+                        },
+                      },
+                    }),
                   ]
-                )
+                ),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-3" }, [
@@ -1943,8 +1956,8 @@ var render = function() {
                   {
                     staticClass: "form-group bmd-form-group",
                     class: {
-                      "is-focused": true
-                    }
+                      "is-focused": true,
+                    },
                   },
                   [
                     _c("label", [_vm._v("Extension Name")]),
@@ -1955,14 +1968,14 @@ var render = function() {
                           name: "model",
                           rawName: "v-model",
                           value: _vm.model.extension_name,
-                          expression: "model.extension_name"
-                        }
+                          expression: "model.extension_name",
+                        },
                       ],
                       staticClass: "form-control popcom-input",
                       attrs: { type: "text" },
                       domProps: { value: _vm.model.extension_name },
                       on: {
-                        input: function($event) {
+                        input: function ($event) {
                           if ($event.target.composing) {
                             return
                           }
@@ -1971,12 +1984,12 @@ var render = function() {
                             "extension_name",
                             $event.target.value
                           )
-                        }
-                      }
-                    })
+                        },
+                      },
+                    }),
                   ]
-                )
-              ])
+                ),
+              ]),
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
@@ -1986,8 +1999,8 @@ var render = function() {
                   {
                     staticClass: "form-group bmd-form-group",
                     class: {
-                      "is-focused": true
-                    }
+                      "is-focused": true,
+                    },
                   },
                   [
                     _c("label", [_vm._v("Household Entry No:")]),
@@ -1998,14 +2011,14 @@ var render = function() {
                           name: "model",
                           rawName: "v-model",
                           value: _vm.model.household_no,
-                          expression: "model.household_no"
-                        }
+                          expression: "model.household_no",
+                        },
                       ],
                       staticClass: "form-control popcom-input",
                       attrs: { type: "text", readonly: "" },
                       domProps: { value: _vm.model.household_no },
                       on: {
-                        input: function($event) {
+                        input: function ($event) {
                           if ($event.target.composing) {
                             return
                           }
@@ -2014,11 +2027,11 @@ var render = function() {
                             "household_no",
                             $event.target.value
                           )
-                        }
-                      }
-                    })
+                        },
+                      },
+                    }),
                   ]
-                )
+                ),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-3" }, [
@@ -2027,8 +2040,8 @@ var render = function() {
                   {
                     staticClass: "form-group bmd-form-group",
                     class: {
-                      "is-focused": true
-                    }
+                      "is-focused": true,
+                    },
                   },
                   [
                     _c("label", [_vm._v("Family Code")]),
@@ -2039,14 +2052,14 @@ var render = function() {
                           name: "model",
                           rawName: "v-model",
                           value: _vm.model.family_code,
-                          expression: "model.family_code"
-                        }
+                          expression: "model.family_code",
+                        },
                       ],
                       staticClass: "form-control popcom-input",
                       attrs: { type: "text" },
                       domProps: { value: _vm.model.family_code },
                       on: {
-                        input: function($event) {
+                        input: function ($event) {
                           if ($event.target.composing) {
                             return
                           }
@@ -2055,11 +2068,11 @@ var render = function() {
                             "family_code",
                             $event.target.value
                           )
-                        }
-                      }
-                    })
+                        },
+                      },
+                    }),
                   ]
-                )
+                ),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-6" }, [
@@ -2068,8 +2081,8 @@ var render = function() {
                   {
                     staticClass: "form-group bmd-form-group",
                     class: {
-                      "is-focused": true
-                    }
+                      "is-focused": true,
+                    },
                   },
                   [
                     _c("label", [_vm._v("Relation To Main Household")]),
@@ -2080,26 +2093,26 @@ var render = function() {
                       attrs: {
                         name: "relation_household",
                         label: "household_name",
-                        options: _vm.lists.relation_household
+                        options: _vm.lists.relation_household,
                       },
                       on: {
-                        focus: function($event) {
+                        focus: function ($event) {
                           return _vm.focusField("relation_household")
                         },
-                        blur: _vm.clearFocus
+                        blur: _vm.clearFocus,
                       },
                       model: {
                         value: _vm.model.household_id,
-                        callback: function($$v) {
+                        callback: function ($$v) {
                           _vm.$set(_vm.model, "household_id", $$v)
                         },
-                        expression: "model.household_id"
-                      }
-                    })
+                        expression: "model.household_id",
+                      },
+                    }),
                   ],
                   1
-                )
-              ])
+                ),
+              ]),
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
@@ -2109,8 +2122,8 @@ var render = function() {
                   {
                     staticClass: "form-group bmd-form-group",
                     class: {
-                      "is-focused": true
-                    }
+                      "is-focused": true,
+                    },
                   },
                   [
                     _c("label", [_vm._v("Sex")]),
@@ -2121,25 +2134,25 @@ var render = function() {
                       attrs: {
                         name: "gender",
                         label: "gender_name",
-                        options: _vm.lists.gender
+                        options: _vm.lists.gender,
                       },
                       on: {
-                        focus: function($event) {
+                        focus: function ($event) {
                           return _vm.focusField("gender")
                         },
-                        blur: _vm.clearFocus
+                        blur: _vm.clearFocus,
                       },
                       model: {
                         value: _vm.model.gender_id,
-                        callback: function($$v) {
+                        callback: function ($$v) {
                           _vm.$set(_vm.model, "gender_id", $$v)
                         },
-                        expression: "model.gender_id"
-                      }
-                    })
+                        expression: "model.gender_id",
+                      },
+                    }),
                   ],
                   1
-                )
+                ),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-3" }, [
@@ -2148,8 +2161,8 @@ var render = function() {
                   {
                     staticClass: "form-group bmd-form-group",
                     class: {
-                      "is-focused": true
-                    }
+                      "is-focused": true,
+                    },
                   },
                   [
                     _c("label", [_vm._v("Civil Status")]),
@@ -2160,25 +2173,25 @@ var render = function() {
                       attrs: {
                         name: "civil_status",
                         label: "civil_status_name",
-                        options: _vm.lists.civil_status
+                        options: _vm.lists.civil_status,
                       },
                       on: {
-                        focus: function($event) {
+                        focus: function ($event) {
                           return _vm.focusField("civil_status")
                         },
-                        blur: _vm.clearFocus
+                        blur: _vm.clearFocus,
                       },
                       model: {
                         value: _vm.model.civil_status_id,
-                        callback: function($$v) {
+                        callback: function ($$v) {
                           _vm.$set(_vm.model, "civil_status_id", $$v)
                         },
-                        expression: "model.civil_status_id"
-                      }
-                    })
+                        expression: "model.civil_status_id",
+                      },
+                    }),
                   ],
                   1
-                )
+                ),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-6" }, [
@@ -2187,8 +2200,8 @@ var render = function() {
                   {
                     staticClass: "form-group bmd-form-group",
                     class: {
-                      "is-focused": true
-                    }
+                      "is-focused": true,
+                    },
                   },
                   [
                     _c("label", [_vm._v("Spouse Name")]),
@@ -2199,14 +2212,14 @@ var render = function() {
                           name: "model",
                           rawName: "v-model",
                           value: _vm.model.spouse_first_name,
-                          expression: "model.spouse_first_name"
-                        }
+                          expression: "model.spouse_first_name",
+                        },
                       ],
                       staticClass: "form-control popcom-input",
                       attrs: { type: "text" },
                       domProps: { value: _vm.model.spouse_first_name },
                       on: {
-                        input: function($event) {
+                        input: function ($event) {
                           if ($event.target.composing) {
                             return
                           }
@@ -2215,12 +2228,12 @@ var render = function() {
                             "spouse_first_name",
                             $event.target.value
                           )
-                        }
-                      }
-                    })
+                        },
+                      },
+                    }),
                   ]
-                )
-              ])
+                ),
+              ]),
             ]),
             _vm._v(" "),
             _c("br"),
@@ -2236,8 +2249,8 @@ var render = function() {
                   {
                     staticClass: "form-group bmd-form-group",
                     class: {
-                      "is-focused": true
-                    }
+                      "is-focused": true,
+                    },
                   },
                   [
                     _c("label", [_vm._v("Birthday")]),
@@ -2248,12 +2261,12 @@ var render = function() {
                         type: "text",
                         picker: "date",
                         format: "yyyy",
-                        "v-model": _vm.model.birthdate
-                      }
-                    })
+                        "v-model": _vm.model.birthdate,
+                      },
+                    }),
                   ],
                   1
-                )
+                ),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
@@ -2262,8 +2275,8 @@ var render = function() {
                   {
                     staticClass: "form-group bmd-form-group",
                     class: {
-                      "is-focused": true
-                    }
+                      "is-focused": true,
+                    },
                   },
                   [
                     _c("label", [_vm._v("Valid ID")]),
@@ -2274,23 +2287,23 @@ var render = function() {
                           name: "model",
                           rawName: "v-model",
                           value: _vm.model.valid_id,
-                          expression: "model.valid_id"
-                        }
+                          expression: "model.valid_id",
+                        },
                       ],
                       staticClass: "form-control popcom-input",
                       attrs: { type: "text" },
                       domProps: { value: _vm.model.valid_id },
                       on: {
-                        input: function($event) {
+                        input: function ($event) {
                           if ($event.target.composing) {
                             return
                           }
                           _vm.$set(_vm.model, "valid_id", $event.target.value)
-                        }
-                      }
-                    })
+                        },
+                      },
+                    }),
                   ]
-                )
+                ),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
@@ -2299,8 +2312,8 @@ var render = function() {
                   {
                     staticClass: "form-group bmd-form-group",
                     class: {
-                      "is-focused": true
-                    }
+                      "is-focused": true,
+                    },
                   },
                   [
                     _c("label", [_vm._v("ID Number")]),
@@ -2311,24 +2324,24 @@ var render = function() {
                           name: "model",
                           rawName: "v-model",
                           value: _vm.model.id_number,
-                          expression: "model.id_number"
-                        }
+                          expression: "model.id_number",
+                        },
                       ],
                       staticClass: "form-control popcom-input",
                       attrs: { type: "text" },
                       domProps: { value: _vm.model.id_number },
                       on: {
-                        input: function($event) {
+                        input: function ($event) {
                           if ($event.target.composing) {
                             return
                           }
                           _vm.$set(_vm.model, "id_number", $event.target.value)
-                        }
-                      }
-                    })
+                        },
+                      },
+                    }),
                   ]
-                )
-              ])
+                ),
+              ]),
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
@@ -2338,8 +2351,8 @@ var render = function() {
                   {
                     staticClass: "form-group bmd-form-group",
                     class: {
-                      "is-focused": true
-                    }
+                      "is-focused": true,
+                    },
                   },
                   [
                     _c("label", [_vm._v("Cellphone Number")]),
@@ -2350,23 +2363,23 @@ var render = function() {
                           name: "model",
                           rawName: "v-model",
                           value: _vm.model.mobile_no,
-                          expression: "model.mobile_no"
-                        }
+                          expression: "model.mobile_no",
+                        },
                       ],
                       staticClass: "form-control popcom-input",
                       attrs: { type: "text" },
                       domProps: { value: _vm.model.mobile_no },
                       on: {
-                        input: function($event) {
+                        input: function ($event) {
                           if ($event.target.composing) {
                             return
                           }
                           _vm.$set(_vm.model, "mobile_no", $event.target.value)
-                        }
-                      }
-                    })
+                        },
+                      },
+                    }),
                   ]
-                )
+                ),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
@@ -2375,8 +2388,8 @@ var render = function() {
                   {
                     staticClass: "form-group bmd-form-group",
                     class: {
-                      "is-focused": true
-                    }
+                      "is-focused": true,
+                    },
                   },
                   [
                     _c("label", [_vm._v("Landline")]),
@@ -2387,14 +2400,14 @@ var render = function() {
                           name: "model",
                           rawName: "v-model",
                           value: _vm.model.landline_number,
-                          expression: "model.landline_number"
-                        }
+                          expression: "model.landline_number",
+                        },
                       ],
                       staticClass: "form-control popcom-input",
                       attrs: { type: "text" },
                       domProps: { value: _vm.model.landline_number },
                       on: {
-                        input: function($event) {
+                        input: function ($event) {
                           if ($event.target.composing) {
                             return
                           }
@@ -2403,11 +2416,11 @@ var render = function() {
                             "landline_number",
                             $event.target.value
                           )
-                        }
-                      }
-                    })
+                        },
+                      },
+                    }),
                   ]
-                )
+                ),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
@@ -2416,8 +2429,8 @@ var render = function() {
                   {
                     staticClass: "form-group bmd-form-group",
                     class: {
-                      "is-focused": true
-                    }
+                      "is-focused": true,
+                    },
                   },
                   [
                     _c("label", [_vm._v("Email Address")]),
@@ -2428,24 +2441,24 @@ var render = function() {
                           name: "model",
                           rawName: "v-model",
                           value: _vm.model.email,
-                          expression: "model.email"
-                        }
+                          expression: "model.email",
+                        },
                       ],
                       staticClass: "form-control popcom-input",
                       attrs: { type: "text" },
                       domProps: { value: _vm.model.email },
                       on: {
-                        input: function($event) {
+                        input: function ($event) {
                           if ($event.target.composing) {
                             return
                           }
                           _vm.$set(_vm.model, "email", $event.target.value)
-                        }
-                      }
-                    })
+                        },
+                      },
+                    }),
                   ]
-                )
-              ])
+                ),
+              ]),
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
@@ -2455,8 +2468,8 @@ var render = function() {
                   {
                     staticClass: "form-group bmd-form-group",
                     class: {
-                      "is-focused": true
-                    }
+                      "is-focused": true,
+                    },
                   },
                   [
                     _c("label", [_vm._v("Sector Member")]),
@@ -2467,25 +2480,25 @@ var render = function() {
                       attrs: {
                         name: "sector",
                         label: "sector_name",
-                        options: _vm.lists.sector
+                        options: _vm.lists.sector,
                       },
                       on: {
-                        focus: function($event) {
+                        focus: function ($event) {
                           return _vm.focusField("sector")
                         },
-                        blur: _vm.clearFocus
+                        blur: _vm.clearFocus,
                       },
                       model: {
                         value: _vm.model.sector_id,
-                        callback: function($$v) {
+                        callback: function ($$v) {
                           _vm.$set(_vm.model, "sector_id", $$v)
                         },
-                        expression: "model.sector_id"
-                      }
-                    })
+                        expression: "model.sector_id",
+                      },
+                    }),
                   ],
                   1
-                )
+                ),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-3" }, [
@@ -2494,8 +2507,8 @@ var render = function() {
                   {
                     staticClass: "form-group bmd-form-group",
                     class: {
-                      "is-focused": true
-                    }
+                      "is-focused": true,
+                    },
                   },
                   [
                     _c("label", [_vm._v("Ethnicity:")]),
@@ -2506,25 +2519,25 @@ var render = function() {
                       attrs: {
                         name: "ethnicity",
                         label: "ethnicity_name",
-                        options: _vm.lists.ethnicity
+                        options: _vm.lists.ethnicity,
                       },
                       on: {
-                        focus: function($event) {
+                        focus: function ($event) {
                           return _vm.focusField("ethnicity")
                         },
-                        blur: _vm.clearFocus
+                        blur: _vm.clearFocus,
                       },
                       model: {
                         value: _vm.model.ethnicity_id,
-                        callback: function($$v) {
+                        callback: function ($$v) {
                           _vm.$set(_vm.model, "ethnicity_id", $$v)
                         },
-                        expression: "model.ethnicity_id"
-                      }
-                    })
+                        expression: "model.ethnicity_id",
+                      },
+                    }),
                   ],
                   1
-                )
+                ),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-3" }, [
@@ -2533,8 +2546,8 @@ var render = function() {
                   {
                     staticClass: "form-group bmd-form-group",
                     class: {
-                      "is-focused": true
-                    }
+                      "is-focused": true,
+                    },
                   },
                   [
                     _c("label", [_vm._v("Gender Preference")]),
@@ -2545,25 +2558,25 @@ var render = function() {
                       attrs: {
                         name: "gender_preference",
                         label: "gender_preference_name",
-                        options: _vm.lists.gender_preference
+                        options: _vm.lists.gender_preference,
                       },
                       on: {
-                        focus: function($event) {
+                        focus: function ($event) {
                           return _vm.focusField("gender_preference")
                         },
-                        blur: _vm.clearFocus
+                        blur: _vm.clearFocus,
                       },
                       model: {
                         value: _vm.model.gender_preference_id,
-                        callback: function($$v) {
+                        callback: function ($$v) {
                           _vm.$set(_vm.model, "gender_preference_id", $$v)
                         },
-                        expression: "model.gender_preference_id"
-                      }
-                    })
+                        expression: "model.gender_preference_id",
+                      },
+                    }),
                   ],
                   1
-                )
+                ),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-3" }, [
@@ -2572,8 +2585,8 @@ var render = function() {
                   {
                     staticClass: "form-group bmd-form-group",
                     class: {
-                      "is-focused": true
-                    }
+                      "is-focused": true,
+                    },
                   },
                   [
                     _c("label", [_vm._v("Religion:")]),
@@ -2584,26 +2597,26 @@ var render = function() {
                       attrs: {
                         name: "religion",
                         label: "religion_name",
-                        options: _vm.lists.religion
+                        options: _vm.lists.religion,
                       },
                       on: {
-                        focus: function($event) {
+                        focus: function ($event) {
                           return _vm.focusField("religion")
                         },
-                        blur: _vm.clearFocus
+                        blur: _vm.clearFocus,
                       },
                       model: {
                         value: _vm.model.religion,
-                        callback: function($$v) {
+                        callback: function ($$v) {
                           _vm.$set(_vm.model, "religion", $$v)
                         },
-                        expression: "model.religion"
-                      }
-                    })
+                        expression: "model.religion",
+                      },
+                    }),
                   ],
                   1
-                )
-              ])
+                ),
+              ]),
             ]),
             _vm._v(" "),
             _c("br"),
@@ -2621,8 +2634,8 @@ var render = function() {
                   {
                     staticClass: "form-group bmd-form-group",
                     class: {
-                      "is-focused": true
-                    }
+                      "is-focused": true,
+                    },
                   },
                   [
                     _c("label", [_vm._v("City/Municipality")]),
@@ -2633,29 +2646,29 @@ var render = function() {
                       attrs: {
                         name: "city_name",
                         label: "city_name",
-                        options: _vm.lists.city_register
+                        options: _vm.lists.city_register,
                       },
                       on: {
-                        focus: function($event) {
+                        focus: function ($event) {
                           return _vm.focusField("city_register")
                         },
-                        blur: _vm.clearFocus
+                        blur: _vm.clearFocus,
                       },
                       model: {
                         value: _vm.model.poltical_city_registered_id,
-                        callback: function($$v) {
+                        callback: function ($$v) {
                           _vm.$set(
                             _vm.model,
                             "poltical_city_registered_id",
                             $$v
                           )
                         },
-                        expression: "model.poltical_city_registered_id"
-                      }
-                    })
+                        expression: "model.poltical_city_registered_id",
+                      },
+                    }),
                   ],
                   1
-                )
+                ),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-6" }, [
@@ -2664,8 +2677,8 @@ var render = function() {
                   {
                     staticClass: "form-group bmd-form-group",
                     class: {
-                      "is-focused": true
-                    }
+                      "is-focused": true,
+                    },
                   },
                   [
                     _c("label", [_vm._v(" Province Register")]),
@@ -2676,39 +2689,39 @@ var render = function() {
                       attrs: {
                         name: "province_register",
                         label: "province_name",
-                        options: _vm.lists.province_register
+                        options: _vm.lists.province_register,
                       },
                       on: {
-                        focus: function($event) {
+                        focus: function ($event) {
                           return _vm.focusField("province_register")
                         },
-                        blur: _vm.clearFocus
+                        blur: _vm.clearFocus,
                       },
                       model: {
                         value: _vm.model.poltical_province_registered_id,
-                        callback: function($$v) {
+                        callback: function ($$v) {
                           _vm.$set(
                             _vm.model,
                             "poltical_province_registered_id",
                             $$v
                           )
                         },
-                        expression: "model.poltical_province_registered_id"
-                      }
-                    })
+                        expression: "model.poltical_province_registered_id",
+                      },
+                    }),
                   ],
                   1
-                )
-              ])
-            ])
-          ])
-        ])
-      ])
+                ),
+              ]),
+            ]),
+          ]),
+        ]),
+      ]),
     ]
   )
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -2716,18 +2729,18 @@ var staticRenderFns = [
       _c("h4", { staticClass: "card-title" }, [_vm._v("Personal Information")]),
       _vm._v(" "),
       _c("p", { staticClass: "card-category" }, [
-        _vm._v("Complete your profile")
-      ])
+        _vm._v("Complete your profile"),
+      ]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("h4", { staticStyle: { "text-transform": "uppercase" } }, [
-      _c("b", [_vm._v("Political Info")])
+      _c("b", [_vm._v("Political Info")]),
     ])
-  }
+  },
 ]
 render._withStripped = true
 
@@ -2746,7 +2759,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -2764,9 +2777,9 @@ var render = function() {
             _c("div", { staticClass: "col-md-8" }, [
               _c("input", {
                 staticClass: "form-control",
-                attrs: { type: "text", "v-model": _vm.model.full_immunization }
-              })
-            ])
+                attrs: { type: "text", "v-model": _vm.model.full_immunization },
+              }),
+            ]),
           ]),
           _vm._v(" "),
           _c("br"),
@@ -2777,9 +2790,9 @@ var render = function() {
             _c("div", { staticClass: "col-md-8" }, [
               _c("input", {
                 staticClass: "form-control",
-                attrs: { type: "text", "v-model": _vm.model.medical_id }
-              })
-            ])
+                attrs: { type: "text", "v-model": _vm.model.medical_id },
+              }),
+            ]),
           ]),
           _vm._v(" "),
           _c("br"),
@@ -2792,9 +2805,9 @@ var render = function() {
             _c("div", { staticClass: "col-md-4" }, [
               _c("input", {
                 staticClass: "form-control",
-                attrs: { type: "text", "v-model": _vm.model.pregnancy_age }
-              })
-            ])
+                attrs: { type: "text", "v-model": _vm.model.pregnancy_age },
+              }),
+            ]),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
@@ -2803,9 +2816,9 @@ var render = function() {
             _c("div", { staticClass: "col-md-4" }, [
               _c("input", {
                 staticClass: "form-control",
-                attrs: { type: "text", "v-model": _vm.model.prental_checkup }
-              })
-            ])
+                attrs: { type: "text", "v-model": _vm.model.prental_checkup },
+              }),
+            ]),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
@@ -2814,9 +2827,9 @@ var render = function() {
             _c("div", { staticClass: "col-md-4" }, [
               _c("input", {
                 staticClass: "form-control",
-                attrs: { type: "text", "v-model": _vm.model.postnatal_checkup }
-              })
-            ])
+                attrs: { type: "text", "v-model": _vm.model.postnatal_checkup },
+              }),
+            ]),
           ]),
           _vm._v(" "),
           _c("br"),
@@ -2831,32 +2844,32 @@ var render = function() {
                 _c("td", [
                   _c("input", {
                     staticClass: "form-control",
-                    attrs: { type: "text", "v-model": _vm.model.brand }
-                  })
+                    attrs: { type: "text", "v-model": _vm.model.brand },
+                  }),
                 ]),
                 _vm._v(" "),
-                _c("td")
+                _c("td"),
               ]),
               _vm._v(" "),
               _c("tr", [
                 _c("td", [
                   _c("input", {
                     staticClass: "form-control",
-                    attrs: { type: "text", "v-model": _vm.model.brand2 }
-                  })
+                    attrs: { type: "text", "v-model": _vm.model.brand2 },
+                  }),
                 ]),
                 _vm._v(" "),
-                _c("td")
-              ])
-            ])
-          ])
-        ])
-      ])
+                _c("td"),
+              ]),
+            ]),
+          ]),
+        ]),
+      ]),
     ]
   )
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -2864,51 +2877,51 @@ var staticRenderFns = [
       _c("h4", { staticClass: "card-title" }, [_vm._v("Health Information")]),
       _vm._v(" "),
       _c("p", { staticClass: "card-category" }, [
-        _vm._v("Complete your profile")
-      ])
+        _vm._v("Complete your profile"),
+      ]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-3 mt-2 mr-3" }, [
-      _c("label", [_vm._v("Full Immunization")])
+      _c("label", [_vm._v("Full Immunization")]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-3 mt-2 mr-3" }, [
-      _c("label", [_vm._v("Maintaining Medicine")])
+      _c("label", [_vm._v("Maintaining Medicine")]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-3 mt-2 mr-3" }, [
-      _c("label", [_vm._v("Pregnancy Age")])
+      _c("label", [_vm._v("Pregnancy Age")]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-3 mt-2 mr-3" }, [
-      _c("label", [_vm._v("With Prental Check-up")])
+      _c("label", [_vm._v("With Prental Check-up")]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-3 mt-2 mr-3" }, [
-      _c("label", [_vm._v("With Postpartum Check-up")])
+      _c("label", [_vm._v("With Postpartum Check-up")]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -2916,17 +2929,17 @@ var staticRenderFns = [
       "thead",
       {
         staticClass: "black text-white",
-        staticStyle: { "background-color": "#462066" }
+        staticStyle: { "background-color": "#462066" },
       },
       [
         _c("tr", [
           _c("th", { attrs: { scope: "col" } }, [_vm._v("Brand")]),
           _vm._v(" "),
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("Date")])
-        ])
+          _c("th", { attrs: { scope: "col" } }, [_vm._v("Date")]),
+        ]),
       ]
     )
-  }
+  },
 ]
 render._withStripped = true
 
@@ -2945,7 +2958,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -2964,8 +2977,8 @@ var render = function() {
                 {
                   staticClass: "form-group bmd-form-group",
                   class: {
-                    "is-focused": true
-                  }
+                    "is-focused": true,
+                  },
                 },
                 [
                   _c("label", [_vm._v("Building Number")]),
@@ -2976,23 +2989,23 @@ var render = function() {
                         name: "model",
                         rawName: "v-model",
                         value: _vm.model.building_no,
-                        expression: "model.building_no"
-                      }
+                        expression: "model.building_no",
+                      },
                     ],
                     staticClass: "form-control popcom-input",
                     attrs: { type: "text" },
                     domProps: { value: _vm.model.building_no },
                     on: {
-                      input: function($event) {
+                      input: function ($event) {
                         if ($event.target.composing) {
                           return
                         }
                         _vm.$set(_vm.model, "building_no", $event.target.value)
-                      }
-                    }
-                  })
+                      },
+                    },
+                  }),
                 ]
-              )
+              ),
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-3" }, [
@@ -3001,8 +3014,8 @@ var render = function() {
                 {
                   staticClass: "form-group bmd-form-group",
                   class: {
-                    "is-focused": true
-                  }
+                    "is-focused": true,
+                  },
                 },
                 [
                   _c("label", [_vm._v("House/Room Unit No")]),
@@ -3013,23 +3026,23 @@ var render = function() {
                         name: "model",
                         rawName: "v-model",
                         value: _vm.model.house_unit,
-                        expression: "model.house_unit"
-                      }
+                        expression: "model.house_unit",
+                      },
                     ],
                     staticClass: "form-control popcom-input",
                     attrs: { type: "text" },
                     domProps: { value: _vm.model.house_unit },
                     on: {
-                      input: function($event) {
+                      input: function ($event) {
                         if ($event.target.composing) {
                           return
                         }
                         _vm.$set(_vm.model, "house_unit", $event.target.value)
-                      }
-                    }
-                  })
+                      },
+                    },
+                  }),
                 ]
-              )
+              ),
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-6" }, [
@@ -3038,8 +3051,8 @@ var render = function() {
                 {
                   staticClass: "form-group bmd-form-group",
                   class: {
-                    "is-focused": true
-                  }
+                    "is-focused": true,
+                  },
                 },
                 [
                   _c("label", [_vm._v("Block No/Lot No/Street Name")]),
@@ -3050,14 +3063,14 @@ var render = function() {
                         name: "model",
                         rawName: "v-model",
                         value: _vm.model.block_lot_house_id,
-                        expression: "model.block_lot_house_id"
-                      }
+                        expression: "model.block_lot_house_id",
+                      },
                     ],
                     staticClass: "form-control popcom-input",
                     attrs: { type: "text" },
                     domProps: { value: _vm.model.block_lot_house_id },
                     on: {
-                      input: function($event) {
+                      input: function ($event) {
                         if ($event.target.composing) {
                           return
                         }
@@ -3066,12 +3079,12 @@ var render = function() {
                           "block_lot_house_id",
                           $event.target.value
                         )
-                      }
-                    }
-                  })
+                      },
+                    },
+                  }),
                 ]
-              )
-            ])
+              ),
+            ]),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
@@ -3081,8 +3094,8 @@ var render = function() {
                 {
                   staticClass: "form-group bmd-form-group",
                   class: {
-                    "is-focused": true
-                  }
+                    "is-focused": true,
+                  },
                 },
                 [
                   _c("label", [_vm._v("Barangay")]),
@@ -3093,25 +3106,25 @@ var render = function() {
                     attrs: {
                       name: "barangay_id",
                       label: "barangay_name",
-                      options: _vm.lists.barangay
+                      options: _vm.lists.barangay,
                     },
                     on: {
-                      focus: function($event) {
+                      focus: function ($event) {
                         return _vm.focusField("barangay_id")
                       },
-                      blur: _vm.clearFocus
+                      blur: _vm.clearFocus,
                     },
                     model: {
                       value: _vm.model.barangay_id,
-                      callback: function($$v) {
+                      callback: function ($$v) {
                         _vm.$set(_vm.model, "barangay_id", $$v)
                       },
-                      expression: "model.barangay_id"
-                    }
-                  })
+                      expression: "model.barangay_id",
+                    },
+                  }),
                 ],
                 1
-              )
+              ),
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-3" }, [
@@ -3120,8 +3133,8 @@ var render = function() {
                 {
                   staticClass: "form-group bmd-form-group",
                   class: {
-                    "is-focused": true
-                  }
+                    "is-focused": true,
+                  },
                 },
                 [
                   _c("label", [_vm._v("Purok")]),
@@ -3132,25 +3145,25 @@ var render = function() {
                     attrs: {
                       name: "purok_id",
                       label: "purok_name",
-                      options: _vm.lists.purok
+                      options: _vm.lists.purok,
                     },
                     on: {
-                      focus: function($event) {
+                      focus: function ($event) {
                         return _vm.focusField("purok_id")
                       },
-                      blur: _vm.clearFocus
+                      blur: _vm.clearFocus,
                     },
                     model: {
                       value: _vm.model.purok_id,
-                      callback: function($$v) {
+                      callback: function ($$v) {
                         _vm.$set(_vm.model, "purok_id", $$v)
                       },
-                      expression: "model.purok_id"
-                    }
-                  })
+                      expression: "model.purok_id",
+                    },
+                  }),
                 ],
                 1
-              )
+              ),
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-6" }, [
@@ -3159,8 +3172,8 @@ var render = function() {
                 {
                   staticClass: "form-group bmd-form-group",
                   class: {
-                    "is-focused": true
-                  }
+                    "is-focused": true,
+                  },
                 },
                 [
                   _c("label", [_vm._v("Sitio / Subdivsion Name")]),
@@ -3171,26 +3184,26 @@ var render = function() {
                     attrs: {
                       name: "sitio_id",
                       label: "sitio_name",
-                      options: _vm.lists.sitio
+                      options: _vm.lists.sitio,
                     },
                     on: {
-                      focus: function($event) {
+                      focus: function ($event) {
                         return _vm.focusField("sitio_id")
                       },
-                      blur: _vm.clearFocus
+                      blur: _vm.clearFocus,
                     },
                     model: {
                       value: _vm.model.sitio_id,
-                      callback: function($$v) {
+                      callback: function ($$v) {
                         _vm.$set(_vm.model, "sitio_id", $$v)
                       },
-                      expression: "model.sitio_id"
-                    }
-                  })
+                      expression: "model.sitio_id",
+                    },
+                  }),
                 ],
                 1
-              )
-            ])
+              ),
+            ]),
           ]),
           _vm._v(" "),
           _c("table", { staticClass: "table table-bordered" }, [
@@ -3209,10 +3222,10 @@ var render = function() {
                         type: "text",
                         picker: "date",
                         format: "yyyy",
-                        "v-model": _vm.model.no_of_years_in_calamba
+                        "v-model": _vm.model.no_of_years_in_calamba,
                       },
-                      on: { input: _vm.changeDate }
-                    })
+                      on: { input: _vm.changeDate },
+                    }),
                   ],
                   1
                 ),
@@ -3222,8 +3235,8 @@ var render = function() {
                     "\n                            " +
                       _vm._s(this.calamba_residence) +
                       "\n                        "
-                  )
-                ])
+                  ),
+                ]),
               ]),
               _vm._v(" "),
               _c("tr", [
@@ -3238,10 +3251,10 @@ var render = function() {
                         type: "text",
                         picker: "date",
                         format: "yyyy",
-                        "v-model": _vm.model.barangay_residence_year
+                        "v-model": _vm.model.barangay_residence_year,
                       },
-                      on: { input: _vm.changeDate1 }
-                    })
+                      on: { input: _vm.changeDate1 },
+                    }),
                   ],
                   1
                 ),
@@ -3251,10 +3264,10 @@ var render = function() {
                     "\n                            " +
                       _vm._s(this.barangay_residence) +
                       "\n                        "
-                  )
-                ])
-              ])
-            ])
+                  ),
+                ]),
+              ]),
+            ]),
           ]),
           _vm._v(" "),
           _c(
@@ -3262,39 +3275,39 @@ var render = function() {
             {
               staticClass: "form-group bmd-form-group",
               class: {
-                "is-focused": true
-              }
+                "is-focused": true,
+              },
             },
             [
               _c("label", [_vm._v(" Remarks")]),
               _vm._v(" "),
               _c("textarea", {
                 staticClass: "form-control popcom-input",
-                attrs: { rows: "5", "v-model": _vm.model.remarks }
-              })
+                attrs: { rows: "5", "v-model": _vm.model.remarks },
+              }),
             ]
-          )
-        ])
-      ])
+          ),
+        ]),
+      ]),
     ]
   )
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header card-header-primary" }, [
       _c("h4", { staticClass: "card-title" }, [
-        _vm._v("Residential Information")
+        _vm._v("Residential Information"),
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "card-category" }, [
-        _vm._v("Complete your profile")
-      ])
+        _vm._v("Complete your profile"),
+      ]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -3302,7 +3315,7 @@ var staticRenderFns = [
       "thead",
       {
         staticClass: "black text-white",
-        staticStyle: { "background-color": "#462066" }
+        staticStyle: { "background-color": "#462066" },
       },
       [
         _c("tr", [
@@ -3310,11 +3323,11 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("th", { attrs: { scope: "col" } }, [_vm._v("Date")]),
           _vm._v(" "),
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("Status")])
-        ])
+          _c("th", { attrs: { scope: "col" } }, [_vm._v("Status")]),
+        ]),
       ]
     )
-  }
+  },
 ]
 render._withStripped = true
 
@@ -3333,14 +3346,14 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm._m(0)
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -3349,13 +3362,13 @@ var staticRenderFns = [
         _c("h4", { staticClass: "card-title" }, [_vm._v("Hobbies")]),
         _vm._v(" "),
         _c("p", { staticClass: "card-category" }, [
-          _vm._v("Complete your profile")
-        ])
+          _vm._v("Complete your profile"),
+        ]),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "card-body" })
+      _c("div", { staticClass: "card-body" }),
     ])
-  }
+  },
 ]
 render._withStripped = true
 
@@ -3374,7 +3387,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -3393,8 +3406,8 @@ var render = function() {
                 {
                   staticClass: "form-group bmd-form-group",
                   class: {
-                    "is-focused": true
-                  }
+                    "is-focused": true,
+                  },
                 },
                 [
                   _c("label", [_vm._v("Highest Educational Attaintment")]),
@@ -3406,18 +3419,18 @@ var render = function() {
                       name: "educational_attaintment",
                       label: "educational_attaintment_name",
                       "v-model": _vm.model.educational_attaintment_name,
-                      options: _vm.lists.educational_attaintment
+                      options: _vm.lists.educational_attaintment,
                     },
                     on: {
-                      focus: function($event) {
+                      focus: function ($event) {
                         return _vm.focusField("educational_attaintment")
                       },
-                      blur: _vm.clearFocus
-                    }
-                  })
+                      blur: _vm.clearFocus,
+                    },
+                  }),
                 ],
                 1
-              )
+              ),
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-6" }, [
@@ -3426,8 +3439,8 @@ var render = function() {
                 {
                   staticClass: "form-group bmd-form-group ",
                   class: {
-                    "is-focused": true
-                  }
+                    "is-focused": true,
+                  },
                 },
                 [
                   _c("label", [_vm._v("Educational Status")]),
@@ -3439,19 +3452,19 @@ var render = function() {
                       name: "educational_status",
                       label: "educational_status_name",
                       "v-model": _vm.model.educational_status_name,
-                      options: _vm.lists.educational_status
+                      options: _vm.lists.educational_status,
                     },
                     on: {
-                      focus: function($event) {
+                      focus: function ($event) {
                         return _vm.focusField("educational_status")
                       },
-                      blur: _vm.clearFocus
-                    }
-                  })
+                      blur: _vm.clearFocus,
+                    },
+                  }),
                 ],
                 1
-              )
-            ])
+              ),
+            ]),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
@@ -3461,8 +3474,8 @@ var render = function() {
                 {
                   staticClass: "form-group bmd-form-group",
                   class: {
-                    "is-focused": true
-                  }
+                    "is-focused": true,
+                  },
                 },
                 [
                   _c("label", [_vm._v("Last School Attended")]),
@@ -3471,12 +3484,12 @@ var render = function() {
                     staticClass: "form-control popcom-input",
                     attrs: {
                       type: "text",
-                      "v-model": _vm.model.last_school_attended
-                    }
-                  })
+                      "v-model": _vm.model.last_school_attended,
+                    },
+                  }),
                 ]
-              )
-            ])
+              ),
+            ]),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
@@ -3486,8 +3499,8 @@ var render = function() {
                 {
                   staticClass: "form-group bmd-form-group",
                   class: {
-                    "is-focused": true
-                  }
+                    "is-focused": true,
+                  },
                 },
                 [
                   _c("label", [_vm._v("Government Educational Assistance")]),
@@ -3499,18 +3512,18 @@ var render = function() {
                       name: "government_assistance",
                       label: "government_assistance_name",
                       "v-model": _vm.model.government_educational_assistance_id,
-                      options: _vm.lists.government_assistance
+                      options: _vm.lists.government_assistance,
                     },
                     on: {
-                      focus: function($event) {
+                      focus: function ($event) {
                         return _vm.focusField("government_assistance")
                       },
-                      blur: _vm.clearFocus
-                    }
-                  })
+                      blur: _vm.clearFocus,
+                    },
+                  }),
                 ],
                 1
-              )
+              ),
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-6" }, [
@@ -3519,8 +3532,8 @@ var render = function() {
                 {
                   staticClass: "form-group bmd-form-group",
                   class: {
-                    "is-focused": true
-                  }
+                    "is-focused": true,
+                  },
                 },
                 [
                   _c("label", [_vm._v("Organizations")]),
@@ -3532,19 +3545,19 @@ var render = function() {
                       name: "organization",
                       label: "organization_name",
                       "v-model": _vm.model.organization_id,
-                      options: _vm.lists.organization
+                      options: _vm.lists.organization,
                     },
                     on: {
-                      focus: function($event) {
+                      focus: function ($event) {
                         return _vm.focusField("organization")
                       },
-                      blur: _vm.clearFocus
-                    }
-                  })
+                      blur: _vm.clearFocus,
+                    },
+                  }),
                 ],
                 1
-              )
-            ])
+              ),
+            ]),
           ]),
           _vm._v(" "),
           _c("br"),
@@ -3560,8 +3573,8 @@ var render = function() {
                 {
                   staticClass: "form-group bmd-form-group",
                   class: {
-                    "is-focused": true
-                  }
+                    "is-focused": true,
+                  },
                 },
                 [
                   _c("label", [_vm._v("Occupation")]),
@@ -3573,18 +3586,18 @@ var render = function() {
                       name: "occupation",
                       label: "occupation_name",
                       "v-model": _vm.model.occupation_id,
-                      options: _vm.lists.occupation
+                      options: _vm.lists.occupation,
                     },
                     on: {
-                      focus: function($event) {
+                      focus: function ($event) {
                         return _vm.focusField("occupation")
                       },
-                      blur: _vm.clearFocus
-                    }
-                  })
+                      blur: _vm.clearFocus,
+                    },
+                  }),
                 ],
                 1
-              )
+              ),
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-6" }, [
@@ -3593,19 +3606,19 @@ var render = function() {
                 {
                   staticClass: "form-group bmd-form-group",
                   class: {
-                    "is-focused": true
-                  }
+                    "is-focused": true,
+                  },
                 },
                 [
                   _c("label", [_vm._v("Employer")]),
                   _vm._v(" "),
                   _c("input", {
                     staticClass: "form-control popcom-input",
-                    attrs: { type: "text", "v-model": _vm.model.employer }
-                  })
+                    attrs: { type: "text", "v-model": _vm.model.employer },
+                  }),
                 ]
-              )
-            ])
+              ),
+            ]),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
@@ -3615,8 +3628,8 @@ var render = function() {
                 {
                   staticClass: "form-group bmd-form-group",
                   class: {
-                    "is-focused": true
-                  }
+                    "is-focused": true,
+                  },
                 },
                 [
                   _c("label", [_vm._v("Work Location (City, Province)")]),
@@ -3628,18 +3641,18 @@ var render = function() {
                       name: "city_name",
                       label: "city_name",
                       "v-model": _vm.model.work_location_city_id,
-                      options: _vm.lists.work_location_city
+                      options: _vm.lists.work_location_city,
                     },
                     on: {
-                      focus: function($event) {
+                      focus: function ($event) {
                         return _vm.focusField("work_city")
                       },
-                      blur: _vm.clearFocus
-                    }
-                  })
+                      blur: _vm.clearFocus,
+                    },
+                  }),
                 ],
                 1
-              )
+              ),
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-6" }, [
@@ -3648,45 +3661,48 @@ var render = function() {
                 {
                   staticClass: "form-group bmd-form-group",
                   class: {
-                    "is-focused": true
-                  }
+                    "is-focused": true,
+                  },
                 },
                 [
                   _c("label", [_vm._v("Monthly Income (Econimic Status)")]),
                   _vm._v(" "),
                   _c("input", {
                     staticClass: "form-control popcom-input",
-                    attrs: { type: "text", "v-model": _vm.model.monthly_income }
-                  })
+                    attrs: {
+                      type: "text",
+                      "v-model": _vm.model.monthly_income,
+                    },
+                  }),
                 ]
-              )
-            ])
+              ),
+            ]),
           ]),
           _vm._v(" "),
           _c("br"),
           _vm._v(" "),
-          _vm._m(1)
-        ])
-      ])
+          _vm._m(1),
+        ]),
+      ]),
     ]
   )
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header card-header-primary" }, [
       _c("h4", { staticClass: "card-title" }, [
-        _vm._v("Educational Information / Educational Information")
+        _vm._v("Educational Information / Educational Information"),
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "card-category" }, [
-        _vm._v("Complete your profile")
-      ])
+        _vm._v("Complete your profile"),
+      ]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -3697,18 +3713,18 @@ var staticRenderFns = [
             "thead",
             {
               staticClass: "black text-white",
-              staticStyle: { "background-color": "#462066" }
+              staticStyle: { "background-color": "#462066" },
             },
             [
               _c("tr", [
                 _c("th", { attrs: { scope: "col" } }, [
-                  _vm._v("Government Assistance")
+                  _vm._v("Government Assistance"),
                 ]),
                 _vm._v(" "),
                 _c("th", { attrs: { scope: "col" } }, [_vm._v("Date")]),
                 _vm._v(" "),
-                _c("th", { attrs: { scope: "col" } }, [_vm._v("Amount")])
-              ])
+                _c("th", { attrs: { scope: "col" } }, [_vm._v("Amount")]),
+              ]),
             ]
           ),
           _vm._v(" "),
@@ -3718,7 +3734,7 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("td", [_vm._v("January 20, 2020")]),
               _vm._v(" "),
-              _c("td", [_vm._v("₱13,000")])
+              _c("td", [_vm._v("₱13,000")]),
             ]),
             _vm._v(" "),
             _c("tr", [
@@ -3726,13 +3742,13 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("td", [_vm._v("October 20, 2020")]),
               _vm._v(" "),
-              _c("td", [_vm._v("₱4,000")])
-            ])
-          ])
-        ])
-      ])
+              _c("td", [_vm._v("₱4,000")]),
+            ]),
+          ]),
+        ]),
+      ]),
     ])
-  }
+  },
 ]
 render._withStripped = true
 
@@ -3751,11 +3767,23 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { attrs: { id: "row" } }, [
+    _c("div", { staticClass: "float-right" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "file" },
+        on: {
+          change: function ($event) {
+            return _vm.importFile($event)
+          },
+        },
+      }),
+    ]),
+    _vm._v(" "),
     _c(
       "div",
       { staticClass: "card" },
@@ -3771,17 +3799,17 @@ var render = function() {
               color: "#20a0ff",
               subtitle: "New Household",
               title: "New Household",
-              "error-color": "#ff4949"
+              "error-color": "#ff4949",
             },
             on: {
               "on-complete": _vm.onComplete,
-              "update:startIndex": function($event) {
+              "update:startIndex": function ($event) {
                 _vm.activeTabIndex = $event
               },
-              "update:start-index": function($event) {
+              "update:start-index": function ($event) {
                 _vm.activeTabIndex = $event
-              }
-            }
+              },
+            },
           },
           [
             _c(
@@ -3790,16 +3818,16 @@ var render = function() {
                 attrs: {
                   title: "Personal details",
                   icon: "fa fa-user",
-                  "before-change": function() {
+                  "before-change": function () {
                     return _vm.validate("firstStep")
-                  }
-                }
+                  },
+                },
               },
               [
                 _c("first-step", {
                   ref: "firstStep",
-                  on: { "on-validate": _vm.onStepValidate }
-                })
+                  on: { "on-validate": _vm.onStepValidate },
+                }),
               ],
               1
             ),
@@ -3810,16 +3838,16 @@ var render = function() {
                 attrs: {
                   title: "Additional Info",
                   icon: "fa fa-cog",
-                  "before-change": function() {
+                  "before-change": function () {
                     return _vm.validate("secondStep")
-                  }
-                }
+                  },
+                },
               },
               [
                 _c("second-step", {
                   ref: "secondStep",
-                  on: { "on-validate": _vm.onStepValidate }
-                })
+                  on: { "on-validate": _vm.onStepValidate },
+                }),
               ],
               1
             ),
@@ -3830,16 +3858,16 @@ var render = function() {
                 attrs: {
                   title: "Educational Information / Organizations",
                   icon: "fa fa-book",
-                  "before-change": function() {
+                  "before-change": function () {
                     return _vm.validate("thirdStep")
-                  }
-                }
+                  },
+                },
               },
               [
                 _c("third-step", {
                   ref: "thirdStep",
-                  on: { "on-validate": _vm.onStepValidate }
-                })
+                  on: { "on-validate": _vm.onStepValidate },
+                }),
               ],
               1
             ),
@@ -3850,16 +3878,16 @@ var render = function() {
                 attrs: {
                   title: "Health Info",
                   icon: "fa fa-address-card",
-                  "before-change": function() {
+                  "before-change": function () {
                     return _vm.validate("thirdStep")
-                  }
-                }
+                  },
+                },
               },
               [
                 _c("fourth-step", {
                   ref: "fourthStep",
-                  on: { "on-validate": _vm.onStepValidate }
-                })
+                  on: { "on-validate": _vm.onStepValidate },
+                }),
               ],
               1
             ),
@@ -3867,13 +3895,16 @@ var render = function() {
             _c(
               "tab-content",
               {
-                attrs: { title: "Survey Questions", icon: "fa fa-address-card" }
+                attrs: {
+                  title: "Survey Questions",
+                  icon: "fa fa-address-card",
+                },
               },
               [
                 _c("fifth-step", {
                   ref: "fifthStep",
-                  on: { "on-validate": _vm.onStepValidate }
-                })
+                  on: { "on-validate": _vm.onStepValidate },
+                }),
               ],
               1
             ),
@@ -3884,8 +3915,8 @@ var render = function() {
               [
                 _c("sixth-step", {
                   ref: "fifthStep",
-                  on: { "on-validate": _vm.onStepValidate }
-                })
+                  on: { "on-validate": _vm.onStepValidate },
+                }),
               ],
               1
             ),
@@ -3895,15 +3926,15 @@ var render = function() {
               { attrs: { title: "Last step", icon: "fa fa-check" } },
               [
                 _vm._v("\n                Your data\n                "),
-                _c("pre", { domProps: { innerHTML: _vm._s(_vm.prettyJSON) } })
+                _c("pre", { domProps: { innerHTML: _vm._s(_vm.prettyJSON) } }),
               ]
-            )
+            ),
           ],
           1
-        )
+        ),
       ],
       1
-    )
+    ),
   ])
 }
 var staticRenderFns = []

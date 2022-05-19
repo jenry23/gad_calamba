@@ -1,5 +1,8 @@
 <template>
     <div id="row">
+        <div class="float-right">
+            <input type="file" @change="importFile($event)"  class="form-control" />
+        </div>
         <div class="card">
             <form-wizard
                 @on-complete="onComplete"
@@ -69,7 +72,8 @@ export default {
     data () {
         return {
             finalModel: {},
-            activeTabIndex: 0
+            activeTabIndex: 0,
+            import_file: {}
         };
     },
     computed: {
@@ -83,8 +87,8 @@ export default {
                 .then(response => {
                     // this.$router.push({ name: 'gad_list.index' })
                     this.$eventHub.$emit('create-success')
-                }).catch(error =>{
-                  console.log(error);
+                }).catch(error => {
+                    console.log(error);
                 })
         },
         forceClearError () {
@@ -97,6 +101,18 @@ export default {
             if (validated) {
                 this.finalModel = { ...this.finalModel, ...model };
             }
+        },
+
+        importFile (event) {
+            let file = event.target.files
+            const formData = new FormData()
+            formData.append('import_file', file[0])
+            axios.post('gad/import-excel', formData)
+                .then(response => {
+                    // this.$router.push({ name: 'gad_list.index' })
+                }).catch(error => {
+                    console.log(error);
+                })
         }
     }
 };

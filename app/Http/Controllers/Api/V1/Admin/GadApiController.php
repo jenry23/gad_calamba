@@ -18,6 +18,8 @@ use App\Models\GenderPreference;
 use App\Models\ValidID;
 use App\Models\GovernmentAssistance;
 use App\Models\MonthlyIncome;
+use App\Imports\ImportGads;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\EducationalAttaintment;
 use App\Models\EducationalStatus;
 use App\Models\Province;
@@ -277,5 +279,14 @@ class GadApiController extends Controller
         $Gad->delete();
 
         return response(null, Response::HTTP_NO_CONTENT);
+    }
+
+    public function importExcel(Request $request)
+    {
+        Excel::import(new ImportGads, request()->file('import_file'));
+        $gads = Gad::all();
+        foreach ($gads as $gad) {
+        }
+        return back()->with('success', 'Gad imported successfully.');
     }
 }

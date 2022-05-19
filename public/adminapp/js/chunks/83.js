@@ -10,9 +10,9 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -133,7 +133,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -142,11 +142,11 @@ var render = function() {
       "form",
       {
         on: {
-          submit: function($event) {
+          submit: function ($event) {
             $event.preventDefault()
             return _vm.submitForm.apply(null, arguments)
-          }
-        }
+          },
+        },
       },
       [
         _c("div", { staticClass: "row" }, [
@@ -156,7 +156,7 @@ var render = function() {
                 "div",
                 {
                   staticClass:
-                    "card-header card-header-primary card-header-icon"
+                    "card-header card-header-primary card-header-icon",
                 },
                 [
                   _vm._m(0),
@@ -168,9 +168,9 @@ var render = function() {
                         "\n              "
                     ),
                     _c("strong", [
-                      _vm._v(_vm._s(_vm.$t("cruds.permission.title_singular")))
-                    ])
-                  ])
+                      _vm._v(_vm._s(_vm.$t("cruds.permission.title_singular"))),
+                    ]),
+                  ]),
                 ]
               ),
               _vm._v(" "),
@@ -190,8 +190,8 @@ var render = function() {
                           staticClass: "form-group bmd-form-group",
                           class: {
                             "has-items": _vm.entry.title,
-                            "is-focused": _vm.activeField == "title"
-                          }
+                            "is-focused": _vm.activeField == "title",
+                          },
                         },
                         [
                           _c(
@@ -200,7 +200,7 @@ var render = function() {
                             [
                               _vm._v(
                                 _vm._s(_vm.$t("cruds.permission.fields.title"))
-                              )
+                              ),
                             ]
                           ),
                           _vm._v(" "),
@@ -210,16 +210,16 @@ var render = function() {
                             domProps: { value: _vm.entry.title },
                             on: {
                               input: _vm.updateTitle,
-                              focus: function($event) {
+                              focus: function ($event) {
                                 return _vm.focusField("title")
                               },
-                              blur: _vm.clearFocus
-                            }
-                          })
+                              blur: _vm.clearFocus,
+                            },
+                          }),
                         ]
-                      )
-                    ])
-                  ])
+                      ),
+                    ]),
+                  ]),
                 ],
                 1
               ),
@@ -235,36 +235,36 @@ var render = function() {
                       attrs: {
                         status: _vm.status,
                         isLoading: _vm.loading,
-                        disabled: _vm.loading
-                      }
+                        disabled: _vm.loading,
+                      },
                     },
                     [
                       _vm._v(
                         "\n              " +
                           _vm._s(_vm.$t("global.save")) +
                           "\n            "
-                      )
+                      ),
                     ]
-                  )
+                  ),
                 ],
                 1
-              )
-            ])
-          ])
-        ])
+              ),
+            ]),
+          ]),
+        ]),
       ]
-    )
+    ),
   ])
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-icon" }, [
-      _c("i", { staticClass: "material-icons" }, [_vm._v("add")])
+      _c("i", { staticClass: "material-icons" }, [_vm._v("add")]),
     ])
-  }
+  },
 ]
 render._withStripped = true
 
