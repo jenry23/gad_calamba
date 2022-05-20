@@ -3,7 +3,7 @@
   <vue-suggestion
                   :items="items"
                   v-model="item"
-                  placeholder="SEARCH DIARY"
+                  placeholder="SEARCH RESIDENT"
                   :setLabel="setLabel"
                   :itemTemplate="itemTemplate"
                   @changed="inputChange"

@@ -155,8 +155,12 @@ class ImportGads implements ToModel, WithHeadingRow, WithCalculatedFormulas, Wit
     }
     private function convertStringToID($class, $fields, $query)
     {
-        $result = $class::where($fields, 'LIKE', '%' . $query . '%')->first();
-        $id = isset($result) ? $result->id : null;
+        $id = null;
+        if (!empty($query)) {
+            $result = $class::where($fields, 'LIKE', '%' . $query . '%')->first();
+            $id = isset($result) ? $result->id : null;
+        }
+
         return $id;
     }
 
