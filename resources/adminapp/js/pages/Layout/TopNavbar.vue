@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <div class="navbar-wrapper">
         <div class="navbar-brand">
-          {{ $t($route.meta.title) }}
+          GAD
         </div>
       </div>
       <autocomplete></autocomplete>

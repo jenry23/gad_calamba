@@ -573,15 +573,7 @@ var render = function () {
         "div",
         { staticClass: "container-fluid" },
         [
-          _c("div", { staticClass: "navbar-wrapper" }, [
-            _c("div", { staticClass: "navbar-brand" }, [
-              _vm._v(
-                "\n        " +
-                  _vm._s(_vm.$t(_vm.$route.meta.title)) +
-                  "\n      "
-              ),
-            ]),
-          ]),
+          _vm._m(0),
           _vm._v(" "),
           _c("autocomplete"),
           _vm._v(" "),
@@ -616,7 +608,7 @@ var render = function () {
             _c("br"),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
-              _vm._m(0),
+              _vm._m(1),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-9" }, [
                 !_vm.$can("powered_gad_access")
@@ -632,6 +624,16 @@ var render = function () {
   )
 }
 var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "navbar-wrapper" }, [
+      _c("div", { staticClass: "navbar-brand" }, [
+        _vm._v("\n        GAD\n      "),
+      ]),
+    ])
+  },
   function () {
     var _vm = this
     var _h = _vm.$createElement

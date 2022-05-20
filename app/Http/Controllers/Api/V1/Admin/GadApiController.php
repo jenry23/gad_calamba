@@ -246,7 +246,7 @@ class GadApiController extends Controller
         $gad->educational_attaintment_name =  !empty($gad->educational_attaintment) ? $gad->educational_attaintment->educational_attaintment_name : '';
         $gad->educational_status_name =  !empty($gad->educational_status) ? $gad->educational_status->educational_status_name : '';
         $gad->government_assistance_name =  !empty($gad->government_assistance) ? $gad->government_assistance->government_assistance_name : '';
-        $gad->political_province_registered =  !empty($gad->political_province_registered) ? $gad->political_province_registered->city_name : '';
+        $gad->political_province_registered =  !empty($gad->political_province_registered) ? $gad->political_province_registered->province_name : '';
         $gad->political_city_registered =  !empty($gad->political_city_registered) ? $gad->political_city_registered->city_name : '';
         $gad->house_ownership_names =  !empty($gad->house_ownership) ? $gad->house_ownership->house_ownership_name : '';
         $gad->house_make_names =  !empty($gad->house_make) ? $gad->house_make->house_make_name : '';

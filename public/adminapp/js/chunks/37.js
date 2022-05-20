@@ -773,159 +773,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1005,7 +852,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\ninput[type=\"text\"][data-v-a0ec2ea8],\r\nselect[data-v-a0ec2ea8] {\r\n    width: 100%;\r\n    padding: 5px;\r\n    margin-bottom: -40px;\r\n    display: inline-block;\r\n    border: 1px solid #000000;\r\n    border-radius: 4px;\r\n    box-sizing: border-box;\n}\nlabel[data-v-a0ec2ea8] {\r\n    color: black;\n}\nhr[data-v-a0ec2ea8] {\r\n    margin-top: 1rem;\r\n    margin-bottom: 1rem;\r\n    border: 0;\r\n    border-top: 1px solid rgba(0, 0, 0.1);\n}\r\n", ""]);
+exports.push([module.i, "\ninput[type='text'][data-v-a0ec2ea8],\r\nselect[data-v-a0ec2ea8] {\r\n    width: 100%;\r\n    padding: 5px;\r\n    margin-bottom: -40px;\r\n    display: inline-block;\r\n    border: 1px solid #000000;\r\n    border-radius: 4px;\r\n    box-sizing: border-box;\n}\nlabel[data-v-a0ec2ea8] {\r\n    color: black;\n}\nhr[data-v-a0ec2ea8] {\r\n    margin-top: 1rem;\r\n    margin-bottom: 1rem;\r\n    border: 0;\r\n    border-top: 1px solid rgba(0, 0, 0.1);\n}\r\n", ""]);
 
 // exports
 
@@ -1060,958 +907,959 @@ var render = function () {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md-8" }, [
       _c(
-        "select",
+        "form",
         {
-          staticClass: "custom-select my-1 mr-sm-2",
           on: {
-            change: function ($event) {
-              return _vm.switchSelect($event)
+            submit: function ($event) {
+              $event.preventDefault()
+              return _vm.submitForm.apply(null, arguments)
             },
           },
         },
         [
-          _c("option", { attrs: { value: "0" } }, [
-            _vm._v("Personal Information"),
-          ]),
+          _c(
+            "select",
+            {
+              staticClass: "custom-select my-1 mr-sm-2",
+              on: {
+                change: function ($event) {
+                  return _vm.switchSelect($event)
+                },
+              },
+            },
+            [
+              _c("option", { attrs: { value: "0" } }, [
+                _vm._v("Personal Information"),
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "1" } }, [
+                _vm._v("Residential Information"),
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "2" } }, [
+                _vm._v("Educational Information / Employee Information"),
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "3" } }, [
+                _vm._v("Other Medical Information"),
+              ]),
+            ]
+          ),
           _vm._v(" "),
-          _c("option", { attrs: { value: "1" } }, [
-            _vm._v("Residential Information"),
-          ]),
+          _vm._m(0),
           _vm._v(" "),
-          _c("option", { attrs: { value: "2" } }, [
-            _vm._v(
-              "\n                Educational Information / Employee Information\n            "
+          _c("div", { staticClass: "tab-content" }, [
+            _c(
+              "div",
+              { staticClass: "tab-pane active", attrs: { id: "personal" } },
+              [
+                _c("div", { staticClass: "card" }, [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-body" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-3" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-group bmd-form-group",
+                            class: {
+                              "is-focused": true,
+                            },
+                          },
+                          [
+                            _c("label", [_vm._v("Household Entry No:")]),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "text" },
+                              domProps: { value: _vm.entry.household_no },
+                            }),
+                          ]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-3" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-group bmd-form-group",
+                            class: {
+                              "is-focused": true,
+                            },
+                          },
+                          [
+                            _c("label", [_vm._v("Family Code")]),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "text" },
+                              domProps: { value: _vm.entry.family_code },
+                            }),
+                          ]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-group bmd-form-group",
+                            class: {
+                              "is-focused": true,
+                            },
+                          },
+                          [
+                            _c("label", [_vm._v("Relation To Main Household")]),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "text" },
+                              domProps: { value: _vm.entry.household_names },
+                            }),
+                          ]
+                        ),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-3" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-group bmd-form-group",
+                            class: {
+                              "is-focused": true,
+                            },
+                          },
+                          [
+                            _c("label", [_vm._v("Sex")]),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "text" },
+                              domProps: { value: _vm.entry.gender_name },
+                            }),
+                          ]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-3" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-group bmd-form-group",
+                            class: {
+                              "is-focused": true,
+                            },
+                          },
+                          [
+                            _c("label", [_vm._v("Civil Status")]),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "text" },
+                              domProps: { value: _vm.entry.civil_status_names },
+                            }),
+                          ]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-group bmd-form-group",
+                            class: {
+                              "is-focused": true,
+                            },
+                          },
+                          [
+                            _c("label", [_vm._v("Spouse Name")]),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "text" },
+                              domProps: {
+                                value:
+                                  _vm.entry.spouse_first_name +
+                                  " " +
+                                  _vm.entry.spouse_last_name +
+                                  "," +
+                                  _vm.entry.spouse_middle_name,
+                              },
+                            }),
+                          ]
+                        ),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-group bmd-form-group",
+                            class: {
+                              "is-focused": true,
+                            },
+                          },
+                          [
+                            _c("label", [_vm._v("Birthday")]),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "text" },
+                              domProps: { value: _vm.entry.birthdate },
+                            }),
+                          ]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-group bmd-form-group",
+                            class: {
+                              "is-focused": true,
+                            },
+                          },
+                          [
+                            _c("label", [_vm._v("Gender Preference")]),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "text" },
+                              domProps: {
+                                value: _vm.entry.gender_preference_name,
+                              },
+                            }),
+                          ]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-group bmd-form-group",
+                            class: {
+                              "is-focused": true,
+                            },
+                          },
+                          [
+                            _c("label", [_vm._v("Valid ID / ID Number")]),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "text" },
+                              domProps: {
+                                value:
+                                  _vm.entry.id_number +
+                                  " " +
+                                  _vm.entry.valid_id_names,
+                              },
+                            }),
+                          ]
+                        ),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("hr"),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "line" }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-3" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-group bmd-form-group",
+                            class: {
+                              "is-focused": true,
+                            },
+                          },
+                          [
+                            _c("label", [_vm._v("Religion:")]),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "text" },
+                              domProps: { value: _vm.entry.religion },
+                            }),
+                          ]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-3" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-group bmd-form-group",
+                            class: {
+                              "is-focused": true,
+                            },
+                          },
+                          [
+                            _c("label", [_vm._v("Ethnicity:")]),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "text" },
+                              domProps: { value: _vm.entry.ethnicity },
+                            }),
+                          ]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-group bmd-form-group",
+                            class: {
+                              "is-focused": true,
+                            },
+                          },
+                          [
+                            _c("label", [_vm._v("Sector Member")]),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "text" },
+                              domProps: { value: _vm.entry.sector_name },
+                            }),
+                          ]
+                        ),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-group bmd-form-group",
+                            class: {
+                              "is-focused": true,
+                            },
+                          },
+                          [
+                            _c("label", [_vm._v("Cellphone Number")]),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "text" },
+                              domProps: { value: _vm.entry.mobile_ni },
+                            }),
+                          ]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-group bmd-form-group",
+                            class: {
+                              "is-focused": true,
+                            },
+                          },
+                          [
+                            _c("label", [_vm._v("Landline")]),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "text" },
+                              domProps: { value: _vm.entry.landline },
+                            }),
+                          ]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-group bmd-form-group",
+                            class: {
+                              "is-focused": true,
+                            },
+                          },
+                          [
+                            _c("label", [_vm._v("Email Address")]),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "text" },
+                              domProps: { value: _vm.entry.email_address },
+                            }),
+                          ]
+                        ),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("hr"),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "line" }),
+                    _vm._v(" "),
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-group bmd-form-group",
+                            class: {
+                              "is-focused": true,
+                            },
+                          },
+                          [
+                            _c("label", [_vm._v("City/Municipality")]),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "text" },
+                              domProps: {
+                                value: _vm.entry.political_city_registered,
+                              },
+                            }),
+                          ]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-group bmd-form-group",
+                            class: {
+                              "is-focused": true,
+                            },
+                          },
+                          [
+                            _c("label", [_vm._v(" Province Register")]),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "text" },
+                              domProps: {
+                                value: _vm.entry.political_province_registered,
+                              },
+                            }),
+                          ]
+                        ),
+                      ]),
+                    ]),
+                  ]),
+                ]),
+              ]
             ),
-          ]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "3" } }, [
-            _vm._v("Other Medical Information"),
+            _vm._v(" "),
+            _c("div", { staticClass: "tab-pane", attrs: { id: "address" } }, [
+              _c("div", { staticClass: "card" }, [
+                _vm._m(3),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-body" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "form-group bmd-form-group",
+                          class: {
+                            "is-focused": true,
+                          },
+                        },
+                        [
+                          _c("label", [_vm._v("Building Numbers/House Unit")]),
+                          _vm._v(" "),
+                          _c("input", {
+                            staticClass: "form-control",
+                            attrs: { type: "text" },
+                            domProps: {
+                              value:
+                                "BLDG " +
+                                _vm.entry.building_no +
+                                " " +
+                                "UNIT " +
+                                _vm.entry.building_no,
+                            },
+                          }),
+                        ]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "form-group bmd-form-group",
+                          class: {
+                            "is-focused": true,
+                          },
+                        },
+                        [
+                          _c("label", [_vm._v("Block No/Lot No/Street Name")]),
+                          _vm._v(" "),
+                          _c("input", {
+                            staticClass: "form-control",
+                            attrs: { type: "text" },
+                            domProps: { value: _vm.entry.block_lot_house_id },
+                          }),
+                        ]
+                      ),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "form-group bmd-form-group",
+                          class: {
+                            "is-focused": true,
+                          },
+                        },
+                        [
+                          _c("label", [_vm._v("Purok")]),
+                          _vm._v(" "),
+                          _c("input", {
+                            staticClass: "form-control",
+                            attrs: { type: "text" },
+                            domProps: { value: _vm.entry.purok_names },
+                          }),
+                        ]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "form-group bmd-form-group",
+                          class: {
+                            "is-focused": true,
+                          },
+                        },
+                        [
+                          _c("label", [_vm._v("Subdivsion / Sitio")]),
+                          _vm._v(" "),
+                          _c("input", {
+                            staticClass: "form-control",
+                            attrs: { type: "text" },
+                            domProps: { value: _vm.entry.sitio_names },
+                          }),
+                        ]
+                      ),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("table", { staticClass: "table table-bordered" }, [
+                    _vm._m(4),
+                    _vm._v(" "),
+                    _c("tbody", [
+                      _c("tr", [
+                        _c("td", [_vm._v("CALAMBA")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            "\n                                                " +
+                              _vm._s(_vm.entry.no_of_years_in_calamba) +
+                              "\n                                            "
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _vm.entry.no_of_years_in_calamba ==
+                        new Date().getFullYear()
+                          ? _c("td", [
+                              _vm._v(
+                                "\n                                                Immigrant\n                                            "
+                              ),
+                            ])
+                          : _c("td", [_vm._v("Native")]),
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", [_vm._v("BARANGAY")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            "\n                                                " +
+                              _vm._s(_vm.entry.barangay_residence_year) +
+                              "\n                                            "
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _vm.entry.barangay_residence_year ==
+                        new Date().getFullYear()
+                          ? _c("td", [
+                              _vm._v(
+                                "\n                                                Immigrant\n                                            "
+                              ),
+                            ])
+                          : _c("td", [_vm._v("Native")]),
+                      ]),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group bmd-form-group",
+                      class: {
+                        "is-focused": true,
+                      },
+                    },
+                    [
+                      _c("label", [_vm._v(" Remarks")]),
+                      _vm._v(" "),
+                      _c("textarea", {
+                        staticClass: "form-control",
+                        attrs: { rows: "5" },
+                        domProps: { value: _vm.entry.remarks },
+                      }),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary pull-right",
+                      attrs: { type: "submit" },
+                    },
+                    [_vm._v("Update Profile")]
+                  ),
+                ]),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "tab-pane", attrs: { id: "educational" } },
+              [
+                _c("div", { staticClass: "card" }, [
+                  _vm._m(5),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-body" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-group bmd-form-group",
+                            class: {
+                              "is-focused": true,
+                            },
+                          },
+                          [
+                            _c("label", [
+                              _vm._v("Highest Educational Attaintment"),
+                            ]),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "text" },
+                              domProps: {
+                                value: _vm.entry.educational_attaintment_name,
+                              },
+                            }),
+                          ]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-group bmd-form-group",
+                            class: {
+                              "is-focused": true,
+                            },
+                          },
+                          [
+                            _c("label", [_vm._v("Educational Status")]),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "text" },
+                              domProps: {
+                                value: _vm.entry.educational_status_name,
+                              },
+                            }),
+                          ]
+                        ),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-12" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-group bmd-form-group",
+                            class: {
+                              "is-focused": true,
+                            },
+                          },
+                          [
+                            _c("label", [_vm._v("Last School Attended")]),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "text" },
+                              domProps: {
+                                value: _vm.entry.last_school_attended,
+                              },
+                            }),
+                          ]
+                        ),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-group bmd-form-group",
+                            class: {
+                              "is-focused": true,
+                            },
+                          },
+                          [
+                            _c("label", [
+                              _vm._v("Government Educational Assistance"),
+                            ]),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "text" },
+                              domProps: {
+                                value: _vm.entry.government_assistance_name,
+                              },
+                            }),
+                          ]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-group bmd-form-group",
+                            class: {
+                              "is-focused": true,
+                            },
+                          },
+                          [
+                            _c("label", [_vm._v("Organizations")]),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "text" },
+                              domProps: { value: _vm.entry.organization_name },
+                            }),
+                          ]
+                        ),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("hr"),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "line" }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-group bmd-form-group",
+                            class: {
+                              "is-focused": true,
+                            },
+                          },
+                          [
+                            _c("label", [_vm._v("Occupation")]),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "text" },
+                              domProps: { value: _vm.entry.occupation },
+                            }),
+                          ]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-group bmd-form-group",
+                            class: {
+                              "is-focused": true,
+                            },
+                          },
+                          [
+                            _c("label", [_vm._v("Employer")]),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "text" },
+                              domProps: { value: _vm.entry.employer },
+                            }),
+                          ]
+                        ),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-group bmd-form-group",
+                            class: {
+                              "is-focused": true,
+                            },
+                          },
+                          [
+                            _c("label", [
+                              _vm._v("Work Location (City, Province)"),
+                            ]),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "text" },
+                              domProps: { value: _vm.entry.work_locations },
+                            }),
+                          ]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-group bmd-form-group",
+                            class: {
+                              "is-focused": true,
+                            },
+                          },
+                          [
+                            _c("label", [
+                              _vm._v("Monthly Income (Econimic Status)"),
+                            ]),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "text" },
+                              domProps: { value: _vm.entry.monthly_income },
+                            }),
+                          ]
+                        ),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _vm._m(6),
+                  ]),
+                ]),
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "tab-pane", attrs: { id: "health" } }, [
+              _c("div", { staticClass: "card" }, [
+                _vm._m(7),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-body" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _vm._m(8),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-8" }, [
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.entry.full_immunization },
+                      }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _vm._m(9),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-8" }, [
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.entry.maintining },
+                      }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("h3", [_vm._v("For Female Only")]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _vm._m(10),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-4" }, [
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.entry.pegnacy_age },
+                      }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _vm._m(11),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-4" }, [
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.entry.with_prental },
+                      }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _vm._m(12),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-4" }, [
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.entry.with_postpartum },
+                      }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("h3", [_vm._v("VACCINE FOR COVID-19")]),
+                  _vm._v(" "),
+                  _vm._m(13),
+                ]),
+              ]),
+            ]),
           ]),
         ]
       ),
-      _vm._v(" "),
-      _vm._m(0),
-      _vm._v(" "),
-      _c("div", { staticClass: "tab-content" }, [
-        _c(
-          "div",
-          { staticClass: "tab-pane active", attrs: { id: "personal" } },
-          [
-            _c("div", { staticClass: "card" }, [
-              _vm._m(1),
-              _vm._v(" "),
-              _c("div", { staticClass: "card-body" }, [
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-md-3" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "form-group bmd-form-group",
-                        class: {
-                          "is-focused": true,
-                        },
-                      },
-                      [
-                        _c("label", [_vm._v("Household Entry No:")]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.entry.household_no },
-                        }),
-                      ]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-3" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "form-group bmd-form-group",
-                        class: {
-                          "is-focused": true,
-                        },
-                      },
-                      [
-                        _c("label", [_vm._v("Family Code")]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.entry.family_code },
-                        }),
-                      ]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-6" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "form-group bmd-form-group",
-                        class: {
-                          "is-focused": true,
-                        },
-                      },
-                      [
-                        _c("label", [_vm._v("Relation To Main Household")]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.entry.household_names },
-                        }),
-                      ]
-                    ),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-md-3" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "form-group bmd-form-group",
-                        class: {
-                          "is-focused": true,
-                        },
-                      },
-                      [
-                        _c("label", [_vm._v("Sex")]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.entry.gender_name },
-                        }),
-                      ]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-3" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "form-group bmd-form-group",
-                        class: {
-                          "is-focused": true,
-                        },
-                      },
-                      [
-                        _c("label", [_vm._v("Civil Status")]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.entry.civil_status_names },
-                        }),
-                      ]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-6" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "form-group bmd-form-group",
-                        class: {
-                          "is-focused": true,
-                        },
-                      },
-                      [
-                        _c("label", [_vm._v("Spouse Name")]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: {
-                            value:
-                              _vm.entry.spouse_first_name +
-                              " " +
-                              _vm.entry.spouse_last_name +
-                              "," +
-                              _vm.entry.spouse_middle_name,
-                          },
-                        }),
-                      ]
-                    ),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-md-4" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "form-group bmd-form-group",
-                        class: {
-                          "is-focused": true,
-                        },
-                      },
-                      [
-                        _c("label", [_vm._v("Birthday")]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.entry.birthdate },
-                        }),
-                      ]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-4" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "form-group bmd-form-group",
-                        class: {
-                          "is-focused": true,
-                        },
-                      },
-                      [
-                        _c("label", [_vm._v("Gender Preference")]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.entry.gender_preference_name },
-                        }),
-                      ]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-4" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "form-group bmd-form-group",
-                        class: {
-                          "is-focused": true,
-                        },
-                      },
-                      [
-                        _c("label", [_vm._v("Valid ID / ID Number")]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: {
-                            value:
-                              _vm.entry.id_number +
-                              " " +
-                              _vm.entry.valid_id_names,
-                          },
-                        }),
-                      ]
-                    ),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("br"),
-                _vm._v(" "),
-                _c("hr"),
-                _vm._v(" "),
-                _c("div", { staticClass: "line" }),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-md-3" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "form-group bmd-form-group",
-                        class: {
-                          "is-focused": true,
-                        },
-                      },
-                      [
-                        _c("label", [_vm._v("Religion:")]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.entry.religion },
-                        }),
-                      ]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-3" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "form-group bmd-form-group",
-                        class: {
-                          "is-focused": true,
-                        },
-                      },
-                      [
-                        _c("label", [_vm._v("Ethnicity:")]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.entry.ethnicity },
-                        }),
-                      ]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-4" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "form-group bmd-form-group",
-                        class: {
-                          "is-focused": true,
-                        },
-                      },
-                      [
-                        _c("label", [_vm._v("Sector Member")]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.entry.sector_name },
-                        }),
-                      ]
-                    ),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-md-4" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "form-group bmd-form-group",
-                        class: {
-                          "is-focused": true,
-                        },
-                      },
-                      [
-                        _c("label", [_vm._v("Cellphone Number")]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.entry.mobile_ni },
-                        }),
-                      ]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-4" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "form-group bmd-form-group",
-                        class: {
-                          "is-focused": true,
-                        },
-                      },
-                      [
-                        _c("label", [_vm._v("Landline")]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.entry.landline },
-                        }),
-                      ]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-4" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "form-group bmd-form-group",
-                        class: {
-                          "is-focused": true,
-                        },
-                      },
-                      [
-                        _c("label", [_vm._v("Email Address")]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.entry.email_address },
-                        }),
-                      ]
-                    ),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("br"),
-                _vm._v(" "),
-                _c("hr"),
-                _vm._v(" "),
-                _c("div", { staticClass: "line" }),
-                _vm._v(" "),
-                _vm._m(2),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-md-6" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "form-group bmd-form-group",
-                        class: {
-                          "is-focused": true,
-                        },
-                      },
-                      [
-                        _c("label", [_vm._v("City/Municipality")]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.entry.sector_name },
-                        }),
-                      ]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-6" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "form-group bmd-form-group",
-                        class: {
-                          "is-focused": true,
-                        },
-                      },
-                      [
-                        _c("label", [_vm._v(" Province Register")]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.entry.sector_name },
-                        }),
-                      ]
-                    ),
-                  ]),
-                ]),
-              ]),
-            ]),
-          ]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "tab-pane", attrs: { id: "address" } }, [
-          _c("div", { staticClass: "card" }, [
-            _vm._m(3),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _c("form", [
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-md-6" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "form-group bmd-form-group",
-                        class: {
-                          "is-focused": true,
-                        },
-                      },
-                      [
-                        _c("label", [
-                          _vm._v(
-                            "Building Numbers/House\n                                            Unit"
-                          ),
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: {
-                            value:
-                              "BLDG " +
-                              _vm.entry.building_no +
-                              " " +
-                              "UNIT " +
-                              _vm.entry.building_no,
-                          },
-                        }),
-                      ]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-6" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "form-group bmd-form-group",
-                        class: {
-                          "is-focused": true,
-                        },
-                      },
-                      [
-                        _c("label", [
-                          _vm._v(
-                            "Block No/Lot No/Street\n                                            Name"
-                          ),
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.entry.block_lot_house_id },
-                        }),
-                      ]
-                    ),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-md-6" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "form-group bmd-form-group",
-                        class: {
-                          "is-focused": true,
-                        },
-                      },
-                      [
-                        _c("label", [_vm._v("Purok")]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.entry.purok_names },
-                        }),
-                      ]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-6" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "form-group bmd-form-group",
-                        class: {
-                          "is-focused": true,
-                        },
-                      },
-                      [
-                        _c("label", [_vm._v("Subdivsion / Sitio")]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.entry.sitio_names },
-                        }),
-                      ]
-                    ),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("table", { staticClass: "table table-bordered" }, [
-                  _vm._m(4),
-                  _vm._v(" "),
-                  _c("tbody", [
-                    _c("tr", [
-                      _c("td", [_vm._v("CALAMBA")]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v(
-                          "\n                                            " +
-                            _vm._s(_vm.entry.no_of_years_in_calamba) +
-                            "\n                                        "
-                        ),
-                      ]),
-                      _vm._v(" "),
-                      _vm.entry.no_of_years_in_calamba ==
-                      new Date().getFullYear()
-                        ? _c("td", [
-                            _vm._v(
-                              "\n                                            Immigrant\n                                        "
-                            ),
-                          ])
-                        : _c("td", [_vm._v("Native")]),
-                    ]),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _c("td", [_vm._v("BARANGAY")]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v(
-                          "\n                                            " +
-                            _vm._s(_vm.entry.barangay_residence_year) +
-                            "\n                                        "
-                        ),
-                      ]),
-                      _vm._v(" "),
-                      _vm.entry.barangay_residence_year ==
-                      new Date().getFullYear()
-                        ? _c("td", [
-                            _vm._v(
-                              "\n                                            Immigrant\n                                        "
-                            ),
-                          ])
-                        : _c("td", [_vm._v("Native")]),
-                    ]),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "form-group bmd-form-group",
-                    class: {
-                      "is-focused": true,
-                    },
-                  },
-                  [
-                    _c("label", [_vm._v(" Remarks")]),
-                    _vm._v(" "),
-                    _c("textarea", {
-                      staticClass: "form-control",
-                      attrs: { rows: "5" },
-                      domProps: { value: _vm.entry.remarks },
-                    }),
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary pull-right",
-                    attrs: { type: "submit" },
-                  },
-                  [
-                    _vm._v(
-                      "\n                                Update Profile\n                            "
-                    ),
-                  ]
-                ),
-              ]),
-            ]),
-          ]),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "tab-pane", attrs: { id: "educational" } }, [
-          _c("div", { staticClass: "card" }, [
-            _vm._m(5),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group bmd-form-group",
-                      class: {
-                        "is-focused": true,
-                      },
-                    },
-                    [
-                      _c("label", [
-                        _vm._v(
-                          "Highest Educational\n                                        Attaintment"
-                        ),
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: { type: "text" },
-                        domProps: {
-                          value: _vm.entry.educational_attaintment_name,
-                        },
-                      }),
-                    ]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group bmd-form-group",
-                      class: {
-                        "is-focused": true,
-                      },
-                    },
-                    [
-                      _c("label", [_vm._v("Educational Status")]),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: { type: "text" },
-                        domProps: { value: _vm.entry.educational_status_name },
-                      }),
-                    ]
-                  ),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-12" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group bmd-form-group",
-                      class: {
-                        "is-focused": true,
-                      },
-                    },
-                    [
-                      _c("label", [_vm._v("Last School Attended")]),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: { type: "text" },
-                        domProps: { value: _vm.entry.last_school_attended },
-                      }),
-                    ]
-                  ),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group bmd-form-group",
-                      class: {
-                        "is-focused": true,
-                      },
-                    },
-                    [
-                      _c("label", [
-                        _vm._v(
-                          "Government Educational\n                                        Assistance"
-                        ),
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: { type: "text" },
-                        domProps: {
-                          value: _vm.entry.government_assistance_name,
-                        },
-                      }),
-                    ]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group bmd-form-group",
-                      class: {
-                        "is-focused": true,
-                      },
-                    },
-                    [
-                      _c("label", [_vm._v("Organizations")]),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: { type: "text" },
-                        domProps: { value: _vm.entry.organization_name },
-                      }),
-                    ]
-                  ),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("br"),
-              _vm._v(" "),
-              _c("hr"),
-              _vm._v(" "),
-              _c("div", { staticClass: "line" }),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group bmd-form-group",
-                      class: {
-                        "is-focused": true,
-                      },
-                    },
-                    [
-                      _c("label", [_vm._v("Occupation")]),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: { type: "text" },
-                        domProps: { value: _vm.entry.occupation },
-                      }),
-                    ]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group bmd-form-group",
-                      class: {
-                        "is-focused": true,
-                      },
-                    },
-                    [
-                      _c("label", [_vm._v("Employer")]),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: { type: "text" },
-                        domProps: { value: _vm.entry.employer },
-                      }),
-                    ]
-                  ),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group bmd-form-group",
-                      class: {
-                        "is-focused": true,
-                      },
-                    },
-                    [
-                      _c("label", [
-                        _vm._v(
-                          "Work Location (City,\n                                        Province)"
-                        ),
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: { type: "text" },
-                        domProps: { value: _vm.entry.work_locations },
-                      }),
-                    ]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group bmd-form-group",
-                      class: {
-                        "is-focused": true,
-                      },
-                    },
-                    [
-                      _c("label", [
-                        _vm._v(
-                          "Monthly Income (Econimic\n                                        Status)"
-                        ),
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: { type: "text" },
-                        domProps: { value: _vm.entry.monthly_income },
-                      }),
-                    ]
-                  ),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("br"),
-              _vm._v(" "),
-              _vm._m(6),
-            ]),
-          ]),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "tab-pane", attrs: { id: "health" } }, [
-          _c("div", { staticClass: "card" }, [
-            _vm._m(7),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _c("form", [
-                _c("div", { staticClass: "row" }, [
-                  _vm._m(8),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-8" }, [
-                    _c("input", {
-                      staticClass: "form-control",
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.entry.full_immunization },
-                    }),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("br"),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _vm._m(9),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-8" }, [
-                    _c("input", {
-                      staticClass: "form-control",
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.entry.maintining },
-                    }),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("br"),
-                _vm._v(" "),
-                _c("h3", [_vm._v("For Female Only")]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _vm._m(10),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-4" }, [
-                    _c("input", {
-                      staticClass: "form-control",
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.entry.pegnacy_age },
-                    }),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _vm._m(11),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-4" }, [
-                    _c("input", {
-                      staticClass: "form-control",
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.entry.with_prental },
-                    }),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _vm._m(12),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-4" }, [
-                    _c("input", {
-                      staticClass: "form-control",
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.entry.with_postpartum },
-                    }),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("br"),
-                _vm._v(" "),
-                _c("h3", [_vm._v("VACCINE FOR COVID-19")]),
-                _vm._v(" "),
-                _vm._m(13),
-              ]),
-            ]),
-          ]),
-        ]),
-      ]),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "col-md-4" }, [
@@ -2038,86 +1886,103 @@ var render = function () {
               ]),
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "card-body" }, [
-          _c("h6", { staticClass: "card-category text-gray" }, [
-            _vm._v("Profile"),
-          ]),
-          _vm._v(" "),
-          _c("h5", { staticStyle: { "text-transform": "uppercase" } }, [
-            _c("b", [
+        _c(
+          "div",
+          { staticClass: "card-body" },
+          [
+            _c("h6", { staticClass: "card-category text-gray" }, [
+              _vm._v("Profile"),
+            ]),
+            _vm._v(" "),
+            _c("h5", { staticStyle: { "text-transform": "uppercase" } }, [
+              _c("b", [
+                _vm._v(
+                  _vm._s(_vm.entry.last_name) +
+                    "," +
+                    _vm._s(_vm.entry.first_name) +
+                    " " +
+                    _vm._s(_vm.entry.middle_name)
+                ),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("h6", { staticClass: "card-category text-gray" }, [
+              _vm._v("Resident ID"),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col" }, [
               _vm._v(
-                _vm._s(_vm.entry.last_name) +
-                  "," +
-                  _vm._s(_vm.entry.first_name) +
-                  "\n                        " +
-                  _vm._s(_vm.entry.middle_name)
+                "\n                            " +
+                  _vm._s(_vm.entry.resident_no) +
+                  "\n                        "
               ),
             ]),
-          ]),
-          _vm._v(" "),
-          _c("h6", { staticClass: "card-category text-gray" }, [
-            _vm._v("Resident ID"),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col" }, [
-            _vm._v(
-              "\n                    " +
-                _vm._s(_vm.entry.resident_no) +
-                "\n                "
+            _vm._v(" "),
+            _c("h6", { staticClass: "card-category text-gray" }, [
+              _vm._v("Barangay"),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col" }, [
+              _c("i", { staticClass: "fa fa-home fa-2x" }),
+              _vm._v(
+                "\n                            " +
+                  _vm._s(_vm.entry.barangay_id) +
+                  " - " +
+                  _vm._s(_vm.entry.barangays_name) +
+                  "\n                        "
+              ),
+            ]),
+            _vm._v(" "),
+            _c("h6", { staticClass: "card-category text-gray" }, [
+              _vm._v("Gender"),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col" }, [
+              _c("i", { staticClass: "fa fa-intersex fa-2x" }),
+              _vm._v(
+                "\n                            " +
+                  _vm._s(_vm.entry.gender_name) +
+                  "\n                        "
+              ),
+            ]),
+            _vm._v(" "),
+            _c("h6", { staticClass: "card-category text-gray" }, [
+              _vm._v("Age"),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col" }, [
+              _c("h4", [_vm._v(_vm._s(this.total_age))]),
+            ]),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("p", { staticClass: "card-description" }, [
+              _vm._v(
+                "\n                            Don't be scared of the truth because we need to restart the human foundation in truth\n                            And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...\n                        "
+              ),
+            ]),
+            _vm._v(" "),
+            _c(
+              "vue-button-spinner",
+              {
+                staticClass: "btn-primary",
+                attrs: {
+                  status: _vm.status,
+                  isLoading: _vm.loading,
+                  disabled: _vm.loading,
+                },
+              },
+              [
+                _vm._v(
+                  "\n                            " +
+                    _vm._s(_vm.$t("global.save")) +
+                    "\n                        "
+                ),
+              ]
             ),
-          ]),
-          _vm._v(" "),
-          _c("h6", { staticClass: "card-category text-gray" }, [
-            _vm._v("Barangay"),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col" }, [
-            _c("i", { staticClass: "fa fa-home fa-2x" }),
-            _vm._v(
-              "\n                    " +
-                _vm._s(_vm.entry.barangay_id) +
-                " - " +
-                _vm._s(_vm.entry.barangays_name) +
-                "\n                "
-            ),
-          ]),
-          _vm._v(" "),
-          _c("h6", { staticClass: "card-category text-gray" }, [
-            _vm._v("Gender"),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col" }, [
-            _c("i", { staticClass: "fa fa-intersex fa-2x" }),
-            _vm._v(
-              "\n                    " +
-                _vm._s(_vm.entry.gender_name) +
-                "\n                "
-            ),
-          ]),
-          _vm._v(" "),
-          _c("h6", { staticClass: "card-category text-gray" }, [_vm._v("Age")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col" }, [
-            _c("h4", [_vm._v(_vm._s(this.total_age))]),
-          ]),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          _c("p", { staticClass: "card-description" }, [
-            _vm._v(
-              "\n                    Don't be scared of the truth because we need to restart\n                    the human foundation in truth And I love you like Kanye\n                    loves Kanye I love Rick Owens’ bed design but the back\n                    is...\n                "
-            ),
-          ]),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "btn btn-info btn-round",
-              attrs: { href: "javascript:;" },
-            },
-            [_vm._v("Follow")]
-          ),
-        ]),
+          ],
+          1
+        ),
       ]),
     ]),
   ])
@@ -2241,9 +2106,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header card-header-primary" }, [
       _c("h4", { staticClass: "card-title" }, [
-        _vm._v(
-          "\n                            Educational Information / Educational\n                            Information\n                        "
-        ),
+        _vm._v("Educational Information / Educational Information"),
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "card-category" }, [
@@ -2267,9 +2130,7 @@ var staticRenderFns = [
             [
               _c("tr", [
                 _c("th", { attrs: { scope: "col" } }, [
-                  _vm._v(
-                    "\n                                                Government Assistance\n                                            "
-                  ),
+                  _vm._v("Government Assistance"),
                 ]),
                 _vm._v(" "),
                 _c("th", { attrs: { scope: "col" } }, [_vm._v("Date")]),

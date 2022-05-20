@@ -43,19 +43,11 @@ td {
                                 <div class="col-md-4">
                                     <table class="table-bordered" style="margin-right: 10px">
                                         <tr>
-                                            <th><b>Household ID:</b></th>
-                                            <td>LAG-CAL-260400-0059-A1-01</td>
-                                        </tr>
-                                        <tr>
                                             <th><b>Brgy ID:</b></th>
                                             <td v-if="entry.barangay">
                                                 {{ entry.barangay.id + ' - ' + entry.barangay.barangay_name }}
                                             </td>
                                             <td v-else></td>
-                                        </tr>
-                                        <tr>
-                                            <th><b>Family ID:</b></th>
-                                            <td>{{ entry.family_code }}</td>
                                         </tr>
                                         <tr>
                                             <th><b>Purok</b></th>
@@ -74,7 +66,7 @@ td {
                                 <table style="color: black" class="table table-border table-stripe">
                                     <thead>
                                         <tr style="background-color: #00aaa0; color: white">
-                                            <th><b>Family Code</b></th>
+                                            <th><b>Household ID</b></th>
                                             <th><b>Member Of Family</b></th>
                                             <th><b>Birthday</b></th>
                                             <th><b>Gender</b></th>
@@ -84,7 +76,7 @@ td {
                                     </thead>
                                     <tbody>
                                         <tr v-for="val in lists" :key="val.id">
-                                            <td>{{ val.family_code }}</td>
+                                            <td>LAG-CAL-260400-0059-A1-0{{val.id}}</td>
                                             <td style="text-transform: uppercase">
                                                 <router-link :to="{ name: 'gad_list.edit', params: { id: val.id } }">
                                                     {{ val.first_name }} {{ val.last_name }}

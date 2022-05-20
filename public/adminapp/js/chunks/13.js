@@ -171,14 +171,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -488,12 +480,6 @@ var render = function () {
                         },
                         [
                           _c("tr", [
-                            _c("th", [_c("b", [_vm._v("Household ID:")])]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v("LAG-CAL-260400-0059-A1-01")]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
                             _c("th", [_c("b", [_vm._v("Brgy ID:")])]),
                             _vm._v(" "),
                             _vm.entry.barangay
@@ -509,12 +495,6 @@ var render = function () {
                                   ),
                                 ])
                               : _c("td"),
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("th", [_c("b", [_vm._v("Family ID:")])]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(_vm.entry.family_code))]),
                           ]),
                           _vm._v(" "),
                           _c("tr", [
@@ -555,7 +535,11 @@ var render = function () {
                           "tbody",
                           _vm._l(_vm.lists, function (val) {
                             return _c("tr", { key: val.id }, [
-                              _c("td", [_vm._v(_vm._s(val.family_code))]),
+                              _c("td", [
+                                _vm._v(
+                                  "LAG-CAL-260400-0059-A1-0" + _vm._s(val.id)
+                                ),
+                              ]),
                               _vm._v(" "),
                               _c(
                                 "td",
@@ -643,7 +627,7 @@ var staticRenderFns = [
         "tr",
         { staticStyle: { "background-color": "#00aaa0", color: "white" } },
         [
-          _c("th", [_c("b", [_vm._v("Family Code")])]),
+          _c("th", [_c("b", [_vm._v("Household ID")])]),
           _vm._v(" "),
           _c("th", [_c("b", [_vm._v("Member Of Family")])]),
           _vm._v(" "),
