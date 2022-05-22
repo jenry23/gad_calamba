@@ -2,35 +2,86 @@ function initialState() {
     return {
       entry: {
         id: null,
-        title: '',
+        building_no: '',
         household_no: '',
+        house_unit: '',
+        household_id: '',
         family_code: '',
-        household_names: '',
-        gender_name: '',
-        civil_status_names: '',
-        birthdate: '',
-        religion: '',
-        ethnicity: '',
-        sector_name: '',
+        work_location_province_id: '',
+        work_location_city_id: '',
+        poltical_province_registered_id: '',
+        poltical_city_registered_id: '',
+        no_nuclear_family_household_id: '',
+        no_bedrooms_id: '',
+        no_cr_id: '',
+        barangay_residence_year: '',
+        no_of_years_in_calamba: '',
+        last_name: '',
+        first_name: '',
+        middle_name: '',
+        extension_name: '',
+        spouse_last_name: '',
+        spouse_first_name: '',
+        spouse_middle_name: '',
+        spouse_extension_name: '',
+        no_of_dependents: '',
         mobile_no: '',
-        landline: '',
-        email_address: '',
-        political_city_registered: '',
-        political_province_registered: '',
-        purok_names: '',
-        sitio_names: '',
-        remarks: '',
-        last_school_attended: '',
-        organization_name: '',
+        landline_number: '',
+        email: '',
         occupation: '',
         employer: '',
-        work_locations: '',
+        last_school_attended: '',
+        barangay_id: '',
+        purok_id: '',
+        sitio_id: '',
+        subdivision_name: '',
+        native_province_id: '',
+        native_city_id: '',
+        valid_id: '',
+        id_number: '',
+        sector_id: '',
+        gender_id: '',
+        gender_preference_id: '',
+        civil_status_id: '',
+        health_id: '',
+        disability_id: '',
+        government_assistance_id: '',
+        household_monthly_income_id: '',
+        economic_status_id: '',
+        educational_attaintment_id: '',
+        educational_status_id: '',
+        government_educational_assistance_id: '',
+        ethnicity_id: '',
+        house_ownership_id: '',
+        house_type_id: '',
+        house_make_id: '',
+        organization_id: '',
+        barangay_code: '',
+        block_lot_house_id: '',
         monthly_income: '',
+        birthdate: '',
+        utilities_no1: '',
+        utilities_no2: '',
+        utilities_no3: '',
+        utilities_no4: '',
+        appliance_no1: '',
+        appliance_no2: '',
+        appliance_no3: '',
+        appliance_no4: '',
+        vehicle_no: '',
+        medical_id: '',
+        religion_id: '',
         full_immunization: '',
-        maintining: '',
-        pegnacy_age: '',
-        with_prental: '',
-        with_postpartum: '',
+        covid_19_test: '',
+        first_vaccination: '',
+        brand: '',
+        second_vaccination: '',
+        brand2: '',
+        pregnancy_age: '',
+        prental_checkup: '',
+        postnatal_checkup: '',
+        photo: [],
+        remarks: '',
         permissions: [],
         created_at: '',
         updated_at: '',
@@ -113,11 +164,20 @@ function initialState() {
           })
       })
     },
-    setTitle({ commit }, value) {
-      commit('setTitle', value)
+    setLandlineNumber({ commit }, value) {
+      commit('setLandlineNumber', value)
     },
-    setPermissions({ commit }, value) {
-      commit('setPermissions', value)
+    setEmail ({ commit }, value) {
+      commit('setEmail', value)
+    },
+    setMobileNumber ({ commit }, value) {
+      commit('setMobileNumber', value)
+    },
+    insertPhotoFile ({ commit }, file) {
+      commit('insertPhotoFile', file)
+    },
+    removePhotoFile ({ commit }, file) {
+      commit('removePhotoFile', file)
     },
     setCreatedAt({ commit }, value) {
       commit('setCreatedAt', value)
@@ -163,8 +223,22 @@ function initialState() {
     setEntry(state, entry) {
       state.entry = entry
     },
-    setTitle(state, value) {
-      state.entry.title = value
+    setLandlineNumber(state, value) {
+      state.entry.landline_number = value
+    },
+    setEmail (state, value) {
+      state.entry.email = value
+    },
+    setMobileNumber (state, value) {
+      state.entry.mobile_no = value
+    },
+    insertPhotoFile (state, file) {
+      state.entry.photo.push(file)
+    },
+    removePhotoFile (state, file) {
+      state.entry.photo = state.entry.photo.filter(item => {
+        return item.id !== file.id
+      })
     },
     setPermissions(state, value) {
       state.entry.permissions = value

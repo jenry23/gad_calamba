@@ -7,7 +7,7 @@ use App\Http\Requests\StoreGenderRequest;
 use App\Http\Requests\UpdateGenderRequest;
 use App\Http\Resources\Admin\GenderResource;
 use App\Models\Gender;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

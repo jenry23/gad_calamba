@@ -7,7 +7,7 @@ use App\Http\Requests\StoreSectorRequest;
 use App\Http\Requests\UpdateSectorRequest;
 use App\Http\Resources\Admin\SectorResource;
 use App\Models\Sector;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

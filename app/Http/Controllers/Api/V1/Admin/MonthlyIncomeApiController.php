@@ -7,7 +7,7 @@ use App\Http\Requests\StoreMonthlyIncomeRequest;
 use App\Http\Requests\UpdateMonthlyIncomeRequest;
 use App\Http\Resources\Admin\MonthlyIncomeResource;
 use App\Models\MonthlyIncome;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

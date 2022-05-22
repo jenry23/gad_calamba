@@ -7,7 +7,7 @@ use App\Http\Requests\StoreValidIDRequest;
 use App\Http\Requests\UpdateValidIDRequest;
 use App\Http\Resources\Admin\ValidIDResource;
 use App\Models\ValidID;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -47,7 +47,7 @@ class ValidApiController extends Controller
         return new ValidIDResource($valid_id);
     }
 
-    public function update(UpdateValidIDRequest $request,$id)
+    public function update(UpdateValidIDRequest $request, $id)
     {
         $valid_id = ValidID::find($id);
         $valid_id->update($request->validated());

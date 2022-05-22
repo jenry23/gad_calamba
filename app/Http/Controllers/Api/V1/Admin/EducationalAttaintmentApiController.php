@@ -7,7 +7,7 @@ use App\Http\Requests\StoreEducationalAttaintmentRequest;
 use App\Http\Requests\UpdateEducationalAttaintmentRequest;
 use App\Http\Resources\Admin\EducationalAttaintmentResource;
 use App\Models\EducationalAttaintment;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

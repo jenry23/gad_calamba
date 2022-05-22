@@ -7,7 +7,7 @@ use App\Http\Requests\StoreEthnicityRequest;
 use App\Http\Requests\UpdateEthnicityRequest;
 use App\Http\Resources\Admin\EthnicityResource;
 use App\Models\Ethnicity;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

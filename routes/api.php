@@ -18,6 +18,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     Route::resource('users', 'UsersApiController');
 
     //Gad
+    Route::post('gad/media', 'GadApiController@storeMedia')->name('gad.storeMedia');
     Route::get('gad/get-data/{id}', 'GadApiController@getData')->name('gad.getData');
     Route::get('gad/get-name', 'GadApiController@getName')->name('gad.getName');
     Route::get('gad/first-data', 'GadApiController@firstData')->name('gad.firstData');

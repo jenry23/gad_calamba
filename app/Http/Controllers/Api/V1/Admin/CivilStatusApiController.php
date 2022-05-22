@@ -7,7 +7,7 @@ use App\Http\Requests\StoreCivilStatusRequest;
 use App\Http\Requests\UpdateCivilStatusRequest;
 use App\Http\Resources\Admin\CivilStatusResource;
 use App\Models\CivilStatus;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

@@ -28,7 +28,8 @@ use App\Models\Occupation;
 use App\Models\Organization;
 use App\Models\Ethnicity;
 use App\Models\Sector;
-use Gate;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -213,11 +214,103 @@ class GadApiController extends Controller
         return new GadResource([$gads, $gad]);
     }
 
-    public function update(UpdateGadRequest $request, Gad $Gad)
+    public function update(Request $request, Gad $gad)
     {
-        $Gad->update($request->validated());
+        $data = [
+            'building_no' => $request->building_no,
+            'household_no' => $request->household_no,
+            'house_unit' => $request->house_unit,
+            'household_id' => $request->household_id,
+            'family_code' => $request->family_code,
+            'work_location_province_id' => $request->work_location_province_id,
+            'work_location_city_id' => $request->work_location_city_id,
+            'poltical_province_registered_id' => $request->poltical_province_registered_id,
+            'poltical_city_registered_id' => $request->poltical_city_registered_id,
+            'no_nuclear_family_household_id' => $request->no_nuclear_family_household_id,
+            'no_bedrooms_id' => $request->no_bedrooms_id,
+            'no_cr_id' => $request->no_cr_id,
+            'barangay_residence_year' => $request->barangay_residence_year,
+            'no_of_years_in_calamba' => $request->no_of_years_in_calamba,
+            'last_name' => $request->last_name,
+            'first_name' => $request->first_name,
+            'middle_name' => $request->middle_name,
+            'extension_name' => $request->extension_name,
+            'spouse_last_name' => $request->spouse_last_name,
+            'spouse_first_name' => $request->spouse_first_name,
+            'spouse_middle_name' => $request->spouse_middle_name,
+            'spouse_extension_name' => $request->spouse_extension_name,
+            'no_of_dependents' => $request->no_of_dependents,
+            'mobile_no' => $request->mobile_no,
+            'landline_number' => $request->landline_number,
+            'email' => $request->email,
+            'occupation' => $request->occupation,
+            'employer' => $request->employer,
+            'last_school_attended' => $request->last_school_attended,
+            'barangay_id' => $request->barangay_id,
+            'purok_id' => $request->purok_id,
+            'sitio_id' => $request->sitio_id,
+            'subdivision_name' => $request->subdivision_name,
+            'native_province_id' => $request->native_province_id,
+            'native_city_id' => $request->native_city_id,
+            'valid_id' => $request->valid_id,
+            'id_number' => $request->id_number,
+            'sector_id' => $request->sector_id,
+            'gender_id' => $request->gender_id,
+            'gender_preference_id' => $request->gender_preference_id,
+            'civil_status_id' => $request->civil_status_id,
+            'health_id' => $request->health_id,
+            'disability_id' => $request->disability_id,
+            'government_assistance_id' => $request->government_assistance_id,
+            'household_monthly_income_id' => $request->household_monthly_income_id,
+            'economic_status_id' => $request->economic_status_id,
+            'educational_attaintment_id' => $request->educational_attaintment_id,
+            'educational_status_id' => $request->educational_status_id,
+            'government_educational_assistance_id' => $request->government_educational_assistance_id,
+            'ethnicity_id' => $request->ethnicity_id,
+            'house_ownership_id' => $request->house_ownership_id,
+            'house_type_id' => $request->house_type_id,
+            'house_make_id' => $request->house_make_id,
+            'organization_id' => $request->organization_id,
+            'barangay_code' => $request->barangay_code,
+            'block_lot_house_id' => $request->block_lot_house_id,
+            'monthly_income' => $request->monthly_income,
+            'birthdate' => $request->birthdate,
+            'utilities_no1' => $request->utilities_no1,
+            'utilities_no2' => $request->utilities_no2,
+            'utilities_no3' => $request->utilities_no3,
+            'utilities_no4' => $request->utilities_no4,
+            'appliance_no1' => $request->appliance_no1,
+            'appliance_no2' => $request->appliance_no2,
+            'appliance_no3' => $request->appliance_no3,
+            'appliance_no4' => $request->appliance_no4,
+            'vehicle_no' => $request->vehicle_no,
+            'medical_id' => $request->medical_id,
+            'religion_id' => $request->religion_id,
+            'full_immunization' => $request->full_immunization,
+            'covid_19_test' => $request->covid_19_test,
+            'first_vaccination' => $request->first_vaccination,
+            'brand' => $request->brand,
+            'second_vaccination' => $request->second_vaccination,
+            'brand2' => $request->brand2,
+            'pregnancy_age' => $request->pregnancy_age,
+            'prental_checkup' => $request->prental_checkup,
+            'postnatal_checkup' => $request->postnatal_checkup,
+            'remarks' => $request->remark,
+        ];
 
-        return (new GadResource($Gad))
+        $model_media_type = Media::where('model_type', Gad::class)->where('model_id', $gad->id)->first();
+        if ($model_media_type) {
+            $gad->updateMedia($request->input('photo', []), 'resident_photo');
+        } else {
+            if ($media = $request->input('photo', [])) {
+                Media::whereIn('id', data_get($media, '*.id'))
+                    ->where('model_id', 0)
+                    ->update(['model_id' => $gad->id]);
+            }
+        }
+        $gad->update($data);
+
+        return (new GadResource($gad))
             ->response()
             ->setStatusCode(Response::HTTP_ACCEPTED);
     }
@@ -284,9 +377,23 @@ class GadApiController extends Controller
     public function importExcel(Request $request)
     {
         Excel::import(new ImportGads, request()->file('import_file'));
-        $gads = Gad::all();
-        foreach ($gads as $gad) {
-        }
+
         return back()->with('success', 'Gad imported successfully.');
+    }
+
+    public function storeMedia(Request $request)
+    {
+        if ($request->has('size')) {
+            $this->validate($request, [
+                'file' => 'max:' . $request->input('size') * 1024,
+            ]);
+        }
+
+        $model         = new Gad();
+        $model->id     = $request->input('model_id', 0);
+        $model->exists = true;
+        $media         = $model->addMediaFromRequest('file')->toMediaCollection($request->input('collection_name'));
+
+        return response()->json($media, Response::HTTP_CREATED);
     }
 }

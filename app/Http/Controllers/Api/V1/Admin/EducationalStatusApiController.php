@@ -7,7 +7,7 @@ use App\Http\Requests\StoreEducationalStatusRequest;
 use App\Http\Requests\UpdateEducationalStatusRequest;
 use App\Http\Resources\Admin\EducationalStatusResource;
 use App\Models\EducationalStatus;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

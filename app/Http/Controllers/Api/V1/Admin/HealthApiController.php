@@ -7,7 +7,7 @@ use App\Http\Requests\StoreHealthRequest;
 use App\Http\Requests\UpdateHealthRequest;
 use App\Http\Resources\Admin\HealthResource;
 use App\Models\Health;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
