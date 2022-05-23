@@ -391,6 +391,7 @@ class GadApiController extends Controller
                 . substr($gad->birthdate, -2) . '00-0000';
             $gad->update(['gad_id' => $gad_id]);
         });
+
         Gad::all()->groupBy('household_no')->map(function ($gads) {
             $spouse_id = 2;
             $mainhousehold_id = 1;
