@@ -67,16 +67,19 @@ td {
                                     <thead>
                                         <tr style="background-color: #00aaa0; color: white">
                                             <th><b>Household ID</b></th>
-                                            <th><b>Member Of Family</b></th>
+                                            <th><b>Family Code</b></th>
+                                            <th><b>Relationship</b></th>
+                                            <th><b>Family Members</b></th>
                                             <th><b>Birthday</b></th>
                                             <th><b>Gender</b></th>
-                                            <th><b>Relation to Household</b></th>
                                             <th><b>Residence Status</b></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr v-for="val in lists" :key="val.id">
                                             <td>{{val.gad_id}}</td>
+                                            <td>{{val.family_code}}</td>
+                                            <td>{{ val.household_names }}</td>
                                             <td style="text-transform: uppercase">
                                                 <router-link :to="{ name: 'gad_list.edit', params: { id: val.id } }">
                                             {{ val.first_name + ',' + val.middle_name + ' ' + val.last_name }}
@@ -84,7 +87,6 @@ td {
                                             </td>
                                             <td>{{ formatDate(val.birthdate) }}</td>
                                             <td>{{ val.gender_name }}</td>
-                                            <td>{{ val.household_names }}</td>
                                             <td v-if="val.no_of_years_in_calamba == new Date().getFullYear()">
                                                 Immigrant
                                             </td>
