@@ -1,9 +1,4 @@
 {
-<<<<<<< HEAD
     "/adminapp/js/app.js": "/adminapp/js/app.js",
     "/adminapp/css/app.css": "/adminapp/css/app.css"
-=======
-    "/adminapp/js/app.js": "/adminapp/js/app.js?id=981f14e51aac7e569737",
-    "/adminapp/css/app.css": "/adminapp/css/app.css?id=1c74d15b75014cf4b94c"
->>>>>>> 013f0fcd6c2bb755a6ddcb964a59c5a4cf38a6e4
 }
