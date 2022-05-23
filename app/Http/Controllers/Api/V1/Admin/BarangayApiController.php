@@ -18,28 +18,6 @@ class BarangayApiController extends Controller
     {
         abort_if(Gate::denies('barangay_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-
-        Gad::all()->groupBy('household_no')->map(function ($gads) {
-            $spouse_id = 2;
-            $mainhousehold_id = 1;
-            $spouse_gad = $gads->filter(function ($spouse) use ($spouse_id) {
-                return $spouse->household_id == $spouse_id;
-            })->first();
-
-            if (isset($spouse_gad)) {
-                $data = [
-                    'spouse_first_name' => $spouse_gad->first_name,
-                    'spouse_last_name' => $spouse_gad->last_name,
-                    'spouse_middle_name' => $spouse_gad->middle_name,
-                    'spouse_extension_name' => $spouse_gad->extension_name,
-                ];
-                $main = $gads->filter(function ($spouse) use ($mainhousehold_id) {
-                    return $spouse->household_id == $mainhousehold_id;
-                })->first();
-
-                $main->update($data);
-            }
-        });
         return new BarangayResource(Barangay::advancedFilter());
     }
 
