@@ -376,21 +376,31 @@ class GadApiController extends Controller
 
     public function importExcel(Request $request)
     {
-        Excel::import(new ImportGads, request()->file('import_file'));
-
+        $message = '';
+        try {
+            Excel::import(new ImportGads, request()->file('import_file'));
+            $message = 'Success';
+        } catch (\Exception $e) {
+            $message = 'Error';
+        }
+        Gad::all()->map(function ($gad) {
+            $full_name = substr($gad->first_name, 0, 1) . substr($gad->middle_name, 0, 1) . substr($gad->last_name, 0, 1);
+            $gad_id = 'LAG-CAL' . $gad->barangay_id . '-' . $gad->household_no . $full_name
+                . substr($gad->birthdate, -2) . '00-0000';
+            $gad->update(['gad_id' => $gad_id]);
+        });
         Gad::all()->groupBy('household_no')->map(function ($gads) {
             $spouse_id = 2;
             $mainhousehold_id = 1;
             $spouse_gad = $gads->filter(function ($spouse) use ($spouse_id) {
                 return $spouse->household_id == $spouse_id;
             })->first();
-
             if (isset($spouse_gad)) {
                 $data = [
-                    'spouse_first_name' => $spouse_gad->first_name,
-                    'spouse_last_name' => $spouse_gad->last_name,
-                    'spouse_middle_name' => $spouse_gad->middle_name,
-                    'spouse_extension_name' => $spouse_gad->extension_name,
+                    'spouse_first_name' => $spouse_gad->first_name ? $spouse_gad->first_name : '',
+                    'spouse_last_name' => $spouse_gad->last_name ?  $spouse_gad->last_name : '',
+                    'spouse_middle_name' => $spouse_gad->middle_name ? $spouse_gad->middle_name : '',
+                    'spouse_extension_name' => $spouse_gad->extension_name ? $spouse_gad->extension_name : '',
                 ];
                 $main = $gads->filter(function ($spouse) use ($mainhousehold_id) {
                     return $spouse->household_id == $mainhousehold_id;
@@ -398,15 +408,8 @@ class GadApiController extends Controller
 
                 $main->update($data);
             }
-            foreach ($gads as $gad) {
-                $full_name = substr($gad->first_name, 0, 1) . substr($gad->middle_name, 0, 1) . substr($gad->last_name, 0, 1);
-                $gad_id = 'LAG-CAL' . $gad->barangay_id . '-' . $gad->household_no . $full_name
-                    . substr($gad->birthdate, -2) . '00-0000';
-                $gad->update(['gad_id' => $gad_id]);
-            }
         });
-
-        return back()->with('success', 'Gad imported successfully.');
+        return response()->json($message, Response::HTTP_OK);
     }
 
     public function storeMedia(Request $request)

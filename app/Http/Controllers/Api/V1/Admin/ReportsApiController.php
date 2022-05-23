@@ -110,14 +110,6 @@ class ReportsApiController extends Controller
                 $female = 0;
             }
         } else {
-<<<<<<< HEAD
-=======
-            $male = Gad::where('barangay_id', $barangay_id)
-                ->orWhere('sector_id', $sector_id)
-                ->orWhere('sitio_id', $sitio_id)
-                ->where('gender_id', '1')
-                ->count();
->>>>>>> 013f0fcd6c2bb755a6ddcb964a59c5a4cf38a6e4
 
             $male = Gad::where('barangay_id', $barangay_id)
                 ->where('gender_id', '1')
@@ -128,10 +120,6 @@ class ReportsApiController extends Controller
                 ->where('gender_id', '2')
                 ->orWhere('sector_id', $sector_id)
                 ->orWhere('sitio_id', $sitio_id)
-<<<<<<< HEAD
-=======
-                ->where('gender_id', '2')
->>>>>>> 013f0fcd6c2bb755a6ddcb964a59c5a4cf38a6e4
                 ->count();
         }
 

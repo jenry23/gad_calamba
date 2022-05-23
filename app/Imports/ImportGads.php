@@ -37,17 +37,37 @@ use Maatwebsite\Excel\Concerns\WithCalculatedFormulas;
 use Maatwebsite\Excel\Concerns\WithCustomCsvSettings;
 use Maatwebsite\Excel\Concerns\RemembersChunkOffset;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
+use Maatwebsite\Excel\Concerns\WithValidation;
+use Maatwebsite\Excel\Concerns\Importable;
+use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
+use Maatwebsite\Excel\Concerns\SkipsOnError;
 
-class ImportGads implements ToModel, WithHeadingRow, WithCalculatedFormulas, WithChunkReading, WithCustomCsvSettings
+class ImportGads implements ToModel, WithHeadingRow, WithCalculatedFormulas, WithChunkReading, WithCustomCsvSettings, SkipsEmptyRows, SkipsOnError, WithValidation
 {
     use RemembersChunkOffset;
+    use Importable;
+
+    public function rules(): array
+    {
+        return [
+            'item_no' => [
+                'required',
+                'numeric',
+            ],
+        ];
+    }
+
+    public function onError(\Throwable $e)
+    {
+        return $e->getMessage();
+    }
 
     public function model(array $row)
     {
         $result = [
             "building_no" => $row['building_no'],
             "house_unit" => $row['house_no'],
-            "household_no" => $row['household_number'],
+            "household_no" => $row['household_no'],
             "family_code" => $row['family_code'],
             "household_id" => $this->getHousehold($row['relationship_to_head_of_the_family_dropdown_option']),
             "last_name" => $row['last_name'],
@@ -58,7 +78,7 @@ class ImportGads implements ToModel, WithHeadingRow, WithCalculatedFormulas, Wit
             "barangay_code"  => $row["barangay_code_id_auto_generated"],
             "purok_id" => $this->convertStringToID(Purok::class, 'purok_name', $row['purok_code_dropdown_option']),
             "block_lot_house_id" => $row['blocklotno_of_house_street_name'],
-            "sitio_id" => $this->convertStringToID(Sitio::class, 'sitio_name', $row['sitio_code_dropdown_option']),
+            "sitio_id" => $this->convertStringToID(Sitio::class, 'sitio_name', $row['sitio_subdivision_dropdown_option']),
             "native_province_id" => $this->convertStringToID(Province::class, 'province_name', $row["native_province_dropdown_option"]),
             "native_city_id" => $this->convertStringToID(City::class, 'city_name', $row["native_citymunicipality_dropdown_option"]),
             "valid_id" => $this->convertStringToID(ValidID::class, 'name', $row["valid_id_dropdown_option"]),
@@ -127,9 +147,10 @@ class ImportGads implements ToModel, WithHeadingRow, WithCalculatedFormulas, Wit
             // "" => $row["vehicles_no_02_not_required_dropdown_option"]),
             "full_immunization" => $row["full_immunization_yes_public_hosp_center_yes_private_hosp_clinic_no"],
             "covid_19_test" => $row["covid_19_test_no_covid_test_tested_positive_for_covid19_tested_negative_for_covid19"],
-            "first_vaccination" => $row["date_of_1st_dosage_covid_19_vaccination_format_mmddyyyy"],
-            "brand" => $row["brand"],
-            "second_vaccination" => $row["date_of_2ndt_dosage_covid_19_vaccination_format_mmddyyyy"],
+            "first_vaccination" => $row["date_of_1st_dosage_19_vaccination_mmddyyyy"],
+            "brand" => $row["brand_1"],
+            "second_vaccination" => $row["date_of_2nd_dosage_19_vaccination_mmddyyyy"],
+            "brand2" => $row["brand_2"],
             "pregnancy_age" => $row["pregnancy_age"],
             "prental_checkup" => $row["with_prenatal_check_up_yes_public_hosp_center_yes_private_hosp_clinic_no"],
             "postnatal_checkup" => $row["with_postnatal_check_up_yes_public_hosp_center_yes_private_hosp_clinic_no"],
@@ -145,7 +166,6 @@ class ImportGads implements ToModel, WithHeadingRow, WithCalculatedFormulas, Wit
             // "house_type_id" => $row["type_of_house"],
             "remarks" => $row["owner_name"],
         ];
-
         return new Gad($result);
     }
     private function getHousehold($data)

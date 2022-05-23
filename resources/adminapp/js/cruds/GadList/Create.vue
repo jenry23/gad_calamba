@@ -137,7 +137,7 @@ export default {
             formData.append('import_file', file[0])
             axios.post('gad/import-excel', formData)
                 .then(response => {
-                    // this.$router.push({ name: 'gad_list.index' })
+                  this.$eventHub.$emit('create-success')
                 }).catch(error => {
                     console.log(error);
                 }).finally(() => {
