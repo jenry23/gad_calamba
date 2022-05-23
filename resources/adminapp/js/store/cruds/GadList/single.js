@@ -208,8 +208,10 @@ function initialState() {
         commit('setLists', response.data.meta)
       })
     },
-    fetchShowData({ commit, dispatch }, id) {
-      axios.get(`${route}/${id}`).then(response => {
+    fetchShowData ({ commit, dispatch }, data) {
+      const id = data['id'];
+      const barangay_id = data['barangay_id'];
+      axios.get(`${route}/show-data/${id}/${barangay_id}`).then(response => {
         commit('setLists', response.data.data[0])
         commit('setEntry', response.data.data[1])
       })

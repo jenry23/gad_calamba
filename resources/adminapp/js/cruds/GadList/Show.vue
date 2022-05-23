@@ -82,7 +82,7 @@ td {
                                             <td>{{ val.household_names }}</td>
                                             <td style="text-transform: uppercase">
                                                 <router-link :to="{ name: 'gad_list.edit', params: { id: val.id } }">
-                                            {{ val.first_name + ',' + val.middle_name + ' ' + val.last_name }}
+                                                    {{ val.full_name }}
                                                 </router-link>
                                             </td>
                                             <td>{{ formatDate(val.birthdate) }}</td>
@@ -132,8 +132,11 @@ export default {
         '$route.params.id': {
             immediate: true,
             handler () {
+                const id = this.$route.params.id;
+                const barangay_id = this.$route.params.barangay_id;
+
                 this.resetState()
-                this.fetchShowData(this.$route.params.id)
+                this.fetchShowData({barangay_id,id})
             }
         }
     },

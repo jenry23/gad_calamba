@@ -76,9 +76,8 @@ export default {
       this.item = item;
     },
     enterItem(item){
-      console.log(item);
         this.$router.push({
-           name: 'gad_list.show', params: { id: item.household_no }
+           name: 'gad_list.show', params: { barangay_id: item.barangay_id , id: item.household_no }
         });
       console.log(item);
     },

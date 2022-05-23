@@ -161,10 +161,11 @@ class GadApiController extends Controller
         ]);
     }
 
-    public function show($id)
+    public function showData($id, $barangay_id)
     {
-        $gads = Gad::where('household_no', $id)->get();
-        $gad = Gad::where('household_no', $id)->first();
+        $gads = Gad::where('household_no', $id)->where('barangay_id', $barangay_id)->get();
+        $gad = Gad::where('household_no', $id)->where('barangay_id', $barangay_id)->first();
+
         foreach ($gads as $gad) {
             $gad->id = !empty($gad->id) ? $gad->id : '';
             $gad->full_name = $gad->last_name . ' , ' . $gad->first_name . ' ' . $gad->middle_name;
@@ -212,6 +213,10 @@ class GadApiController extends Controller
             $gad->organization_name =  !empty($gads->organization) ? $gads->organization->organization_name : '';
         }
         return new GadResource([$gads, $gad]);
+    }
+
+    public function show($id)
+    {
     }
 
     public function update(Request $request, Gad $gad)
