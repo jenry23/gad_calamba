@@ -244,7 +244,7 @@ class Gad extends Model implements HasMedia
     }
     public function household()
     {
-        return $this->belongsTo(Household::class, 'household_no');
+        return $this->belongsTo(Household::class, 'household_id');
     }
     public function genders()
     {
