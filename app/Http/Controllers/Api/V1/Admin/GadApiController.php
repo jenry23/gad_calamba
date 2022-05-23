@@ -92,9 +92,12 @@ class GadApiController extends Controller
     public function getName(Request $request)
     {
         $search = $request->query()['query'];
-        $gad_search = Gad::orWhere('first_name', 'like', '%' . $search . '%')
-            ->orWhere('last_name', 'like', '%' . $search . '%')
-            ->orWhere('middle_name', 'like', '%' . $search . '%')
+        $gad_search = Gad::whereRaw(
+            "TRIM(CONCAT(first_name, ' ', last_name, ' ', COALESCE(middle_name, ''))) like '%{$search}%'"
+        )
+            // orWhere('first_name', 'like', '%' . $search . '%')
+            // ->orWhere('last_name', 'like', '%' . $search . '%')
+            // ->orWhere('middle_name', 'like', '%' . $search . '%')
             ->get();
 
         foreach ($gad_search as $gad) {

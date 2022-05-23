@@ -83,6 +83,7 @@ td {
                                             <td style="text-transform: uppercase">
                                                 <router-link :to="{ name: 'gad_list.edit', params: { id: val.id } }">
                                                     {{ val.full_name }}
+                                                    
                                                 </router-link>
                                             </td>
                                             <td>{{ formatDate(val.birthdate) }}</td>
