@@ -377,12 +377,14 @@ class GadApiController extends Controller
     public function importExcel(Request $request)
     {
         $message = '';
+
         try {
             Excel::import(new ImportGads, request()->file('import_file'));
             $message = 'Success';
         } catch (\Exception $e) {
             $message = $e->getMessage();
         }
+
         Gad::all()->map(function ($gad) {
             $full_name = substr($gad->first_name, 0, 1) . substr($gad->middle_name, 0, 1) . substr($gad->last_name, 0, 1);
             $gad_id = 'LAG-CAL' . $gad->barangay_id . '-' . $gad->household_no . $full_name
@@ -409,6 +411,7 @@ class GadApiController extends Controller
                 $main->update($data);
             }
         });
+
         return response()->json($message, Response::HTTP_OK);
     }
 
