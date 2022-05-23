@@ -178,7 +178,7 @@ export default {
               gate: 'government_educational_assistance_access',
             },
             {
-              title : 'Ethinicity',
+              title : 'Ethnicity',
               icon: 'users',
               path: { name: 'ethnicity.index'},
               gate: 'ethnicity_access',

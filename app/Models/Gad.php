@@ -193,7 +193,6 @@ class Gad extends Model implements HasMedia
     {
         return $this->belongsTo(City::class, 'work_location_city_id');
     }
-
     public function poltical_province_registered()
     {
         return $this->belongsTo(Province::class, 'poltical_province_registered_id');
@@ -202,7 +201,6 @@ class Gad extends Model implements HasMedia
     {
         return $this->belongsTo(City::class, 'poltical_city_registered_id');
     }
-
     public function educational_attaintment()
     {
         return $this->belongsTo(EducationalAttaintment::class, 'educational_attaintment_id');
@@ -223,7 +221,6 @@ class Gad extends Model implements HasMedia
     {
         return $this->belongsTo(Vehicles::class, 'vehicle_no');
     }
-
     public function medicine()
     {
         return $this->belongsTo(Medicine::class, 'medical_number');
@@ -238,9 +235,9 @@ class Gad extends Model implements HasMedia
     {
         return $this->belongsTo(Sitio::class, 'sitio_id');
     }
-    public function ethinicity()
+    public function ethnicity()
     {
-        return $this->belongsTo(ethinicity::class, 'ethnicity_id');
+        return $this->belongsTo(Ethnicity::class, 'ethnicity_id');
     }
     public function household()
     {

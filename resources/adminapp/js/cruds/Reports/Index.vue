@@ -1,200 +1,209 @@
 <template>
-  <div class="container-fluid" >
-    <div ref="content">
-    <form @submit.prevent="submitForm">
-    <div class="row">
-             <div class="col-md-8">
-               <div class="card">
-               <div class="row">
-                 <div class="col-md-4">
-                   <br>
-                    <img src="/images/calamba-logo.png" height="95px" width="100px">
-                    <img src="/images/gad-logo-login.png" height="95px" width="100px">
-               </div>
-               <div class="col-md-8">
-                   <div>
-                    <h3 style="color:black;"><b style="text-transform: uppercase;">City Government of Calamba</b><br>
-                    <b style="text-transform: uppercase;margin-right:50px;">Gender and Development</b><br>
-                    <b style="text-transform: uppercase;margin-right:130px;">Household Profile</b></h3>
-                  </div>
-               </div>
-               </div>
-                     <pie-chart :chart-data="chartData" :options="options" ></pie-chart>
-                     <div class="row">
-                       <div class="col-md-3">
-                       </div>
-                     <div class="col-md-3">
-                     <h3>Male : {{ male }}</h3>
-                     </div>
-                     <div class="col-md-3">
-                         <h3>Female : {{ female }}</h3>
-                     </div>
-               </div>
-               </div>
-             </div>
-         <div class="col-md-4">
-         <div class="card">
-           <div class="card-header card-header-primary">
-                 <h4 class="card-title">GAD Generate Reports</h4>
-                  <p class="crd-category">Advance Search</p>
-            </div>
-          <div class="card-body">
-            <br>
-          <div>
-             <label class="label">Barangay</label>
-             <v-select 
-            name="barangay"
-            label="barangay_name"
-            :value="entry.barangay"
-            :options="lists.barangay"
-            @input="updateBarangay"
-            @focus="focusField('barangay')"
-            @blur="clearFocus"
-            required
-            />
-            </div>
-            <div>
-             <label class="label">Purok</label>
-              <v-select 
-              name="purok"
-              label="purok_name"
-              :value="entry.purok"
-              :options="others.purok"
-              @input="updatePurok"
-              @focus="focusField('purok')"
-              @blur="clearFocus"
-              :disabled="disabled_purok == 1"
-              required
-              />
-            </div>
-            <div>
-             <label class="label">Sitio</label>
-              <v-select 
-              name="sitio"
-              label="sitio_name"
-              :value="entry.sitio"
-              :options="others.sitio"
-              @input="updateSitio"
-              @focus="focusField('sitio')"
-              @blur="clearFocus"
-              :disabled="disabled_sitio == 1"
-              required
-              />
-            </div>
-            <div>
-             <label class="label">Sector</label>
-              <v-select 
-              name="sector"
-              label="sector_name"
-              :value="entry.sector"
-              :options="lists.sector"
-              @input="updateSector"
-              @focus="focusField('sector')"
-              @blur="clearFocus"
-              required
-              />
-            </div>
-            <div>
-             <label class="label">Gender</label>
-              <v-select 
-              name="gender"
-              label="gender_name"
-              :value="entry.gender"
-              :options="lists.gender"
-              @input="updateGender"
-              @focus="focusField('gender')"
-              @blur="clearFocus"
-              required
-              />
-            </div>
-             <div>
-             <label class="label">Age</label>
-              <div class="row">
-                <div class="col-md-6">
-                    <input type="number" 
-                    placeholder="From"
-                    @input="updateAgeFrom"
-                    :value="entry.age_from"
-                    class="form-control"
-                    name="age_from"/>
+    <div class="container-fluid">
+        <div ref="content">
+            <form @submit.prevent="submitForm">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <br />
+                                    <img src="/images/calamba-logo.png" height="95px" width="100px" />
+                                    <img src="/images/gad-logo-login.png" height="95px" width="100px" />
+                                </div>
+                                <div class="col-md-8">
+                                    <div>
+                                        <h3 style="color: black">
+                                            <b style="text-transform: uppercase">City Government of Calamba</b><br />
+                                            <b style="text-transform: uppercase; margin-right: 50px"
+                                                >Gender and Development</b
+                                            ><br />
+                                            <b style="text-transform: uppercase; margin-right: 130px"
+                                                >Household Profile</b
+                                            >
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <pie-chart :chart-data="chartData" :options="options"></pie-chart>
+                            <div class="row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-3">
+                                    <h3>Male : {{ male }}</h3>
+                                </div>
+                                <div class="col-md-3">
+                                    <h3>Female : {{ female }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header card-header-primary">
+                                <h4 class="card-title">GAD Generate Reports</h4>
+                                <p class="crd-category">Advance Search</p>
+                            </div>
+                            <div class="card-body">
+                                <br />
+                                <div>
+                                    <label class="label">Barangay</label>
+                                    <v-select
+                                        name="barangay"
+                                        label="barangay_name"
+                                        :value="entry.barangay"
+                                        :options="lists.barangay"
+                                        @input="updateBarangay"
+                                        @focus="focusField('barangay')"
+                                        @blur="clearFocus"
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label class="label">Purok</label>
+                                    <v-select
+                                        name="purok"
+                                        label="purok_name"
+                                        :value="entry.purok"
+                                        :options="others.purok"
+                                        @input="updatePurok"
+                                        @focus="focusField('purok')"
+                                        @blur="clearFocus"
+                                        :disabled="disabled_purok == 1"
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label class="label">Sitio</label>
+                                    <v-select
+                                        name="sitio"
+                                        label="sitio_name"
+                                        :value="entry.sitio"
+                                        :options="others.sitio"
+                                        @input="updateSitio"
+                                        @focus="focusField('sitio')"
+                                        @blur="clearFocus"
+                                        :disabled="disabled_sitio == 1"
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label class="label">Sector</label>
+                                    <v-select
+                                        name="sector"
+                                        label="sector_name"
+                                        :value="entry.sector"
+                                        :options="lists.sector"
+                                        @input="updateSector"
+                                        @focus="focusField('sector')"
+                                        @blur="clearFocus"
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label class="label">Gender</label>
+                                    <v-select
+                                        name="gender"
+                                        label="gender_name"
+                                        :value="entry.gender"
+                                        :options="lists.gender"
+                                        @input="updateGender"
+                                        @focus="focusField('gender')"
+                                        @blur="clearFocus"
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label class="label">Age</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input
+                                                type="number"
+                                                placeholder="From"
+                                                @input="updateAgeFrom"
+                                                :value="entry.age_from"
+                                                class="form-control"
+                                                name="age_from"
+                                            />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input
+                                                type="number"
+                                                placeholder="To"
+                                                :value="entry.age_to"
+                                                @input="updateAgeTo"
+                                                class="form-control"
+                                                name="age_to"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <vue-button-spinner
+                                    class="btn-info"
+                                    :status="status"
+                                    :isLoading="loading"
+                                    :disabled="loading"
+                                >
+                                    Search
+                                </vue-button-spinner>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <input type="number"
-                    placeholder="To"
-                    :value="entry.age_to"
-                    @input="updateAgeTo"
-                    class="form-control"
-                    name="age_to"/>
-              </div>
-              </div>
-            </div>
-          </div>
-            <div class="card-footer">
-              <vue-button-spinner
-                class="btn-info"
-                :status="status"
-                :isLoading="loading"
-                :disabled="loading"
-              >
-                Search
-              </vue-button-spinner>
-            </div>
-        </div>
-      </div>
-    </div>
-    </form>
-    <div class="row">
-     <div class="col-md-12">
-        <div class="card">
-          <div class="card-header card-header-primary card-header-icon">
-            <div class="card-icon">
-              <i class="material-icons">assignment</i>
-            </div>
-            <h4 class="card-title">
-                Table
-              <strong>Resident List</strong>
-            </h4>
-          </div>
-        
-          <div class="card-body">
+            </form>
             <div class="row">
-              <div class="col-md-12">
-                <div class="table-overlay" v-show="loading">
-                  <div class="table-overlay-container">
-                    <material-spinner></material-spinner>
-                    <span>Loading...</span>
-                  </div>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-primary card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">assignment</i>
+                            </div>
+                            <h4 class="card-title">
+                                Table
+                                <strong>Resident List</strong>
+                            </h4>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-overlay" v-show="loading">
+                                        <div class="table-overlay-container">
+                                            <material-spinner></material-spinner>
+                                            <span>Loading...</span>
+                                        </div>
+                                    </div>
+                                    <download-excel
+                                        class="btn btn-primary"
+                                        :data="json_data"
+                                        :fields="json_fields"
+                                        worksheet="Resident List"
+                                        :name="this.excel_name"
+                                    >
+                                        Print Excel
+                                    </download-excel>
+                                    <button class="btn btn-info" @click="downloads">Download PDF</button>
+                                    <datatable
+                                        :columns="columns"
+                                        :data="data"
+                                        :total="total"
+                                        :query="query"
+                                        :xprops="xprops"
+                                        :HeaderSettings="false"
+                                        :pageSizeOptions="[10, 25, 50, 100]"
+                                    >
+                                        <global-search :query="query" class="pull-left" />
+                                        <header-settings :columns="columns" class="pull-right" />
+                                    </datatable>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <download-excel
-                class="btn btn-primary"
-                :data="json_data"
-                :fields="json_fields"
-                worksheet="Resident List"
-                name="gad_report.xls"
-              >
-                Print Excel
-              </download-excel>
-              <button class="btn btn-info" @click="downloads">Download PDF</button>
-                <datatable
-                  :columns="columns"
-                  :data="data"
-                  :total="total"
-                  :query="query"
-                  :xprops="xprops"
-                  :HeaderSettings="false"
-                  :pageSizeOptions="[10, 25, 50, 100]"
-                >
-                  <global-search :query="query" class="pull-left" />
-                  <header-settings :columns="columns" class="pull-right" />
-                </datatable>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-    </div>
-  </div>
 </template>
 
 <script>
@@ -205,299 +214,303 @@ import DatatablesFields from '@components/Datatables/DatatablesFields'
 import TranslatedHeader from '@components/Datatables/TranslatedHeader'
 import HeaderSettings from '@components/Datatables/HeaderSettings'
 import GlobalSearch from '@components/Datatables/GlobalSearch'
-import jsPDF from 'jspdf' 
+import jsPDF from 'jspdf'
 import html2canvas from "html2canvas"
 import html2pdf from 'html2pdf.js'
 
 export default {
     components: {
-    PieChart,
-    GlobalSearch,
-    DatatablesFields,
-    HeaderSettings
-  },
-  data() {
-    return {
-      chartData:null,
-      options: {
-       responsive: true,
-       maintainAspectRatio: false,
-        pieceLabel: {
-           render: 'value',
-           precision: 1
-         },
-         showAllTooltips: true
-      },
-      male:'',
-      female:'',
-      status: '',
-      activeField: '',
-      disabled_purok: 0,
-      disabled_sitio: 0,
-      columns: [
-        {
-          title: 'Member Name',
-          field: 'full_name',
-          thComp: TranslatedHeader,
-        },
-        {
-          title: 'Sex',
-          field: 'gender_name',
-          thComp: TranslatedHeader,
-          sortable: true,
-        },
-        {
-          title: 'Barangay',
-          field: 'barangays_name',
-          thComp: TranslatedHeader,
-        },
-        {
-          title: 'Age',
-          field: 'age',
-          thComp: TranslatedHeader,
-        },
-        {
-          title: 'Civil Status',
-          field: 'civil_status_names',
-          thComp: TranslatedHeader,
-        },
-        {
-          title: 'Sector',
-          field: 'sector_name',
-          thComp: TranslatedHeader,
-        }
-      ],
-      query: { sort: 'id', order: 'asc', limit: 20, s: '' },
-      xprops: {
-        module: 'ReportsSingle',
-        route: 'reports',
-        permission_prefix: 'reports_'
-      },
-  json_fields: {
-          "Item No.": "id",
-          "Household Number": "building_no",
-          "Family Code": "family_code",
-          "Relationship to Head of the Family": "household_names",
-          "Last Name": "last_name",
-          "First Name": "first_name",
-          "Middle Name": "middle_name",
-          "Extension Name": "extension_name",
-          Barangay: "barangays_name",
-          "Barangay Code/ ID": "barangay_code",
-          "Purok (Code)": "purok_names",
-          "Block/Lot/No. of House/ Street Name ": "block_lot_house_id",
-          "Sitio (Code)": "sitio_names",
-          "Native Province": "native_provinces",
-          "Native City/Municipality": "native_citys",
-          "Valid ID": "valid_id_names",
-          "ID No.": "id_number",
-          Birthday: "birthdate",
-          Sex: "gender_name",
-          "Gender Preference": "gender_preference_name",
-          "Civil Status": "civil_status_names",
-          "Spouse Last Name": "spouse_last_name",
-          "Spouse First Name": "spouse_first_name",
-          "Spouse Middle Name": "spouse_middle_name",
-          "Spouse Extension Name": "spouse_extension_name",
-          "No. of Dependents": "no_of_dependents",
-          "Cellphone Number": "mobile_no",
-          "Landline Number": "landline_number",
-          "Email Address": "email",
-          "Health Condition #1": "health_id",
-          "Health Condition #2": "''",
-          "Disability Condition #1": "disability_id",
-          "Disability Condition #2": ' ',
-          "Nutritional Status (Ideal, Wasted, Stunted, Obese, Overweight)":' ',
-          "Government Assistance No. 01":"government_assistance_name",
-          "Government Assistance No. 02":' ',
-          "Government Assistance No. 03":' ',
-          Occupation:"occupation",
-          Employer:"employer",
-          "Work Location (Province)":"native_provinces",
-          "Work Location (City/Municipality)":"work_location_citys",
-          "Household Monthly Income":"monthly_income",
-          "Economic Status":' ',
-          "OFW Relative No. 1 (as related to family head)":' ',
-          "Country of Rel. No. 1":' ',
-          "OFW Relative No. 1 (as related to family head)":' ',
-          "Country of Rel. No. 2":' ',
-          "OFW Relative No. 2 (as related to family head)":' ',
-          "Beneficiary? (Any Member of the Family). YES/NO":' ',
-          "Highest Educational Attainment":"educational_attaintment_name",
-          "Educational Status":"educational_status_name",
-          "Last School Attended":"last_school_attended",
-          "Government Educational Assistance #1":"government_assistance_name",
-          "Government Educational Assistance #2":' ',
-          "Soft Skills #1":' ',
-          "Soft Skills #2":' ',
-          "Hard Skills #1":' ',
-          "Hard Skills #2":' ',
-          "Hobbies  #1":' ',
-          "Hobbies  #2":' ',
-          "Sports #1":' ',
-          "Sports #2":' ',
-          "Ethnicity No. 01":'Tagalog',
-          "Religion (Catholic:test, Iglesia ni Cristo:test, etc)":' ',
-          "Sector No. 01":"sector_name",
-          "Sector No. 02":' ',
-          "Province Registered":"political_province_registered",
-          "City/ Municipality Registered":"political_city_registered",
-          "House Ownership":"house_ownership_names",
-          "House Type":"house_type_names",
-          "House Make":"house_make_names",
-          "No. of Nuclear Family in Household":"no_nuclear_family_household_id",
-          "No. of Bedrooms":"no_bedrooms_id",
-          "No. of  CRs":"no_cr_id",
-          "Utilities No. 01":"gad_utilities_no1",
-          "Utilities No. 02":"gad_utilities_no2",
-          "Utilities No. 03":"gad_utilities_no3",
-          "Utilities No. 04":"gad_utilities_no4",
-          "Appliances No. 01":"gad_appliances_no1",
-          "Appliances No. 02":"gad_appliances_no2",
-          "Appliances No. 03":"gad_appliances_no3",
-          "Appliances No. 04":"gad_appliances_no4",
-          "Vehicles No. 01":"vehicles_name",
-          "Vehicles No. 02":' ',
-          "Full Immunization (YES, Public Hosp/ Center YES, Private Hosp/ Clinic, NO)":' ',
-          "Covid 19 Test (No COVID Test, Tested Positive for COVID19, Tested Negative for COVID19)":' ',
-          "Date of 1st Dosage Covid 19 Vaccination":' ',
-          BRAND:' ',
-          "Date of 2ndt Dosage Covid 19 Vaccination":' ',
-          BRAND:' ',
-          "Pregnancy Age":' ',
-          "With Prenatal Check up (YES, Public Hosp/ Center YES, Private Hosp/ Clinic, NO)":' ',
-          "With Postnatal Check up (YES, Public Hosp/ Center YES, Private Hosp/ Clinic, NO)":' ',
-          "Maintaining  Medicine No. 01 ":"medicine_name",
-          "Maintaining Medicine No. 01 ":' ',
-          "Organizations Involved No. 01":"organization_name",
-          "Organizations  Involved No. 02":' ',
-          "Barangay Residence Year":"barangay_residence_year",
-          "Calamba Residence Year":"no_of_years_in_calamba",
-          REMARKS:"remarks",
+        PieChart,
+        GlobalSearch,
+        DatatablesFields,
+        HeaderSettings
     },
-    json_data: [],
-    json_meta: [
-      [
-        {
-          key: "charset",
-          value: "utf-8",
-        },
-      ],
-    ],
-    }
-  },
-  computed: {
-    ...mapGetters('ReportsSingle', ['data','total','entry', 'loading','lists','others'])
-  },
-  mounted() {
-    this.fetchCreateData()
-  },
-  watch: {
-    query: {
-      handler(query) {
-        this.setQuery(query)
-        this.searchData()
-      },
-      deep: true
-    }
-  },
-  beforeDestroy() {
-    this.resetState()
-  },
-  methods: {
-    ...mapActions('ReportsSingle', [
-      'searchData',
-      'fetchCreateData',
-      'resetState',
-      'setBarangay',
-      'setPurok',
-      'setSitio',
-      'setSector',
-      'setQuery',
-      'setAgeTo',
-      'setGender',
-      'setAgeFrom',
-    ]),
-     downloads() {
-       			html2pdf(this.$refs.content, {
-					filename: 'content.pdf',
-					image: { type: 'jpeg', quality: 0.98 },
-					html2canvas: { dpi: 192, letterRendering: true },
-					jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
-				})
-      // const doc = new jsPDF();
-      // /** WITH CSS */
-      // var canvasElement = document.createElement('canvas');
-      // html2canvas(this.$refs.content, { canvas: canvasElement }).then(function (canvas) {
-      //   const img = canvas.toDataURL("image/jpeg", 0.8);
-      //   doc.addImage(img,'JPEG',20,20);
-      //   doc.save("sample.pdf");
-      // });
-   },
-    updateBarangay(value){
-      this.setBarangay(value)
-      this.disabled_sitio = 0
-      this.disabled_purok = 0
-      this.setSitio();
-      this.setPurok();
-    },
-    updatePurok(value){
-        this.setPurok(value);
-        if(value){
-          this.disabled_sitio = 1
+    data () {
+        return {
+            chartData: null,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                pieceLabel: {
+                    render: 'value',
+                    precision: 1
+                },
+                showAllTooltips: true
+            },
+            male: '',
+            female: '',
+            status: '',
+            activeField: '',
+            disabled_purok: 0,
+            disabled_sitio: 0,
+            barangay: '',
+            excel_name: 'gad.xls',
+            columns: [
+                {
+                    title: 'Member Name',
+                    field: 'full_name',
+                    thComp: TranslatedHeader,
+                },
+                {
+                    title: 'Sex',
+                    field: 'gender_name',
+                    thComp: TranslatedHeader,
+                    sortable: true,
+                },
+                {
+                    title: 'Barangay',
+                    field: 'barangays_name',
+                    thComp: TranslatedHeader,
+                },
+                {
+                    title: 'Age',
+                    field: 'age',
+                    thComp: TranslatedHeader,
+                },
+                {
+                    title: 'Civil Status',
+                    field: 'civil_status_names',
+                    thComp: TranslatedHeader,
+                },
+                {
+                    title: 'Sector',
+                    field: 'sector_name',
+                    thComp: TranslatedHeader,
+                }
+            ],
+            query: { sort: 'id', order: 'asc', limit: 20, s: '' },
+            xprops: {
+                module: 'ReportsSingle',
+                route: 'reports',
+                permission_prefix: 'reports_'
+            },
+            json_fields: {
+                "Item No.": "id",
+                "Household Number": "building_no",
+                "Family Code": "family_code",
+                "Relationship to Head of the Family": "household_names",
+                "Last Name": "last_name",
+                "First Name": "first_name",
+                "Middle Name": "middle_name",
+                "Extension Name": "extension_name",
+                Barangay: "barangays_name",
+                "Barangay Code/ ID": "barangay_code",
+                "Purok (Code)": "purok_names",
+                "Block/Lot/No. of House/ Street Name ": "block_lot_house_id",
+                "Sitio (Code)": "sitio_names",
+                "Native Province": "native_provinces",
+                "Native City/Municipality": "native_citys",
+                "Valid ID": "valid_id_names",
+                "ID No.": "id_number",
+                Birthday: "birthdate",
+                Sex: "gender_name",
+                "Gender Preference": "gender_preference_name",
+                "Civil Status": "civil_status_names",
+                "Spouse Last Name": "spouse_last_name",
+                "Spouse First Name": "spouse_first_name",
+                "Spouse Middle Name": "spouse_middle_name",
+                "Spouse Extension Name": "spouse_extension_name",
+                "No. of Dependents": "no_of_dependents",
+                "Cellphone Number": "mobile_no",
+                "Landline Number": "landline_number",
+                "Email Address": "email",
+                "Health Condition #1": "health_id",
+                "Health Condition #2": "''",
+                "Disability Condition #1": "disability_id",
+                "Disability Condition #2": ' ',
+                "Nutritional Status (Ideal, Wasted, Stunted, Obese, Overweight)": ' ',
+                "Government Assistance No. 01": "government_assistance_name",
+                "Government Assistance No. 02": ' ',
+                "Government Assistance No. 03": ' ',
+                Occupation: "occupation",
+                Employer: "employer",
+                "Work Location (Province)": "native_provinces",
+                "Work Location (City/Municipality)": "work_location_citys",
+                "Household Monthly Income": "monthly_income",
+                "Economic Status": ' ',
+                "OFW Relative No. 1 (as related to family head)": ' ',
+                "Country of Rel. No. 1": ' ',
+                "OFW Relative No. 1 (as related to family head)": ' ',
+                "Country of Rel. No. 2": ' ',
+                "OFW Relative No. 2 (as related to family head)": ' ',
+                "Beneficiary? (Any Member of the Family). YES/NO": ' ',
+                "Highest Educational Attainment": "educational_attaintment_name",
+                "Educational Status": "educational_status_name",
+                "Last School Attended": "last_school_attended",
+                "Government Educational Assistance #1": "government_assistance_name",
+                "Government Educational Assistance #2": ' ',
+                "Soft Skills #1": ' ',
+                "Soft Skills #2": ' ',
+                "Hard Skills #1": ' ',
+                "Hard Skills #2": ' ',
+                "Hobbies  #1": ' ',
+                "Hobbies  #2": ' ',
+                "Sports #1": ' ',
+                "Sports #2": ' ',
+                "Ethnicity No. 01": 'Tagalog',
+                "Religion (Catholic:test, Iglesia ni Cristo:test, etc)": ' ',
+                "Sector No. 01": "sector_name",
+                "Sector No. 02": ' ',
+                "Province Registered": "political_province_registered",
+                "City/ Municipality Registered": "political_city_registered",
+                "House Ownership": "house_ownership_names",
+                "House Type": "house_type_names",
+                "House Make": "house_make_names",
+                "No. of Nuclear Family in Household": "no_nuclear_family_household_id",
+                "No. of Bedrooms": "no_bedrooms_id",
+                "No. of  CRs": "no_cr_id",
+                "Utilities No. 01": "gad_utilities_no1",
+                "Utilities No. 02": "gad_utilities_no2",
+                "Utilities No. 03": "gad_utilities_no3",
+                "Utilities No. 04": "gad_utilities_no4",
+                "Appliances No. 01": "gad_appliances_no1",
+                "Appliances No. 02": "gad_appliances_no2",
+                "Appliances No. 03": "gad_appliances_no3",
+                "Appliances No. 04": "gad_appliances_no4",
+                "Vehicles No. 01": "vehicles_name",
+                "Vehicles No. 02": ' ',
+                "Full Immunization (YES, Public Hosp/ Center YES, Private Hosp/ Clinic, NO)": ' ',
+                "Covid 19 Test (No COVID Test, Tested Positive for COVID19, Tested Negative for COVID19)": ' ',
+                "Date of 1st Dosage Covid 19 Vaccination": ' ',
+                BRAND: ' ',
+                "Date of 2ndt Dosage Covid 19 Vaccination": ' ',
+                BRAND: ' ',
+                "Pregnancy Age": ' ',
+                "With Prenatal Check up (YES, Public Hosp/ Center YES, Private Hosp/ Clinic, NO)": ' ',
+                "With Postnatal Check up (YES, Public Hosp/ Center YES, Private Hosp/ Clinic, NO)": ' ',
+                "Maintaining  Medicine No. 01 ": "medicine_name",
+                "Maintaining Medicine No. 01 ": ' ',
+                "Organizations Involved No. 01": "organization_name",
+                "Organizations  Involved No. 02": ' ',
+                "Barangay Residence Year": "barangay_residence_year",
+                "Calamba Residence Year": "no_of_years_in_calamba",
+                REMARKS: "remarks",
+            },
+            json_data: [],
+            json_meta: [
+                [
+                    {
+                        key: "charset",
+                        value: "utf-8",
+                    },
+                ],
+            ],
         }
     },
-    updateSitio(value){
-      this.setSitio(value)
-         if(value){
-          this.disabled_purok = 1
+    computed: {
+        ...mapGetters('ReportsSingle', ['data', 'total', 'entry', 'loading', 'lists', 'others'])
+    },
+    mounted () {
+        this.fetchCreateData()
+    },
+    watch: {
+        query: {
+            handler (query) {
+                this.setQuery(query)
+                this.searchData()
+            },
+            deep: true
         }
     },
-    updateGender(value){
-      this.setGender(value);
+    beforeDestroy () {
+        this.resetState()
     },
-    updateSector(value){
-      this.setSector(value)
-    },
-    updateAgeTo(e){
-      this.setAgeTo(e.target.value)
-    },
-    updateAgeFrom(e){
-      this.setAgeFrom(e.target.value)
-    },
-    submitForm() {
-      this.searchData()
-        .then((response) => {
-          this.json_data = response.data.meta.all_gads;
-          console.log(response.data.meta.all_gads);
-          var data_array = response.data.meta;
-          var female = data_array['Female'];
-          var male = data_array['Male'];
-          this.male = male;
-          this.female = female;
-          this.chartData =  {
-            labels: ['Female','Male'],
-            datasets: [
-              {
-                backgroundColor: ["#993366", "#0099CC"],
-                data: [female,male]
-              }
-            ]
-          }
-        })
-        .catch(error => {
-          this.status = 'failed'
-          _.delay(() => {
-            this.status = ''
-          }, 3000)
-        })
-    },
-    focusField(name) {
-      this.activeField = name
-    },
-    clearFocus() {
-      this.activeField = ''
+    methods: {
+        ...mapActions('ReportsSingle', [
+            'searchData',
+            'fetchCreateData',
+            'resetState',
+            'setBarangay',
+            'setPurok',
+            'setSitio',
+            'setSector',
+            'setQuery',
+            'setAgeTo',
+            'setGender',
+            'setAgeFrom',
+        ]),
+        downloads () {
+            html2pdf(this.$refs.content, {
+                filename: 'content.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { dpi: 192, letterRendering: true },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
+            })
+            // const doc = new jsPDF();
+            // /** WITH CSS */
+            // var canvasElement = document.createElement('canvas');
+            // html2canvas(this.$refs.content, { canvas: canvasElement }).then(function (canvas) {
+            //   const img = canvas.toDataURL("image/jpeg", 0.8);
+            //   doc.addImage(img,'JPEG',20,20);
+            //   doc.save("sample.pdf");
+            // });
+        },
+        updateBarangay (value) {
+            this.setBarangay(value)
+            this.barangay = value;
+            this.disabled_sitio = 0
+            this.disabled_purok = 0
+            this.setSitio();
+            this.setPurok();
+        },
+        updatePurok (value) {
+            this.setPurok(value);
+            if (value) {
+                this.disabled_sitio = 1
+            }
+        },
+        updateSitio (value) {
+            this.setSitio(value)
+            if (value) {
+                this.disabled_purok = 1
+            }
+        },
+        updateGender (value) {
+            this.setGender(value);
+        },
+        updateSector (value) {
+            this.setSector(value)
+        },
+        updateAgeTo (e) {
+            this.setAgeTo(e.target.value)
+        },
+        updateAgeFrom (e) {
+            this.setAgeFrom(e.target.value)
+        },
+        submitForm () {
+            let today = new Date().toLocaleDateString()
+            this.excel_name = `GAD-REPORT ${this.barangay.id}-${this.barangay.barangay_name} ${today}.xls`;
+            this.searchData()
+                .then((response) => {
+                    this.json_data = response.data.meta.report;
+                    var data_array = response.data.meta;
+                    var female = data_array['Female'];
+                    var male = data_array['Male'];
+                    this.male = male;
+                    this.female = female;
+                    this.chartData = {
+                        labels: ['Female', 'Male'],
+                        datasets: [
+                            {
+                                backgroundColor: ["#993366", "#0099CC"],
+                                data: [female, male]
+                            }
+                        ]
+                    }
+                })
+                .catch(error => {
+                    this.status = 'failed'
+                    _.delay(() => {
+                        this.status = ''
+                    }, 3000)
+                })
+        },
+        focusField (name) {
+            this.activeField = name
+        },
+        clearFocus () {
+            this.activeField = ''
+        }
     }
-  }
 }
 </script>

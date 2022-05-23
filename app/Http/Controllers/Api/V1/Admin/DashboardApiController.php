@@ -18,12 +18,9 @@ class DashboardApiController extends Controller
     {
         abort_if(Gate::denies('dashboard_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $total_people = Gad::all();
-        $total_people_male = Gad::where('gender_id', '1')->get();
-        $total_people_female = Gad::where('gender_id', '2')->get();
-        $total_people_count = $total_people->count();
-        $total_male_count = $total_people_male->count();
-        $total_female_count = $total_people_female->count();
+        $total_people_count = Gad::all()->count();
+        $total_male_count = Gad::where('gender_id', '1')->count();
+        $total_female_count = Gad::where('gender_id', '2')->count();
 
         //Senior
         $total_senior = Gad::where('sector_id', '2')->get();
