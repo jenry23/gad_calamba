@@ -7,7 +7,7 @@ use App\Http\Requests\StoreHouseMakeRequest;
 use App\Http\Requests\UpdateHouseMakeRequest;
 use App\Http\Resources\Admin\HouseMakeResource;
 use App\Models\HouseMake;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

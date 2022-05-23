@@ -7,7 +7,7 @@ use App\Http\Resources\Admin\SurveyResource;
 use App\Models\Survey;
 use App\Models\Question;
 use App\Models\Answer;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -24,8 +24,7 @@ class SurveyApiController extends Controller
         return new SurveyResource($survey);
     }
 
-    public function store (Request $request)
+    public function store(Request $request)
     {
-
     }
 }

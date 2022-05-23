@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Admin\PurokResource;
 use App\Models\Purok;
 use App\Models\Barangay;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -22,16 +22,16 @@ class PurokApiController extends Controller
     public function store(Request $request)
     {
         $barangay_name = $request->barangay_id;
-        if(!empty($barangay_name)){
+        if (!empty($barangay_name)) {
             $data = array(
                 'purok_name' => $request->purok_name,
                 'barangay_id'  => $barangay_name['id']
             );
             $purok = Purok::create($data);
-        }else{
+        } else {
             $purok = [];
         }
-        
+
 
         return (new PurokResource($purok))
             ->response()
@@ -53,14 +53,14 @@ class PurokApiController extends Controller
     public function show($id)
     {
         abort_if(Gate::denies('purok_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $purok = Purok::with(['barangay'])->where('id',$id)->first();
+        $purok = Purok::with(['barangay'])->where('id', $id)->first();
         return new PurokResource($purok);
     }
 
-    public function update(Request $request,Purok $purok)
+    public function update(Request $request, Purok $purok)
     {
         $barangay_name = $request->barangay_id;
-        if(!empty($barangay_name)){
+        if (!empty($barangay_name)) {
             $data = array(
                 'purok_name' => $request->purok_name,
                 'barangay_id'  => $barangay_name['id']
@@ -76,7 +76,7 @@ class PurokApiController extends Controller
     {
         abort_if(Gate::denies('purok_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $purok = Purok::with(['barangay'])->where('id',$id)->first();
+        $purok = Purok::with(['barangay'])->where('id', $id)->first();
         $barangay = Barangay::all();
         return response([
             'data' => new PurokResource($purok),

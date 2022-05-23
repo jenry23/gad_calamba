@@ -7,7 +7,7 @@ use App\Http\Requests\StoreHouseTypeRequest;
 use App\Http\Requests\UpdateHouseTypeRequest;
 use App\Http\Resources\Admin\HouseTypeResource;
 use App\Models\HouseType;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

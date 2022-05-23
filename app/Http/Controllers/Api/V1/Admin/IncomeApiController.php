@@ -8,7 +8,7 @@ use App\Http\Requests\UpdateIncomeRequest;
 use App\Http\Resources\Admin\IncomeResource;
 use App\Models\Income;
 use App\Models\IncomeCategory;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

@@ -7,7 +7,7 @@ use App\Http\Requests\StoreEducationalAssistanceRequest;
 use App\Http\Requests\UpdateEducationalAssistanceRequest;
 use App\Http\Resources\Admin\EducationalAssistanceResource;
 use App\Models\EducationalAssistance;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

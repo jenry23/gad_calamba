@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Admin\CityResource;
 use App\Models\City;
 use App\Models\Province;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -22,16 +22,16 @@ class CityApiController extends Controller
     public function store(Request $request)
     {
         $province_name = $request->province_id;
-        if(!empty($province_name)){
+        if (!empty($province_name)) {
             $data = array(
                 'city_name' => $request->city_name,
                 'province_id'  => $province_name['id']
             );
             $city = City::create($data);
-        }else{
+        } else {
             $city = [];
         }
-        
+
 
         return (new CityResource($city))
             ->response()
@@ -53,14 +53,14 @@ class CityApiController extends Controller
     public function show($id)
     {
         abort_if(Gate::denies('city_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $city = City::with(['Province'])->where('id',$id)->first();
+        $city = City::with(['Province'])->where('id', $id)->first();
         return new CityResource($city);
     }
 
-    public function update(Request $request,City $city)
+    public function update(Request $request, City $city)
     {
         $province_name = $request->province_id;
-        if(!empty($province_name)){
+        if (!empty($province_name)) {
             $data = array(
                 'city_name' => $request->city_name,
                 'province_id'  => $province_name['id']
@@ -76,7 +76,7 @@ class CityApiController extends Controller
     {
         abort_if(Gate::denies('city_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $city = City::with(['province'])->where('id',$id)->first();
+        $city = City::with(['province'])->where('id', $id)->first();
         $Province = Province::all();
         return response([
             'data' => new CityResource($city),

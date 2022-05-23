@@ -7,7 +7,8 @@ use App\Http\Requests\StoreBarangayRequest;
 use App\Http\Requests\UpdateBarangayRequest;
 use App\Http\Resources\Admin\BarangayResource;
 use App\Models\Barangay;
-use Gate;
+use App\Models\Gad;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

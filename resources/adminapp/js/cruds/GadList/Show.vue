@@ -76,7 +76,7 @@ td {
                                     </thead>
                                     <tbody>
                                         <tr v-for="val in lists" :key="val.id">
-                                            <td>LAG-CAL-260400-0059-A1-0{{val.id}}</td>
+                                            <td>{{val.gad_id}}</td>
                                             <td style="text-transform: uppercase">
                                                 <router-link :to="{ name: 'gad_list.edit', params: { id: val.id } }">
                                                     {{ val.first_name }} {{ val.last_name }}

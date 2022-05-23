@@ -7,7 +7,7 @@ use App\Http\Requests\StoreHouseOwnershipRequest;
 use App\Http\Requests\UpdateHouseOwnershipRequest;
 use App\Http\Resources\Admin\HouseOwnershipResource;
 use App\Models\HouseOwnership;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

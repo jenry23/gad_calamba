@@ -7,7 +7,7 @@ use App\Http\Requests\StoreGovernmentAssistanceRequest;
 use App\Http\Requests\UpdateGovernmentAssistanceRequest;
 use App\Http\Resources\Admin\GovernmentAssistanceResource;
 use App\Models\GovernmentAssistance;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

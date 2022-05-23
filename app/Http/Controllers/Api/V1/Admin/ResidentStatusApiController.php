@@ -7,7 +7,7 @@ use App\Http\Requests\StoreResidentStatusRequest;
 use App\Http\Requests\UpdateResidentStatusRequest;
 use App\Http\Resources\Admin\ResidentStatusResource;
 use App\Models\ResidentStatus;
-use Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
