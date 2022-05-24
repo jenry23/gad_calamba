@@ -77,9 +77,8 @@ export default {
     },
     enterItem(item){
         this.$router.push({
-           name: 'gad_list.show', params: { barangay_id: item.barangay_id , id: item.household_no }
+           name: 'gad_list.show', params: { id: item.household_no,  barangay_id: item.barangay_id }
         });
-      console.log(item);
     },
     setLabel (item) {
       return item.last_name+','+item.first_name+" "+item.middle_name+' - '+item.barangay_name;

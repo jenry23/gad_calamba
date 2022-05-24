@@ -71,7 +71,7 @@ class ReportsApiController extends Controller
         foreach ($gads as $gad) {
             $gad->id = !empty($gad->id) ? $gad->id : '';
             $gad->full_name = $gad->last_name . ' , ' . $gad->first_name . ' ' . $gad->middle_name;
-            $gad->gender_name = !empty($gad->genders) ? $gad->genders->gender_name : '';
+            $gad->gender_name = !empty($gad->gender) ? $gad->gender->gender_name : '';
             $gad->sector_name = !empty($gad->sector) ? $gad->sector->sector_name : '';
             $gad->barangays_name = !empty($gad->barangay) ? $gad->barangay->barangay_name : '';
             $gad->age = !empty($gad->age) ? $gad->age : '';
@@ -104,8 +104,8 @@ class ReportsApiController extends Controller
         //             'native_city',
         //             'work_location_province',
         //             'work_location_city',
-        //             'poltical_province_registered',
-        //             'poltical_city_registered',
+        //             'political_province_registered',
+        //             'political_city_registered',
         //             'educational_attaintment',
         //             'educational_attaintment',
         //             'educational_status',
@@ -117,7 +117,7 @@ class ReportsApiController extends Controller
         //             'sitio',
         //             'ethnicity',
         //             'household',
-        //             'genders',
+        //             'gender',
         //             'gender_preference',
         //             'house_ownership',
         //             'house_type',
@@ -159,7 +159,7 @@ class ReportsApiController extends Controller
         foreach ($gads as $gad) {
             $gad->id = !empty($gad->id) ? $gad->id : '';
             $gad->full_name = $gad->last_name . ' , ' . $gad->first_name . ' ' . $gad->middle_name;
-            $gad->gender_name = !empty($gad->genders) ? $gad->genders->gender_name : '';
+            $gad->gender_name = !empty($gad->gender) ? $gad->gender->gender_name : '';
             $gad->sector_name = !empty($gad->sector) ? $gad->sector->sector_name : '';
             $gad->barangays_name = !empty($gad->barangay) ? $gad->barangay->barangay_name : '';
             $gad->age = !empty($gad->age) ? $gad->age : '';
@@ -177,7 +177,7 @@ class ReportsApiController extends Controller
         foreach ($all_gads as $gad) {
             $gad->id = !empty($gad->id) ? $gad->id : '';
             $gad->full_name = $gad->last_name . ' , ' . $gad->first_name . ' ' . $gad->middle_name;
-            $gad->gender_name = !empty($gad->genders) ? $gad->genders->gender_name : '';
+            $gad->gender_name = !empty($gad->gender) ? $gad->gender->gender_name : '';
             $gad->sector_name = !empty($gad->sector) ? $gad->sector->sector_name : '';
             $gad->barangays_name = !empty($gad->barangay) ? $gad->barangay->barangay_name : '';
             $gad->age = !empty($gad->age) ? $gad->age : '';

@@ -31,21 +31,21 @@ const routes = [
             meta: { title: 'Gad' }
           },
           {
+            path: 'gad-list/:id/edit',
+            name: 'gad_list.edit',
+            component: () => import('@cruds/GadList/Edit.vue'),
+            meta: { title: 'Gad' }
+          },
+          {
             path: 'gad-list/create',
             name: 'gad_list.create',
             component: () => import('@cruds/GadList/Create.vue'),
             meta: { title: 'Gad' }
           },
           {
-            path: 'gad-list/:barangay_id/:id',
+            path: 'gad-list/:id/:barangay_id',
             name: 'gad_list.show',
             component: () => import('@cruds/GadList/Show.vue'),
-            meta: { title: 'Gad' }
-          },
-          {
-            path: 'gad-list/:id/edit',
-            name: 'gad_list.edit',
-            component: () => import('@cruds/GadList/Edit.vue'),
             meta: { title: 'Gad' }
           },
         ]

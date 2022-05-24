@@ -40,7 +40,12 @@
                                             }"
                                         >
                                             <label>Household Entry No:</label>
-                                            <input type="text" class="form-control" :value="entry.household_no" />
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                :value="entry.household_no"
+                                                readonly
+                                            />
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -51,7 +56,12 @@
                                             }"
                                         >
                                             <label>Family Code</label>
-                                            <input type="text" class="form-control" :value="entry.family_code" />
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                @input="updateFamilyCode"
+                                                :value="entry.family_code"
+                                            />
                                         </div>
                                     </div>
 
@@ -63,7 +73,17 @@
                                             }"
                                         >
                                             <label>Relation To Main Household</label>
-                                            <input type="text" class="form-control" :value="entry.household_names" />
+                                            <v-select
+                                                class="form-control popcom-input"
+                                                name="household"
+                                                label="household_name"
+                                                :key="'household_id-field'"
+                                                :value="entry.household"
+                                                :options="lists.household"
+                                                @input="updateHousehold"
+                                                @focus="focusField('household')"
+                                                @blur="clearFocus"
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -73,11 +93,22 @@
                                         <div
                                             class="form-group bmd-form-group"
                                             :class="{
-                                                'is-focused': true
+                                                'has-items': entry.gender.length !== 0,
+                                                'is-focused': activeField == 'gender'
                                             }"
                                         >
                                             <label>Sex</label>
-                                            <input type="text" class="form-control" :value="entry.gender_name" />
+                                            <v-select
+                                                class="form-control popcom-input"
+                                                name="gender"
+                                                label="gender_name"
+                                                :key="'gender_id-field'"
+                                                :value="entry.gender"
+                                                :options="lists.gender"
+                                                @input="updateGender"
+                                                @focus="focusField('gender')"
+                                                @blur="clearFocus"
+                                            />
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -88,10 +119,16 @@
                                             }"
                                         >
                                             <label>Civil Status</label>
-                                            <input
-                                                type="text"
-                                                class="form-control"
-                                                :value="entry.civil_status_names"
+                                            <v-select
+                                                class="form-control popcom-input"
+                                                name="civil_status"
+                                                label="civil_status_name"
+                                                :key="'civil_status_id-field'"
+                                                :value="entry.civil_status"
+                                                :options="lists.civil_status"
+                                                @input="updateCivilStatus"
+                                                @focus="focusField('civil_status')"
+                                                @blur="clearFocus"
                                             />
                                         </div>
                                     </div>
@@ -102,35 +139,43 @@
                                                 'is-focused': true
                                             }"
                                         >
-                                            <label>Spouse Name</label>
+                                            <label
+                                                >Spouse Name<small> (firstname, middlename, lastname)</small></label
+                                            >
                                             <input
                                                 type="text"
                                                 class="form-control"
-                                                :value="
-                                                    entry.spouse_first_name +
-                                                    ' ' +
-                                                    entry.spouse_last_name +
-                                                    ',' +
-                                                    entry.spouse_middle_name
-                                                "
+                                                @change="inputSpouseName"
+                                                :value="`${entry.spouse_first_name || ''} ${
+                                                    entry.spouse_middle_name || ''
+                                                } ${entry.spouse_last_name || ''}`"
                                             />
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div
                                             class="form-group bmd-form-group"
                                             :class="{
                                                 'is-focused': true
                                             }"
                                         >
-                                            <label>Birthday</label>
-                                            <input type="text" class="form-control" :value="entry.birthdate" />
+                                            <label>Birthdate</label>
+                                            <datetime-picker
+                                                class="form-control"
+                                                type="text"
+                                                picker="date"
+                                                :value="entry.birthdate"
+                                                @input="updateBirthdate"
+                                                @focus="focusField('birthdate')"
+                                                @blur="clearFocus"
+                                            >
+                                            </datetime-picker>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div
                                             class="form-group bmd-form-group"
                                             :class="{
@@ -138,25 +183,38 @@
                                             }"
                                         >
                                             <label>Gender Preference</label>
-                                            <input
-                                                type="text"
-                                                class="form-control"
-                                                :value="entry.gender_preference_name"
+                                            <v-select
+                                                class="form-control popcom-input"
+                                                name="gender_preference"
+                                                label="gender_preference_name"
+                                                :key="'gender_preference_id-field'"
+                                                :value="entry.gender_preference"
+                                                :options="lists.gender_preference"
+                                                @input="updateGenderPreference"
+                                                @focus="focusField('gender_preference')"
+                                                @blur="clearFocus"
                                             />
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div
-                                            class="form-group bmd-form-group"
-                                            :class="{
-                                                'is-focused': true
-                                            }"
-                                        >
-                                            <label>Valid ID / ID Number</label>
+                                    <div class="col-md-6">
+                                        <label>Valid ID / ID Number</label>
+                                        <div class="input-group flex-nowrap mt-1">
+                                            <v-select
+                                                class="form-control popcom-input"
+                                                name="valid_id"
+                                                label="name"
+                                                :key="'valid_id-field'"
+                                                :value="entry.valid_id"
+                                                :options="lists.valid_id"
+                                                @input="updateValidID"
+                                                @focus="focusField('valid_id')"
+                                                @blur="clearFocus"
+                                            />
                                             <input
                                                 type="text"
                                                 class="form-control"
-                                                :value="entry.valid_id_names+ ' : ' + entry.id_number"
+                                                @input="updateIDNumber"
+                                                :value="entry.id_number"
                                             />
                                         </div>
                                     </div>
@@ -173,7 +231,17 @@
                                             }"
                                         >
                                             <label>Religion:</label>
-                                            <input type="text" class="form-control" :value="entry.religion" />
+                                            <v-select
+                                                class="form-control popcom-input"
+                                                name="religion"
+                                                label="religion_name"
+                                                :key="'religion_id-field'"
+                                                :value="entry.religion"
+                                                :options="lists.religion"
+                                                @input="updateReligion"
+                                                @focus="focusField('religion')"
+                                                @blur="clearFocus"
+                                            />
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -184,7 +252,17 @@
                                             }"
                                         >
                                             <label>Ethnicity:</label>
-                                            <input type="text" class="form-control" :value="entry.ethnicity" />
+                                            <v-select
+                                                class="form-control popcom-input"
+                                                name="ethnicity"
+                                                label="ethnicity_name"
+                                                :key="'ethnicity_id-field'"
+                                                :value="entry.ethnicity"
+                                                :options="lists.ethnicity"
+                                                @input="updateEthnicity"
+                                                @focus="focusField('ethnicity')"
+                                                @blur="clearFocus"
+                                            />
                                         </div>
                                     </div>
 
@@ -196,7 +274,17 @@
                                             }"
                                         >
                                             <label>Sector Member</label>
-                                            <input type="text" class="form-control" :value="entry.sector_name" />
+                                            <v-select
+                                                class="form-control popcom-input"
+                                                name="sector"
+                                                label="sector_name"
+                                                :key="'sector_id-field'"
+                                                :value="entry.sector"
+                                                :options="lists.sector"
+                                                @input="updateSector"
+                                                @focus="focusField('sector')"
+                                                @blur="clearFocus"
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -265,10 +353,16 @@
                                             }"
                                         >
                                             <label>City/Municipality</label>
-                                            <input
-                                                type="text"
-                                                class="form-control"
-                                                :value="entry.political_city_registered"
+                                             <v-select
+                                                class="form-control popcom-input"
+                                                name="political_province_registered"
+                                                label="province_name"
+                                                :key="'political_province_registered_id-field'"
+                                                :value="entry.political_province_registered"
+                                                :options="lists.political_province_registered"
+                                                @input="updatePoliticalProvinceRegistered"
+                                                @focus="focusField('political_province_registered')"
+                                                @blur="clearFocus"
                                             />
                                         </div>
                                     </div>
@@ -280,10 +374,16 @@
                                             }"
                                         >
                                             <label> Province Register</label>
-                                            <input
-                                                type="text"
-                                                class="form-control"
-                                                :value="entry.political_province_registered"
+                                             <v-select
+                                                class="form-control popcom-input"
+                                                name="political_city_registered"
+                                                label="city_name"
+                                                :key="'political_city_registered_id-field'"
+                                                :value="entry.political_city_registered"
+                                                :options="lists.political_city_registered"
+                                                @input="updatePoliticalCityRegistered"
+                                                @focus="focusField('political_city_registered')"
+                                                @blur="clearFocus"
                                             />
                                         </div>
                                     </div>
@@ -653,19 +753,19 @@
             </div>
             <div class="col-md-4">
                 <div class="card card-profile">
-                        <div>
-                            <attachment
-                                :route="getRoute('gad')"
-                                :collection-name="'resident_photo'"
-                                :media="entry.photo"
-                                :model-id="$route.params.id"
-                                :max-file-size="10"
-                                :component="'pictures'"
-                                :accept="'image/*'"
-                                @file-uploaded="insertPhotoFile"
-                                @file-removed="removePhotoFile"
-                                :max-files="1"
-                            />
+                    <div>
+                        <attachment
+                            :route="getRoute('gad')"
+                            :collection-name="'resident_photo'"
+                            :media="entry.photo"
+                            :model-id="$route.params.id"
+                            :max-file-size="10"
+                            :component="'pictures'"
+                            :accept="'image/*'"
+                            @file-uploaded="insertPhotoFile"
+                            @file-removed="removePhotoFile"
+                            :max-files="1"
+                        />
                         <!-- <div v-if="entry.images">
 
                             <a href="javascript:;">
@@ -724,6 +824,15 @@
     </div>
 </template>
 <style scoped>
+.popcom-input {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: -40px;
+    display: inline-block;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
 input[type='text'],
 select {
     width: 100%;
@@ -762,7 +871,7 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("GadListSingle", ["entry", "loading"]),
+        ...mapGetters("GadListSingle", ["entry", "loading", "lists"]),
         total_age () {
             var today = new Date();
             var birthDate = new Date(this.entry.birthdate);
@@ -790,6 +899,20 @@ export default {
         ...mapActions("GadListSingle", [
             'setEmail',
             'setMobileNumber',
+            'setGender',
+            'setFamilyCode',
+            'setHousehold',
+            'setCivilStatus',
+            'setSpouseName',
+            'setBirthdate',
+            'setGenderPreference',
+            'setValidID',
+            'setIDNumber',
+            'setReligion',
+            'setEthnicity',
+            'setSector',
+            'setPoliticalProvinceRegistered',
+            'setPoliticalCityRegistered',
             'fetchEditData',
             'insertPhotoFile',
             'removePhotoFile',
@@ -803,7 +926,7 @@ export default {
             $("#myTab li a").eq(value).tab("show");
         },
 
-        getRoute(name) {
+        getRoute (name) {
             return `${axios.defaults.baseURL}${name}/media`
         },
 
@@ -817,6 +940,62 @@ export default {
 
         updateMobileNumber (e) {
             this.setMobileNumber(e.target.value)
+        },
+
+        updateGender (e) {
+            this.setGender(e);
+        },
+
+        updateGenderPreference (e) {
+            this.setGenderPreference(e)
+        },
+
+        updateFamilyCode (e) {
+            this.setFamilyCode(e.target.value)
+        },
+
+        updateHousehold (e) {
+            this.setHousehold(e);
+        },
+
+        updateCivilStatus (e) {
+            this.setCivilStatus(e)
+        },
+
+        inputSpouseName (e) {
+            this.setSpouseName(e.target.value);
+        },
+
+        updateBirthdate (e) {
+            this.setBirthdate(e.target.value);
+        },
+
+        updateValidID (e) {
+            this.setValidID(e);
+        },
+
+        updateIDNumber (e) {
+            this.setIDNumber(e.target.value);
+        },
+
+        updateReligion (e) {
+            this.setReligion(e);
+        },
+
+        updateEthnicity (e) {
+            this.setEthnicity(e);
+        },
+
+        updateSector (e) {
+            this.setSector(e);
+        },
+
+        updatePoliticalProvinceRegistered (e) {
+            this.setPoliticalProvinceRegistered(e)
+        },
+
+        updatePoliticalCityRegistered (e) {
+            this.setPoliticalCityRegistered(e)
         },
 
         submitForm () {

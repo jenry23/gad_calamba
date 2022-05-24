@@ -357,7 +357,7 @@
                                     name="city_name"
                                     label="city_name"
                                     :key="'city_register_id-field'"
-                                    v-model="model.poltical_city_registered_id"
+                                    v-model="model.political_city_registered_id"
                                     :options="lists.city_register"
                                     @focus="focusField('city_register')"
                                     @blur="clearFocus"
@@ -377,7 +377,7 @@
                                     name="province_register"
                                     label="province_name"
                                     :key="'province_register_id-field'"
-                                    v-model="model.poltical_province_registered_id"
+                                    v-model="model.political_province_registered_id"
                                     :options="lists.province_register"
                                     @focus="focusField('province_register')"
                                     @blur="clearFocus"
@@ -431,8 +431,8 @@ export default {
                 mobile_no: '',
                 landline_number: '',
                 email: '',
-                poltical_city_registered_id: '',
-                poltical_province_registered_id: '',
+                political_city_registered_id: '',
+                political_province_registered_id: '',
                 id_number: '',
             },
             rules: {}

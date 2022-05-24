@@ -45,8 +45,8 @@ class Gad extends Model implements HasMedia
         'family_code',
         'work_location_province_id',
         'work_location_city_id',
-        'poltical_province_registered_id',
-        'poltical_city_registered_id',
+        'political_province_registered_id',
+        'political_city_registered_id',
         'no_nuclear_family_household_id',
         'no_bedrooms_id',
         'no_cr_id',
@@ -193,13 +193,13 @@ class Gad extends Model implements HasMedia
     {
         return $this->belongsTo(City::class, 'work_location_city_id');
     }
-    public function poltical_province_registered()
+    public function political_province_registered()
     {
-        return $this->belongsTo(Province::class, 'poltical_province_registered_id');
+        return $this->belongsTo(Province::class, 'political_province_registered_id');
     }
-    public function poltical_city_registered()
+    public function political_city_registered()
     {
-        return $this->belongsTo(City::class, 'poltical_city_registered_id');
+        return $this->belongsTo(City::class, 'political_city_registered_id');
     }
     public function educational_attaintment()
     {
@@ -216,6 +216,10 @@ class Gad extends Model implements HasMedia
     public function purok()
     {
         return $this->belongsTo(Purok::class, 'purok_id');
+    }
+    public function religion()
+    {
+        return $this->belongsTo(Religion::class, 'religion_id');
     }
     public function vehicles()
     {
@@ -243,7 +247,7 @@ class Gad extends Model implements HasMedia
     {
         return $this->belongsTo(Household::class, 'household_id');
     }
-    public function genders()
+    public function gender()
     {
         return $this->belongsTo(Gender::class, 'gender_id');
     }

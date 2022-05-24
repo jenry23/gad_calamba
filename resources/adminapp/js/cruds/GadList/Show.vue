@@ -83,7 +83,6 @@ td {
                                             <td style="text-transform: uppercase">
                                                 <router-link :to="{ name: 'gad_list.edit', params: { id: val.id } }">
                                                     {{ val.full_name }}
-                                                    
                                                 </router-link>
                                             </td>
                                             <td>{{ formatDate(val.birthdate) }}</td>
@@ -137,7 +136,7 @@ export default {
                 const barangay_id = this.$route.params.barangay_id;
 
                 this.resetState()
-                this.fetchShowData({barangay_id,id})
+                this.fetchShowData({id,barangay_id})
             }
         }
     },
