@@ -86,7 +86,7 @@ td {
                                                 </router-link>
                                             </td>
                                             <td>{{ formatDate(val.birthdate) }}</td>
-                                            <td>{{ val.gender_name }}</td>
+                                            <td>{{ val.gender.gender_name }}</td>
                                             <td v-if="val.no_of_years_in_calamba == new Date().getFullYear()">
                                                 Immigrant
                                             </td>

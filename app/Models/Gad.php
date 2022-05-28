@@ -64,7 +64,7 @@ class Gad extends Model implements HasMedia
         'mobile_no',
         'landline_number',
         'email',
-        'occupation',
+        'occupation_id',
         'employer',
         'last_school_attended',
         'barangay_id',
@@ -94,7 +94,7 @@ class Gad extends Model implements HasMedia
         'organization_id',
         'barangay_code',
         'block_lot_house_id',
-        'monthly_income',
+        'monthly_income_id',
         'birthdate',
         'utilities_no1',
         'utilities_no2',
@@ -211,7 +211,7 @@ class Gad extends Model implements HasMedia
     }
     public function government_assistance()
     {
-        return $this->belongsTo(GovernmentAssistance::class, 'government_educational_assistance_id');
+        return $this->belongsTo(GovernmentAssistance::class, 'government_assistance_id');
     }
     public function purok()
     {
@@ -267,6 +267,17 @@ class Gad extends Model implements HasMedia
     {
         return $this->belongsTo(HouseMake::class, 'house_make_id');
     }
+
+    public function occupation()
+    {
+        return $this->belongsTo(Occupation::class, 'occupation_id');
+    }
+
+    public function monthly_income()
+    {
+        return $this->belongsTo(MonthlyIncome::class, 'monthly_income_id');
+    }
+
     public function getBarangayNameAttribute()
     {
         return !empty($this->barangay) ? $this->barangay->barangay_name : '';

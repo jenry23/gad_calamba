@@ -7,8 +7,8 @@ function initialState () {
       house_unit: '',
       household : [],
       family_code: '',
-      work_location_province_id: '',
-      work_location_city_id: '',
+      work_location_province: [],
+      work_location_city: [],
       political_province_registered: [],
       political_city_registered: [],
       no_nuclear_family_household_id: '',
@@ -28,12 +28,12 @@ function initialState () {
       mobile_no: '',
       landline_number: '',
       email: '',
-      occupation: '',
+      occupation: [],
       employer: '',
       last_school_attended: '',
       barangay_id: '',
-      purok_id: '',
-      sitio_id: '',
+      purok: [],
+      sitio: [],
       subdivision_name: '',
       native_province_id: '',
       native_city_id: '',
@@ -45,20 +45,19 @@ function initialState () {
       civil_status: [],
       health_id: '',
       disability_id: '',
-      government_assistance_id: '',
       household_monthly_income_id: '',
       economic_status_id: '',
-      educational_attaintment_id: '',
-      educational_status_id: '',
-      government_educational_assistance_id: '',
+      educational_attaintment: [],
+      educational_status: [],
+      government_assistance: [],
       ethnicity: [],
       house_ownership_id: '',
       house_type_id: '',
       house_make_id: '',
-      organization_id: '',
+      organization: [],
       barangay_code: '',
       block_lot_house_id: '',
-      monthly_income: '',
+      monthly_income: [],
       birthdate: '',
       utilities_no1: '',
       utilities_no2: '',
@@ -97,6 +96,16 @@ function initialState () {
       religion: [],
       political_province_registered: [],
       political_city_registered: [],
+      purok: [],
+      sitio: [],
+      educational_attaintment: [],
+      educational_status: [],
+      government_assistance: [],
+      organization: [],
+      occupation: [],
+      work_location_province: [],
+      work_location_city: [],
+      monthly_income: [],
     },
     loading: false
   }
@@ -219,12 +228,64 @@ const actions = {
   setSector ({ commit }, value) {
     commit('setSector', value)
   },
+  setLastSchoolAttended ({ commit }, value) {
+    commit('setLastSchoolAttended', value)
+  },
+  setGovernmentAssistance ({ commit }, value) {
+    commit('setGovernmentAssistance', value)
+  },
+  setOrganization ({ commit }, value) {
+    commit('setOrganization', value)
+  },
+  setBuildingHouseUnit ({ commit }, value) {
+    commit('setBuildingHouseUnit', value)
+  },
   setPoliticalProvinceRegistered ({ commit }, value) {
     commit('setPoliticalProvinceRegistered', value)
   },
   setPoliticalCityRegistered ({ commit }, value) {
     commit('setPoliticalCityRegistered', value)
   },
+  setBlockNoStreet ({ commit }, value) {
+    commit('setBlockNoStreet', value)
+  },
+  setPurok ({ commit }, value) {
+    commit('setPurok', value)
+  },
+  setSitio ({ commit }, value) {
+    commit('setSitio', value)
+  },
+  setYearsInCalamba ({ commit }, value) {
+    commit('setYearsInCalamba', value)
+  },
+  setYearsInBarangay ({ commit }, value) {
+    commit('setYearsInBarangay', value)
+  },
+  setRemarks ({ commit }, value) {
+    commit('setRemarks', value)
+  },
+  setEducationalAttaintment ({ commit }, value) {
+    commit('setEducationalAttaintment', value)
+  },
+  setEducationalStatus ({ commit }, value) {
+    commit('setEducationalStatus', value)
+  },
+  setOccupation ({ commit }, value) {
+    commit('setOccupation', value)
+  },
+  setEmployer ({ commit }, value) {
+    commit('setEmployer', value)
+  },
+  setWorkLocationProvince ({ commit }, value) {
+    commit('setWorkLocationProvince', value)
+  },
+  setWorkLocationCity ({ commit }, value) {
+    commit('setWorkLocationCity', value)
+  },
+  setMonthlyIncome ({ commit }, value) {
+    commit('setMonthlyIncome', value)
+  },
+
   insertPhotoFile ({ commit }, file) {
     commit('insertPhotoFile', file)
   },
@@ -332,6 +393,60 @@ const mutations = {
   },
   setPoliticalCityRegistered (state, value) {
     state.entry.political_city_registered = value
+  },
+  setBuildingHouseUnit (state, value) {
+    const myArray = value.split(' ', 4);
+
+    state.entry.building_no = myArray[1];
+    state.entry.house_unit = myArray[3];
+  },
+  setBlockNoStreet (state, value) {
+    state.entry.block_lot_house_id = value
+  },
+  setPurok (state, value) {
+    state.entry.purok = value
+  },
+  setSitio (state, value) {
+    state.entry.sitio = value
+  },
+  setYearsInCalamba (state, value) {
+    state.entry.no_of_years_in_calamba = value
+  },
+  setYearsInBarangay (state, value) {
+    state.entry.barangay_residence_year = value
+  },
+  setRemarks (state, value) {
+    state.entry.remarks = value
+  },
+  setEducationalStatus (state, value) {
+    state.entry.educational_status = value
+  },
+  setEducationalAttaintment (state, value) {
+    state.entry.educational_attaintment = value
+  },
+  setLastSchoolAttended (state, value) {
+    state.entry.last_school_attended = value
+  },
+  setGovernmentAssistance (state, value) {
+    state.entry.government_assistance = value
+  },
+  setOrganization (state, value) {
+    state.entry.organization = value
+  },
+  setOccupation (state, value) {
+    state.entry.occupation = value
+  },
+  setEmployer (state, value) {
+    state.entry.employer = value
+  },
+  setWorkLocationProvince (state, value) {
+    state.entry.work_location_province = value
+  },
+  setWorkLocationCity (state, value) {
+    state.entry.work_location_city = value
+  },
+  setMonthlyIncome (state, value) {
+    state.entry.monthly_income = value
   },
   insertPhotoFile (state, file) {
     state.entry.photo.push(file)

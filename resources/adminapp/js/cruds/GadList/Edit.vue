@@ -1,8 +1,7 @@
-
 <template>
     <div class="row">
         <form @submit.prevent="submitForm" class="form-group row">
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <select class="custom-select my-1 mr-sm-2" @change="switchSelect($event)">
                     <option value="0">Personal Information</option>
                     <option value="1">Residential Information</option>
@@ -353,15 +352,15 @@
                                             }"
                                         >
                                             <label>City/Municipality</label>
-                                             <v-select
+                                            <v-select
                                                 class="form-control popcom-input"
-                                                name="political_province_registered"
-                                                label="province_name"
-                                                :key="'political_province_registered_id-field'"
-                                                :value="entry.political_province_registered"
-                                                :options="lists.political_province_registered"
-                                                @input="updatePoliticalProvinceRegistered"
-                                                @focus="focusField('political_province_registered')"
+                                                name="political_city_registered"
+                                                label="city_name"
+                                                :key="'political_city_registered_id-field'"
+                                                :value="entry.political_city_registered"
+                                                :options="lists.political_city_registered"
+                                                @input="updatePoliticalCityRegistered"
+                                                @focus="focusField('political_city_registered')"
                                                 @blur="clearFocus"
                                             />
                                         </div>
@@ -374,15 +373,15 @@
                                             }"
                                         >
                                             <label> Province Register</label>
-                                             <v-select
+                                            <v-select
                                                 class="form-control popcom-input"
-                                                name="political_city_registered"
-                                                label="city_name"
-                                                :key="'political_city_registered_id-field'"
-                                                :value="entry.political_city_registered"
-                                                :options="lists.political_city_registered"
-                                                @input="updatePoliticalCityRegistered"
-                                                @focus="focusField('political_city_registered')"
+                                                name="political_province_registered"
+                                                label="province_name"
+                                                :key="'political_province_registered_id-field'"
+                                                :value="entry.political_province_registered"
+                                                :options="lists.political_province_registered"
+                                                @input="updatePoliticalProvinceRegistered"
+                                                @focus="focusField('political_province_registered')"
                                                 @blur="clearFocus"
                                             />
                                         </div>
@@ -411,9 +410,10 @@
                                             <input
                                                 type="text"
                                                 class="form-control"
-                                                :value="
-                                                    'BLDG ' + entry.building_no + ' ' + 'UNIT ' + entry.building_no
-                                                "
+                                                @change="updateBuildingHouseUnit"
+                                                :value="`BLDG ${entry.building_no || ''} UNIT ${
+                                                    entry.house_unit || ''
+                                                }`"
                                             />
                                         </div>
                                     </div>
@@ -428,6 +428,7 @@
                                             <input
                                                 type="text"
                                                 class="form-control"
+                                                @input="updateBlockNoStreet"
                                                 :value="entry.block_lot_house_id"
                                             />
                                         </div>
@@ -443,7 +444,17 @@
                                             }"
                                         >
                                             <label>Purok</label>
-                                            <input type="text" class="form-control" :value="entry.purok_names" />
+                                            <v-select
+                                                class="form-control popcom-input"
+                                                name="purok"
+                                                label="purok_name"
+                                                :key="'purok_id-field'"
+                                                :value="entry.purok"
+                                                :options="lists.purok"
+                                                @input="updatePurok"
+                                                @focus="focusField('purok')"
+                                                @blur="clearFocus"
+                                            />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -454,7 +465,17 @@
                                             }"
                                         >
                                             <label>Subdivsion / Sitio</label>
-                                            <input type="text" class="form-control" :value="entry.sitio_names" />
+                                            <v-select
+                                                class="form-control popcom-input"
+                                                name="sitio"
+                                                label="sitio_name"
+                                                :key="'sitio_id-field'"
+                                                :value="entry.sitio"
+                                                :options="lists.sitio"
+                                                @input="updateSitio"
+                                                @focus="focusField('sitio')"
+                                                @blur="clearFocus"
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -470,22 +491,32 @@
                                         <tr>
                                             <td>CALAMBA</td>
                                             <td>
-                                                {{ entry.no_of_years_in_calamba }}
+                                                <datetime-picker
+                                                    class="form-control popcom-input"
+                                                    type="text"
+                                                    picker="date"
+                                                    @input="updateYearsInCalamba"
+                                                    :value="entry.no_of_years_in_calamba"
+                                                ></datetime-picker>
                                             </td>
-                                            <td v-if="entry.no_of_years_in_calamba == new Date().getFullYear()">
-                                                Immigrant
+                                            <td>
+                                                {{ this.calamba_residence }}
                                             </td>
-                                            <td v-else>Native</td>
                                         </tr>
                                         <tr>
                                             <td>BARANGAY</td>
                                             <td>
-                                                {{ entry.barangay_residence_year }}
+                                                <datetime-picker
+                                                    class="form-control popcom-input"
+                                                    type="text"
+                                                    picker="date"
+                                                    @input="updateYearsInBarangay"
+                                                    :value="entry.barangay_residence_year"
+                                                ></datetime-picker>
                                             </td>
-                                            <td v-if="entry.barangay_residence_year == new Date().getFullYear()">
-                                                Immigrant
+                                            <td>
+                                                {{ this.barangay_residence }}
                                             </td>
-                                            <td v-else>Native</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -496,9 +527,13 @@
                                     }"
                                 >
                                     <label> Remarks</label>
-                                    <textarea class="form-control" rows="5" v-bind:value="entry.remarks"></textarea>
+                                    <textarea
+                                        class="form-control"
+                                        rows="5"
+                                        @change="updateRemarks"
+                                        :value="entry.remarks"
+                                    ></textarea>
                                 </div>
-                                <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
                             </div>
                         </div>
                     </div>
@@ -519,11 +554,17 @@
                                             }"
                                         >
                                             <label>Highest Educational Attaintment</label>
-                                            <input
-                                                type="text"
-                                                class="form-control"
-                                                :value="entry.educational_attaintment_name"
-                                            />
+                                            <v-select
+                                                class="form-control popcom-input"
+                                                name="educational_attaintment"
+                                                label="educational_attaintment_name"
+                                                :key="'educational_attaintment_id-field'"
+                                                :value="entry.educational_attaintment"
+                                                :options="lists.educational_attaintment"
+                                                @input="updateEducationalAttaintment"
+                                                @focus="focusField('educational_attaintment')"
+                                                @blur="clearFocus"
+                                                />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -534,10 +575,16 @@
                                             }"
                                         >
                                             <label>Educational Status</label>
-                                            <input
-                                                type="text"
-                                                class="form-control"
-                                                :value="entry.educational_status_name"
+                                            <v-select
+                                                class="form-control popcom-input"
+                                                name="educational_status"
+                                                label="educational_status_name"
+                                                :key="'educational_status_id-field'"
+                                                :value="entry.educational_status"
+                                                :options="lists.educational_status"
+                                                @input="updateEducationalStatus"
+                                                @focus="focusField('educational_status')"
+                                                @blur="clearFocus"
                                             />
                                         </div>
                                     </div>
@@ -555,6 +602,7 @@
                                             <input
                                                 type="text"
                                                 class="form-control"
+                                                @input="updateLastSchoolAttended"
                                                 :value="entry.last_school_attended"
                                             />
                                         </div>
@@ -570,10 +618,16 @@
                                             }"
                                         >
                                             <label>Government Educational Assistance</label>
-                                            <input
-                                                type="text"
-                                                class="form-control"
-                                                :value="entry.government_assistance_name"
+                                            <v-select
+                                                class="form-control popcom-input"
+                                                name="government_assistance"
+                                                label="government_assistance_name"
+                                                :key="'government_assistance_id-field'"
+                                                :value="entry.government_assistance"
+                                                :options="lists.government_assistance"
+                                                @input="updateGovernmentAssistance"
+                                                @focus="focusField('government_assistance')"
+                                                @blur="clearFocus"
                                             />
                                         </div>
                                     </div>
@@ -585,10 +639,16 @@
                                             }"
                                         >
                                             <label>Organizations</label>
-                                            <input
-                                                type="text"
-                                                class="form-control"
-                                                :value="entry.organization_name"
+                                             <v-select
+                                                class="form-control popcom-input"
+                                                name="organization"
+                                                label="organization_name"
+                                                :key="'organization_id-field'"
+                                                :value="entry.organization"
+                                                :options="lists.organization"
+                                                @input="updateOrganization"
+                                                @focus="focusField('organization')"
+                                                @blur="clearFocus"
                                             />
                                         </div>
                                     </div>
@@ -605,7 +665,17 @@
                                             }"
                                         >
                                             <label>Occupation</label>
-                                            <input type="text" class="form-control" :value="entry.occupation" />
+                                            <v-select
+                                                class="form-control popcom-input"
+                                                name="occupation"
+                                                label="occupation_name"
+                                                :key="'occupation_id-field'"
+                                                :value="entry.occupation"
+                                                :options="lists.occupation"
+                                                @input="updateOccupation"
+                                                @focus="focusField('occupation')"
+                                                @blur="clearFocus"
+                                            />
                                         </div>
                                     </div>
 
@@ -617,20 +687,56 @@
                                             }"
                                         >
                                             <label>Employer</label>
-                                            <input type="text" class="form-control" :value="entry.employer" />
+                                            <input type="text"
+                                            class="form-control"
+                                            @input="updateEmployer"
+                                            :value="entry.employer"
+                                             />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-3">
                                         <div
                                             class="form-group bmd-form-group"
                                             :class="{
                                                 'is-focused': true
                                             }"
                                         >
-                                            <label>Work Location (City, Province)</label>
-                                            <input type="text" class="form-control" :value="entry.work_locations" />
+                                            <label>Work Location City</label>
+                                              <v-select
+                                                class="form-control popcom-input"
+                                                name="work_location_city"
+                                                label="city_name"
+                                                :key="'work_location_city_id-field'"
+                                                :value="entry.work_location_city"
+                                                :options="lists.work_location_city"
+                                                @input="updateWorkLocationCity"
+                                                @focus="focusField('work_location_city')"
+                                                @blur="clearFocus"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div
+                                            class="form-group bmd-form-group"
+                                            :class="{
+                                                'is-focused': true
+                                            }"
+                                        >
+                                            <label>Work Location Province</label>
+                                            <v-select
+                                                class="form-control popcom-input"
+                                                name="work_location_province"
+                                                label="province_name"
+                                                :key="'work_location_province_id-field'"
+                                                :value="entry.work_location_province"
+                                                :options="lists.work_location_province"
+                                                @input="updateWorkLocationProvince"
+                                                @focus="focusField('work_location_province')"
+                                                @blur="clearFocus"
+                                            />
                                         </div>
                                     </div>
 
@@ -640,9 +746,18 @@
                                             :class="{
                                                 'is-focused': true
                                             }"
-                                        >
-                                            <label>Monthly Income (Econimic Status)</label>
-                                            <input type="text" class="form-control" :value="entry.monthly_income" />
+                                        >   <label>Monthly Income (Econimic Status)</label>
+                                            <v-select
+                                                class="form-control popcom-input"
+                                                name="monthly_income"
+                                                label="monthly_income_name"
+                                                :key="'monthly_income_id-field'"
+                                                :value="entry.monthly_income"
+                                                :options="lists.monthly_income"
+                                                @input="updateMonthlyIncome"
+                                                @focus="focusField('monthly_income')"
+                                                @blur="clearFocus"
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -751,7 +866,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card card-profile">
                     <div>
                         <attachment
@@ -803,8 +918,9 @@
                         </div>
                         <br />
                         <p class="card-description">
-                            Don't be scared of the truth because we need to restart the human foundation in truth And
-                            I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                            Ang Lungsod ng Calamba o sa simpleng, Calamba ay isang unang klaseng lungsod sa lalawigan
+                            ng Laguna, Pilipinas. Ito ay nasa layong 54 kilometro sa timog ng Maynila, at isang oras
+                            ang layo kung sasakay ng bus
                         </p>
                         <vue-button-spinner
                             class="btn-primary"
@@ -853,6 +969,10 @@ hr {
     border: 0;
     border-top: 1px solid rgba(0, 0, 0.1);
 }
+
+.vs__search {
+    width: 400px;
+}
 </style>
 <script>
 import { mapGetters, mapActions } from "vuex";
@@ -882,6 +1002,29 @@ export default {
             }
             return age;
         },
+        calamba_residence () {
+            var date = this.entry.no_of_years_in_calamba;
+            var current_date = date.substr(date.length - 4);
+            if (current_date > new Date().getFullYear() - 1) {
+                return "Immigrant";
+            } else if (current_date < new Date().getFullYear() - 2) {
+                return "Native";
+            } else {
+                return "Transient";
+            }
+        },
+        barangay_residence () {
+            var date = this.entry.barangay_residence_year;
+            var current_date = date.substr(date.length - 4);
+            if (current_date > new Date().getFullYear() - 1) {
+                return "Immigrant";
+            } else if (current_date < new Date().getFullYear() - 2) {
+                return "Native";
+            } else {
+                return "Transient";
+            }
+        },
+
     },
     beforeDestroy () {
         this.resetState();
@@ -895,6 +1038,7 @@ export default {
             },
         },
     },
+
     methods: {
         ...mapActions("GadListSingle", [
             'setEmail',
@@ -913,9 +1057,26 @@ export default {
             'setSector',
             'setPoliticalProvinceRegistered',
             'setPoliticalCityRegistered',
+            'setBuildingHouseUnit',
+            'setBlockNoStreet',
+            'setSitio',
+            'setPurok',
+            'setYearsInCalamba',
+            'setYearsInBarangay',
+            'setEducationalAttaintment',
+            'setEducationalStatus',
+            'setLastSchoolAttended',
+            'setGovernmentAssistance',
+            'setOrganization',
+            'setOccupation',
+            'setEmployer',
+            'setWorkLocationProvince',
+            'setWorkLocationCity',
+            'setMonthlyIncome',
             'fetchEditData',
             'insertPhotoFile',
             'removePhotoFile',
+            'setRemarks',
             'resetState',
             'setLandlineNumber',
             'setTitle',
@@ -996,6 +1157,74 @@ export default {
 
         updatePoliticalCityRegistered (e) {
             this.setPoliticalCityRegistered(e)
+        },
+
+        updateBuildingHouseUnit (e) {
+            this.setBuildingHouseUnit(e.target.value)
+        },
+
+        updateBlockNoStreet (e) {
+            this.setBlockNoStreet(e.target.value)
+        },
+
+        updatePurok (e) {
+            this.setPurok(e);
+        },
+
+        updateSitio (e) {
+            this.setSitio(e)
+        },
+
+        updateYearsInCalamba (e) {
+            this.setYearsInCalamba(e.target.value);
+        },
+
+        updateYearsInBarangay (e) {
+            this.setYearsInBarangay(e.target.value);
+        },
+
+        updateRemarks (e) {
+            this.setRemarks(e.target.value);
+        },
+
+        updateEducationalAttaintment (e) {
+            this.setEducationalAttaintment(e)
+        },
+
+        updateEducationalStatus (e) {
+            this.setEducationalStatus(e)
+        },
+
+        updateLastSchoolAttended (e) {
+            this.setLastSchoolAttended(e.target.value)
+        },
+
+        updateGovernmentAssistance (e) {
+            this.setGovernmentAssistance(e)
+        },
+
+        updateOrganization (e) {
+            this.setOrganization(e)
+        },
+
+        updateOccupation (e) {
+            this.setOccupation(e)
+        },
+
+        updateEmployer (e) {
+            this.setEmployer(e.target.value)
+        },
+
+        updateWorkLocationProvince(e) {
+            this.setWorkLocationProvince(e)
+        },
+
+        updateWorkLocationCity (e) {
+            this.setWorkLocationCity(e)
+        },
+
+        updateMonthlyIncome (e) {
+            this.setMonthlyIncome(e)
         },
 
         submitForm () {
