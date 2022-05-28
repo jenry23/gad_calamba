@@ -182,7 +182,6 @@ class ReportsApiController extends Controller
             $gad->barangays_name = !empty($gad->barangay) ? $gad->barangay->barangay_name : '';
             $gad->age = !empty($gad->age) ? $gad->age : '';
             $gad->ethnicity_name = !empty($gad->ethnicity) ? $gad->ethnicity->ethnicity_name : '';
-            $gad->birthdate = !empty($gad->birthdate) ? Carbon::parse($gad->birthdate)->format('d F Y') : '';
             $gad->no_of_years_in_calamba = !empty($gad->no_of_years_in_calamba) ? Carbon::parse($gad->no_of_years_in_calamba)->format('d F Y') : '';
             $gad->barangay_residence_year = !empty($gad->barangay_residence_year) ? Carbon::parse($gad->barangay_residence_year)->format('d F Y') : '';
             $gad->household_names = !empty($gad->household) ? $gad->household->household_name : '';
