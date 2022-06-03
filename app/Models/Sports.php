@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use \DateTimeInterface;
 
-class Ethnicity extends Model
+class Sports extends Model
 {
     use HasAdvancedFilter, SoftDeletes, HasFactory;
 
-    public $table = 'ethnicity';
+    public $table = 'sports';
 
     protected $orderable = [
         'id',
@@ -29,8 +29,7 @@ class Ethnicity extends Model
     ];
 
     protected $fillable = [
-        'ethnicity_name',
-        'description',
+        'sports_name',
         'created_at',
         'updated_at',
         'deleted_at'
@@ -39,10 +38,5 @@ class Ethnicity extends Model
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
-    }
-
-    public function contents()
-    {
-        return $this->morphOne(GadItemDetails::class, 'item');
     }
 }

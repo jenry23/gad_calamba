@@ -53,6 +53,10 @@ td {
                                             <th><b>Purok</b></th>
                                             <td>{{ entry.purok_names }}</td>
                                         </tr>
+                                        <tr>
+                                            <th scope="col"><b>Subdivsion / Sitio</b></th>
+                                            <td>{{ entry.sitio_name }}</td>
+                                        </tr>
                                     </table>
                                 </div>
                             </div>
@@ -77,15 +81,15 @@ td {
                                     </thead>
                                     <tbody>
                                         <tr v-for="val in lists" :key="val.id">
-                                            <td>{{val.gad_id}}</td>
-                                            <td>{{val.family_code}}</td>
+                                            <td>{{ val.gad_id }}</td>
+                                            <td>{{ val.family_code }}</td>
                                             <td>{{ val.household_names }}</td>
                                             <td style="text-transform: uppercase">
                                                 <router-link :to="{ name: 'gad_list.edit', params: { id: val.id } }">
                                                     {{ val.full_name }}
                                                 </router-link>
                                             </td>
-                                            <td>{{ formatDate(val.birthdate) }}</td>
+                                            <td>{{ formatDate(val.birth_date) }}</td>
                                             <td>{{ val.gender.gender_name }}</td>
                                             <td v-if="val.no_of_years_in_calamba == new Date().getFullYear()">
                                                 Immigrant
@@ -99,11 +103,11 @@ td {
                     </div>
                 </div>
             </div>
-                            <select class="custom-select my-1 mr-sm-2">
-                    <option value="0">Family Information</option>
-                    <option value="1">Address and Residential Information</option>
-                    <option value="2">Others Information</option>
-                </select>
+            <select class="custom-select my-1 mr-sm-2">
+                <option value="0">Family Information</option>
+                <option value="1">Address and Residential Information</option>
+                <option value="2">Others Information</option>
+            </select>
         </div>
     </div>
 </template>
@@ -136,7 +140,7 @@ export default {
                 const barangay_id = this.$route.params.barangay_id;
 
                 this.resetState()
-                this.fetchShowData({id,barangay_id})
+                this.fetchShowData({ id, barangay_id })
             }
         }
     },

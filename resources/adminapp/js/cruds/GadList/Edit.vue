@@ -6,7 +6,10 @@
                     <option value="0">Personal Information</option>
                     <option value="1">Residential Information</option>
                     <option value="2">Educational Information / Employee Information</option>
-                    <option value="3">Other Medical Information</option>
+                    <option value="3">Medical Information</option>
+                    <option value="4">Skills Hobbies</option>
+                    <option value="5">House Type and Components Information</option>
+                    <option value="6">Survey</option>
                 </select>
                 <ul class="nav nav-tabs d-none" id="myTab" role="tablist">
                     <li class="nav-item">
@@ -20,6 +23,15 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#health" role="tab">health</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#skills" role="tab">skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#housetype" role="tab">housetype</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#survey" role="tab">survey</a>
                     </li>
                 </ul>
                 <div class="tab-content">
@@ -86,14 +98,12 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div
                                             class="form-group bmd-form-group"
                                             :class="{
-                                                'has-items': entry.gender.length !== 0,
-                                                'is-focused': activeField == 'gender'
+                                                'is-focused': true
                                             }"
                                         >
                                             <label>Sex</label>
@@ -166,7 +176,7 @@
                                                 class="form-control"
                                                 type="text"
                                                 picker="date"
-                                                :value="entry.birthdate"
+                                                :value="entry.birth_date"
                                                 @input="updateBirthdate"
                                                 @focus="focusField('birthdate')"
                                                 @blur="clearFocus"
@@ -230,6 +240,7 @@
                                             }"
                                         >
                                             <label>Religion:</label>
+
                                             <v-select
                                                 class="form-control popcom-input"
                                                 name="religion"
@@ -243,7 +254,7 @@
                                             />
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div
                                             class="form-group bmd-form-group"
                                             :class="{
@@ -265,7 +276,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-5">
                                         <div
                                             class="form-group bmd-form-group"
                                             :class="{
@@ -280,6 +291,7 @@
                                                 :key="'sector_id-field'"
                                                 :value="entry.sector"
                                                 :options="lists.sector"
+                                                multiple
                                                 @input="updateSector"
                                                 @focus="focusField('sector')"
                                                 @blur="clearFocus"
@@ -341,7 +353,7 @@
                                 <hr />
                                 <div class="line"></div>
                                 <h4 style="text-transform: uppercase">
-                                    <b>Political Info</b>
+                                    <b>Political Information <small>(Registered)</small></b>
                                 </h4>
                                 <div class="row">
                                     <div class="col-md-6">
@@ -383,6 +395,40 @@
                                                 @input="updatePoliticalProvinceRegistered"
                                                 @focus="focusField('political_province_registered')"
                                                 @blur="clearFocus"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div
+                                            class="form-group bmd-form-group"
+                                            :class="{
+                                                'is-focused': true
+                                            }"
+                                        >
+                                            <label>Barangay Polling Place</label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                :value="entry.political_brgy_registered"
+                                                @input="updatePoliticalBarangay"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div
+                                            class="form-group bmd-form-group"
+                                            :class="{
+                                                'is-focused': true
+                                            }"
+                                        >
+                                            <label>Precinct No.</label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                :value="entry.political_precinct_no"
+                                                @input="updatePoliticalPrecintNumber"
                                             />
                                         </div>
                                     </div>
@@ -564,7 +610,7 @@
                                                 @input="updateEducationalAttaintment"
                                                 @focus="focusField('educational_attaintment')"
                                                 @blur="clearFocus"
-                                                />
+                                            />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -639,7 +685,7 @@
                                             }"
                                         >
                                             <label>Organizations</label>
-                                             <v-select
+                                            <v-select
                                                 class="form-control popcom-input"
                                                 name="organization"
                                                 label="organization_name"
@@ -687,11 +733,12 @@
                                             }"
                                         >
                                             <label>Employer</label>
-                                            <input type="text"
-                                            class="form-control"
-                                            @input="updateEmployer"
-                                            :value="entry.employer"
-                                             />
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                @input="updateEmployer"
+                                                :value="entry.employer"
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -704,7 +751,7 @@
                                             }"
                                         >
                                             <label>Work Location City</label>
-                                              <v-select
+                                            <v-select
                                                 class="form-control popcom-input"
                                                 name="work_location_city"
                                                 label="city_name"
@@ -746,7 +793,8 @@
                                             :class="{
                                                 'is-focused': true
                                             }"
-                                        >   <label>Monthly Income (Econimic Status)</label>
+                                        >
+                                            <label>Monthly Income (Econimic Status)</label>
                                             <v-select
                                                 class="form-control popcom-input"
                                                 name="monthly_income"
@@ -822,7 +870,7 @@
                                         <label>Pregnancy Age</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" :value="entry.pegnacy_age" />
+                                        <input type="text" class="form-control" :value="entry.pregnancy_age" />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -830,7 +878,7 @@
                                         <label>With Prental Check-up</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" :value="entry.with_prental" />
+                                        <input type="text" class="form-control" :value="entry.prental_checkup" />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -838,7 +886,7 @@
                                         <label>With Postpartum Check-up</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" :value="entry.with_postpartum" />
+                                        <input type="text" class="form-control" :value="entry.postnatal_checkup" />
                                     </div>
                                 </div>
                                 <br />
@@ -846,6 +894,7 @@
                                 <table class="table table-bordered">
                                     <thead class="black text-white" style="background-color: #462066">
                                         <tr>
+                                            <th scope="col">Type</th>
                                             <th scope="col">Brand</th>
                                             <th scope="col">Date</th>
                                         </tr>
@@ -853,14 +902,831 @@
                                     <tbody>
                                         <tr>
                                             <td>1st Dose</td>
-                                            <td></td>
+                                            <td>{{ entry.brand1 }}</td>
+                                            <td>{{ entry.first_date_vaccination }}</td>
                                         </tr>
                                         <tr>
                                             <td>2nd Dose</td>
+                                            <td>{{ entry.brand2 }}</td>
+                                            <td>{{ entry.second_date_vaccination }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Booster Shot</td>
+                                            <td></td>
                                             <td></td>
                                         </tr>
                                     </tbody>
                                 </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="skills">
+                        <div class="card">
+                            <div class="card-header card-header-primary">
+                                <h4 class="card-title">Skills Hobbies</h4>
+                                <p class="card-category">Complete your profile</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div
+                                            class="form-group bmd-form-group"
+                                            :class="{
+                                                'is-focused': true
+                                            }"
+                                        >
+                                            <label>Soft Skills</label>
+                                            <v-select
+                                                class="form-control popcom-input"
+                                                name="soft_skill"
+                                                label="soft_skill_name"
+                                                :key="'soft_skill_id-field'"
+                                                :value="entry.soft_skill"
+                                                :options="lists.soft_skill"
+                                                multiple
+                                                @input="updateSoftSkills"
+                                                @focus="focusField('soft_skill')"
+                                                @blur="clearFocus"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div
+                                            class="form-group bmd-form-group"
+                                            :class="{
+                                                'is-focused': true
+                                            }"
+                                        >
+                                            <label>Hard Skills</label>
+                                            <v-select
+                                                class="form-control popcom-input"
+                                                name="hard_skill"
+                                                label="hard_skill_name"
+                                                :key="'hard_skill_id-field'"
+                                                :value="entry.hard_skill"
+                                                :options="lists.hard_skill"
+                                                multiple
+                                                @input="updateHardSkill"
+                                                @focus="focusField('hard_skill')"
+                                                @blur="clearFocus"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div
+                                            class="form-group bmd-form-group"
+                                            :class="{
+                                                'is-focused': true
+                                            }"
+                                        >
+                                            <label>Hobbies</label>
+                                            <v-select
+                                                class="form-control popcom-input"
+                                                name="hobbies"
+                                                label="hobbies_name"
+                                                :key="'hobbies_id-field'"
+                                                :value="entry.hobbies"
+                                                :options="lists.hobbies"
+                                                multiple
+                                                @input="updateHobbies"
+                                                @focus="focusField('hobbies')"
+                                                @blur="clearFocus"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div
+                                            class="form-group bmd-form-group"
+                                            :class="{
+                                                'is-focused': true
+                                            }"
+                                        >
+                                            <label>Sports</label>
+                                            <v-select
+                                                class="form-control popcom-input"
+                                                name="sports"
+                                                label="sports_name"
+                                                :key="'sports_id-field'"
+                                                :value="entry.sports"
+                                                :options="lists.sports"
+                                                multiple
+                                                @input="updateSports"
+                                                @focus="focusField('sports')"
+                                                @blur="clearFocus"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="housetype">
+                        <div class="card">
+                            <div class="card-header card-header-primary">
+                                <h4 class="card-title">House Type and Components Information</h4>
+                                <p class="card-category">Complete your profile</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div
+                                            class="form-group bmd-form-group"
+                                            :class="{
+                                                'is-focused': true
+                                            }"
+                                        >
+                                            <label>House Ownership</label>
+                                            <v-select
+                                                class="form-control popcom-input"
+                                                name="house_ownership"
+                                                label="house_ownership_name"
+                                                :key="'house_ownership_id-field'"
+                                                :value="entry.house_ownership"
+                                                :options="lists.house_ownership"
+                                                @input="updateHouseOwnership"
+                                                @focus="focusField('house_ownership')"
+                                                @blur="clearFocus"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div
+                                            class="form-group bmd-form-group"
+                                            :class="{
+                                                'is-focused': true
+                                            }"
+                                        >
+                                            <label>House Type</label>
+                                            <v-select
+                                                class="form-control popcom-input"
+                                                name="house_type"
+                                                label="house_type_name"
+                                                :key="'house_type_id-field'"
+                                                :value="entry.house_type"
+                                                :options="lists.house_type"
+                                                @input="updateHouseType"
+                                                @focus="focusField('house_type')"
+                                                @blur="clearFocus"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div
+                                            class="form-group bmd-form-group"
+                                            :class="{
+                                                'is-focused': true
+                                            }"
+                                        >
+                                            <label>House Make</label>
+                                            <v-select
+                                                class="form-control popcom-input"
+                                                name="house_make"
+                                                label="house_make_name"
+                                                :key="'house_make_id-field'"
+                                                :value="entry.house_make"
+                                                :options="lists.house_make"
+                                                @input="updateHouseMake"
+                                                @focus="focusField('house_make')"
+                                                @blur="clearFocus"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div
+                                            class="form-group bmd-form-group"
+                                            :class="{
+                                                'is-focused': true
+                                            }"
+                                        >
+                                            <label>Number of Nuclear Family in Household</label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                @input="updateNuclearFamilyHousehold"
+                                                :value="entry.no_nuclear_family_household_id"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div
+                                            class="form-group bmd-form-group"
+                                            :class="{
+                                                'is-focused': true
+                                            }"
+                                        >
+                                            <label>Number of Bedrooms</label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                @input="updateBedRooms"
+                                                :value="entry.no_bedrooms_id"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div
+                                            class="form-group bmd-form-group"
+                                            :class="{
+                                                'is-focused': true
+                                            }"
+                                        >
+                                            <label>Number of CRs</label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                @input="updateCRID"
+                                                :value="entry.no_cr_id"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div
+                                            class="form-group bmd-form-group"
+                                            :class="{
+                                                'is-focused': true
+                                            }"
+                                        >
+                                            <label>Utilities</label>
+                                            <input type="text" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div
+                                            class="form-group bmd-form-group"
+                                            :class="{
+                                                'is-focused': true
+                                            }"
+                                        >
+                                            <label>Appliances</label>
+                                            <input type="text" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div
+                                            class="form-group bmd-form-group"
+                                            :class="{
+                                                'is-focused': true
+                                            }"
+                                        >
+                                            <label>Vehicle</label>
+                                            <input type="text" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="survey">
+                        <div class="card">
+                            <div class="card-header card-header-info">
+                                <h4 class="card-title">Survey</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="mt-3">
+                                    <label
+                                        >1. Do you own or amortize this housing unit occupied by your household or do
+                                        you rent it, do you occupy it rent-free with consent of owner or rent-free
+                                        without consent of owner</label
+                                    >
+                                    <div class="form-check">
+                                        <input
+                                            class="form-radio"
+                                            type="radio"
+                                            name="flexRadioDefault"
+                                            id="flexRadioDefault1"
+                                        />
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Rent-free without consent of owner
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input
+                                            class="form-radio"
+                                            type="radio"
+                                            name="flexRadioDefault"
+                                            id="flexRadioDefault1"
+                                        />
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Rent-free with consent of owner
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input
+                                            class="form-radio"
+                                            type="radio"
+                                            name="flexRadioDefault"
+                                            id="flexRadioDefault1"
+                                        />
+                                        <label class="form-check-label" for="flexRadioDefault1"> Rented </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input
+                                            class="form-radio"
+                                            type="radio"
+                                            name="flexRadioDefault"
+                                            id="flexRadioDefault1"
+                                        />
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Owned/being amportized
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <label
+                                        >2. Do you own or amortize this lot occupied by your household or do you rent
+                                        it, do you occupy it rent-free with consent of owner or rent-free without
+                                        consent of owner</label
+                                    >
+                                    <div class="form-check">
+                                        <input
+                                            class="form-radio"
+                                            type="radio"
+                                            name="flexRadioDefault"
+                                            id="flexRadioDefault1"
+                                        />
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Rent-free without consent of owner
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input
+                                            class="form-radio"
+                                            type="radio"
+                                            name="flexRadioDefault"
+                                            id="flexRadioDefault1"
+                                        />
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Rent-free with consent of owner
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input
+                                            class="form-radio"
+                                            type="radio"
+                                            name="flexRadioDefault"
+                                            id="flexRadioDefault1"
+                                        />
+                                        <label class="form-check-label" for="flexRadioDefault1"> Rented </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input
+                                            class="form-radio"
+                                            type="radio"
+                                            name="flexRadioDefault"
+                                            id="flexRadioDefault1"
+                                        />
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Owned/being amportized
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="mt-3">
+                                    <label>3. What type of fuel does this household use for lighting?</label>
+                                    <br />
+                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
+                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox1" />
+                                        <label
+                                            class="custom-control-label pmd-checkbox-ripple-effect"
+                                            for="checkbox1"
+                                        >
+                                            None
+                                        </label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
+                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
+                                        <label
+                                            class="custom-control-label pmd-checkbox-ripple-effect"
+                                            for="checkbox2"
+                                        >
+                                            Wood
+                                        </label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
+                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
+                                        <label
+                                            class="custom-control-label pmd-checkbox-ripple-effect"
+                                            for="checkbox2"
+                                        >
+                                            Charcoal
+                                        </label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
+                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
+                                        <label
+                                            class="custom-control-label pmd-checkbox-ripple-effect"
+                                            for="checkbox2"
+                                        >
+                                            Liquefied petroleum gas (LPG)
+                                        </label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
+                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
+                                        <label
+                                            class="custom-control-label pmd-checkbox-ripple-effect"
+                                            for="checkbox2"
+                                        >
+                                            Koresene (gaas)
+                                        </label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
+                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
+                                        <label
+                                            class="custom-control-label pmd-checkbox-ripple-effect"
+                                            for="checkbox2"
+                                        >
+                                            Electricity
+                                        </label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
+                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
+                                        <label
+                                            class="custom-control-label pmd-checkbox-ripple-effect"
+                                            for="checkbox2"
+                                        >
+                                            Others, please specific ____________
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="mt-3">
+                                    <label
+                                        >4. What kind of fuel does this household use most of the time for cooking
+                                        ?</label
+                                    >
+                                    <br />
+                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
+                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox1" />
+                                        <label
+                                            class="custom-control-label pmd-checkbox-ripple-effect"
+                                            for="checkbox1"
+                                        >
+                                            None
+                                        </label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
+                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
+                                        <label
+                                            class="custom-control-label pmd-checkbox-ripple-effect"
+                                            for="checkbox2"
+                                        >
+                                            Wood
+                                        </label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
+                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
+                                        <label
+                                            class="custom-control-label pmd-checkbox-ripple-effect"
+                                            for="checkbox2"
+                                        >
+                                            Charcoal
+                                        </label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
+                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
+                                        <label
+                                            class="custom-control-label pmd-checkbox-ripple-effect"
+                                            for="checkbox2"
+                                        >
+                                            Liquefied petroleum gas (LPG)
+                                        </label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
+                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
+                                        <label
+                                            class="custom-control-label pmd-checkbox-ripple-effect"
+                                            for="checkbox2"
+                                        >
+                                            Koresene (gaas)
+                                        </label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
+                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
+                                        <label
+                                            class="custom-control-label pmd-checkbox-ripple-effect"
+                                            for="checkbox2"
+                                        >
+                                            Electricity
+                                        </label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
+                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
+                                        <label
+                                            class="custom-control-label pmd-checkbox-ripple-effect"
+                                            for="checkbox2"
+                                        >
+                                            Others, please specific ____________
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="mt-3">
+                                    <label>5. What is the household's main source of drinking water ?</label>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div
+                                                class="
+                                                    custom-control custom-checkbox custom-control-inline
+                                                    pmd-checkbox
+                                                "
+                                            >
+                                                <input
+                                                    class="custom-control-input"
+                                                    type="checkbox"
+                                                    value=""
+                                                    id="checkbox1"
+                                                />
+                                                <label
+                                                    class="custom-control-label pmd-checkbox-ripple-effect"
+                                                    for="checkbox1"
+                                                >
+                                                    Lake, river, rain, others
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div
+                                                class="
+                                                    custom-control custom-checkbox custom-control-inline
+                                                    pmd-checkbox
+                                                "
+                                            >
+                                                <input
+                                                    class="custom-control-input"
+                                                    type="checkbox"
+                                                    value=""
+                                                    id="checkbox2"
+                                                />
+                                                <label
+                                                    class="custom-control-label pmd-checkbox-ripple-effect"
+                                                    for="checkbox2"
+                                                >
+                                                    Dug well
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div
+                                                class="
+                                                    custom-control custom-checkbox custom-control-inline
+                                                    pmd-checkbox
+                                                "
+                                            >
+                                                <input
+                                                    class="custom-control-input"
+                                                    type="checkbox"
+                                                    value=""
+                                                    id="checkbox2"
+                                                />
+                                                <label
+                                                    class="custom-control-label pmd-checkbox-ripple-effect"
+                                                    for="checkbox2"
+                                                >
+                                                    Unprotected spring
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div
+                                                class="
+                                                    custom-control custom-checkbox custom-control-inline
+                                                    pmd-checkbox
+                                                "
+                                            >
+                                                <input
+                                                    class="custom-control-input"
+                                                    type="checkbox"
+                                                    value=""
+                                                    id="checkbox2"
+                                                />
+                                                <label
+                                                    class="custom-control-label pmd-checkbox-ripple-effect"
+                                                    for="checkbox2"
+                                                >
+                                                    Peddler
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div
+                                                class="
+                                                    custom-control custom-checkbox custom-control-inline
+                                                    pmd-checkbox
+                                                "
+                                            >
+                                                <input
+                                                    class="custom-control-input"
+                                                    type="checkbox"
+                                                    value=""
+                                                    id="checkbox2"
+                                                />
+                                                <label
+                                                    class="custom-control-label pmd-checkbox-ripple-effect"
+                                                    for="checkbox2"
+                                                >
+                                                    Tubed/Piped shallow well
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div
+                                                class="
+                                                    custom-control custom-checkbox custom-control-inline
+                                                    pmd-checkbox
+                                                "
+                                            >
+                                                <input
+                                                    class="custom-control-input"
+                                                    type="checkbox"
+                                                    value=""
+                                                    id="checkbox2"
+                                                />
+                                                <label
+                                                    class="custom-control-label pmd-checkbox-ripple-effect"
+                                                    for="checkbox2"
+                                                >
+                                                    Shared, tubed/piped deep well
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
+                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
+                                        <label
+                                            class="custom-control-label pmd-checkbox-ripple-effect"
+                                            for="checkbox2"
+                                        >
+                                            Own use, tubed/piped deep well
+                                        </label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
+                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
+                                        <label
+                                            class="custom-control-label pmd-checkbox-ripple-effect"
+                                            for="checkbox2"
+                                        >
+                                            Shared, faucet community water system
+                                        </label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
+                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
+                                        <label
+                                            class="custom-control-label pmd-checkbox-ripple-effect"
+                                            for="checkbox2"
+                                        >
+                                            Own use, faucet community system water system
+                                        </label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
+                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
+                                        <label
+                                            class="custom-control-label pmd-checkbox-ripple-effect"
+                                            for="checkbox2"
+                                        >
+                                            Bottled water
+                                        </label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
+                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
+                                        <label
+                                            class="custom-control-label pmd-checkbox-ripple-effect"
+                                            for="checkbox2"
+                                        >
+                                            Others, please specific ____________
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="mt-3">
+                                    <label
+                                        >6. How does your household usually dispose of your kitchen garbage such as leftover food, peeling of frutis and vegetables, fish chicken entrails, and others ?
+                                        ?</label
+                                    >
+                                    <br />
+                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
+                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox1" />
+                                        <label
+                                            class="custom-control-label pmd-checkbox-ripple-effect"
+                                            for="checkbox1"
+                                        >
+                                            Feeding to animals
+                                        </label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
+                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
+                                        <label
+                                            class="custom-control-label pmd-checkbox-ripple-effect"
+                                            for="checkbox2"
+                                        >
+                                            Burying
+                                        </label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
+                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
+                                        <label
+                                            class="custom-control-label pmd-checkbox-ripple-effect"
+                                            for="checkbox2"
+                                        >
+                                            Composting
+                                        </label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
+                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
+                                        <label
+                                            class="custom-control-label pmd-checkbox-ripple-effect"
+                                            for="checkbox2"
+                                        >
+                                            Burning
+                                        </label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
+                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
+                                        <label
+                                            class="custom-control-label pmd-checkbox-ripple-effect"
+                                            for="checkbox2"
+                                        >
+                                            Dumping Individual pit (not burned)
+                                        </label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
+                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
+                                        <label
+                                            class="custom-control-label pmd-checkbox-ripple-effect"
+                                            for="checkbox2"
+                                        >
+                                            Picked-up by garbage truck
+                                        </label>
+                                    </div>
+                                </div>
+
+                                    <div class="mt-3">
+                                    <label
+                                        >7 . Do you segregate your garbage?</label
+                                    >
+                                    <div class="form-check">
+                                        <input
+                                            class="form-radio"
+                                            type="radio"
+                                            name="flexRadioDefault"
+                                            id="flexRadioDefault1"
+                                        />
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Yes
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input
+                                            class="form-radio"
+                                            type="radio"
+                                            name="flexRadioDefault"
+                                            id="flexRadioDefault1"
+                                        />
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -881,17 +1747,6 @@
                             @file-removed="removePhotoFile"
                             :max-files="1"
                         />
-                        <!-- <div v-if="entry.images">
-
-                            <a href="javascript:;">
-                                <img class="img" :src="'/images/' + entry.images" style="height:150px;width=200px;" />
-                            </a>
-                        </div>
-                        <div v-else>
-                            <a href="javascript:;">
-                                <img class="img" :src="'/images/none-image.png'" style="height:150px;width=200px;" />
-                            </a>
-                        </div> -->
                     </div>
                     <div class="card-body">
                         <h6 class="card-category text-gray">Profile</h6>
@@ -905,7 +1760,7 @@
                         <h6 class="card-category text-gray">Barangay</h6>
                         <div class="col">
                             <i class="fa fa-home fa-2x"></i>
-                            {{ entry.barangay_id }} - {{ entry.barangays_name }}
+                            {{ entry.barangay.id }} - {{ entry.barangay.barangay_name }}
                         </div>
                         <h6 class="card-category text-gray">Gender</h6>
                         <div class="col">
@@ -922,6 +1777,9 @@
                             ng Laguna, Pilipinas. Ito ay nasa layong 54 kilometro sa timog ng Maynila, at isang oras
                             ang layo kung sasakay ng bus
                         </p>
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
+                            Transfer Resident
+                        </button>
                         <vue-button-spinner
                             class="btn-primary"
                             :status="status"
@@ -933,6 +1791,58 @@
                         <!-- <a href="javascript:;" class="btn btn-info btn-round"
                         >Follow</a
                     > -->
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div
+                class="modal fade"
+                id="exampleModal"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+            >
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Transfer Resident</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div
+                                class="form-group bmd-form-group"
+                                :class="{
+                                    'is-focused': true
+                                }"
+                            >
+                                <label>Barangay</label>
+                                <v-select
+                                    class="form-control popcom-input"
+                                    name="barangay"
+                                    label="barangay_name"
+                                    :key="'barangay_id-field'"
+                                    :value="entry.barangay"
+                                    :options="lists.barangay"
+                                    @input="updateBarangay"
+                                    @focus="focusField('barangay')"
+                                    @blur="clearFocus"
+                                />
+                            </div>
+                            <label>Household Number</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                @input="updateHouseholdNumber"
+                                :value="entry.household_no"
+                            />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -994,7 +1904,7 @@ export default {
         ...mapGetters("GadListSingle", ["entry", "loading", "lists"]),
         total_age () {
             var today = new Date();
-            var birthDate = new Date(this.entry.birthdate);
+            var birthDate = new Date(this.entry.birth_date);
             var age = today.getFullYear() - birthDate.getFullYear();
             var m = today.getMonth() - birthDate.getMonth();
             if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
@@ -1003,11 +1913,10 @@ export default {
             return age;
         },
         calamba_residence () {
-            var date = this.entry.no_of_years_in_calamba;
-            var current_date = date.substr(date.length - 4);
-            if (current_date > new Date().getFullYear() - 1) {
+            var date = this.entry.calamba_residence_year;
+            if (date > new Date().getFullYear() - 1) {
                 return "Immigrant";
-            } else if (current_date < new Date().getFullYear() - 2) {
+            } else if (date < new Date().getFullYear() - 2) {
                 return "Native";
             } else {
                 return "Transient";
@@ -1015,10 +1924,9 @@ export default {
         },
         barangay_residence () {
             var date = this.entry.barangay_residence_year;
-            var current_date = date.substr(date.length - 4);
-            if (current_date > new Date().getFullYear() - 1) {
+            if (date > new Date().getFullYear() - 1) {
                 return "Immigrant";
-            } else if (current_date < new Date().getFullYear() - 2) {
+            } else if (date < new Date().getFullYear() - 2) {
                 return "Native";
             } else {
                 return "Transient";
@@ -1073,6 +1981,20 @@ export default {
             'setWorkLocationProvince',
             'setWorkLocationCity',
             'setMonthlyIncome',
+            'setBarangay',
+            'setHouseholdNumber',
+            'setSoftSkills',
+            'setHardSkill',
+            'setHobbies',
+            'setSports',
+            'setHouseOwnership',
+            'setHouseType',
+            'setHouseMake',
+            'setNuclearFamilyHousehold',
+            'setBedRooms',
+            'setCRID',
+            'setPoliticalBarangay',
+            'setPoliticalPrecintNumber',
             'fetchEditData',
             'insertPhotoFile',
             'removePhotoFile',
@@ -1089,6 +2011,62 @@ export default {
 
         getRoute (name) {
             return `${axios.defaults.baseURL}${name}/media`
+        },
+
+        updateNuclearFamilyHousehold (e) {
+            this.setNuclearFamilyHousehold(e.target.value);
+        },
+
+        updateBedRooms (e) {
+            this.setBedRooms(e.target.value);
+        },
+
+        updateCRID (e) {
+            this.setCRID(e.target.value);
+        },
+
+        updatePoliticalPrecintNumber (e) {
+            this.setPoliticalPrecintNumber(e.target.value);
+        },
+
+        updatePoliticalBarangay (e) {
+            this.setPoliticalBarangay(e.target.value);
+        },
+
+        updateSoftSkills (e) {
+            this.setSoftSkills(e)
+        },
+
+        updateHardSkill (e) {
+            this.setHardSkill(e)
+        },
+
+        updateHobbies (e) {
+            this.setHobbies(e)
+        },
+
+        updateSports (e) {
+            this.setSports(e)
+        },
+
+        updateHouseOwnership (e) {
+            this.setHouseOwnership(e)
+        },
+
+        updateHouseType (e) {
+            this.setHouseType(e)
+        },
+
+        updateHouseMake (e) {
+            this.setHouseMake(e)
+        },
+
+        updateBarangay (e) {
+            this.setBarangay(e);
+        },
+
+        updateHouseholdNumber (e) {
+            this.setHouseholdNumber(e.target.value)
         },
 
         updateLandlineNumber (e) {
@@ -1215,7 +2193,7 @@ export default {
             this.setEmployer(e.target.value)
         },
 
-        updateWorkLocationProvince(e) {
+        updateWorkLocationProvince (e) {
             this.setWorkLocationProvince(e)
         },
 
@@ -1228,6 +2206,7 @@ export default {
         },
 
         submitForm () {
+            $('#exampleModal').modal('hide');
             this.updateData()
                 .then(() => {
                     this.$eventHub.$emit("update-success");

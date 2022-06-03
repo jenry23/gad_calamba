@@ -5,7 +5,7 @@ function initialState () {
       building_no: '',
       household_no: '',
       house_unit: '',
-      household : [],
+      household: [],
       family_code: '',
       work_location_province: [],
       work_location_city: [],
@@ -24,6 +24,8 @@ function initialState () {
       spouse_first_name: '',
       spouse_middle_name: '',
       spouse_extension_name: '',
+      political_precinct_no: '',
+      political_brgy_registered: '',
       no_of_dependents: '',
       mobile_no: '',
       landline_number: '',
@@ -31,7 +33,7 @@ function initialState () {
       occupation: [],
       employer: '',
       last_school_attended: '',
-      barangay_id: '',
+      barangay: [],
       purok: [],
       sitio: [],
       subdivision_name: '',
@@ -51,23 +53,14 @@ function initialState () {
       educational_status: [],
       government_assistance: [],
       ethnicity: [],
-      house_ownership_id: '',
-      house_type_id: '',
-      house_make_id: '',
+      house_ownership: [],
+      house_type: [],
+      house_make: [],
       organization: [],
       barangay_code: '',
       block_lot_house_id: '',
       monthly_income: [],
-      birthdate: '',
-      utilities_no1: '',
-      utilities_no2: '',
-      utilities_no3: '',
-      utilities_no4: '',
-      appliance_no1: '',
-      appliance_no2: '',
-      appliance_no3: '',
-      appliance_no4: '',
-      vehicle_no: '',
+      birth_date: '',
       medical_id: '',
       religion: [],
       full_immunization: '',
@@ -79,6 +72,10 @@ function initialState () {
       pregnancy_age: '',
       prental_checkup: '',
       postnatal_checkup: '',
+      hard_skill: [],
+      soft_skill: [],
+      hobbies: [],
+      sports: [],
       photo: [],
       remarks: '',
       permissions: [],
@@ -87,6 +84,13 @@ function initialState () {
       deleted_at: ''
     },
     lists: {
+      house_ownership: [],
+      house_type: [],
+      house_make: [],
+      hard_skill: [],
+      soft_skill: [],
+      hobbies: [],
+      sports: [],
       gender: [],
       household: [],
       civil_status: [],
@@ -106,7 +110,24 @@ function initialState () {
       work_location_province: [],
       work_location_city: [],
       monthly_income: [],
+      barangay: [],
     },
+    items: [
+      { name: 'health', value: 'App\\Models\\Health' },
+      { name: 'disability', value: 'App\\Models\\Disability' },
+      { name: 'government_assistance', value: 'App\\Models\\GovernmentAssistance' },
+      { name: 'soft_skill', value: 'App\\Models\\SoftSkill' },
+      { name: 'hard_skill', value: 'App\\Models\\HardSkill' },
+      { name: 'hobbies', value: 'App\\Models\\Hobbies' },
+      { name: 'sports', value: 'App\\Models\\Sports' },
+      { name: 'ethnicity', value: 'App\\Models\\Ethnicity' },
+      { name: 'sector', value: 'App\\Models\\Sector' },
+      { name: 'utilities', value: 'App\\Models\\Utilities' },
+      { name: 'apliances', value: 'App\\Models\\Appliances' },
+      { name: 'vehicles', value: 'App\\Models\\Vehicles' },
+      { name: 'organization', value: 'App\\Models\\Organization' },
+      { name: 'medical', value: 'App\\Models\\Medical' }
+    ],
     loading: false
   }
 }
@@ -116,6 +137,7 @@ const route = 'gad'
 const getters = {
   entry: state => state.entry,
   lists: state => state.lists,
+  items: state => state.items,
   loading: state => state.loading
 }
 
@@ -182,6 +204,12 @@ const actions = {
           commit('setLoading', false)
         })
     })
+  },
+  setBarangay ({ commit }, value) {
+    commit('setBarangay', value)
+  },
+  setHouseholdNumber ({ commit }, value) {
+    commit('setHouseholdNumber', value)
   },
   setLandlineNumber ({ commit }, value) {
     commit('setLandlineNumber', value)
@@ -255,6 +283,12 @@ const actions = {
   setSitio ({ commit }, value) {
     commit('setSitio', value)
   },
+  setHobbies ({ commit }, value) {
+    commit('setHobbies', value)
+  },
+  setSports ({ commit }, value) {
+    commit('setSports', value)
+  },
   setYearsInCalamba ({ commit }, value) {
     commit('setYearsInCalamba', value)
   },
@@ -276,6 +310,15 @@ const actions = {
   setEmployer ({ commit }, value) {
     commit('setEmployer', value)
   },
+  setHouseOwnership ({ commit }, value) {
+    commit('setHouseOwnership', value)
+  },
+  setHouseType ({ commit }, value) {
+    commit('setHouseType', value)
+  },
+  setHouseMake ({ commit }, value) {
+    commit('setHouseMake', value)
+  },
   setWorkLocationProvince ({ commit }, value) {
     commit('setWorkLocationProvince', value)
   },
@@ -285,7 +328,27 @@ const actions = {
   setMonthlyIncome ({ commit }, value) {
     commit('setMonthlyIncome', value)
   },
-
+  setHardSkill ({ commit }, value) {
+    commit('setHardSkill', value)
+  },
+  setSoftSkill ({ commit }, value) {
+    commit('setSoftSkill', value)
+  },
+  setNuclearFamilyHousehold ({ commit }, value) {
+    commit('setNuclearFamilyHousehold', value)
+  },
+  setBedRooms ({ commit }, value) {
+    commit('setBedRooms', value)
+  },
+  setCRID ({ commit }, value) {
+    commit('setCRID', value)
+  },
+  setPoliticalPrecintNumber ({ commit }, value) {
+    commit('setPoliticalPrecintNumber', value)
+  },
+  setPoliticalBarangay ({ commit }, value) {
+    commit('setPoliticalBarangay', value)
+  },
   insertPhotoFile ({ commit }, file) {
     commit('insertPhotoFile', file)
   },
@@ -306,9 +369,43 @@ const actions = {
       commit('setLists', response.data.meta)
     })
   },
-  fetchEditData ({ commit, dispatch }, id) {
+  searchDetails (nameKey, myArray) {
+    for (var i = 0; i < myArray.length; i++) {
+      if (myArray[i].name === nameKey) {
+        return myArray[i];
+      }
+    }
+  },
+  fetchEditData ({ commit, state }, id) {
     axios.get(`${route}/${id}/edit`).then(response => {
-      commit('setEntry', response.data.data)
+      const result = []
+      if (response.data.data.gad_details) {
+        response.data.data.gad_details.map(function (value, key) {
+          state.items.filter(function (el) {
+            if (el.value === value.item_type) {
+              const data_array = [];
+              if (el.name in result) {
+                data_array.push(value.item);
+              } else {
+                data_array.push(value.item)
+              }
+              result[el.name] = data_array;
+            }
+          });
+          // if (value.item_type === 'App\\Models\\Ethnicity') {
+          //   result['ethnicity'] = value.item;
+          // }
+          // if (value.item_type === 'App\\Models\\Appliances') {
+          //   result['appliances'] = value.item;
+          // }
+          // if (value.item_type === 'App\\Models\\Sector') {
+          //   result['sector'] = value.item;
+          // }
+        });
+      }
+      console.log(result);
+      const datas = { ...response.data.data, ...result };
+      commit('setEntry', datas)
       commit('setLists', response.data.meta)
     })
   },
@@ -338,6 +435,12 @@ const actions = {
 const mutations = {
   setEntry (state, entry) {
     state.entry = entry
+  },
+  setBarangay (state, value) {
+    state.entry.barangay = value
+  },
+  setHouseholdNumber (state, value) {
+    state.entry.household_no = value
   },
   setLandlineNumber (state, value) {
     state.entry.landline_number = value
@@ -371,7 +474,7 @@ const mutations = {
     state.entry.spouse_last_name = name[2];
   },
   setBirthdate (state, value) {
-    state.entry.birthdate = value
+    state.entry.birth_date = value
   },
   setValidID (state, value) {
     state.entry.valid_id = value
@@ -393,6 +496,12 @@ const mutations = {
   },
   setPoliticalCityRegistered (state, value) {
     state.entry.political_city_registered = value
+  },
+  setPoliticalPrecintNumber (state, value) {
+    state.entry.political_precinct_no = value
+  },
+  setPoliticalBarangay (state, value) {
+    state.entry.political_brgy_registered = value
   },
   setBuildingHouseUnit (state, value) {
     const myArray = value.split(' ', 4);
@@ -447,6 +556,36 @@ const mutations = {
   },
   setMonthlyIncome (state, value) {
     state.entry.monthly_income = value
+  },
+  setHardSkill (state, value) {
+    state.entry.hard_skill = value
+  },
+  setSoftSkill (state, value) {
+    state.entry.soft_skill = value
+  },
+  setHobbies (state, value) {
+    state.entry.hobbies = value
+  },
+  setSports (state, value) {
+    state.entry.sports = value
+  },
+  setHouseOwnership (state, value) {
+    state.entry.house_ownership = value
+  },
+  setHouseType (state, value) {
+    state.entry.house_type = value
+  },
+  setHouseMake (state, value) {
+    state.entry.house_make = value
+  },
+  setNuclearFamilyHousehold (state, value) {
+    state.entry.no_nuclear_family_household_id = value
+  },
+  setBedRooms (state, value) {
+    state.entry.no_bedrooms_id = value
+  },
+  setCRID (state, value) {
+    state.entry.no_cr_id = value
   },
   insertPhotoFile (state, file) {
     state.entry.photo.push(file)

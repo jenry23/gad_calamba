@@ -7,15 +7,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use \DateTimeInterface;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Gad extends Model implements HasMedia
 {
     use HasAdvancedFilter, SoftDeletes, HasFactory, InteractsWithMedia;
 
     public $table = 'gad';
+
+    protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
 
     protected $orderable = [
         'id',
@@ -40,86 +44,70 @@ class Gad extends Model implements HasMedia
         'gad_id',
         'building_no',
         'household_no',
-        'house_unit',
-        'household_id',
+        'house_no',
         'family_code',
-        'work_location_province_id',
-        'work_location_city_id',
-        'political_province_registered_id',
-        'political_city_registered_id',
-        'no_nuclear_family_household_id',
-        'no_bedrooms_id',
-        'no_cr_id',
-        'barangay_residence_year',
-        'no_of_years_in_calamba',
+        'household_id',
         'last_name',
         'first_name',
         'middle_name',
         'extension_name',
-        'spouse_last_name',
-        'spouse_first_name',
-        'spouse_middle_name',
-        'spouse_extension_name',
-        'no_of_dependents',
-        'mobile_no',
-        'landline_number',
-        'email',
-        'occupation_id',
-        'employer',
-        'last_school_attended',
         'barangay_id',
+        'barangay_code',
         'purok_id',
+        'block_lot_house_id',
         'sitio_id',
-        'subdivision_name',
         'native_province_id',
         'native_city_id',
         'valid_id',
         'id_number',
-        'sector_id',
+        'birth_date',
         'gender_id',
         'gender_preference_id',
         'civil_status_id',
-        'health_id',
-        'disability_id',
-        'government_assistance_id',
-        'household_monthly_income_id',
-        'economic_status_id',
+        'no_of_dependents',
+        'landline_number',
+        'mobile_no',
+        'email',
+        'nutrition_status',
+        'occupation_id',
+        'employer',
+        'work_location_province_id',
+        'work_location_city_id',
+        'monthly_income_id',
         'educational_attaintment_id',
         'educational_status_id',
-        'government_educational_assistance_id',
-        'ethnicity_id',
+        'last_school_attended',
+        'religion_id',
+        'political_province_registered_id',
+        'political_city_registered_id',
+        'political_brgy_registered',
+        'political_precinct_no',
         'house_ownership_id',
         'house_type_id',
         'house_make_id',
-        'organization_id',
-        'barangay_code',
-        'block_lot_house_id',
-        'monthly_income_id',
-        'birthdate',
-        'utilities_no1',
-        'utilities_no2',
-        'utilities_no3',
-        'utilities_no4',
-        'appliance_no1',
-        'appliance_no2',
-        'appliance_no3',
-        'appliance_no4',
-        'vehicle_no',
-        'medical_id',
-        'religion_id',
+        'no_nuclear_family_household_id',
+        'no_bedrooms_id',
+        'no_cr_id',
         'full_immunization',
         'covid_19_test',
-        'first_vaccination',
-        'brand',
-        'second_vaccination',
+        'first_date_vaccination',
+        'brand1',
+        'second_date_vaccination',
         'brand2',
         'pregnancy_age',
         'prental_checkup',
         'postnatal_checkup',
+        'barangay_residence_year',
+        'calamba_residence_year',
         'remarks',
+        'spouse_last_name',
+        'spouse_first_name',
+        'spouse_middle_name',
+        'spouse_extension_name',
+        'photo',
         'created_at',
         'updated_at',
-        'deleted_at',
+        'deleted_at'
     ];
 
     protected function serializeDate(DateTimeInterface $date)
@@ -157,77 +145,81 @@ class Gad extends Model implements HasMedia
         });
     }
 
+    public function gadDetails(): HasMany
+    {
+        return $this->hasMany(GadItemDetails::class, 'gad_id', 'id');
+    }
     public function barangay()
     {
-        return $this->belongsTo(Barangay::class, 'barangay_id');
+        return $this->belongsTo(Barangay::class, 'barangay_id', 'id');
     }
     public function sector()
     {
-        return $this->belongsTo(Sector::class, 'sector_id');
+        return $this->belongsTo(Sector::class, 'sector_id', 'id');
     }
     public function resident_status()
     {
-        return $this->belongsTo(ResidentStatus::class, 'resident_status_id');
+        return $this->belongsTo(ResidentStatus::class, 'resident_status_id', 'id');
     }
     public function civil_status()
     {
-        return $this->belongsTo(CivilStatus::class, 'civil_status_id');
+        return $this->belongsTo(CivilStatus::class, 'civil_status_id', 'id');
     }
     public function validId()
     {
-        return $this->belongsTo(ValidID::class, 'valid_id');
+        return $this->belongsTo(ValidID::class, 'valid_id', 'id');
     }
     public function native_province()
     {
-        return $this->belongsTo(Province::class, 'native_province_id');
+        return $this->belongsTo(Province::class, 'native_province_id', 'id');
     }
     public function native_city()
     {
-        return $this->belongsTo(City::class, 'native_city_id');
+        return $this->belongsTo(City::class, 'native_city_id', 'id');
     }
     public function work_location_province()
     {
-        return $this->belongsTo(Province::class, 'work_location_province_id');
+        return $this->belongsTo(Province::class, 'work_location_province_id', 'id');
     }
     public function work_location_city()
     {
-        return $this->belongsTo(City::class, 'work_location_city_id');
+        return $this->belongsTo(City::class, 'work_location_city_id', 'id');
     }
     public function political_province_registered()
     {
-        return $this->belongsTo(Province::class, 'political_province_registered_id');
+        return $this->belongsTo(Province::class, 'political_province_registered_id', 'id');
     }
     public function political_city_registered()
     {
-        return $this->belongsTo(City::class, 'political_city_registered_id');
+        return $this->belongsTo(City::class, 'political_city_registered_id', 'id');
     }
     public function educational_attaintment()
     {
-        return $this->belongsTo(EducationalAttaintment::class, 'educational_attaintment_id');
+        return $this->belongsTo(EducationalAttaintment::class, 'educational_attaintment_id', 'id');
     }
     public function educational_status()
     {
-        return $this->belongsTo(EducationalStatus::class, 'educational_status_id');
+        return $this->belongsTo(EducationalStatus::class, 'educational_status_id', 'id');
     }
     public function government_assistance()
     {
-        return $this->belongsTo(GovernmentAssistance::class, 'government_assistance_id');
+        return $this->belongsTo(GovernmentAssistance::class, 'government_assistance_id', 'id');
     }
     public function purok()
     {
-        return $this->belongsTo(Purok::class, 'purok_id');
+        return $this->belongsTo(Purok::class, 'purok_id', 'id');
     }
     public function religion()
     {
-        return $this->belongsTo(Religion::class, 'religion_id');
+        return $this->belongsTo(Religion::class, 'religion_id', 'id');
     }
     public function vehicles()
     {
-        return $this->belongsTo(Vehicles::class, 'vehicle_no');
+        return $this->belongsTo(Vehicles::class, 'vehicle_no', 'id');
     }
     public function medicine()
     {
-        return $this->belongsTo(Medicine::class, 'medical_number');
+        return $this->belongsTo(Medicine::class, 'medical_number', 'id');
     }
 
     public function organization()
@@ -237,45 +229,45 @@ class Gad extends Model implements HasMedia
 
     public function sitio()
     {
-        return $this->belongsTo(Sitio::class, 'sitio_id');
+        return $this->belongsTo(Sitio::class, 'sitio_id', 'id');
     }
     public function ethnicity()
     {
-        return $this->belongsTo(Ethnicity::class, 'ethnicity_id');
+        return $this->belongsTo(Ethnicity::class, 'ethnicity_id', 'id');
     }
     public function household()
     {
-        return $this->belongsTo(Household::class, 'household_id');
+        return $this->belongsTo(Household::class, 'household_id', 'id');
     }
     public function gender()
     {
-        return $this->belongsTo(Gender::class, 'gender_id');
+        return $this->belongsTo(Gender::class, 'gender_id', 'id');
     }
     public function gender_preference()
     {
-        return $this->belongsTo(GenderPreference::class, 'gender_preference_id');
+        return $this->belongsTo(GenderPreference::class, 'gender_preference_id', 'id');
     }
     public function house_ownership()
     {
-        return $this->belongsTo(HouseOwnership::class, 'house_ownership_id');
+        return $this->belongsTo(HouseOwnership::class, 'house_ownership_id', 'id');
     }
     public function house_type()
     {
-        return $this->belongsTo(HouseType::class, 'house_type_id');
+        return $this->belongsTo(HouseType::class, 'house_type_id', 'id');
     }
     public function house_make()
     {
-        return $this->belongsTo(HouseMake::class, 'house_make_id');
+        return $this->belongsTo(HouseMake::class, 'house_make_id', 'id');
     }
 
     public function occupation()
     {
-        return $this->belongsTo(Occupation::class, 'occupation_id');
+        return $this->belongsTo(Occupation::class, 'occupation_id', 'id');
     }
 
     public function monthly_income()
     {
-        return $this->belongsTo(MonthlyIncome::class, 'monthly_income_id');
+        return $this->belongsTo(MonthlyIncome::class, 'monthly_income_id', 'id');
     }
 
     public function getBarangayNameAttribute()

@@ -177,13 +177,13 @@ class ReportsApiController extends Controller
         foreach ($all_gads as $gad) {
             $gad->id = !empty($gad->id) ? $gad->id : '';
             $gad->full_name = $gad->last_name . ' , ' . $gad->first_name . ' ' . $gad->middle_name;
-            $gad->gender_preference_name = !empty($gad->gender_preference) ? $gad->gender_preference->gender_preference_name : '';
+            $gad->gender_name = !empty($gad->gender) ? $gad->gender->gender_name : '';
             $gad->sector_name = !empty($gad->sector) ? $gad->sector->sector_name : '';
             $gad->barangays_name = !empty($gad->barangay) ? $gad->barangay->barangay_name : '';
             $gad->age = !empty($gad->age) ? $gad->age : '';
+            $gad->civil_status_names = !empty($gad->civil_status) ? $gad->civil_status->civil_status_name : '';
             $gad->ethnicity_name = !empty($gad->ethnicity) ? $gad->ethnicity->ethnicity_name : '';
-            $gad->no_of_years_in_calamba = !empty($gad->no_of_years_in_calamba) ? Carbon::parse($gad->no_of_years_in_calamba)->format('d F Y') : '';
-            $gad->barangay_residence_year = !empty($gad->barangay_residence_year) ? Carbon::parse($gad->barangay_residence_year)->format('d F Y') : '';
+
             $gad->household_names = !empty($gad->household) ? $gad->household->household_name : '';
             $gad->civil_status_names = !empty($gad->civil_status) ? $gad->civil_status->civil_status_name : '';
             $gad->purok_names =  !empty($gad->purok) ? $gad->purok->purok_name : '';
@@ -191,9 +191,6 @@ class ReportsApiController extends Controller
             $gad->native_citys =  !empty($gad->native_city) ? $gad->native_city->city_name : '';
             $gad->native_provinces =  !empty($gad->native_province) ? $gad->native_province->province_name : '';
             $gad->work_location_citys =  !empty($gad->work_location_city) ? $gad->work_location_city->city_name : '';
-            $gad->religion_name = !empty($gad->religion) ? $gad->religion->religion_name : '';
-            $gad->occupation_name = !empty($gad->occupation) ? $gad->occupation->occupation_name : '';
-            $gad->monthly_income_name = !empty($gad->monthly_income) ? $gad->monthly_income->monthly_income_name : '';
             $gad->work_location_provinces =  !empty($gad->work_location_province) ? $gad->work_location_province->province_name : '';
             $gad->valid_id_names =  !empty($gad->validId) ? $gad->validId->name : '';
             $gad->educational_attaintment_name =  !empty($gad->educational_attaintment) ? $gad->educational_attaintment->educational_attaintment_name : '';
