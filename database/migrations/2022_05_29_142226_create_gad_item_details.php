@@ -12,6 +12,7 @@ class CreateGadItemDetails extends Migration
             $table->id();
             $table->foreignId('gad_id')->nullable()->constrained('gad');
             $table->morphs('item');
+            $table->string('item_name')->nullable();
             $table->integer('status');
             $table->timestamps();
         });

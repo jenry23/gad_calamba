@@ -13,7 +13,7 @@ class GadItemDetails extends Model
 
     protected $table = 'gad_item_details';
 
-    protected $fillable = ['gad_id', 'item_type', 'item_id', 'status'];
+    protected $fillable = ['gad_id', 'item_type', 'item_id', 'item_name', 'status'];
 
     public function item(): MorphTo
     {

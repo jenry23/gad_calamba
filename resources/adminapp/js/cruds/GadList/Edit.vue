@@ -967,7 +967,7 @@
                                                 :value="entry.hard_skill"
                                                 :options="lists.hard_skill"
                                                 multiple
-                                                @input="updateHardSkill"
+                                                @input="updateHardSkills"
                                                 @focus="focusField('hard_skill')"
                                                 @blur="clearFocus"
                                             />
@@ -1158,7 +1158,18 @@
                                             }"
                                         >
                                             <label>Utilities</label>
-                                            <input type="text" class="form-control" />
+                                            <v-select
+                                                class="form-control popcom-input"
+                                                name="utilities"
+                                                label="utilities_name"
+                                                :key="'utilities_id-field'"
+                                                :value="entry.utilities"
+                                                :options="lists.utilities"
+                                                multiple
+                                                @input="updateUtilities"
+                                                @focus="focusField('utilities')"
+                                                @blur="clearFocus"
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -1171,7 +1182,18 @@
                                             }"
                                         >
                                             <label>Appliances</label>
-                                            <input type="text" class="form-control" />
+                                            <v-select
+                                                class="form-control popcom-input"
+                                                name="appliance"
+                                                label="appliance_name"
+                                                :key="'appliance_id-field'"
+                                                :value="entry.appliance"
+                                                :options="lists.appliance"
+                                                multiple
+                                                @input="updateAppliance"
+                                                @focus="focusField('appliance')"
+                                                @blur="clearFocus"
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -1184,7 +1206,18 @@
                                             }"
                                         >
                                             <label>Vehicle</label>
-                                            <input type="text" class="form-control" />
+                                            <v-select
+                                                class="form-control popcom-input"
+                                                name="vehicle"
+                                                label="vehicles_name"
+                                                :key="'vehicle_id-field'"
+                                                :value="entry.vehicle"
+                                                :options="lists.vehicle"
+                                                multiple
+                                                @input="updateVehicle"
+                                                @focus="focusField('vehicle')"
+                                                @blur="clearFocus"
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -1635,8 +1668,9 @@
 
                                 <div class="mt-3">
                                     <label
-                                        >6. How does your household usually dispose of your kitchen garbage such as leftover food, peeling of frutis and vegetables, fish chicken entrails, and others ?
-                                        ?</label
+                                        >6. How does your household usually dispose of your kitchen garbage such as
+                                        leftover food, peeling of frutis and vegetables, fish chicken entrails, and
+                                        others ? ?</label
                                     >
                                     <br />
                                     <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
@@ -1699,10 +1733,8 @@
                                     </div>
                                 </div>
 
-                                    <div class="mt-3">
-                                    <label
-                                        >7 . Do you segregate your garbage?</label
-                                    >
+                                <div class="mt-3">
+                                    <label>7 . Do you segregate your garbage?</label>
                                     <div class="form-check">
                                         <input
                                             class="form-radio"
@@ -1710,9 +1742,7 @@
                                             name="flexRadioDefault"
                                             id="flexRadioDefault1"
                                         />
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            Yes
-                                        </label>
+                                        <label class="form-check-label" for="flexRadioDefault1"> Yes </label>
                                     </div>
                                     <div class="form-check">
                                         <input
@@ -1721,12 +1751,9 @@
                                             name="flexRadioDefault"
                                             id="flexRadioDefault1"
                                         />
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            No
-                                        </label>
+                                        <label class="form-check-label" for="flexRadioDefault1"> No </label>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -1984,7 +2011,7 @@ export default {
             'setBarangay',
             'setHouseholdNumber',
             'setSoftSkills',
-            'setHardSkill',
+            'setHardSkills',
             'setHobbies',
             'setSports',
             'setHouseOwnership',
@@ -2002,6 +2029,9 @@ export default {
             'resetState',
             'setLandlineNumber',
             'setTitle',
+            'setVehicle',
+            'setAppliance',
+            'setUtilities',
             'updateData',
         ]),
         switchSelect (e) {
@@ -2037,8 +2067,8 @@ export default {
             this.setSoftSkills(e)
         },
 
-        updateHardSkill (e) {
-            this.setHardSkill(e)
+        updateHardSkills (e) {
+            this.setHardSkills(e)
         },
 
         updateHobbies (e) {
@@ -2203,6 +2233,18 @@ export default {
 
         updateMonthlyIncome (e) {
             this.setMonthlyIncome(e)
+        },
+
+        updateVehicle (e) {
+            this.setVehicle(e)
+        },
+
+        updateAppliance (e) {
+            this.setAppliance(e)
+        },
+
+        updateUtilities (e) {
+            this.setUtilities(e)
         },
 
         submitForm () {

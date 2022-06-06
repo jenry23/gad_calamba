@@ -76,6 +76,9 @@ function initialState () {
       soft_skill: [],
       hobbies: [],
       sports: [],
+      appliance: [],
+      utilities: [],
+      vehicle: [],
       photo: [],
       remarks: '',
       permissions: [],
@@ -91,6 +94,9 @@ function initialState () {
       soft_skill: [],
       hobbies: [],
       sports: [],
+      appliance: [],
+      utilities: [],
+      vehicle: [],
       gender: [],
       household: [],
       civil_status: [],
@@ -123,8 +129,8 @@ function initialState () {
       { name: 'ethnicity', value: 'App\\Models\\Ethnicity' },
       { name: 'sector', value: 'App\\Models\\Sector' },
       { name: 'utilities', value: 'App\\Models\\Utilities' },
-      { name: 'apliances', value: 'App\\Models\\Appliances' },
-      { name: 'vehicles', value: 'App\\Models\\Vehicles' },
+      { name: 'appliance', value: 'App\\Models\\Appliances' },
+      { name: 'vehicle', value: 'App\\Models\\Vehicles' },
       { name: 'organization', value: 'App\\Models\\Organization' },
       { name: 'medical', value: 'App\\Models\\Medical' }
     ],
@@ -328,11 +334,11 @@ const actions = {
   setMonthlyIncome ({ commit }, value) {
     commit('setMonthlyIncome', value)
   },
-  setHardSkill ({ commit }, value) {
-    commit('setHardSkill', value)
+  setHardSkills ({ commit }, value) {
+    commit('setHardSkills', value)
   },
-  setSoftSkill ({ commit }, value) {
-    commit('setSoftSkill', value)
+  setSoftSkills ({ commit }, value) {
+    commit('setSoftSkills', value)
   },
   setNuclearFamilyHousehold ({ commit }, value) {
     commit('setNuclearFamilyHousehold', value)
@@ -348,6 +354,15 @@ const actions = {
   },
   setPoliticalBarangay ({ commit }, value) {
     commit('setPoliticalBarangay', value)
+  },
+  setVehicle ({ commit }, value) {
+    commit('setVehicle', value)
+  },
+  setAppliance ({ commit }, value) {
+    commit('setAppliance', value)
+  },
+  setUtilities ({ commit }, value) {
+    commit('setUtilities', value)
   },
   insertPhotoFile ({ commit }, file) {
     commit('insertPhotoFile', file)
@@ -378,33 +393,16 @@ const actions = {
   },
   fetchEditData ({ commit, state }, id) {
     axios.get(`${route}/${id}/edit`).then(response => {
-      const result = []
+      const data_array = [];
       if (response.data.data.gad_details) {
         response.data.data.gad_details.map(function (value, key) {
-          state.items.filter(function (el) {
-            if (el.value === value.item_type) {
-              const data_array = [];
-              if (el.name in result) {
-                data_array.push(value.item);
-              } else {
-                data_array.push(value.item)
-              }
-              result[el.name] = data_array;
-            }
-          });
-          // if (value.item_type === 'App\\Models\\Ethnicity') {
-          //   result['ethnicity'] = value.item;
-          // }
-          // if (value.item_type === 'App\\Models\\Appliances') {
-          //   result['appliances'] = value.item;
-          // }
-          // if (value.item_type === 'App\\Models\\Sector') {
-          //   result['sector'] = value.item;
-          // }
+          if (data_array[value.item_name] === undefined)
+              data_array[value.item_name] = []
+            data_array[value.item_name].push(value.item)
         });
       }
-      console.log(result);
-      const datas = { ...response.data.data, ...result };
+      console.log(data_array);
+      const datas = { ...response.data.data, ...data_array };
       commit('setEntry', datas)
       commit('setLists', response.data.meta)
     })
@@ -557,10 +555,10 @@ const mutations = {
   setMonthlyIncome (state, value) {
     state.entry.monthly_income = value
   },
-  setHardSkill (state, value) {
+  setHardSkills (state, value) {
     state.entry.hard_skill = value
   },
-  setSoftSkill (state, value) {
+  setSoftSkills (state, value) {
     state.entry.soft_skill = value
   },
   setHobbies (state, value) {
@@ -586,6 +584,15 @@ const mutations = {
   },
   setCRID (state, value) {
     state.entry.no_cr_id = value
+  },
+  setVehicle (state, value) {
+    state.entry.vehicle = value;
+  },
+  setAppliance (state, value) {
+    state.entry.appliance = value;
+  },
+  setUtilities (state, value) {
+    state.entry.utilities = value;
   },
   insertPhotoFile (state, file) {
     state.entry.photo.push(file)

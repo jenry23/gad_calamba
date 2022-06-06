@@ -115,6 +115,11 @@ class Gad extends Model implements HasMedia
         return $date->format('Y-m-d H:i:s');
     }
 
+    public function getFullNameAttribute()
+    {
+        return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
+    }
+
     public function registerMediaConversions(Media $media = null): void
     {
         $thumbnailWidth  = 50;
@@ -143,6 +148,11 @@ class Gad extends Model implements HasMedia
 
             return $media;
         });
+    }
+
+    public function item()
+    {
+        return $this->morphTo();
     }
 
     public function gadDetails(): HasMany
@@ -268,6 +278,26 @@ class Gad extends Model implements HasMedia
     public function monthly_income()
     {
         return $this->belongsTo(MonthlyIncome::class, 'monthly_income_id', 'id');
+    }
+
+    public function soft_skills()
+    {
+        return $this->belongsTo(SoftSkill::class, 'soft_skill_name', 'id');
+    }
+
+    public function hard_skills()
+    {
+        return $this->belongsTo(HardSkill::class, 'hard_skill_name', 'id');
+    }
+
+    public function hobbies()
+    {
+        return $this->belongsTo(Hobbies::class, 'hobbies_name', 'id');
+    }
+
+    public function sports()
+    {
+        return $this->belongsTo(Sports::class, 'sports_name', 'id');
     }
 
     public function getBarangayNameAttribute()

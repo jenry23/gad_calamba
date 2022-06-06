@@ -12,6 +12,57 @@ td {
     <div class="row">
         <div class="col-md-12">
             <button class="btn btn-info" @click="downloads">Download PDF</button>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+                Family Details
+            </button>
+            <div
+                class="modal fade"
+                id="exampleModal"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+            >
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Family Details</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div
+                                class="form-group bmd-form-group"
+                                :class="{
+                                    'is-focused': true
+                                }"
+                            >
+                                <label>House Type</label>
+                                <input type="text" class="form-control" value="Duplex" />
+                            </div>
+                                 <div
+                                class="form-group bmd-form-group"
+                                :class="{
+                                    'is-focused': true
+                                }"
+                            >
+                                <label>House Make</label>
+                                <input type="text" class="form-control" value="Concrete" />
+                            </div>
+                                 <div
+                                class="form-group bmd-form-group"
+                                :class="{
+                                    'is-focused': true
+                                }"
+                            >
+                                <label>House Ownership</label>
+                                <input type="text" class="form-control" value="Owned" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div ref="content">
                 <div class="card" style="border: 1px solid black; background-color: #f0f8ff">
                     <div class="card-header card-header-primary">
@@ -90,7 +141,7 @@ td {
                                                 </router-link>
                                             </td>
                                             <td>{{ formatDate(val.birth_date) }}</td>
-                                            <td>{{ val.gender.gender_name }}</td>
+                                            <td>{{ val.gender.gender_name || '' }}</td>
                                             <td v-if="val.no_of_years_in_calamba == new Date().getFullYear()">
                                                 Immigrant
                                             </td>
@@ -103,11 +154,6 @@ td {
                     </div>
                 </div>
             </div>
-            <select class="custom-select my-1 mr-sm-2">
-                <option value="0">Family Information</option>
-                <option value="1">Address and Residential Information</option>
-                <option value="2">Others Information</option>
-            </select>
         </div>
     </div>
 </template>

@@ -108,4 +108,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
     //Survey
     Route::resource('survey', 'SurveyApiController');
+
+    //Transaction
+    Route::resource('transaction', 'TransactionApiController');
 });

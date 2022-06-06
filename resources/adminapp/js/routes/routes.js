@@ -19,6 +19,36 @@ const routes = [
       },
 
       {
+        path: 'reports',
+        name: 'reports',
+        component: View,
+        redirect: { name: 'generate_reports.index' },
+        children: [
+          {
+            path: 'generate-reports',
+            name: 'generate_reports.index',
+            component: () => import('@cruds/Reports/Index.vue'),
+            meta: { title: 'Generate Reports' }
+          },
+        ]
+      },
+
+      {
+        path: 'transaction',
+        name: 'transaction',
+        component: View,
+        redirect: { name: 'barangay_permit.index' },
+        children: [
+          {
+            path: 'barangay-permit',
+            name: 'barangay_permit.index',
+            component: () => import('@cruds/BarangayPermit/Index.vue'),
+            meta: { title: 'Barangay Permit' }
+          },
+        ]
+      },
+
+      {
         path: 'gad',
         name: 'gad',
         component: View,
@@ -50,7 +80,6 @@ const routes = [
           },
         ]
       },
-
       {
         path: 'system_maintenance',
         name: 'system_maintenance',
@@ -608,23 +637,6 @@ const routes = [
           },
         ]
       },
-
-
-      {
-        path: 'reports',
-        name: 'reports',
-        component: View,
-        redirect: { name: 'generate_reports.index' },
-        children: [
-          {
-            path: 'generate-reports',
-            name: 'generate_reports.index',
-            component: () => import('@cruds/Reports/Index.vue'),
-            meta: { title: 'Generate Reports' }
-          },
-        ]
-      },
-
 
       {
         path: 'user-management',

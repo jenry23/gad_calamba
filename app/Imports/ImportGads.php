@@ -145,39 +145,39 @@ class ImportGads implements ToCollection, WithHeadingRow, WithCalculatedFormulas
                 $gad->save();
 
                 $gad_id = $gad->id;
-                $this->addGadDetailsItem($gad_id, Health::class, $this->convertStringToID(Health::class, 'health_name', $row["health_condition_1_not_required_dropdown_option"]));
-                $this->addGadDetailsItem($gad_id, Health::class, $this->convertStringToID(Health::class, 'health_name', $row["health_condition_2_not_required_dropdown_option"]));
-                $this->addGadDetailsItem($gad_id, Health::class, $this->convertStringToID(Health::class, 'health_name', $row["health_condition_3_not_required_dropdown_option"]));
-                $this->addGadDetailsItem($gad_id, Disability::class, $this->convertStringToID(Health::class, 'health_name', $row["disability_condition_2_not_required_dropdown_option"]));
-                $this->addGadDetailsItem($gad_id, Disability::class, $this->convertStringToID(Health::class, 'health_name', $row["disability_condition_3_not_required_dropdown_option"]));
-                $this->addGadDetailsItem($gad_id, GovernmentAssistance::class, $this->convertStringToID(GovernmentAssistance::class, 'government_assistance_name', $row["government_assistance_no_02_dropdown_option"]));
-                $this->addGadDetailsItem($gad_id, GovernmentAssistance::class, $this->convertStringToID(GovernmentAssistance::class, 'government_assistance_name', $row["government_assistance_no_03_dropdown_option"]));
-                $this->addGadDetailsItem($gad_id, SoftSkill::class, $this->convertStringToID(SoftSkill::class, 'soft_skill_name', $row["soft_skills_1_not_required_dropdown_option"]));
-                $this->addGadDetailsItem($gad_id, SoftSkill::class, $this->convertStringToID(SoftSkill::class, 'soft_skill_name', $row["soft_skills_2_not_required_dropdown_option"]));
-                $this->addGadDetailsItem($gad_id, HardSkill::class, $this->convertStringToID(HardSkill::class, 'hard_skill_name', $row["hard_skills_1_not_required_dropdown_option"]));
-                $this->addGadDetailsItem($gad_id, HardSkill::class, $this->convertStringToID(HardSkill::class, 'hard_skill_name', $row["hard_skills_2_not_required_dropdown_option"]));
-                $this->addGadDetailsItem($gad_id, Hobbies::class, $this->convertStringToID(Hobbies::class, 'hobbies_name', $row["hobbies_1_not_required_dropdown_option"]));
-                $this->addGadDetailsItem($gad_id, Hobbies::class, $this->convertStringToID(Hobbies::class, 'hobbies_name', $row["hobbies_2_not_required_dropdown_option"]));
-                $this->addGadDetailsItem($gad_id, Sports::class, $this->convertStringToID(Sports::class, 'sports_name', $row["sports_1_not_required_dropdown_option"]));
-                $this->addGadDetailsItem($gad_id, Sports::class, $this->convertStringToID(Sports::class, 'sports_name', $row["sports_2_not_required_dropdown_option"]));
-                $this->addGadDetailsItem($gad_id, Ethnicity::class, $this->convertStringToID(Ethnicity::class, 'ethnicity_name', $row["ethnicity_no_01_not_required_dropdown_option"]));
-                $this->addGadDetailsItem($gad_id, Sector::class, $this->convertStringToID(Sector::class, 'sector_name', $row["sector_no_01_not_required_dropdown_option"]));
-                $this->addGadDetailsItem($gad_id, Sector::class, $this->convertStringToID(Sector::class, 'sector_name', $row["sector_no_02_not_required_dropdown_option"]));
-                $this->addGadDetailsItem($gad_id, Utilities::class, $this->convertStringToID(Utilities::class, 'utilities_name', $row["utilities_no_01_not_required_dropdown_option"]));
-                $this->addGadDetailsItem($gad_id, Utilities::class, $this->convertStringToID(Utilities::class, 'utilities_name', $row["utilities_no_02_not_required_dropdown_option"]));
-                $this->addGadDetailsItem($gad_id, Utilities::class, $this->convertStringToID(Utilities::class, 'utilities_name', $row["utilities_no_03_not_required_dropdown_option"]));
-                $this->addGadDetailsItem($gad_id, Utilities::class, $this->convertStringToID(Utilities::class, 'utilities_name', $row["utilities_no_04_not_required_dropdown_option"]));
-                $this->addGadDetailsItem($gad_id, Appliances::class, $this->convertStringToID(Appliances::class, 'appliance_name', $row["appliances_no_01_not_required_dropdown_option"]));
-                $this->addGadDetailsItem($gad_id, Appliances::class, $this->convertStringToID(Appliances::class, 'appliance_name', $row["appliances_no_02_not_required_dropdown_option"]));
-                $this->addGadDetailsItem($gad_id, Appliances::class, $this->convertStringToID(Appliances::class, 'appliance_name', $row["appliances_no_03_not_required_dropdown_option"]));
-                $this->addGadDetailsItem($gad_id, Appliances::class, $this->convertStringToID(Appliances::class, 'appliance_name', $row["appliances_no_04_not_required_dropdown_option"]));
-                $this->addGadDetailsItem($gad_id, Vehicles::class, $this->convertStringToID(Vehicles::class, 'vehicles_name', $row["vehicles_no_01_not_required_dropdown_option"]));
-                $this->addGadDetailsItem($gad_id, Vehicles::class, $this->convertStringToID(Vehicles::class, 'vehicles_name', $row["vehicles_no_02_not_required_dropdown_option"]));
-                $this->addGadDetailsItem($gad_id, Organization::class, $this->convertStringToID(Organization::class, 'organization_name', $row["organizations_involved_no_01_not_required"]));
-                $this->addGadDetailsItem($gad_id, Organization::class, $this->convertStringToID(Organization::class, 'organization_name', $row["organizations_involved_no_02_not_required"]));
-                $this->addGadDetailsItem($gad_id, Organization::class, $this->convertStringToID(Organization::class, 'organization_name', $row["organizations_involved_no_02_not_required"]));
-                $this->addGadDetailsItem($gad_id, Medical::class, $this->convertStringToID(Medical::class, 'health_name', $row["maintaining_medicine_no_01"]));
-                $this->addGadDetailsItem($gad_id, Medical::class, $this->convertStringToID(Medical::class, 'health_name', $row["maintaining_medicine_no_02"]));
+                $this->addGadDetailsItem($gad_id, Health::class, $this->convertStringToID(Health::class, 'health_name', $row["health_condition_1_not_required_dropdown_option"]), 'health');
+                $this->addGadDetailsItem($gad_id, Health::class, $this->convertStringToID(Health::class, 'health_name', $row["health_condition_2_not_required_dropdown_option"]), 'health');
+                $this->addGadDetailsItem($gad_id, Health::class, $this->convertStringToID(Health::class, 'health_name', $row["health_condition_3_not_required_dropdown_option"]), 'health');
+                $this->addGadDetailsItem($gad_id, Disability::class, $this->convertStringToID(Health::class, 'health_name', $row["disability_condition_2_not_required_dropdown_option"]), 'disability');
+                $this->addGadDetailsItem($gad_id, Disability::class, $this->convertStringToID(Health::class, 'health_name', $row["disability_condition_3_not_required_dropdown_option"]), 'disability');
+                $this->addGadDetailsItem($gad_id, GovernmentAssistance::class, $this->convertStringToID(GovernmentAssistance::class, 'government_assistance_name', $row["government_assistance_no_02_dropdown_option"]), 'government_assistance');
+                $this->addGadDetailsItem($gad_id, GovernmentAssistance::class, $this->convertStringToID(GovernmentAssistance::class, 'government_assistance_name', $row["government_assistance_no_03_dropdown_option"]), 'government_assistance');
+                $this->addGadDetailsItem($gad_id, SoftSkill::class, $this->convertStringToID(SoftSkill::class, 'soft_skill_name', $row["soft_skills_1_not_required_dropdown_option"]), 'soft_skill');
+                $this->addGadDetailsItem($gad_id, SoftSkill::class, $this->convertStringToID(SoftSkill::class, 'soft_skill_name', $row["soft_skills_2_not_required_dropdown_option"]), 'soft_skill');
+                $this->addGadDetailsItem($gad_id, HardSkill::class, $this->convertStringToID(HardSkill::class, 'hard_skill_name', $row["hard_skills_1_not_required_dropdown_option"]), 'hard_skill');
+                $this->addGadDetailsItem($gad_id, HardSkill::class, $this->convertStringToID(HardSkill::class, 'hard_skill_name', $row["hard_skills_2_not_required_dropdown_option"]), 'hard_skill');
+                $this->addGadDetailsItem($gad_id, Hobbies::class, $this->convertStringToID(Hobbies::class, 'hobbies_name', $row["hobbies_1_not_required_dropdown_option"]), 'hobbies');
+                $this->addGadDetailsItem($gad_id, Hobbies::class, $this->convertStringToID(Hobbies::class, 'hobbies_name', $row["hobbies_2_not_required_dropdown_option"]), 'hobbies');
+                $this->addGadDetailsItem($gad_id, Sports::class, $this->convertStringToID(Sports::class, 'sports_name', $row["sports_1_not_required_dropdown_option"]), 'sports');
+                $this->addGadDetailsItem($gad_id, Sports::class, $this->convertStringToID(Sports::class, 'sports_name', $row["sports_2_not_required_dropdown_option"]), 'sports');
+                $this->addGadDetailsItem($gad_id, Ethnicity::class, $this->convertStringToID(Ethnicity::class, 'ethnicity_name', $row["ethnicity_no_01_not_required_dropdown_option"]), 'ethnicity');
+                $this->addGadDetailsItem($gad_id, Sector::class, $this->convertStringToID(Sector::class, 'sector_name', $row["sector_no_01_not_required_dropdown_option"]), 'sector');
+                $this->addGadDetailsItem($gad_id, Sector::class, $this->convertStringToID(Sector::class, 'sector_name', $row["sector_no_02_not_required_dropdown_option"]), 'sector');
+                $this->addGadDetailsItem($gad_id, Utilities::class, $this->convertStringToID(Utilities::class, 'utilities_name', $row["utilities_no_01_not_required_dropdown_option"]), 'utilities');
+                $this->addGadDetailsItem($gad_id, Utilities::class, $this->convertStringToID(Utilities::class, 'utilities_name', $row["utilities_no_02_not_required_dropdown_option"]), 'utilities');
+                $this->addGadDetailsItem($gad_id, Utilities::class, $this->convertStringToID(Utilities::class, 'utilities_name', $row["utilities_no_03_not_required_dropdown_option"]), 'utilities');
+                $this->addGadDetailsItem($gad_id, Utilities::class, $this->convertStringToID(Utilities::class, 'utilities_name', $row["utilities_no_04_not_required_dropdown_option"]), 'utilities');
+                $this->addGadDetailsItem($gad_id, Appliances::class, $this->convertStringToID(Appliances::class, 'appliance_name', $row["appliances_no_01_not_required_dropdown_option"]), 'appliance');
+                $this->addGadDetailsItem($gad_id, Appliances::class, $this->convertStringToID(Appliances::class, 'appliance_name', $row["appliances_no_02_not_required_dropdown_option"]), 'appliance');
+                $this->addGadDetailsItem($gad_id, Appliances::class, $this->convertStringToID(Appliances::class, 'appliance_name', $row["appliances_no_03_not_required_dropdown_option"]), 'appliance');
+                $this->addGadDetailsItem($gad_id, Appliances::class, $this->convertStringToID(Appliances::class, 'appliance_name', $row["appliances_no_04_not_required_dropdown_option"]), 'appliance');
+                $this->addGadDetailsItem($gad_id, Vehicles::class, $this->convertStringToID(Vehicles::class, 'vehicles_name', $row["vehicles_no_01_not_required_dropdown_option"]), 'vehicle');
+                $this->addGadDetailsItem($gad_id, Vehicles::class, $this->convertStringToID(Vehicles::class, 'vehicles_name', $row["vehicles_no_02_not_required_dropdown_option"]), 'vehicle');
+                $this->addGadDetailsItem($gad_id, Organization::class, $this->convertStringToID(Organization::class, 'organization_name', $row["organizations_involved_no_01_not_required"]), 'organization');
+                $this->addGadDetailsItem($gad_id, Organization::class, $this->convertStringToID(Organization::class, 'organization_name', $row["organizations_involved_no_02_not_required"]), 'organization');
+                $this->addGadDetailsItem($gad_id, Organization::class, $this->convertStringToID(Organization::class, 'organization_name', $row["organizations_involved_no_02_not_required"]), 'organization');
+                $this->addGadDetailsItem($gad_id, Medical::class, $this->convertStringToID(Medical::class, 'health_name', $row["maintaining_medicine_no_01"]), 'medical');
+                $this->addGadDetailsItem($gad_id, Medical::class, $this->convertStringToID(Medical::class, 'health_name', $row["maintaining_medicine_no_02"]), 'medical');
             });
         }
         return true;
@@ -199,13 +199,14 @@ class ImportGads implements ToCollection, WithHeadingRow, WithCalculatedFormulas
         return $id;
     }
 
-    private function addGadDetailsItem(int $gad_id, $class, $item_id)
+    private function addGadDetailsItem(int $gad_id, $class, $item_id, $item_name)
     {
         if (!empty($item_id)) {
             $data = [
                 'gad_id' => $gad_id,
                 'item_type' => $class,
                 'item_id' => $item_id,
+                'item_name' => $item_name,
                 'status' => 1
             ];
             GadItemDetails::create($data);

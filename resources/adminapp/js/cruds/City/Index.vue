@@ -134,7 +134,7 @@ export default {
       deep: true
     }
   },
-  methods: {  
+  methods: {
     ...mapActions('CityIndex', [
       'fetchIndexData',
       'setQuery',

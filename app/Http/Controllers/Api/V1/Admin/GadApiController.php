@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Admin\GadResource;
 use App\Imports\ImportGads;
+use App\Models\Appliances;
 use App\Models\Barangay;
 use App\Models\City;
 use App\Models\CivilStatus;
@@ -12,6 +13,7 @@ use App\Models\EducationalAttaintment;
 use App\Models\EducationalStatus;
 use App\Models\Ethnicity;
 use App\Models\Gad;
+use App\Models\GadItemDetails;
 use App\Models\Gender;
 use App\Models\GenderPreference;
 use App\Models\GovernmentAssistance;
@@ -31,7 +33,9 @@ use App\Models\Hobbies;
 use App\Models\HouseType;
 use App\Models\HouseMake;
 use App\Models\HouseOwnership;
+use App\Models\Utilities;
 use App\Models\ValidID;
+use App\Models\Vehicles;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Gate;
@@ -175,7 +179,7 @@ class GadApiController extends Controller
     public function showData($id, $barangay_id)
     {
         $gads = Gad::where('household_no', $id)->where('barangay_id', $barangay_id)->get();
-        $gad = Gad::where('household_no', $id)->where('barangay_id', $barangay_id)->first();
+        $gad = Gad::with(['house_type', 'house_make', 'house_ownership'])->where('household_no', $id)->where('barangay_id', $barangay_id)->first();
 
         foreach ($gads as $gad) {
             $gad->id = !empty($gad->id) ? $gad->id : '';
@@ -262,8 +266,6 @@ class GadApiController extends Controller
             'political_precinct_no' => $request->political_precinct_no,
             'gender_preference_id' => $request->gender_preference['id'] ?? null,
             'civil_status_id' => $request->civil_status['id'] ?? null,
-            'health_id' => $request->health_id,
-            'disability_id' => $request->disability_id,
             'economic_status_id' => $request->economic_status_id,
             'educational_attaintment_id' => $request->educational_attaintment['id'] ?? null,
             'educational_status_id' => $request->educational_status['id'] ?? null,
@@ -282,9 +284,9 @@ class GadApiController extends Controller
             'religion_id' => $request->religion['id'] ?? null,
             'full_immunization' => $request->full_immunization,
             'covid_19_test' => $request->covid_19_test,
-            'first_vaccination' => $request->first_vaccination,
-            'brand' => $request->brand,
-            'second_vaccination' => $request->second_vaccination,
+            'first_date_vaccination' => $request->first_vaccination,
+            'brand1' => $request->brand,
+            'second_date_vaccination' => $request->second_vaccination,
             'brand2' => $request->brand2,
             'pregnancy_age' => $request->pregnancy_age,
             'prental_checkup' => $request->prental_checkup,
@@ -297,10 +299,12 @@ class GadApiController extends Controller
             $barangay_id = $barangay_id;
             $data['barangay_id'] = $barangay_id;
             $lead_by_zero_barangay = sprintf("%02d", $barangay_id);
-            $replace = '-' . $lead_by_zero_barangay . '-';
-            $gad_id = str_replace('-00-', $replace, $request->gad_id);
+            $replace = '-' . $lead_by_zero_barangay . '-' . $request->household_no;
+            $barangay_previous = '-' . $lead_by_zero_barangay . '-' . '000';
+            $gad_id = str_replace($barangay_previous, $replace, $request->gad_id);
             $data['gad_id'] = $gad_id;
         }
+
         $model_media_type = Media::where('model_type', Gad::class)->where('model_id', $gad->id)->first();
         if ($model_media_type) {
             $gad->updateMedia($request->input('photo', []), 'resident_photo');
@@ -311,8 +315,9 @@ class GadApiController extends Controller
                     ->update(['model_id' => $gad->id]);
             }
         }
-
         $gad->update($data);
+
+        $gad->soft_skills()->contents->update($request->input('soft_skill.*.id', []));
         return (new GadResource($gad))
             ->response()
             ->setStatusCode(Response::HTTP_ACCEPTED);
@@ -386,6 +391,9 @@ class GadApiController extends Controller
                 'house_type' => HouseType::get(['id', 'house_type_name']),
                 'house_make' => HouseMake::get(['id', 'house_make_name']),
                 'house_ownership' => HouseOwnership::get(['id', 'house_ownership_name']),
+                'vehcile' => Vehicles::get(['id', 'vehicles_name']),
+                'appliance' => Appliances::get(['id', 'appliance_name']),
+                'utilities' => Utilities::get(['id', 'utilities_name']),
             ],
         ]);
     }

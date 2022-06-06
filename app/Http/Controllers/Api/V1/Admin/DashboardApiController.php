@@ -23,24 +23,18 @@ class DashboardApiController extends Controller
         $total_female_count = Gad::where('gender_id', '2')->count();
 
         //Senior
-        $total_senior = Gad::where('sector_id', '2')->get();
-        $total_senior_count = $total_senior->count();
+        $total_senior_count = Gad::where('sector_id', '2')->count();
         //Senior Male
-        $total_senior_male = Gad::where('sector_id', '2')->where('gender_id', '1')->get();
-        $total_male_senior_count = $total_senior_male->count();
+        $total_male_senior_count = Gad::where('sector_id', '2')->where('gender_id', '1')->count();
         //Senior Female
-        $total_senior_female = Gad::where('sector_id', '2')->where('gender_id', '2')->get();
-        $total_female_senior_count = $total_senior_female->count();
+        $total_female_senior_count = Gad::where('sector_id', '2')->where('gender_id', '2')->count();
 
         //Total Person With Disablitiy
-        $total_person_disability = Gad::where('sector_id', '1')->get();
-        $total_person_disability_count = $total_person_disability->count();
+        $total_person_disability_count = Gad::where('sector_id', '1')->count();
         //Person With Disablitiy Male
-        $total_disablity_male = Gad::where('sector_id', '1')->where('gender_id', '1')->get();
-        $total_male_disablity_count = $total_disablity_male->count();
+        $total_male_disablity_count = Gad::where('sector_id', '1')->where('gender_id', '1')->count();
         //Person With Disablitiy Female
-        $total_disablity_female = Gad::where('sector_id', '1')->where('gender_id', '2')->get();
-        $total_female_disablity_count = $total_disablity_female->count();
+        $total_female_disablity_count = Gad::where('sector_id', '1')->where('gender_id', '2')->count();
 
         $barangays = Barangay::all();
         foreach ($barangays as $barangay) {
