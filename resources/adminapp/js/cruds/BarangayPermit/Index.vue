@@ -81,16 +81,7 @@
                 </div>
             </div>
         </form>
-        <br />
-        <iframe
-            src="https://gad_calamba.develop/transaction/barangay_clearance.pdf"
-            allowfullscreen="true"
-            class="responsive-iframe"
-            frameborder="0"
-            mozallowfullscreen="true"
-            ref="iframeSelectedFile"
-            webkitallowfullscreen="true"
-        ></iframe>
+        <barangay-clearance ref="barangay_clearance" v-if="is_barangay == 1" :data="data" />
     </div>
 </template>
 
@@ -101,24 +92,30 @@
     left: 0;
     bottom: 0;
     right: 0;
-    width:100%;
+    width: 100%;
     height: 100vh;
 }
 </style>
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import BarangayClearance from './Transaction/BarangayClearance.vue'
 
 export default {
+    components: {
+        BarangayClearance
+    },
     data () {
         return {
             status: '',
             activeField: '',
+            barangay_clearance_data: [],
+            is_barangay: 0,
             transaction_required: false,
             resident_required: false,
         }
     },
     computed: {
-        ...mapGetters('BarangayPermitSingle', ['entry', 'loading', 'lists'])
+        ...mapGetters('BarangayPermitSingle', ['entry', 'loading', 'lists', 'data'])
     },
     mounted () {
         this.fetchCreateData()
@@ -143,11 +140,13 @@ export default {
                     // this.$eventHub.$emit('create-success')
                 })
                 .catch(error => {
+                    console.log(this.data);
                     this.status = 'failed'
                     _.delay(() => {
                         this.status = ''
                     }, 3000)
                 })
+            this.is_barangay = 1;
         },
         focusField (name) {
             this.activeField = name

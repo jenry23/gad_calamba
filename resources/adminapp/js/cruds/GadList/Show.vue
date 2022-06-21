@@ -12,57 +12,6 @@ td {
     <div class="row">
         <div class="col-md-12">
             <button class="btn btn-info" @click="downloads">Download PDF</button>
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-                Family Details
-            </button>
-            <div
-                class="modal fade"
-                id="exampleModal"
-                tabindex="-1"
-                role="dialog"
-                aria-labelledby="exampleModalLabel"
-                aria-hidden="true"
-            >
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Family Details</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div
-                                class="form-group bmd-form-group"
-                                :class="{
-                                    'is-focused': true
-                                }"
-                            >
-                                <label>House Type</label>
-                                <input type="text" class="form-control" value="Duplex" />
-                            </div>
-                                 <div
-                                class="form-group bmd-form-group"
-                                :class="{
-                                    'is-focused': true
-                                }"
-                            >
-                                <label>House Make</label>
-                                <input type="text" class="form-control" value="Concrete" />
-                            </div>
-                                 <div
-                                class="form-group bmd-form-group"
-                                :class="{
-                                    'is-focused': true
-                                }"
-                            >
-                                <label>House Ownership</label>
-                                <input type="text" class="form-control" value="Owned" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div ref="content">
                 <div class="card" style="border: 1px solid black; background-color: #f0f8ff">
                     <div class="card-header card-header-primary">
@@ -131,7 +80,7 @@ td {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="val in lists" :key="val.id">
+                                        <tr v-for="val in lists.first_data" :key="val.id">
                                             <td>{{ val.gad_id }}</td>
                                             <td>{{ val.family_code }}</td>
                                             <td>{{ val.household_names }}</td>
@@ -141,7 +90,8 @@ td {
                                                 </router-link>
                                             </td>
                                             <td>{{ formatDate(val.birth_date) }}</td>
-                                            <td>{{ val.gender.gender_name || '' }}</td>
+                                            <td v-if="val.gender">{{ val.gender.gender_name }}</td>
+                                            <td v-else></td>
                                             <td v-if="val.no_of_years_in_calamba == new Date().getFullYear()">
                                                 Immigrant
                                             </td>
@@ -151,6 +101,88 @@ td {
                                 </table>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <a
+                    class="btn btn-primary"
+                    data-toggle="collapse"
+                    href="#collapseExample"
+                    role="button"
+                    aria-expanded="false"
+                    aria-controls="collapseExample"
+                >
+                    House Details
+                </a>
+                <a
+                    class="btn btn-primary"
+                    data-toggle="collapse"
+                    href="#collapseExample1"
+                    role="button"
+                    aria-expanded="false"
+                    aria-controls="collapseExample1"
+                >
+                    Government Assistance
+                </a>
+            </div>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                    <div
+                        class="form-group bmd-form-group"
+                        :class="{
+                            'is-focused': true
+                        }"
+                    >
+                        <label>House Type</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            :value="lists.second_data.house_type.house_type_name || ''"
+                        />
+                    </div>
+                    <div
+                        class="form-group bmd-form-group"
+                        :class="{
+                            'is-focused': true
+                        }"
+                    >
+                        <label>House Make</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            :value="lists.second_data.house_make.house_make_name || ''"
+                        />
+                    </div>
+                    <div
+                        class="form-group bmd-form-group"
+                        :class="{
+                            'is-focused': true
+                        }"
+                    >
+                        <label>House Ownership</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            :value="lists.second_data.house_ownership.house_ownership_name || ''"
+                        />
+                    </div>
+                </div>
+            </div>
+            <div class="collapse" id="collapseExample1">
+                <div class="card card-body">
+                    <div
+                        class="form-group bmd-form-group"
+                        :class="{
+                            'is-focused': true
+                        }"
+                    >
+                        <label>Government Assistance</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            value="Agrarian Reform Community Development Program (ARCDP)"
+                        />
                     </div>
                 </div>
             </div>
@@ -176,7 +208,7 @@ export default {
         this.resetState()
     },
     computed: {
-        ...mapGetters('GadListSingle', ['lists', 'entry']),
+        ...mapGetters('GadListSingle', ['lists', 'data', 'entry']),
     },
     watch: {
         '$route.params.id': {

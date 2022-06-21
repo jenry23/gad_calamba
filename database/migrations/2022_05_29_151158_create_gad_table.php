@@ -66,8 +66,8 @@ class CreateGadTable extends Migration
             $table->string('pregnancy_age')->nullable();
             $table->string('prental_checkup')->nullable();
             $table->string('postnatal_checkup')->nullable();
-            $table->integer('barangay_residence_year')->nullable();
-            $table->integer('calamba_residence_year')->nullable();
+            $table->date('barangay_residence_year')->nullable();
+            $table->date('calamba_residence_year')->nullable();
             $table->string('remarks')->nullable();
             $table->string('spouse_last_name')->nullable();
             $table->string('spouse_first_name')->nullable();

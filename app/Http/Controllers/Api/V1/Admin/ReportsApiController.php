@@ -90,7 +90,6 @@ class ReportsApiController extends Controller
         $age_from = !empty($request->age_from) ? $request->age_from : '';
         $age_to = !empty($request->age_to) ? $request->age_to : '';
         $gads = Gad::where('barangay_id', $barangay_id)
-            ->orWhere('sector_id', $sector_id)
             ->orWhere('sitio_id', $sitio_id)
             ->orWhere('gender_id', $gender_id)
             ->orderBy('gender_id', 'DESC')
@@ -127,7 +126,6 @@ class ReportsApiController extends Controller
         if ($gender_id) {
             if ($gender_id == '1') {
                 $male = Gad::where('barangay_id', $barangay_id)
-                    ->orWhere('sector_id', $sector_id)
                     ->orWhere('sitio_id', $sitio_id)
                     ->orWhere('gender_id', $gender_id)
                     ->orderBy('gender_id', 'DESC')
@@ -135,7 +133,6 @@ class ReportsApiController extends Controller
                 $female = 0;
             } else {
                 $male = Gad::where('barangay_id', $barangay_id)
-                    ->orWhere('sector_id', $sector_id)
                     ->orWhere('sitio_id', $sitio_id)
                     ->orWhere('gender_id', $gender_id)
                     ->orderBy('gender_id', 'DESC')
@@ -146,12 +143,10 @@ class ReportsApiController extends Controller
 
             $male = Gad::where('barangay_id', $barangay_id)
                 ->where('gender_id', '1')
-                ->orWhere('sector_id', $sector_id)
                 ->orWhere('sitio_id', $sitio_id)
                 ->count();
             $female = Gad::where('barangay_id', $barangay_id)
                 ->where('gender_id', '2')
-                ->orWhere('sector_id', $sector_id)
                 ->orWhere('sitio_id', $sitio_id)
                 ->count();
         }
@@ -168,10 +163,9 @@ class ReportsApiController extends Controller
         }
 
         $all_gads = Gad::where('barangay_id', $barangay_id)
-            ->orWhere('sector_id', $sector_id)
             ->orWhere('sitio_id', $sitio_id)
             ->orWhere('gender_id', $gender_id)
-            ->orderBy('gender_id', 'DESC')
+            ->orderBy('id', 'ASC')
             ->get();
 
         foreach ($all_gads as $gad) {
@@ -201,22 +195,6 @@ class ReportsApiController extends Controller
             $gad->house_ownership_names =  !empty($gad->house_ownership) ? $gad->house_ownership->house_ownership_name : '';
             $gad->house_make_names =  !empty($gad->house_make) ? $gad->house_make->house_make_name : '';
             $gad->house_type_names =  !empty($gad->house_type) ? $gad->house_type->house_type_name : '';
-            $utilities1 = Utilities::where('id', $gad->utilities_no1)->first();
-            $utilities2 = Utilities::where('id', $gad->utilities_no2)->first();
-            $utilities3 = Utilities::where('id', $gad->utilities_no3)->first();
-            $utilities4 = Utilities::where('id', $gad->utilities_no4)->first();
-            $gad->gad_utilities_no1 = !empty($utilities1) ? $utilities1->utilities_name : '';
-            $gad->gad_utilities_no2 = !empty($utilities2) ? $utilities2->utilities_name : '';
-            $gad->gad_utilities_no3 = !empty($utilities3) ? $utilities3->utilities_name : '';
-            $gad->gad_utilities_no4 = !empty($utilities4) ? $utilities4->utilities_name : '';
-            $appliances1 = Appliances::where('id', $gad->appliances_no1)->first();
-            $appliances2 = Appliances::where('id', $gad->appliances_no2)->first();
-            $appliances3 = Appliances::where('id', $gad->appliances_no3)->first();
-            $appliances4 = Appliances::where('id', $gad->appliances_no4)->first();
-            $gad->gad_appliances_no1 = !empty($appliances1) ? $appliances1->appliance_name : '';
-            $gad->gad_appliances_no2 = !empty($appliances2) ? $appliances2->appliance_name : '';
-            $gad->gad_appliances_no3 = !empty($appliances3) ? $appliances3->appliance_name : '';
-            $gad->gad_appliances_no4 = !empty($appliances4) ? $appliances4->appliance_name : '';
             $gad->vehicles_name =  !empty($gad->vehicles) ? $gad->vehicles->vehicles_name : '';
             $gad->medicine_name =  !empty($gad->medicine) ? $gad->medicine->medicine_name : '';
             $gad->organization_name =  !empty($gad->organization) ? $gad->organization->organization_name : '';

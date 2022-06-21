@@ -149,16 +149,11 @@ class Gad extends Model implements HasMedia
             return $media;
         });
     }
-
-    public function item()
-    {
-        return $this->morphTo();
-    }
-
     public function gadDetails(): HasMany
     {
         return $this->hasMany(GadItemDetails::class, 'gad_id', 'id');
     }
+
     public function barangay()
     {
         return $this->belongsTo(Barangay::class, 'barangay_id', 'id');

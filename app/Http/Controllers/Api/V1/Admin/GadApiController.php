@@ -33,6 +33,8 @@ use App\Models\Hobbies;
 use App\Models\HouseType;
 use App\Models\HouseMake;
 use App\Models\HouseOwnership;
+use App\Models\Medicine;
+use App\Models\Question;
 use App\Models\Utilities;
 use App\Models\ValidID;
 use App\Models\Vehicles;
@@ -179,7 +181,7 @@ class GadApiController extends Controller
     public function showData($id, $barangay_id)
     {
         $gads = Gad::where('household_no', $id)->where('barangay_id', $barangay_id)->get();
-        $gad = Gad::with(['house_type', 'house_make', 'house_ownership'])->where('household_no', $id)->where('barangay_id', $barangay_id)->first();
+        $gads1 = Gad::with(['house_type', 'house_make', 'house_ownership'])->where('household_no', $id)->where('barangay_id', $barangay_id)->orderBy('household_id', 'asc')->first();
 
         foreach ($gads as $gad) {
             $gad->id = !empty($gad->id) ? $gad->id : '';
@@ -198,24 +200,24 @@ class GadApiController extends Controller
             $gad->native_provinces =  !empty($gad->native_province) ? $gad->native_province->province_name : '';
             $gad->work_location_citys =  !empty($gad->work_location_city) ? $gad->work_location_city->city_name : '';
             $gad->work_location_provinces =  !empty($gad->work_location_province) ? $gad->work_location_province->province_name : '';
-            $gads->valid_id_names =  !empty($gads->validId) ? $gads->validId->name : '';
-            $gads->educational_attaintment_name =  !empty($gads->educational_attaintment) ? $gads->educational_attaintment->educational_attaintment_name : '';
-            $gads->educational_status_name =  !empty($gads->educational_status) ? $gads->educational_status->educational_status_name : '';
-            $gads->government_assistance_name =  !empty($gads->government_assistance) ? $gads->government_assistance->government_assistance_name : '';
+            $gad->valid_id_names =  !empty($gad->validId) ? $gad->validId->name : '';
+            $gad->educational_attaintment_name =  !empty($gad->educational_attaintment) ? $gad->educational_attaintment->educational_attaintment_name : '';
+            $gad->educational_status_name =  !empty($gad->educational_status) ? $gad->educational_status->educational_status_name : '';
+            $gad->government_assistance_name =  !empty($gad->government_assistance) ? $gad->government_assistance->government_assistance_name : '';
             $gad->political_province_registered =  !empty($gad->political_province_registered) ? $gad->political_province_registered->city_name : '';
             $gad->political_city_registered =  !empty($gad->political_city_registered) ? $gad->political_city_registered->city_name : '';
-            $gads->house_ownership_names =  !empty($gads->house_ownership) ? $gads->house_ownership->house_ownership_name : '';
-            $gads->house_make_names =  !empty($gads->house_make) ? $gads->house_make->house_make_name : '';
-            $gads->house_type_names =  !empty($gads->house_type) ? $gads->house_type->house_type_name : '';
-            $gad->vehicles_name =  !empty($gads->vehicles) ? $gads->vehicles->vehicles_name : '';
-            $gad->medicine_name =  !empty($gads->medicine) ? $gads->medicine->medicine_name : '';
-            $gad->organization_name =  !empty($gads->organization) ? $gads->organization->organization_name : '';
+            $gad->house_ownership_names =  !empty($gad->house_ownership) ? $gad->house_ownership->house_ownership_name : '';
+            $gad->house_make_names =  !empty($gad->house_make) ? $gad->house_make->house_make_name : '';
+            $gad->house_type_names =  !empty($gad->house_type) ? $gad->house_type->house_type_name : '';
+            $gad->vehicles_name =  !empty($gad->vehicles) ? $gad->vehicles->vehicles_name : '';
+            $gad->medicine_name =  !empty($gad->medicine) ? $gad->medicine->medicine_name : '';
+            $gad->organization_name =  !empty($gad->organization) ? $gad->organization->organization_name : '';
         }
 
         return response([
             'data' => [
                 'first_data' => $gads,
-                'second_data' => $gad,
+                'second_data' => $gads1,
             ]
         ]);
     }
@@ -235,8 +237,8 @@ class GadApiController extends Controller
             'no_nuclear_family_household_id' => $request->no_nuclear_family_household_id,
             'no_bedrooms_id' => $request->no_bedrooms_id,
             'no_cr_id' => $request->no_cr_id,
-            'barangay_residence_year' => Carbon::parse($request->barangay_residence_year)->format('Y') ?? null,
-            'calamba_residence_year' => $request->no_of_years_in_calamba,
+            'barangay_residence_year' => Carbon::parse($request->calamba_residence_year)->format('Y-m-d') ?? null,
+            'calamba_residence_year' => Carbon::parse($request->barangay_residence_year)->format('Y-m-d') ?? null,
             'last_name' => $request->last_name,
             'first_name' => $request->first_name,
             'middle_name' => $request->middle_name,
@@ -284,9 +286,9 @@ class GadApiController extends Controller
             'religion_id' => $request->religion['id'] ?? null,
             'full_immunization' => $request->full_immunization,
             'covid_19_test' => $request->covid_19_test,
-            'first_date_vaccination' => $request->first_vaccination,
-            'brand1' => $request->brand,
-            'second_date_vaccination' => $request->second_vaccination,
+            'first_date_vaccination' => Carbon::parse($request->first_date_vaccination)->format('Y-m-d') ?? null,
+            'brand1' => $request->brand1,
+            'second_date_vaccination' => Carbon::parse($request->second_date_vaccination)->format('Y-m-d') ?? null,
             'brand2' => $request->brand2,
             'pregnancy_age' => $request->pregnancy_age,
             'prental_checkup' => $request->prental_checkup,
@@ -317,10 +319,41 @@ class GadApiController extends Controller
         }
         $gad->update($data);
 
-        $gad->soft_skills()->contents->update($request->input('soft_skill.*.id', []));
+        $this->itemDetails($gad, Ethnicity::class, 'ethnicity', $request->input('ethnicity.*.id', []));
+        $this->itemDetails($gad, GovernmentAssistance::class, 'government_assistance', $request->input('government_assistance.*.id', []));
+        $this->itemDetails($gad, Medicine::class, 'medicine', $request->input('medicine.*.id', []));
+        $this->itemDetails($gad, SoftSkill::class, 'soft_skill', $request->input('soft_skill.*.id', []));
+        $this->itemDetails($gad, HardSkill::class, 'hard_skill', $request->input('hard_skill.*.id', []));
+        $this->itemDetails($gad, Hobbies::class, 'hobbies', $request->input('hobbies.*.id', []));
+        $this->itemDetails($gad, Sports::class, 'sports', $request->input('sports.*.id', []));
+        $this->itemDetails($gad, Utilities::class, 'utilities', $request->input('utilities.*.id', []));
+        $this->itemDetails($gad, Appliances::class, 'appliances', $request->input('appliances.*.id', []));
+        $this->itemDetails($gad, Vehicles::class, 'vehicle', $request->input('vehicle.*.id', []));
+
         return (new GadResource($gad))
             ->response()
             ->setStatusCode(Response::HTTP_ACCEPTED);
+    }
+
+    private function itemDetails($gad, $class, $item_name, $items)
+    {
+        $result = $gad->gadDetails()->whereHasMorph('item', [$class], function () {
+        });
+        $details = array_diff($items, $result->pluck('item_id')->toArray());
+        if (!empty($details)) {
+            $result->delete();
+            foreach ($items as $item) {
+                GadItemDetails::create([
+                    'gad_id' => $gad->id,
+                    'item_type' => $class,
+                    'item_id' => $item,
+                    'item_name' => $item_name,
+                    'status' => 1
+                ]);
+            }
+        }
+
+        return true;
     }
 
     public function edit($id)
@@ -334,7 +367,7 @@ class GadApiController extends Controller
         $gad->barangays_name = !empty($gad->barangay) ? $gad->barangay->barangay_name : '';
         $gad->age = !empty($gad->age) ? $gad->age : '';
         $gad->birth_date = !empty($gad->birth_date) ? Carbon::parse($gad->birth_date)->format('d F Y') : '';
-        $gad->no_of_years_in_calamba = !empty($gad->no_of_years_in_calamba) ? Carbon::parse($gad->no_of_years_in_calamba)->format('d F Y') : '';
+        $gad->calamba_residence_year = !empty($gad->calamba_residence_year) ? Carbon::parse($gad->calamba_residence_year)->format('d F Y') : '';
         $gad->barangay_residence_year = !empty($gad->barangay_residence_year) ? Carbon::parse($gad->barangay_residence_year)->format('d F Y') : '';
         $gad->household_names = !empty($gad->household) ? $gad->household->household_name : '';
         $gad->civil_status_names = !empty($gad->civil_status) ? $gad->civil_status->civil_status_name : '';
@@ -360,6 +393,10 @@ class GadApiController extends Controller
         $gad->medicine_name =  !empty($gad->medicine) ? $gad->medicine->medicine_name : '';
         $gad->organization_name =  !empty($gad->organization) ? $gad->organization->organization_name : '';
 
+        $gad->first_date_vaccination = !empty($gad->first_date_vaccination) ? Carbon::parse($gad->first_date_vaccination)->format('d F Y') : '';
+        $gad->second_date_vaccination = !empty($gad->second_date_vaccination) ? Carbon::parse($gad->second_date_vaccination)->format('d F Y') : '';
+
+        $questions = Question::with(['answers'])->get();
         return response([
             'data' => new GadResource($gad),
             'meta' => [
@@ -394,6 +431,8 @@ class GadApiController extends Controller
                 'vehcile' => Vehicles::get(['id', 'vehicles_name']),
                 'appliance' => Appliances::get(['id', 'appliance_name']),
                 'utilities' => Utilities::get(['id', 'utilities_name']),
+                'medicine' => Medicine::get(['id', 'medicine_name']),
+                'questions' => $questions
             ],
         ]);
     }

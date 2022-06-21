@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use \DateTimeInterface;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class SoftSkill extends Model
 {
@@ -40,8 +41,8 @@ class SoftSkill extends Model
         return $date->format('Y-m-d H:i:s');
     }
 
-    public function contents()
+    public function skills(): MorphMany
     {
-        return $this->morphOne(GadItemDetails::class, 'item');
+        return $this->morphMany(GadItemDetails::class, 'item');
     }
 }

@@ -269,6 +269,7 @@
                                                 :key="'ethnicity_id-field'"
                                                 :value="entry.ethnicity"
                                                 :options="lists.ethnicity"
+                                                multiple
                                                 @input="updateEthnicity"
                                                 @focus="focusField('ethnicity')"
                                                 @blur="clearFocus"
@@ -542,7 +543,7 @@
                                                     type="text"
                                                     picker="date"
                                                     @input="updateYearsInCalamba"
-                                                    :value="entry.no_of_years_in_calamba"
+                                                    :value="entry.calamba_residence_year"
                                                 ></datetime-picker>
                                             </td>
                                             <td>
@@ -671,6 +672,7 @@
                                                 :key="'government_assistance_id-field'"
                                                 :value="entry.government_assistance"
                                                 :options="lists.government_assistance"
+                                                multiple
                                                 @input="updateGovernmentAssistance"
                                                 @focus="focusField('government_assistance')"
                                                 @blur="clearFocus"
@@ -851,7 +853,12 @@
                                         <label>Full Immunization</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" :value="entry.full_immunization" />
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            @input="updateFullImmunization"
+                                            :value="entry.full_immunization"
+                                        />
                                     </div>
                                 </div>
                                 <br />
@@ -860,7 +867,18 @@
                                         <label>Maintaining Medicine</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" :value="entry.maintining" />
+                                        <v-select
+                                            class="form-control popcom-input"
+                                            name="medicine"
+                                            label="medicine_name"
+                                            :key="'medicine_id-field'"
+                                            :value="entry.medicine"
+                                            :options="lists.medicine"
+                                            multiple
+                                            @input="updateMedicine"
+                                            @focus="focusField('medicine')"
+                                            @blur="clearFocus"
+                                        />
                                     </div>
                                 </div>
                                 <br />
@@ -870,7 +888,12 @@
                                         <label>Pregnancy Age</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" :value="entry.pregnancy_age" />
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            @input="updatePregnancyAge"
+                                            :value="entry.pregnancy_age"
+                                        />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -878,7 +901,12 @@
                                         <label>With Prental Check-up</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" :value="entry.prental_checkup" />
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            @input="updatePrentalCheckup"
+                                            :value="entry.prental_checkup"
+                                        />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -886,7 +914,12 @@
                                         <label>With Postpartum Check-up</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" :value="entry.postnatal_checkup" />
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            @input="updatePostalCheckup"
+                                            :value="entry.postnatal_checkup"
+                                        />
                                     </div>
                                 </div>
                                 <br />
@@ -902,13 +935,43 @@
                                     <tbody>
                                         <tr>
                                             <td>1st Dose</td>
-                                            <td>{{ entry.brand1 }}</td>
-                                            <td>{{ entry.first_date_vaccination }}</td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    @input="updateBrand1"
+                                                    :value="entry.brand1"
+                                                />
+                                            </td>
+                                            <td>
+                                                <datetime-picker
+                                                    class="form-control popcom-input"
+                                                    type="text"
+                                                    picker="date"
+                                                    @input="updateFirstDateVaccination"
+                                                    :value="entry.first_date_vaccination"
+                                                ></datetime-picker>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>2nd Dose</td>
-                                            <td>{{ entry.brand2 }}</td>
-                                            <td>{{ entry.second_date_vaccination }}</td>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    @input="updateBrand2"
+                                                    :value="entry.brand2"
+                                                />
+                                            </td>
+                                            <td>
+                                                <datetime-picker
+                                                    class="form-control popcom-input"
+                                                    type="text"
+                                                    picker="date"
+                                                    @input="updateSecondDateVaccination"
+                                                    :value="entry.second_date_vaccination"
+                                                ></datetime-picker>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>Booster Shot</td>
@@ -1231,527 +1294,25 @@
                                 <h4 class="card-title">Survey</h4>
                             </div>
                             <div class="card-body">
-                                <div class="mt-3">
-                                    <label
-                                        >1. Do you own or amortize this housing unit occupied by your household or do
-                                        you rent it, do you occupy it rent-free with consent of owner or rent-free
-                                        without consent of owner</label
-                                    >
-                                    <div class="form-check">
-                                        <input
-                                            class="form-radio"
-                                            type="radio"
-                                            name="flexRadioDefault"
-                                            id="flexRadioDefault1"
-                                        />
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            Rent-free without consent of owner
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input
-                                            class="form-radio"
-                                            type="radio"
-                                            name="flexRadioDefault"
-                                            id="flexRadioDefault1"
-                                        />
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            Rent-free with consent of owner
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input
-                                            class="form-radio"
-                                            type="radio"
-                                            name="flexRadioDefault"
-                                            id="flexRadioDefault1"
-                                        />
-                                        <label class="form-check-label" for="flexRadioDefault1"> Rented </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input
-                                            class="form-radio"
-                                            type="radio"
-                                            name="flexRadioDefault"
-                                            id="flexRadioDefault1"
-                                        />
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            Owned/being amportized
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="mt-3">
-                                    <label
-                                        >2. Do you own or amortize this lot occupied by your household or do you rent
-                                        it, do you occupy it rent-free with consent of owner or rent-free without
-                                        consent of owner</label
-                                    >
-                                    <div class="form-check">
-                                        <input
-                                            class="form-radio"
-                                            type="radio"
-                                            name="flexRadioDefault"
-                                            id="flexRadioDefault1"
-                                        />
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            Rent-free without consent of owner
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input
-                                            class="form-radio"
-                                            type="radio"
-                                            name="flexRadioDefault"
-                                            id="flexRadioDefault1"
-                                        />
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            Rent-free with consent of owner
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input
-                                            class="form-radio"
-                                            type="radio"
-                                            name="flexRadioDefault"
-                                            id="flexRadioDefault1"
-                                        />
-                                        <label class="form-check-label" for="flexRadioDefault1"> Rented </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input
-                                            class="form-radio"
-                                            type="radio"
-                                            name="flexRadioDefault"
-                                            id="flexRadioDefault1"
-                                        />
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            Owned/being amportized
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="mt-3">
-                                    <label>3. What type of fuel does this household use for lighting?</label>
-                                    <br />
-                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
-                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox1" />
-                                        <label
-                                            class="custom-control-label pmd-checkbox-ripple-effect"
-                                            for="checkbox1"
+                                <div class="mt-3" v-for="question in lists.questions" :key="question.id">
+                                    <label>{{ question.id }} . {{ question.description }}</label>
+                                    <div v-for="answer in question.answers" :key="answer.id">
+                                        <div
+                                            class="custom-control custom-checkbox custom-control-inline pmd-checkbox"
                                         >
-                                            None
-                                        </label>
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
-                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
-                                        <label
-                                            class="custom-control-label pmd-checkbox-ripple-effect"
-                                            for="checkbox2"
-                                        >
-                                            Wood
-                                        </label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
-                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
-                                        <label
-                                            class="custom-control-label pmd-checkbox-ripple-effect"
-                                            for="checkbox2"
-                                        >
-                                            Charcoal
-                                        </label>
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
-                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
-                                        <label
-                                            class="custom-control-label pmd-checkbox-ripple-effect"
-                                            for="checkbox2"
-                                        >
-                                            Liquefied petroleum gas (LPG)
-                                        </label>
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
-                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
-                                        <label
-                                            class="custom-control-label pmd-checkbox-ripple-effect"
-                                            for="checkbox2"
-                                        >
-                                            Koresene (gaas)
-                                        </label>
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
-                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
-                                        <label
-                                            class="custom-control-label pmd-checkbox-ripple-effect"
-                                            for="checkbox2"
-                                        >
-                                            Electricity
-                                        </label>
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
-                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
-                                        <label
-                                            class="custom-control-label pmd-checkbox-ripple-effect"
-                                            for="checkbox2"
-                                        >
-                                            Others, please specific ____________
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="mt-3">
-                                    <label
-                                        >4. What kind of fuel does this household use most of the time for cooking
-                                        ?</label
-                                    >
-                                    <br />
-                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
-                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox1" />
-                                        <label
-                                            class="custom-control-label pmd-checkbox-ripple-effect"
-                                            for="checkbox1"
-                                        >
-                                            None
-                                        </label>
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
-                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
-                                        <label
-                                            class="custom-control-label pmd-checkbox-ripple-effect"
-                                            for="checkbox2"
-                                        >
-                                            Wood
-                                        </label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
-                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
-                                        <label
-                                            class="custom-control-label pmd-checkbox-ripple-effect"
-                                            for="checkbox2"
-                                        >
-                                            Charcoal
-                                        </label>
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
-                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
-                                        <label
-                                            class="custom-control-label pmd-checkbox-ripple-effect"
-                                            for="checkbox2"
-                                        >
-                                            Liquefied petroleum gas (LPG)
-                                        </label>
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
-                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
-                                        <label
-                                            class="custom-control-label pmd-checkbox-ripple-effect"
-                                            for="checkbox2"
-                                        >
-                                            Koresene (gaas)
-                                        </label>
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
-                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
-                                        <label
-                                            class="custom-control-label pmd-checkbox-ripple-effect"
-                                            for="checkbox2"
-                                        >
-                                            Electricity
-                                        </label>
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
-                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
-                                        <label
-                                            class="custom-control-label pmd-checkbox-ripple-effect"
-                                            for="checkbox2"
-                                        >
-                                            Others, please specific ____________
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="mt-3">
-                                    <label>5. What is the household's main source of drinking water ?</label>
-                                    <br />
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div
-                                                class="
-                                                    custom-control custom-checkbox custom-control-inline
-                                                    pmd-checkbox
-                                                "
+                                            <input
+                                                class="custom-control-input"
+                                                type="checkbox"
+                                                :value="answer.answer"
+                                                id="checkbox1"
+                                            />
+                                            <label
+                                                class="custom-control-label pmd-checkbox-ripple-effect"
+                                                for="checkbox1"
                                             >
-                                                <input
-                                                    class="custom-control-input"
-                                                    type="checkbox"
-                                                    value=""
-                                                    id="checkbox1"
-                                                />
-                                                <label
-                                                    class="custom-control-label pmd-checkbox-ripple-effect"
-                                                    for="checkbox1"
-                                                >
-                                                    Lake, river, rain, others
-                                                </label>
-                                            </div>
+                                                {{ answer.answer }}
+                                            </label>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div
-                                                class="
-                                                    custom-control custom-checkbox custom-control-inline
-                                                    pmd-checkbox
-                                                "
-                                            >
-                                                <input
-                                                    class="custom-control-input"
-                                                    type="checkbox"
-                                                    value=""
-                                                    id="checkbox2"
-                                                />
-                                                <label
-                                                    class="custom-control-label pmd-checkbox-ripple-effect"
-                                                    for="checkbox2"
-                                                >
-                                                    Dug well
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div
-                                                class="
-                                                    custom-control custom-checkbox custom-control-inline
-                                                    pmd-checkbox
-                                                "
-                                            >
-                                                <input
-                                                    class="custom-control-input"
-                                                    type="checkbox"
-                                                    value=""
-                                                    id="checkbox2"
-                                                />
-                                                <label
-                                                    class="custom-control-label pmd-checkbox-ripple-effect"
-                                                    for="checkbox2"
-                                                >
-                                                    Unprotected spring
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div
-                                                class="
-                                                    custom-control custom-checkbox custom-control-inline
-                                                    pmd-checkbox
-                                                "
-                                            >
-                                                <input
-                                                    class="custom-control-input"
-                                                    type="checkbox"
-                                                    value=""
-                                                    id="checkbox2"
-                                                />
-                                                <label
-                                                    class="custom-control-label pmd-checkbox-ripple-effect"
-                                                    for="checkbox2"
-                                                >
-                                                    Peddler
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div
-                                                class="
-                                                    custom-control custom-checkbox custom-control-inline
-                                                    pmd-checkbox
-                                                "
-                                            >
-                                                <input
-                                                    class="custom-control-input"
-                                                    type="checkbox"
-                                                    value=""
-                                                    id="checkbox2"
-                                                />
-                                                <label
-                                                    class="custom-control-label pmd-checkbox-ripple-effect"
-                                                    for="checkbox2"
-                                                >
-                                                    Tubed/Piped shallow well
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div
-                                                class="
-                                                    custom-control custom-checkbox custom-control-inline
-                                                    pmd-checkbox
-                                                "
-                                            >
-                                                <input
-                                                    class="custom-control-input"
-                                                    type="checkbox"
-                                                    value=""
-                                                    id="checkbox2"
-                                                />
-                                                <label
-                                                    class="custom-control-label pmd-checkbox-ripple-effect"
-                                                    for="checkbox2"
-                                                >
-                                                    Shared, tubed/piped deep well
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
-                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
-                                        <label
-                                            class="custom-control-label pmd-checkbox-ripple-effect"
-                                            for="checkbox2"
-                                        >
-                                            Own use, tubed/piped deep well
-                                        </label>
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
-                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
-                                        <label
-                                            class="custom-control-label pmd-checkbox-ripple-effect"
-                                            for="checkbox2"
-                                        >
-                                            Shared, faucet community water system
-                                        </label>
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
-                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
-                                        <label
-                                            class="custom-control-label pmd-checkbox-ripple-effect"
-                                            for="checkbox2"
-                                        >
-                                            Own use, faucet community system water system
-                                        </label>
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
-                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
-                                        <label
-                                            class="custom-control-label pmd-checkbox-ripple-effect"
-                                            for="checkbox2"
-                                        >
-                                            Bottled water
-                                        </label>
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
-                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
-                                        <label
-                                            class="custom-control-label pmd-checkbox-ripple-effect"
-                                            for="checkbox2"
-                                        >
-                                            Others, please specific ____________
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="mt-3">
-                                    <label
-                                        >6. How does your household usually dispose of your kitchen garbage such as
-                                        leftover food, peeling of frutis and vegetables, fish chicken entrails, and
-                                        others ? ?</label
-                                    >
-                                    <br />
-                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
-                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox1" />
-                                        <label
-                                            class="custom-control-label pmd-checkbox-ripple-effect"
-                                            for="checkbox1"
-                                        >
-                                            Feeding to animals
-                                        </label>
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
-                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
-                                        <label
-                                            class="custom-control-label pmd-checkbox-ripple-effect"
-                                            for="checkbox2"
-                                        >
-                                            Burying
-                                        </label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
-                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
-                                        <label
-                                            class="custom-control-label pmd-checkbox-ripple-effect"
-                                            for="checkbox2"
-                                        >
-                                            Composting
-                                        </label>
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
-                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
-                                        <label
-                                            class="custom-control-label pmd-checkbox-ripple-effect"
-                                            for="checkbox2"
-                                        >
-                                            Burning
-                                        </label>
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
-                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
-                                        <label
-                                            class="custom-control-label pmd-checkbox-ripple-effect"
-                                            for="checkbox2"
-                                        >
-                                            Dumping Individual pit (not burned)
-                                        </label>
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox custom-control-inline pmd-checkbox">
-                                        <input class="custom-control-input" type="checkbox" value="" id="checkbox2" />
-                                        <label
-                                            class="custom-control-label pmd-checkbox-ripple-effect"
-                                            for="checkbox2"
-                                        >
-                                            Picked-up by garbage truck
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="mt-3">
-                                    <label>7 . Do you segregate your garbage?</label>
-                                    <div class="form-check">
-                                        <input
-                                            class="form-radio"
-                                            type="radio"
-                                            name="flexRadioDefault"
-                                            id="flexRadioDefault1"
-                                        />
-                                        <label class="form-check-label" for="flexRadioDefault1"> Yes </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input
-                                            class="form-radio"
-                                            type="radio"
-                                            name="flexRadioDefault"
-                                            id="flexRadioDefault1"
-                                        />
-                                        <label class="form-check-label" for="flexRadioDefault1"> No </label>
                                     </div>
                                 </div>
                             </div>
@@ -2032,217 +1593,201 @@ export default {
             'setVehicle',
             'setAppliance',
             'setUtilities',
+            'setFullImmunization',
+            'setMedicine',
+            'setPregnancyAge',
+            'setPrentalCheckup',
+            'setPostalCheckup',
+            'setBrand1',
+            'setFirstDateVaccination',
+            'setBrand2',
+            'setSecondDateVaccination',
             'updateData',
         ]),
         switchSelect (e) {
             var value = e.target.value;
             $("#myTab li a").eq(value).tab("show");
         },
-
         getRoute (name) {
             return `${axios.defaults.baseURL}${name}/media`
         },
-
+        updateBrand1 (e) {
+            this.setBrand1(e.target.value);
+        },
+        updateFirstDateVaccination (e) {
+            this.setFirstDateVaccination(e.target.value);
+        },
+        updateBrand2 (e) {
+            this.setBrand2(e.target.value);
+        },
+        updateSecondDateVaccination (e) {
+            this.setSecondDateVaccination(e.target.value);
+        },
         updateNuclearFamilyHousehold (e) {
             this.setNuclearFamilyHousehold(e.target.value);
         },
-
         updateBedRooms (e) {
             this.setBedRooms(e.target.value);
         },
-
+        updateFullImmunization (e) {
+            this.setFullImmunization(e.target.value);
+        },
+        updateMedicine (e) {
+            this.setMedicine(e);
+        },
+        updatePregnancyAge (e) {
+            this.setPregnancyAge(e.target.value);
+        },
+        updatePrentalCheckup (e) {
+            this.setPrentalCheckup(e.target.value);
+        },
+        updatePostalCheckup (e) {
+            this.setPostalCheckup(e.target.value);
+        },
         updateCRID (e) {
             this.setCRID(e.target.value);
         },
-
         updatePoliticalPrecintNumber (e) {
             this.setPoliticalPrecintNumber(e.target.value);
         },
-
         updatePoliticalBarangay (e) {
             this.setPoliticalBarangay(e.target.value);
         },
-
         updateSoftSkills (e) {
             this.setSoftSkills(e)
         },
-
         updateHardSkills (e) {
             this.setHardSkills(e)
         },
-
         updateHobbies (e) {
             this.setHobbies(e)
         },
-
         updateSports (e) {
             this.setSports(e)
         },
-
         updateHouseOwnership (e) {
             this.setHouseOwnership(e)
         },
-
         updateHouseType (e) {
             this.setHouseType(e)
         },
-
         updateHouseMake (e) {
             this.setHouseMake(e)
         },
-
         updateBarangay (e) {
             this.setBarangay(e);
         },
-
         updateHouseholdNumber (e) {
             this.setHouseholdNumber(e.target.value)
         },
-
         updateLandlineNumber (e) {
             this.setLandlineNumber(e.target.value)
         },
-
         updateEmail (e) {
             this.setEmail(e.target.value)
         },
-
         updateMobileNumber (e) {
             this.setMobileNumber(e.target.value)
         },
-
         updateGender (e) {
             this.setGender(e);
         },
-
         updateGenderPreference (e) {
             this.setGenderPreference(e)
         },
-
         updateFamilyCode (e) {
             this.setFamilyCode(e.target.value)
         },
-
         updateHousehold (e) {
             this.setHousehold(e);
         },
-
         updateCivilStatus (e) {
             this.setCivilStatus(e)
         },
-
         inputSpouseName (e) {
             this.setSpouseName(e.target.value);
         },
-
         updateBirthdate (e) {
             this.setBirthdate(e.target.value);
         },
-
         updateValidID (e) {
             this.setValidID(e);
         },
-
         updateIDNumber (e) {
             this.setIDNumber(e.target.value);
         },
-
         updateReligion (e) {
             this.setReligion(e);
         },
-
         updateEthnicity (e) {
             this.setEthnicity(e);
         },
-
         updateSector (e) {
             this.setSector(e);
         },
-
         updatePoliticalProvinceRegistered (e) {
             this.setPoliticalProvinceRegistered(e)
         },
-
         updatePoliticalCityRegistered (e) {
             this.setPoliticalCityRegistered(e)
         },
-
         updateBuildingHouseUnit (e) {
             this.setBuildingHouseUnit(e.target.value)
         },
-
         updateBlockNoStreet (e) {
             this.setBlockNoStreet(e.target.value)
         },
-
         updatePurok (e) {
             this.setPurok(e);
         },
-
         updateSitio (e) {
             this.setSitio(e)
         },
-
         updateYearsInCalamba (e) {
             this.setYearsInCalamba(e.target.value);
         },
-
         updateYearsInBarangay (e) {
             this.setYearsInBarangay(e.target.value);
         },
-
         updateRemarks (e) {
             this.setRemarks(e.target.value);
         },
-
         updateEducationalAttaintment (e) {
             this.setEducationalAttaintment(e)
         },
-
         updateEducationalStatus (e) {
             this.setEducationalStatus(e)
         },
-
         updateLastSchoolAttended (e) {
             this.setLastSchoolAttended(e.target.value)
         },
-
         updateGovernmentAssistance (e) {
             this.setGovernmentAssistance(e)
         },
-
         updateOrganization (e) {
             this.setOrganization(e)
         },
-
         updateOccupation (e) {
             this.setOccupation(e)
         },
-
         updateEmployer (e) {
             this.setEmployer(e.target.value)
         },
-
         updateWorkLocationProvince (e) {
             this.setWorkLocationProvince(e)
         },
-
         updateWorkLocationCity (e) {
             this.setWorkLocationCity(e)
         },
-
         updateMonthlyIncome (e) {
             this.setMonthlyIncome(e)
         },
-
         updateVehicle (e) {
             this.setVehicle(e)
         },
-
         updateAppliance (e) {
             this.setAppliance(e)
         },
-
         updateUtilities (e) {
             this.setUtilities(e)
         },

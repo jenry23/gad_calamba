@@ -56,6 +56,8 @@ class User extends Authenticatable
         'email',
         'email_verified_at',
         'password',
+        'logo',
+        'is_barangay_user',
         'remember_token',
         'created_at',
         'updated_at',

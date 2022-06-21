@@ -15,7 +15,7 @@ function initialState () {
       no_bedrooms_id: '',
       no_cr_id: '',
       barangay_residence_year: '',
-      no_of_years_in_calamba: '',
+      calamba_residence_year: '',
       last_name: '',
       first_name: '',
       middle_name: '',
@@ -61,13 +61,13 @@ function initialState () {
       block_lot_house_id: '',
       monthly_income: [],
       birth_date: '',
-      medical_id: '',
       religion: [],
+      medicine: [],
       full_immunization: '',
       covid_19_test: '',
-      first_vaccination: '',
-      brand: '',
-      second_vaccination: '',
+      first_date_vaccination: '',
+      brand1: '',
+      second_date_vaccination: '',
       brand2: '',
       pregnancy_age: '',
       prental_checkup: '',
@@ -82,11 +82,13 @@ function initialState () {
       photo: [],
       remarks: '',
       permissions: [],
+      questions: [],
       created_at: '',
       updated_at: '',
       deleted_at: ''
     },
     lists: {
+      medicine: [],
       house_ownership: [],
       house_type: [],
       house_make: [],
@@ -117,6 +119,7 @@ function initialState () {
       work_location_city: [],
       monthly_income: [],
       barangay: [],
+      questions: [],
     },
     items: [
       { name: 'health', value: 'App\\Models\\Health' },
@@ -213,6 +216,36 @@ const actions = {
   },
   setBarangay ({ commit }, value) {
     commit('setBarangay', value)
+  },
+  setBrand1 ({ commit }, value) {
+    commit('setBrand1', value)
+  },
+  setQuestions ({ commit }, value) {
+    commit('setQuestions', value)
+  },
+  setFirstDateVaccination ({ commit }, value) {
+    commit('setFirstDateVaccination', value)
+  },
+  setBrand2 ({ commit }, value) {
+    commit('setBrand2', value)
+  },
+  setSecondDateVaccination ({ commit }, value) {
+    commit('setSecondDateVaccination', value)
+  },
+  setFullImmunization ({ commit }, value) {
+    commit('setFullImmunization', value)
+  },
+  setMedicine ({ commit }, value) {
+    commit('setMedicine', value)
+  },
+  setPregnancyAge ({ commit }, value) {
+    commit('setPregnancyAge', value)
+  },
+  setPrentalCheckup ({ commit }, value) {
+    commit('setPrentalCheckup', value)
+  },
+  setPostalCheckup ({ commit }, value) {
+    commit('setPostalCheckup', value)
   },
   setHouseholdNumber ({ commit }, value) {
     commit('setHouseholdNumber', value)
@@ -421,8 +454,7 @@ const actions = {
     const id = data['id'];
     const barangay_id = data['barangay_id'];
     axios.get(`${route}/show-data/${id}/${barangay_id}`).then(response => {
-      commit('setLists', response.data.data.first_data)
-      commit('setEntry', response.data.data.second_data)
+      commit('setLists', response.data.data)
     })
   },
   resetState ({ commit }) {
@@ -434,8 +466,26 @@ const mutations = {
   setEntry (state, entry) {
     state.entry = entry
   },
+  setQuestions (state, value) {
+    state.entry.questions = value
+  },
   setBarangay (state, value) {
     state.entry.barangay = value
+  },
+  setFullImmunization (state, value) {
+    state.entry.full_immunization = value
+  },
+  setMedicine (state, value) {
+    state.entry.medicine = value
+  },
+  setPregnancyAge (state, value) {
+    state.entry.pregnancy_age = value
+  },
+  setPrentalCheckup (state, value) {
+    state.entry.prental_checkup = value
+  },
+  setPostalCheckup (state, value) {
+    state.entry.postnatal_checkup = value
   },
   setHouseholdNumber (state, value) {
     state.entry.household_no = value
@@ -517,7 +567,7 @@ const mutations = {
     state.entry.sitio = value
   },
   setYearsInCalamba (state, value) {
-    state.entry.no_of_years_in_calamba = value
+    state.entry.calamba_residence_year = value
   },
   setYearsInBarangay (state, value) {
     state.entry.barangay_residence_year = value
@@ -593,6 +643,18 @@ const mutations = {
   },
   setUtilities (state, value) {
     state.entry.utilities = value;
+  },
+  setBrand1 (state, value) {
+    state.entry.brand1 = value;
+  },
+  setFirstDateVaccination (state, value) {
+    state.entry.first_date_vaccination = value;
+  },
+  setBrand2 (state, value) {
+    state.entry.brand2 = value;
+  },
+  setSecondDateVaccination (state, value) {
+    state.entry.second_date_vaccination = value;
   },
   insertPhotoFile (state, file) {
     state.entry.photo.push(file)

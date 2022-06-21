@@ -12,12 +12,9 @@ class Question extends Model
 {
     use HasAdvancedFilter, SoftDeletes, HasFactory;
 
-    protected $table = 'question';
+    protected $table = 'questions';
 
-    protected $casts = [
-        'option_name' => 'array',
-    ];
-    protected $fillable = ['title', 'question_type', 'option_name'];
+    protected $fillable = ['title', 'question_type_id', 'title', 'description'];
 
     public function survey()
     {
@@ -26,7 +23,6 @@ class Question extends Model
 
     public function answers()
     {
-        return $this->hasMany(Answer::class);
+        return $this->hasMany(Answer::class, 'question_id', 'id');
     }
-
 }

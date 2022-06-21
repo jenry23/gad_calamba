@@ -13,6 +13,7 @@ function initialState () {
             transaction: [],
             resident: [],
         },
+        data : {},
         total: 0,
         query: {},
         loading: false
@@ -42,7 +43,7 @@ const actions = {
             axios
                 .post(route, params)
                 .then(response => {
-                    resolve(response)
+                    commit('setData', response.data)
                 })
                 .catch(error => {
                     let message = error.response.data.message || error.message
