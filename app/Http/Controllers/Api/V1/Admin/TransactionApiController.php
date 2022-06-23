@@ -10,6 +10,7 @@ use App\Models\TransactionType;
 use App\Models\Gad;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionApiController extends Controller
 {
@@ -47,6 +48,8 @@ class TransactionApiController extends Controller
             'age' => Carbon::parse($gad->birth_date)->diff(Carbon::now())->format('%y years') ?? '',
             'birth_place' => $gad->political_province_registered->province_name ?? '',
             'status' => $this->residence_status($gad->calamba_residence_year) ?? '',
+            'logo' => Auth::user()->photo[0]['url'],
+            'barangay' => Auth::user()->barangays,
         ];
         return response()->json($data_collection);
     }

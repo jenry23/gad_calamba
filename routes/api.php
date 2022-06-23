@@ -15,6 +15,8 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     Route::resource('roles', 'RolesApiController');
 
     // Users
+    Route::get('users/get-user-details', 'UsersApiController@getUserDetails')->name('users.getUserDetails');
+    Route::post('users/media', 'UsersApiController@storeMedia')->name('users.storeMedia');
     Route::resource('users', 'UsersApiController');
 
     //Gad

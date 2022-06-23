@@ -12,7 +12,7 @@
             @vdropzone-thumbnail="updateDataUrl"
         >
             <div class="dropzone-container" v-show="!hasFiles">
-                <div class="file-selector" style="margin-top: -30px;margin-left: -8px;">
+                <div class="file-selector" style="margin-top: -30px; margin-left: -8px">
                     <figure>
                         <svg
                             width="104px"
@@ -244,6 +244,11 @@ export default {
                 dz.dropzone.options.maxFiles = this.maxFiles - fo.length
             },
             deep: true
+        }
+    },
+    mounted () {
+        if (this.media.length) {
+            this.hasFiles = this.media.length + this.tmpAttachments.length
         }
     },
     methods: {

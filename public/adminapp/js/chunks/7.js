@@ -482,7 +482,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -1148,9 +1147,6 @@ var render = function () {
                 _vm._v(
                   "\n                        Total Senior Citizen\n                        "
                 ),
-                _c("br"),
-                _c("br"),
-                _vm._v(" "),
                 _c(
                   "h3",
                   {

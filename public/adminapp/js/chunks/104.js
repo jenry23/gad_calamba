@@ -159,12 +159,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       status: "",
-      activeField: ""
+      activeField: "",
+      isBarangay: false
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])("UsersSingle", ["entry", "loading", "lists"])),
@@ -180,7 +198,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     }
   },
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("UsersSingle", ["fetchEditData", "updateData", "resetState", "setName", "setEmail", "setPassword", "setRoles"])), {}, {
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("UsersSingle", ["fetchEditData", "updateData", "resetState", "setName", "setEmail", "setPassword", "setRoles", "insertPhotoFile", "removePhotoFile"])), {}, {
     updateName: function updateName(e) {
       this.setName(e.target.value);
     },
@@ -192,6 +210,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     updateRoles: function updateRoles(value) {
       this.setRoles(value);
+    },
+    getRoute: function getRoute(name) {
+      return "".concat(axios.defaults.baseURL).concat(name, "/media");
     },
     submitForm: function submitForm() {
       var _this = this;
@@ -255,7 +276,7 @@ var render = function () {
                 "div",
                 {
                   staticClass:
-                    "\n                            card-header card-header-primary card-header-icon\n                        ",
+                    "card-header card-header-primary card-header-icon",
                 },
                 [
                   _vm._m(0),
@@ -413,6 +434,76 @@ var render = function () {
                         ],
                         1
                       ),
+                      _vm._v(" "),
+                      _vm.entry.roles.find(function (roles) {
+                        return roles.title === "Barangay"
+                      })
+                        ? _c("div", [
+                            _c(
+                              "div",
+                              {
+                                staticClass: "form-group bmd-form-group",
+                                class: {
+                                  "has-items": _vm.entry.barangay,
+                                  "is-focused": _vm.activeField == "barangay",
+                                },
+                              },
+                              [
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass: "bmd-label-floating required",
+                                  },
+                                  [_vm._v(" Barangay ")]
+                                ),
+                                _vm._v(" "),
+                                _c("v-select", {
+                                  key: "roles-field",
+                                  attrs: {
+                                    name: "barangay",
+                                    label: "barangay_name",
+                                    value: _vm.entry.barangay,
+                                    options: _vm.lists.barangay,
+                                  },
+                                  on: {
+                                    input: _vm.updateBarangay,
+                                    focus: function ($event) {
+                                      return _vm.focusField("barangay")
+                                    },
+                                    blur: _vm.clearFocus,
+                                  },
+                                }),
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "form-group" },
+                              [
+                                _c("label", [_vm._v("Photo")]),
+                                _vm._v(" "),
+                                _c("attachment", {
+                                  attrs: {
+                                    route: _vm.getRoute("users"),
+                                    "collection-name": "user_barangay_photo",
+                                    media: _vm.entry.photo,
+                                    "max-file-size": 2,
+                                    "model-id": _vm.$route.params.id,
+                                    component: "pictures",
+                                    accept: "image/*",
+                                    "max-files": 1,
+                                  },
+                                  on: {
+                                    "file-uploaded": _vm.insertPhotoFile,
+                                    "file-removed": _vm.removePhotoFile,
+                                  },
+                                }),
+                              ],
+                              1
+                            ),
+                          ])
+                        : _vm._e(),
                     ]),
                   ]),
                 ],

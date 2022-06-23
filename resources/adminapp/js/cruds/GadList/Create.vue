@@ -8,7 +8,7 @@
             <strong>Success!</strong> Your post is created.
         </div>
 
-        <div class="contact-form-error alert alert-danger mt-4" v-if="error">
+        <div class="contact-form-error alert alert-danger mt-4" v-if="errors">
             <strong>Error!</strong> There was an error sending your request.
         </div>
         <div class="card">
@@ -58,18 +58,18 @@
     </div>
 </template>
 <style scoped>
-.loader{
+.loader {
     position: absolute;
-    top:0px;
-    right:0px;
-    width:100%;
-    height:100%;
-    background-color:#eceaea;
+    top: 0px;
+    right: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: #eceaea;
     background-image: url('https://04.cadwork.com/wp-content/uploads/2019/08/ajax-loader.gif');
     background-size: 300px;
-    background-repeat:no-repeat;
-    background-position:center;
-    z-index:10000000;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 10000000;
     opacity: 0.8;
     filter: alpha(opacity=40);
 }
@@ -100,7 +100,7 @@ export default {
             import_file: {},
             loading: false,
             success: false,
-            error: false,
+            errors: false,
         };
     },
     computed: {
@@ -137,9 +137,17 @@ export default {
             formData.append('import_file', file[0])
             axios.post('gad/import-excel', formData)
                 .then(response => {
-                  this.$eventHub.$emit('create-success')
+                    this.$eventHub.$emit('create-success')
                 }).catch(error => {
-                    console.log(error);
+                    this.$swal({
+                        title: 'Error',
+                        text: error.response.data.message,
+                        type: 'warning',
+                        showCancelButton: true,
+                        focusCancel: true,
+                        reverseButtons: true
+                    })
+                    this.errors = true;
                 }).finally(() => {
                     this.loading = false
                 });

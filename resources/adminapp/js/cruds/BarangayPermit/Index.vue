@@ -81,7 +81,8 @@
                 </div>
             </div>
         </form>
-        <barangay-clearance ref="barangay_clearance" v-if="is_barangay == 1" :data="data" />
+        <barangay-clearance ref="barangay_clearance" v-if="is_barangay === 1" :data="result" />
+        <cohabitation ref="barangay_clearance" v-if="is_barangay === 3" :data="result" />
     </div>
 </template>
 
@@ -98,11 +99,13 @@
 </style>
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import BarangayClearance from './Transaction/BarangayClearance.vue'
+import BarangayClearance from './Transaction/BarangayClearance'
+import Cohabitation from './Transaction/Cohabitation'
 
 export default {
     components: {
-        BarangayClearance
+        BarangayClearance,
+        Cohabitation,
     },
     data () {
         return {
@@ -112,6 +115,7 @@ export default {
             is_barangay: 0,
             transaction_required: false,
             resident_required: false,
+            result: [],
         }
     },
     computed: {
@@ -134,19 +138,23 @@ export default {
             this.setResident(value)
         },
         submitForm () {
-            this.storeData()
-                .then(() => {
-                    // this.$router.push({ name: 'transaction.index' })
-                    // this.$eventHub.$emit('create-success')
-                })
-                .catch(error => {
-                    console.log(this.data);
-                    this.status = 'failed'
-                    _.delay(() => {
-                        this.status = ''
-                    }, 3000)
-                })
-            this.is_barangay = 1;
+            axios.post('transaction', this.entry).then(response => {
+                this.result = response.data;
+                this.is_barangay = this.entry.transaction.id;
+            });
+            // this.storeData()
+            //     .then(() => {
+            //         // this.$router.push({ name: 'transaction.index' })
+            //         // this.$eventHub.$emit('create-success')
+            //     })
+            //     .catch(error => {
+            //         console.log(this.data);
+            //         this.status = 'failed'
+            //         _.delay(() => {
+            //             this.status = ''
+            //         }, 3000)
+            //     })
+            // this.is_barangay = 1;
         },
         focusField (name) {
             this.activeField = name

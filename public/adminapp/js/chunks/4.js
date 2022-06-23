@@ -1507,7 +1507,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       import_file: {},
       loading: false,
       success: false,
-      error: false
+      errors: false
     };
   },
   computed: {
@@ -1547,7 +1547,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios.post('gad/import-excel', formData).then(function (response) {
         _this2.$eventHub.$emit('create-success');
       })["catch"](function (error) {
-        console.log(error);
+        _this2.$swal({
+          title: 'Error',
+          text: error.response.data.message,
+          type: 'warning',
+          showCancelButton: true,
+          focusCancel: true,
+          reverseButtons: true
+        });
+
+        _this2.errors = true;
       })["finally"](function () {
         _this2.loading = false;
       });
@@ -1664,7 +1673,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.loader[data-v-11a6381e]{\r\n    position: absolute;\r\n    top:0px;\r\n    right:0px;\r\n    width:100%;\r\n    height:100%;\r\n    background-color:#eceaea;\r\n    background-image: url('https://04.cadwork.com/wp-content/uploads/2019/08/ajax-loader.gif');\r\n    background-size: 300px;\r\n    background-repeat:no-repeat;\r\n    background-position:center;\r\n    z-index:10000000;\r\n    opacity: 0.8;\r\n    filter: alpha(opacity=40);\n}\r\n", ""]);
+exports.push([module.i, "\n.loader[data-v-11a6381e] {\r\n    position: absolute;\r\n    top: 0px;\r\n    right: 0px;\r\n    width: 100%;\r\n    height: 100%;\r\n    background-color: #eceaea;\r\n    background-image: url('https://04.cadwork.com/wp-content/uploads/2019/08/ajax-loader.gif');\r\n    background-size: 300px;\r\n    background-repeat: no-repeat;\r\n    background-position: center;\r\n    z-index: 10000000;\r\n    opacity: 0.8;\r\n    filter: alpha(opacity=40);\n}\r\n", ""]);
 
 // exports
 
@@ -3879,7 +3888,7 @@ var render = function () {
         )
       : _vm._e(),
     _vm._v(" "),
-    _vm.error
+    _vm.errors
       ? _c(
           "div",
           { staticClass: "contact-form-error alert alert-danger mt-4" },

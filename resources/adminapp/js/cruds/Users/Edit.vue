@@ -4,19 +4,13 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div
-                            class="
-                                card-header card-header-primary card-header-icon
-                            "
-                        >
+                        <div class="card-header card-header-primary card-header-icon">
                             <div class="card-icon">
                                 <i class="material-icons">edit</i>
                             </div>
                             <h4 class="card-title">
-                                {{ $t("global.edit") }}
-                                <strong>{{
-                                    $t("cruds.user.title_singular")
-                                }}</strong>
+                                {{ $t('global.edit') }}
+                                <strong>{{ $t('cruds.user.title_singular') }}</strong>
                             </h4>
                         </div>
                         <div class="card-body">
@@ -30,15 +24,12 @@
                                         class="form-group bmd-form-group"
                                         :class="{
                                             'has-items': entry.name,
-                                            'is-focused': activeField == 'name',
+                                            'is-focused': activeField == 'name'
                                         }"
                                     >
-                                        <label
-                                            class="bmd-label-floating required"
-                                            >{{
-                                                $t("cruds.user.fields.name")
-                                            }}</label
-                                        >
+                                        <label class="bmd-label-floating required">{{
+                                            $t('cruds.user.fields.name')
+                                        }}</label>
                                         <input
                                             class="form-control"
                                             type="text"
@@ -53,16 +44,12 @@
                                         class="form-group bmd-form-group"
                                         :class="{
                                             'has-items': entry.email,
-                                            'is-focused':
-                                                activeField == 'email',
+                                            'is-focused': activeField == 'email'
                                         }"
                                     >
-                                        <label
-                                            class="bmd-label-floating required"
-                                            >{{
-                                                $t("cruds.user.fields.email")
-                                            }}</label
-                                        >
+                                        <label class="bmd-label-floating required">{{
+                                            $t('cruds.user.fields.email')
+                                        }}</label>
                                         <input
                                             class="form-control"
                                             type="text"
@@ -77,12 +64,11 @@
                                         class="form-group bmd-form-group"
                                         :class="{
                                             'has-items': entry.password,
-                                            'is-focused':
-                                                activeField == 'password',
+                                            'is-focused': activeField == 'password'
                                         }"
                                     >
                                         <label class="bmd-label-floating">{{
-                                            $t("cruds.user.fields.password")
+                                            $t('cruds.user.fields.password')
                                         }}</label>
                                         <input
                                             class="form-control"
@@ -91,23 +77,18 @@
                                             @input="updatePassword"
                                             @focus="focusField('password')"
                                             @blur="clearFocus"
-                                        />
+                                        />/images/popcom.png
                                     </div>
                                     <div
                                         class="form-group bmd-form-group"
                                         :class="{
-                                            'has-items':
-                                                entry.roles.length !== 0,
-                                            'is-focused':
-                                                activeField == 'roles',
+                                            'has-items': entry.roles.length !== 0,
+                                            'is-focused': activeField == 'roles'
                                         }"
                                     >
-                                        <label
-                                            class="bmd-label-floating required"
-                                            >{{
-                                                $t("cruds.user.fields.roles")
-                                            }}</label
-                                        >
+                                        <label class="bmd-label-floating required">{{
+                                            $t('cruds.user.fields.roles')
+                                        }}</label>
                                         <v-select
                                             name="roles"
                                             label="title"
@@ -115,11 +96,46 @@
                                             :value="entry.roles"
                                             :options="lists.roles"
                                             :closeOnSelect="false"
-                                            multiple
                                             @input="updateRoles"
                                             @focus="focusField('roles')"
                                             @blur="clearFocus"
                                         />
+                                    </div>
+                                    <div v-if="entry.roles.find((roles) => roles.title === 'Barangay')">
+                                        <div
+                                            class="form-group bmd-form-group"
+                                            :class="{
+                                                'has-items': entry.barangay,
+                                                'is-focused': activeField == 'barangay'
+                                            }"
+                                        >
+                                            <label class="bmd-label-floating required"> Barangay </label>
+                                            <v-select
+                                                name="barangay"
+                                                label="barangay_name"
+                                                :key="'roles-field'"
+                                                :value="entry.barangay"
+                                                :options="lists.barangay"
+                                                @input="updateBarangay"
+                                                @focus="focusField('barangay')"
+                                                @blur="clearFocus"
+                                            />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Photo</label>
+                                            <attachment
+                                                :route="getRoute('users')"
+                                                :collection-name="'user_barangay_photo'"
+                                                :media="entry.photo"
+                                                :max-file-size="2"
+                                                :model-id="$route.params.id"
+                                                :component="'pictures'"
+                                                :accept="'image/*'"
+                                                @file-uploaded="insertPhotoFile"
+                                                @file-removed="removePhotoFile"
+                                                :max-files="1"
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -131,7 +147,7 @@
                                 :isLoading="loading"
                                 :disabled="loading"
                             >
-                                {{ $t("global.save") }}
+                                {{ $t('global.save') }}
                             </vue-button-spinner>
                         </div>
                     </div>
@@ -143,24 +159,29 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import Attachment from '@components/Attachments/Attachment'
 
 export default {
-    data() {
+    components: {
+        Attachment
+    },
+    data () {
         return {
             status: "",
             activeField: "",
+            isBarangay: false,
         };
     },
     computed: {
         ...mapGetters("UsersSingle", ["entry", "loading", "lists"]),
     },
-    beforeDestroy() {
+    beforeDestroy () {
         this.resetState();
     },
     watch: {
         "$route.params.id": {
             immediate: true,
-            handler() {
+            handler () {
                 this.resetState();
                 this.fetchEditData(this.$route.params.id);
             },
@@ -175,20 +196,29 @@ export default {
             "setEmail",
             "setPassword",
             "setRoles",
+            "setBarangay",
+            "insertPhotoFile",
+            "removePhotoFile"
         ]),
-        updateName(e) {
+        updateName (e) {
             this.setName(e.target.value);
         },
-        updateEmail(e) {
+        updateEmail (e) {
             this.setEmail(e.target.value);
         },
-        updatePassword(e) {
+        updatePassword (e) {
             this.setPassword(e.target.value);
         },
-        updateRoles(value) {
+        updateRoles (value) {
             this.setRoles(value);
         },
-        submitForm() {
+        updateBarangay (e) {
+            this.setBarangay(e);
+        },
+        getRoute (name) {
+            return `${axios.defaults.baseURL}${name}/media`
+        },
+        submitForm () {
             this.updateData()
                 .then(() => {
                     this.$router.push({ name: "users.index" });
@@ -201,10 +231,10 @@ export default {
                     }, 3000);
                 });
         },
-        focusField(name) {
+        focusField (name) {
             this.activeField = name;
         },
-        clearFocus() {
+        clearFocus () {
             this.activeField = "";
         },
     },

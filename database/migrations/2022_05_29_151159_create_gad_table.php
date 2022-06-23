@@ -49,8 +49,8 @@ class CreateGadTable extends Migration
             $table->foreignId('religion_id')->nullable()->constrained('religion');
             $table->foreignId('political_province_registered_id')->nullable()->constrained('province');
             $table->foreignId('political_city_registered_id')->nullable()->constrained('city');
-            $table->integer('political_brgy_registered')->nullable();
-            $table->integer('political_precinct_no')->nullable();
+            $table->foreignId('political_brgy_registered')->nullable()->constrained('barangay');
+            $table->string('political_precinct_no')->nullable();
             $table->foreignId('house_ownership_id')->nullable()->constrained('house_ownership');
             $table->foreignId('house_type_id')->nullable()->constrained('house_type');
             $table->foreignId('house_make_id')->nullable()->constrained('house_make');

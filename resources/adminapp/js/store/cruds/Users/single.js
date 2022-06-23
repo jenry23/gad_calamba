@@ -7,6 +7,8 @@ function initialState() {
       email_verified_at: '',
       password: null,
       roles: [],
+      barangay: [],
+      photo: [],
       remember_token: '',
       created_at: '',
       updated_at: '',
@@ -14,6 +16,7 @@ function initialState() {
     },
     lists: {
       roles: [],
+      barangay: [],
     },
     loading: false
   }
@@ -106,6 +109,15 @@ const actions = {
   setRoles({ commit }, value) {
     commit('setRoles', value)
   },
+  setBarangay({ commit }, value) {
+    commit('setBarangay', value)
+  },
+  insertPhotoFile({ commit }, file) {
+    commit('insertPhotoFile', file)
+  },
+  removePhotoFile({ commit }, file) {
+    commit('removePhotoFile', file)
+  },
   setRememberToken({ commit }, value) {
     commit('setRememberToken', value)
   },
@@ -157,6 +169,17 @@ const mutations = {
   },
   setRoles(state, value) {
     state.entry.roles = value
+  },
+  setBarangay(state, value) {
+    state.entry.barangay = value
+  },
+    insertPhotoFile(state, file) {
+    state.entry.photo.push(file)
+  },
+  removePhotoFile(state, file) {
+    state.entry.photo = state.entry.photo.filter(item => {
+      return item.id !== file.id
+    })
   },
   setRememberToken(state, value) {
     state.entry.remember_token = value

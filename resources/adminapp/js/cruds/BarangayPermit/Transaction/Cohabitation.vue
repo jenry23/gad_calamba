@@ -37,54 +37,31 @@
                         <!-- Props -->
                         <div class="barangay-body">
                             <div class="text-center">
-                                <h1 style="font-weight: 600; font-size: 4rem">BARANGAY CLEARANCE</h1>
-                            </div>
-                            <div class="barangay-finger-print">
-                                <img src="/transaction/finger_print.png" class="pull-right" />
+                                <h1 style="font-weight: 600; font-size: 4rem">BARANGAY CERTIFICATION</h1>
                             </div>
                             <div class="container">
                                 <div class="barangay-body-paragraph">
                                     <!-- Props -->
-                                    <p>SA MGA KINAUUKULAN,</p>
+                                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To Whom It May Concern;</p>
                                     <p class="text-justify">
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ito ang pagpapatunay na ang
-                                        nakalagda sa clearance na ito ay kasalukuyang naninirahan sa Barangay
-                                        {{ data.barangay.barangay_name }}, Calamba City at walang anumang nasangkutang
-                                        gulo at kaso na nabinbin dito.
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This is to certify that
+                                        {{ data.full_name }}, of legal age, and a bonafide resident of Brgy.
+                                        {{ data.barangay.barangay_name }}, Calamba City, Laguna.
                                     </p>
-                                    <div>
-                                        <b style="margin-right: 145px">Pangalan</b>
-                                        <b style="margin-right: 145px">:</b><b> {{ data.full_name }}</b>
-                                    </div>
-                                    <div>
-                                        <b style="margin-right: 155px">Tirahan</b>
-                                        <b style="margin-right: 145px">:</b><b> {{ data.address }}</b>
-                                    </div>
-                                    <div>
-                                        <b style="margin-right: 49px">Petsa ng Kapanganakan</b>
-                                        <b style="margin-right: 145px">:</b><b> {{ data.birthday }}</b>
-                                    </div>
-                                    <div>
-                                        <b style="margin-right: 170px">Edad</b>
-                                        <b style="margin-right: 145px">:</b><b> {{ data.age }}</b>
-                                    </div>
-                                    <div>
-                                        <b style="margin-right: 49px">Lugar ng Kapanganakan</b>
-                                        <b style="margin-right: 145px">:</b><b> {{ data.birth_place }}</b>
-                                    </div>
-                                    <div>
-                                        <b style="margin-right: 81px">Status sa Barangay</b>
-                                        <b style="margin-right: 145px">:</b><b> {{ data.status }}</b>
-                                    </div>
                                     <br />
                                     <p class="text-justify">
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Iginawad ang pagpapatunay na
-                                        ito ngayong ika-16 ng Mayo, 2022 upang magamit sa Legal purposes.
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This is to certify further
+                                        that herein person is the live-in partner of BABYLYN ABULENCIA. They are
+                                        living together in since 2016..
                                     </p>
-                                    <div>
-                                        <b style="margin-right: 145px">Valid until</b>
-                                        <b style="margin-right: 145px">:</b><b> November 16, 2022</b>
-                                    </div>
+                                    <p class="text-justify">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This certification is being
+                                        issued upon request for legal purposes this may serve best.
+                                    </p>
+                                    <p class="text-justify">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Issued this 7 th of December,
+                                        2021 at Barangay, Maunong, Calamba City, Laguna
+                                    </p>
                                 </div>
                             </div>
                         </div>

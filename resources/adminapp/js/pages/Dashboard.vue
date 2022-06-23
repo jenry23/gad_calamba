@@ -73,7 +73,6 @@
                         </div>
                         <div class="card-header">
                             Total Senior Citizen
-                            <br /><br />
                             <h3 class="card-title" style="color: white">{{ data.total_senior_count }}</h3>
                         </div>
                         <div class="row">

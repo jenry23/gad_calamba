@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "adminapp/js/chunks/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"d4589205b22b059e020e","1":"50ebf6a697a4788865a8","2":"aedebb9f65472d9d7941","3":"a23c0ad99423257d938c","4":"5c9467d2dd38d4aca26b","5":"758c404f4db4e4b9c2db","6":"6f9abfefc1c88637a29c","7":"beb542231ccba410aa46","8":"b29c31ac75e28b3a3514","9":"0e54a595f617d2ddaea3","10":"a5bcd50266e4d409dee0","11":"8096fa721875dbd840e0","12":"e9b3c6aceff25229baa6","13":"846e57c2482a32c9485d","14":"45cb8d53b88fb3d30472","15":"b438b43bfc58d16ba6a9","16":"fdbe294babcb20f771be","17":"d91882a26ef59275b007","18":"7a9a4645f7e7be310f49","19":"53e76b4393ca66e09779","20":"65c5a0617165936ffe76","21":"94bdb541ea3680e3a042","22":"664df543558535b81f3a","23":"33df885539887b589fca","24":"f857d52eabacd606e4b3","25":"f7a540dd71d5e512564f","26":"3b0937632e0dcb34aa9f","27":"9d3a294211036b77a2ae","28":"ccd63a095c5152a6b2fc","29":"289c4c1d3b745d6bb22d","30":"29a086228acc1f58918f","31":"07d51771d316a4a825d6","32":"0b538f4483e5dd96af89","33":"a87728a0521b240da12b","34":"15b727f31be3b5616dfd","35":"999483ffa9eb9c39526c","36":"ab45b0cd46496490a85d","37":"8520003bdf7474246d22","38":"6eb00cea3ba490631f8e","39":"0f10002944890266ff96","40":"fd0d63313f4a43c6fa99","41":"ef2b055de3145d702ad8","42":"131bf6e89d88ae8946a9","43":"4b3598624f1c79677b1e","44":"3b051347f3a24cbecb79","45":"f1c12c6bf960e7c9bee9","46":"c46ce591786af19fe978","47":"4745367870043dfce7af","48":"c68dd0a6ff1720c83f49","49":"7162c046f4098b0c061c","50":"867e5412741cb805fa5b","51":"c191a2845f9ec54d3db6","52":"61b7ca30c03a234946f3","53":"1a841505b16d6cb931c9","54":"4e72ea00c3ac00481ce3","55":"ddb6c270f2fffd9f42cb","56":"d6c947af3d4b950b989c","57":"d7cfee6e7afb91c7d7bc","58":"8f322412c79e10dd1452","59":"5a608f84512b5405b0a2","60":"6bfac9816388fb95d531","61":"d9e782d996880c098967","62":"8af1a9ec8b2d56d0c9c9","63":"e3eee6af9221ab98af50","64":"62e5b54050c4c8a1b330","65":"a9ff37a66e285d91bf1c","66":"12fcdb19d0faca619b10","67":"53d360c6334f4a89fe21","68":"75faf4245f2533f01303","69":"0640fa763fb4486d6400","70":"f1772fa170bfec865a6d","71":"c99e01d23d3038f86d5d","72":"5dbc3d6e82b548d46d0f","73":"f216d97aac4de3524262","74":"f486929cf42120b5bc0e","75":"6f7d9b2a9e4ff9f0742b","76":"625e9e1ee4ff3c61a692","77":"2d2d65ca7f908724d02b","78":"6cac7502264d4fd270ee","79":"d733d5e9af139bdef6f3","80":"3b30c94e8d42e57d87d6","81":"b365e47dabb5a5877fc3","82":"cde920d1155d8b1c38e0","83":"acdbfc185a82b42a64fa","84":"0f46f3902eba08c1649e","85":"ba6bd03eca858d53fbf9","86":"86ae8e907d9408b73e61","87":"bfbea2773438ab640b93","88":"fc53237c6df036f02306","89":"6bfee9634ff4af7673e0","90":"f3d9df99bc9e5bca945a","91":"10a6eea7dec936f6e717","92":"0c381260f697a520b13d","93":"e318c4fd7f5101452fe7","94":"06e1a9fbb71a5964ce6d","95":"7e7ee5cf4250636c345a","96":"61a133ab50a4839038bc","97":"b871d8f9f1168fb928c8","98":"828dec0c33ff9ca3b7a4","99":"a31e4916108b33151a3e","100":"e719618c9f8bb32bbea6","101":"058b0f0f66969be9b134","102":"c03ce1ba70fe666bdbf4","103":"01454443546025512df1","104":"b5c6b7992cab81de1f5c","105":"4e1c556e1849ad92d6fc","106":"9bfeb14cd221bd3fba21","107":"dbf5f131a96cbf28ed75","108":"4cff1d5a526982682ad0","109":"4848288fe500c9f09d91","110":"8e3a6dc69f007bdd99fa","111":"68aacc23e4c27a7a3831","112":"3925f672e056bae1c169","113":"9d32f104c5e98bc7b92c","114":"ceb10daabe0b250ad5f7"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "adminapp/js/chunks/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"d4589205b22b059e020e","1":"50ebf6a697a4788865a8","2":"aedebb9f65472d9d7941","3":"a23c0ad99423257d938c","4":"2feb01cc6e3c76bf8659","5":"ea880407a9846cb265ae","6":"7308d54d8dfb6cbc4e44","7":"599d14b84973e44020c7","8":"b29c31ac75e28b3a3514","9":"0e54a595f617d2ddaea3","10":"a5bcd50266e4d409dee0","11":"8096fa721875dbd840e0","12":"e9b3c6aceff25229baa6","13":"846e57c2482a32c9485d","14":"45cb8d53b88fb3d30472","15":"b6978d06af3c01a3a5c3","16":"b68a6a9d8d2c61bf6d30","17":"c00d5b3d362b522b3657","18":"98907230e35a6414e8db","19":"3ecdcbf617b02c8c9227","20":"329da05aa6c3490b9b66","21":"195a298adc4c27ea0b43","22":"062596995e95ed26ab29","23":"1e88f93749610715938a","24":"920ce9f16da24affbfd3","25":"34f4d03b0fe784be0725","26":"a4a0b9953b3eefa1753c","27":"d7f016f5f36dd3986602","28":"73b74a9ef12005cd635c","29":"ef45d8578286d71d4cb6","30":"0abffc53408a22b9bfb9","31":"14cb3004809866774ff4","32":"a10df4efa7fdcaf3a76d","33":"e8bbd2f66b336c54deaa","34":"30bdfeb9b24034c0537f","35":"f30e72a09604dea4fa86","36":"2a665736e4f2c482e79e","37":"8520003bdf7474246d22","38":"521b429292a2abfe4bf6","39":"0f10002944890266ff96","40":"fd0d63313f4a43c6fa99","41":"ef2b055de3145d702ad8","42":"131bf6e89d88ae8946a9","43":"4b3598624f1c79677b1e","44":"3b051347f3a24cbecb79","45":"f1c12c6bf960e7c9bee9","46":"c46ce591786af19fe978","47":"4745367870043dfce7af","48":"c68dd0a6ff1720c83f49","49":"7162c046f4098b0c061c","50":"867e5412741cb805fa5b","51":"c191a2845f9ec54d3db6","52":"61b7ca30c03a234946f3","53":"1a841505b16d6cb931c9","54":"4e72ea00c3ac00481ce3","55":"ddb6c270f2fffd9f42cb","56":"d6c947af3d4b950b989c","57":"d7cfee6e7afb91c7d7bc","58":"8f322412c79e10dd1452","59":"5a608f84512b5405b0a2","60":"6bfac9816388fb95d531","61":"d9e782d996880c098967","62":"8af1a9ec8b2d56d0c9c9","63":"e3eee6af9221ab98af50","64":"62e5b54050c4c8a1b330","65":"a9ff37a66e285d91bf1c","66":"12fcdb19d0faca619b10","67":"53d360c6334f4a89fe21","68":"75faf4245f2533f01303","69":"0640fa763fb4486d6400","70":"f1772fa170bfec865a6d","71":"c99e01d23d3038f86d5d","72":"5dbc3d6e82b548d46d0f","73":"f216d97aac4de3524262","74":"f486929cf42120b5bc0e","75":"6f7d9b2a9e4ff9f0742b","76":"625e9e1ee4ff3c61a692","77":"2d2d65ca7f908724d02b","78":"6cac7502264d4fd270ee","79":"d733d5e9af139bdef6f3","80":"3b30c94e8d42e57d87d6","81":"b365e47dabb5a5877fc3","82":"cde920d1155d8b1c38e0","83":"acdbfc185a82b42a64fa","84":"0f46f3902eba08c1649e","85":"ba6bd03eca858d53fbf9","86":"86ae8e907d9408b73e61","87":"bfbea2773438ab640b93","88":"fc53237c6df036f02306","89":"6bfee9634ff4af7673e0","90":"f3d9df99bc9e5bca945a","91":"10a6eea7dec936f6e717","92":"0c381260f697a520b13d","93":"e318c4fd7f5101452fe7","94":"06e1a9fbb71a5964ce6d","95":"7e7ee5cf4250636c345a","96":"61a133ab50a4839038bc","97":"b871d8f9f1168fb928c8","98":"828dec0c33ff9ca3b7a4","99":"a31e4916108b33151a3e","100":"e719618c9f8bb32bbea6","101":"058b0f0f66969be9b134","102":"c03ce1ba70fe666bdbf4","103":"d749c5594e4d5c2ef906","105":"4e1c556e1849ad92d6fc","106":"9bfeb14cd221bd3fba21","107":"dbf5f131a96cbf28ed75","108":"4cff1d5a526982682ad0","109":"4848288fe500c9f09d91","110":"8e3a6dc69f007bdd99fa","111":"68aacc23e4c27a7a3831","112":"3925f672e056bae1c169","113":"9d32f104c5e98bc7b92c","114":"ceb10daabe0b250ad5f7","115":"43953dcf0965613b32b3","116":"f3ee180c687b014521f4"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -3886,12 +3886,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.$eventHub.$on('delete-success', this.itemDeleted);
     this.$eventHub.$on('archived-success', this.itemArchived);
     this.$eventHub.$on('restored-success', this.itemRestored);
+    this.$eventHub.$on('item-error', this.itemError(error));
   },
   methods: {
     itemCreated: function itemCreated() {
       this.$jquery.notify({
         icon: 'check',
         message: this.$i18n.t('global.create_success')
+      }, this.notificationSettings);
+    },
+    itemError: function itemError(error) {
+      this.$jquery.notify({
+        icon: 'check',
+        message: this.$i18n.t(error)
       }, this.notificationSettings);
     },
     itemRestored: function itemRestored() {
@@ -4263,6 +4270,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     title: {
@@ -4301,7 +4319,10 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   data: function data() {
-    return {};
+    return {
+      user: [],
+      roles: []
+    };
   },
   computed: {
     sidebarStyle: function sidebarStyle() {
@@ -4309,6 +4330,9 @@ __webpack_require__.r(__webpack_exports__);
         backgroundImage: "url(".concat(this.backgroundImage, ")")
       };
     }
+  },
+  mounted: function mounted() {
+    this.getUserDetails();
   },
   methods: {
     logout: function logout() {
@@ -4318,6 +4342,14 @@ __webpack_require__.r(__webpack_exports__);
         method: 'post'
       }).then(function () {
         return location.assign('/');
+      });
+    },
+    getUserDetails: function getUserDetails() {
+      var _this = this;
+
+      axios.get('users/get-user-details').then(function (response) {
+        _this.user = response.data.data;
+        _this.roles = _this.user.roles[0];
       });
     }
   }
@@ -4728,7 +4760,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.sidebar[data-v-c66865f8]{\r\n   overflow-y: auto;\n}\r\n", ""]);
+exports.push([module.i, "\n.sidebar[data-v-c66865f8] {\r\n    overflow-y: auto;\n}\r\n", ""]);
 
 // exports
 
@@ -4747,7 +4779,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n@media screen and (min-width: 991px) {\n.nav-mobile-menu {\r\n    display: none;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n@media screen and (min-width: 991px) {\n.nav-mobile-menu {\r\n        display: none;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -38156,26 +38188,49 @@ var render = function () {
         "div",
         { staticClass: "logo" },
         [
-          _c("a", { staticClass: " logo-normal", attrs: { href: "/" } }, [
-            !_vm.$can("powered_gad_access")
-              ? _c("img", {
-                  staticClass: "img-fluid",
-                  attrs: { src: "/images/popcom.png" },
-                })
-              : _c("img", {
-                  staticClass: "img-fluid",
-                  attrs: { src: "/images/gad-logo-login.png" },
-                }),
+          _c("a", { staticClass: "logo-normal", attrs: { href: "/" } }, [
+            _vm.roles.title === "Popcom"
+              ? _c("div", { staticClass: "d-flex justify-content-center" }, [
+                  _c("img", {
+                    staticClass: "img-fluid",
+                    attrs: { src: "/images/popcom.png" },
+                  }),
+                ])
+              : _vm.roles.title === "Barangay"
+              ? _c("div", { staticClass: "d-flex justify-content-center" }, [
+                  _c("img", {
+                    staticClass: "img-fluid",
+                    attrs: { src: _vm.user.photo[0].url },
+                  }),
+                ])
+              : _c("div", { staticClass: "d-flex justify-content-center" }, [
+                  _c("img", {
+                    staticClass: "img-fluid",
+                    attrs: { src: "/images/gad-logo-login.png" },
+                  }),
+                ]),
           ]),
           _vm._v(" "),
           _c("center", [
             _c("b", [
-              !_vm.$can("powered_gad_access")
-                ? _c("h1", { staticStyle: { color: "white" } }, [
-                    _vm._v("POPCOM"),
+              _vm.roles.title === "Popcom"
+                ? _c("div", [
+                    !_vm.$can("powered_gad_access")
+                      ? _c("h1", { staticStyle: { color: "white" } }, [
+                          _vm._v("POPCOM"),
+                        ])
+                      : _vm._e(),
                   ])
-                : _c("h1", { staticStyle: { color: "white" } }, [
-                    _vm._v("GAD"),
+                : _vm.roles.title === "Barangay"
+                ? _c("div", [
+                    _c("h1", { staticStyle: { color: "white" } }, [
+                      _vm._v(_vm._s(_vm.user.barangays.barangay_name)),
+                    ]),
+                  ])
+                : _c("div", [
+                    _c("h1", { staticStyle: { color: "white" } }, [
+                      _vm._v("GAD"),
+                    ]),
                   ]),
             ]),
           ]),
@@ -59246,7 +59301,7 @@ var routes = [{
       path: 'barangay-permit',
       name: 'barangay_permit.index',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 36).then(__webpack_require__.bind(null, /*! @cruds/BarangayPermit/Index.vue */ "./resources/adminapp/js/cruds/BarangayPermit/Index.vue"));
+        return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! @cruds/BarangayPermit/Index.vue */ "./resources/adminapp/js/cruds/BarangayPermit/Index.vue"));
       },
       meta: {
         title: 'Barangay Permit'
@@ -59263,7 +59318,7 @@ var routes = [{
       path: 'gad-list',
       name: 'gad_list.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(21)]).then(__webpack_require__.bind(null, /*! @cruds/GadList/Index.vue */ "./resources/adminapp/js/cruds/GadList/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(22)]).then(__webpack_require__.bind(null, /*! @cruds/GadList/Index.vue */ "./resources/adminapp/js/cruds/GadList/Index.vue"));
       },
       meta: {
         title: 'Gad'
@@ -59272,7 +59327,7 @@ var routes = [{
       path: 'gad-list/:id/edit',
       name: 'gad_list.edit',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(114), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! @cruds/GadList/Edit.vue */ "./resources/adminapp/js/cruds/GadList/Edit.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(114), __webpack_require__.e(5), __webpack_require__.e(115)]).then(__webpack_require__.bind(null, /*! @cruds/GadList/Edit.vue */ "./resources/adminapp/js/cruds/GadList/Edit.vue"));
       },
       meta: {
         title: 'Gad'
@@ -59307,7 +59362,7 @@ var routes = [{
       path: 'barangay',
       name: 'barangay.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(15)]).then(__webpack_require__.bind(null, /*! @cruds/Barangay/Index.vue */ "./resources/adminapp/js/cruds/Barangay/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(16)]).then(__webpack_require__.bind(null, /*! @cruds/Barangay/Index.vue */ "./resources/adminapp/js/cruds/Barangay/Index.vue"));
       },
       meta: {
         title: 'Barangay'
@@ -59343,7 +59398,7 @@ var routes = [{
       path: 'household',
       name: 'household.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(28)]).then(__webpack_require__.bind(null, /*! @cruds/Household/Index.vue */ "./resources/adminapp/js/cruds/Household/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(29)]).then(__webpack_require__.bind(null, /*! @cruds/Household/Index.vue */ "./resources/adminapp/js/cruds/Household/Index.vue"));
       },
       meta: {
         title: 'Household'
@@ -59451,7 +59506,7 @@ var routes = [{
       path: 'province',
       name: 'province.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(32)]).then(__webpack_require__.bind(null, /*! @cruds/Province/Index.vue */ "./resources/adminapp/js/cruds/Province/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(33)]).then(__webpack_require__.bind(null, /*! @cruds/Province/Index.vue */ "./resources/adminapp/js/cruds/Province/Index.vue"));
       },
       meta: {
         title: 'Province'
@@ -59523,7 +59578,7 @@ var routes = [{
       path: 'valid-id',
       name: 'valid_id.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(35)]).then(__webpack_require__.bind(null, /*! @cruds/ValidID/Index.vue */ "./resources/adminapp/js/cruds/ValidID/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(36)]).then(__webpack_require__.bind(null, /*! @cruds/ValidID/Index.vue */ "./resources/adminapp/js/cruds/ValidID/Index.vue"));
       },
       meta: {
         title: 'Valid ID'
@@ -59559,7 +59614,7 @@ var routes = [{
       path: 'sector',
       name: 'sector.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(34)]).then(__webpack_require__.bind(null, /*! @cruds/Sector/Index.vue */ "./resources/adminapp/js/cruds/Sector/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(35)]).then(__webpack_require__.bind(null, /*! @cruds/Sector/Index.vue */ "./resources/adminapp/js/cruds/Sector/Index.vue"));
       },
       meta: {
         title: 'Sector'
@@ -59595,7 +59650,7 @@ var routes = [{
       path: 'gender',
       name: 'gender.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(23)]).then(__webpack_require__.bind(null, /*! @cruds/Gender/Index.vue */ "./resources/adminapp/js/cruds/Gender/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(24)]).then(__webpack_require__.bind(null, /*! @cruds/Gender/Index.vue */ "./resources/adminapp/js/cruds/Gender/Index.vue"));
       },
       meta: {
         title: 'Gender'
@@ -59631,7 +59686,7 @@ var routes = [{
       path: 'gender-preference',
       name: 'gender_preference.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(22)]).then(__webpack_require__.bind(null, /*! @cruds/GenderPreference/Index.vue */ "./resources/adminapp/js/cruds/GenderPreference/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(23)]).then(__webpack_require__.bind(null, /*! @cruds/GenderPreference/Index.vue */ "./resources/adminapp/js/cruds/GenderPreference/Index.vue"));
       },
       meta: {
         title: 'Gender Preference'
@@ -59667,7 +59722,7 @@ var routes = [{
       path: 'civil-status',
       name: 'civil_status.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(16)]).then(__webpack_require__.bind(null, /*! @cruds/CivilStatus/Index.vue */ "./resources/adminapp/js/cruds/CivilStatus/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(17)]).then(__webpack_require__.bind(null, /*! @cruds/CivilStatus/Index.vue */ "./resources/adminapp/js/cruds/CivilStatus/Index.vue"));
       },
       meta: {
         title: 'Civil Status'
@@ -59703,7 +59758,7 @@ var routes = [{
       path: 'health',
       name: 'health.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(24)]).then(__webpack_require__.bind(null, /*! @cruds/Health/Index.vue */ "./resources/adminapp/js/cruds/Health/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(25)]).then(__webpack_require__.bind(null, /*! @cruds/Health/Index.vue */ "./resources/adminapp/js/cruds/Health/Index.vue"));
       },
       meta: {
         title: 'Health'
@@ -59739,7 +59794,7 @@ var routes = [{
       path: 'educational-assistance',
       name: 'educational_assistance.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(17)]).then(__webpack_require__.bind(null, /*! @cruds/EducationalAssistance/Index.vue */ "./resources/adminapp/js/cruds/EducationalAssistance/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(18)]).then(__webpack_require__.bind(null, /*! @cruds/EducationalAssistance/Index.vue */ "./resources/adminapp/js/cruds/EducationalAssistance/Index.vue"));
       },
       meta: {
         title: 'educational Assistance'
@@ -59775,7 +59830,7 @@ var routes = [{
       path: 'monthly-income',
       name: 'monthly_income.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(29)]).then(__webpack_require__.bind(null, /*! @cruds/MonthlyIncome/Index.vue */ "./resources/adminapp/js/cruds/MonthlyIncome/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(30)]).then(__webpack_require__.bind(null, /*! @cruds/MonthlyIncome/Index.vue */ "./resources/adminapp/js/cruds/MonthlyIncome/Index.vue"));
       },
       meta: {
         title: 'Monthly Income'
@@ -59811,7 +59866,7 @@ var routes = [{
       path: 'educational-attaintment',
       name: 'educational_attaintment.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(18)]).then(__webpack_require__.bind(null, /*! @cruds/EducationalAttaintment/Index.vue */ "./resources/adminapp/js/cruds/EducationalAttaintment/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(19)]).then(__webpack_require__.bind(null, /*! @cruds/EducationalAttaintment/Index.vue */ "./resources/adminapp/js/cruds/EducationalAttaintment/Index.vue"));
       },
       meta: {
         title: 'Educational Attaintment'
@@ -59847,7 +59902,7 @@ var routes = [{
       path: 'educational-status',
       name: 'educational_status.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(19)]).then(__webpack_require__.bind(null, /*! @cruds/EducationalStatus/Index.vue */ "./resources/adminapp/js/cruds/EducationalStatus/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(20)]).then(__webpack_require__.bind(null, /*! @cruds/EducationalStatus/Index.vue */ "./resources/adminapp/js/cruds/EducationalStatus/Index.vue"));
       },
       meta: {
         title: 'Educational Status'
@@ -59883,7 +59938,7 @@ var routes = [{
       path: 'ethnicity',
       name: 'ethnicity.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(20)]).then(__webpack_require__.bind(null, /*! @cruds/Ethnicity/Index.vue */ "./resources/adminapp/js/cruds/Ethnicity/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(21)]).then(__webpack_require__.bind(null, /*! @cruds/Ethnicity/Index.vue */ "./resources/adminapp/js/cruds/Ethnicity/Index.vue"));
       },
       meta: {
         title: 'Ethnicity'
@@ -59919,7 +59974,7 @@ var routes = [{
       path: 'house-ownership',
       name: 'house_ownership.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(26)]).then(__webpack_require__.bind(null, /*! @cruds/HouseOwnership/Index.vue */ "./resources/adminapp/js/cruds/HouseOwnership/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(27)]).then(__webpack_require__.bind(null, /*! @cruds/HouseOwnership/Index.vue */ "./resources/adminapp/js/cruds/HouseOwnership/Index.vue"));
       },
       meta: {
         title: 'House Ownership'
@@ -59955,7 +60010,7 @@ var routes = [{
       path: 'house-type',
       name: 'house_type.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(27)]).then(__webpack_require__.bind(null, /*! @cruds/HouseType/Index.vue */ "./resources/adminapp/js/cruds/HouseType/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(28)]).then(__webpack_require__.bind(null, /*! @cruds/HouseType/Index.vue */ "./resources/adminapp/js/cruds/HouseType/Index.vue"));
       },
       meta: {
         title: 'House Type'
@@ -59991,7 +60046,7 @@ var routes = [{
       path: 'house-make',
       name: 'house_make.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(25)]).then(__webpack_require__.bind(null, /*! @cruds/HouseMake/Index.vue */ "./resources/adminapp/js/cruds/HouseMake/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(26)]).then(__webpack_require__.bind(null, /*! @cruds/HouseMake/Index.vue */ "./resources/adminapp/js/cruds/HouseMake/Index.vue"));
       },
       meta: {
         title: 'House Make'
@@ -60027,7 +60082,7 @@ var routes = [{
       path: 'organization',
       name: 'organization.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(30)]).then(__webpack_require__.bind(null, /*! @cruds/Organization/Index.vue */ "./resources/adminapp/js/cruds/Organization/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(31)]).then(__webpack_require__.bind(null, /*! @cruds/Organization/Index.vue */ "./resources/adminapp/js/cruds/Organization/Index.vue"));
       },
       meta: {
         title: 'Organization'
@@ -60063,7 +60118,7 @@ var routes = [{
       path: 'resident-status',
       name: 'resident_status.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(33)]).then(__webpack_require__.bind(null, /*! @cruds/ResidentStatus/Index.vue */ "./resources/adminapp/js/cruds/ResidentStatus/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(34)]).then(__webpack_require__.bind(null, /*! @cruds/ResidentStatus/Index.vue */ "./resources/adminapp/js/cruds/ResidentStatus/Index.vue"));
       },
       meta: {
         title: 'Resident Status'
@@ -60107,7 +60162,7 @@ var routes = [{
       path: 'permissions',
       name: 'permissions.index',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(31)]).then(__webpack_require__.bind(null, /*! @cruds/Permissions/Index.vue */ "./resources/adminapp/js/cruds/Permissions/Index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(32)]).then(__webpack_require__.bind(null, /*! @cruds/Permissions/Index.vue */ "./resources/adminapp/js/cruds/Permissions/Index.vue"));
       },
       meta: {
         title: 'cruds.permission.title'
@@ -60188,7 +60243,7 @@ var routes = [{
       path: 'users/create',
       name: 'users.create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 103).then(__webpack_require__.bind(null, /*! @cruds/Users/Create.vue */ "./resources/adminapp/js/cruds/Users/Create.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(114), __webpack_require__.e(5), __webpack_require__.e(116)]).then(__webpack_require__.bind(null, /*! @cruds/Users/Create.vue */ "./resources/adminapp/js/cruds/Users/Create.vue"));
       },
       meta: {
         title: 'cruds.user.title'
@@ -60206,7 +60261,7 @@ var routes = [{
       path: 'users/:id/edit',
       name: 'users.edit',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 104).then(__webpack_require__.bind(null, /*! @cruds/Users/Edit.vue */ "./resources/adminapp/js/cruds/Users/Edit.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(114), __webpack_require__.e(5), __webpack_require__.e(103)]).then(__webpack_require__.bind(null, /*! @cruds/Users/Edit.vue */ "./resources/adminapp/js/cruds/Users/Edit.vue"));
       },
       meta: {
         title: 'cruds.user.title'
@@ -68180,13 +68235,16 @@ function initialState() {
       email_verified_at: '',
       password: null,
       roles: [],
+      barangay: [],
+      photo: [],
       remember_token: '',
       created_at: '',
       updated_at: '',
       deleted_at: ''
     },
     lists: {
-      roles: []
+      roles: [],
+      barangay: []
     },
     loading: false
   };
@@ -68288,45 +68346,57 @@ var actions = {
     var commit = _ref7.commit;
     commit('setRoles', value);
   },
-  setRememberToken: function setRememberToken(_ref8, value) {
+  setBarangay: function setBarangay(_ref8, value) {
     var commit = _ref8.commit;
+    commit('setBarangay', value);
+  },
+  insertPhotoFile: function insertPhotoFile(_ref9, file) {
+    var commit = _ref9.commit;
+    commit('insertPhotoFile', file);
+  },
+  removePhotoFile: function removePhotoFile(_ref10, file) {
+    var commit = _ref10.commit;
+    commit('removePhotoFile', file);
+  },
+  setRememberToken: function setRememberToken(_ref11, value) {
+    var commit = _ref11.commit;
     commit('setRememberToken', value);
   },
-  setCreatedAt: function setCreatedAt(_ref9, value) {
-    var commit = _ref9.commit;
+  setCreatedAt: function setCreatedAt(_ref12, value) {
+    var commit = _ref12.commit;
     commit('setCreatedAt', value);
   },
-  setUpdatedAt: function setUpdatedAt(_ref10, value) {
-    var commit = _ref10.commit;
+  setUpdatedAt: function setUpdatedAt(_ref13, value) {
+    var commit = _ref13.commit;
     commit('setUpdatedAt', value);
   },
-  setDeletedAt: function setDeletedAt(_ref11, value) {
-    var commit = _ref11.commit;
+  setDeletedAt: function setDeletedAt(_ref14, value) {
+    var commit = _ref14.commit;
     commit('setDeletedAt', value);
   },
-  fetchCreateData: function fetchCreateData(_ref12) {
-    var commit = _ref12.commit;
+  fetchCreateData: function fetchCreateData(_ref15) {
+    var commit = _ref15.commit;
     axios.get("".concat(route, "/create")).then(function (response) {
       commit('setLists', response.data.meta);
     });
   },
-  fetchEditData: function fetchEditData(_ref13, id) {
-    var commit = _ref13.commit,
-        dispatch = _ref13.dispatch;
+  fetchEditData: function fetchEditData(_ref16, id) {
+    var commit = _ref16.commit,
+        dispatch = _ref16.dispatch;
     axios.get("".concat(route, "/").concat(id, "/edit")).then(function (response) {
       commit('setEntry', response.data.data);
       commit('setLists', response.data.meta);
     });
   },
-  fetchShowData: function fetchShowData(_ref14, id) {
-    var commit = _ref14.commit,
-        dispatch = _ref14.dispatch;
+  fetchShowData: function fetchShowData(_ref17, id) {
+    var commit = _ref17.commit,
+        dispatch = _ref17.dispatch;
     axios.get("".concat(route, "/").concat(id)).then(function (response) {
       commit('setEntry', response.data.data);
     });
   },
-  resetState: function resetState(_ref15) {
-    var commit = _ref15.commit;
+  resetState: function resetState(_ref18) {
+    var commit = _ref18.commit;
     commit('resetState');
   }
 };
@@ -68348,6 +68418,17 @@ var mutations = {
   },
   setRoles: function setRoles(state, value) {
     state.entry.roles = value;
+  },
+  setBarangay: function setBarangay(state, value) {
+    state.entry.barangay = value;
+  },
+  insertPhotoFile: function insertPhotoFile(state, file) {
+    state.entry.photo.push(file);
+  },
+  removePhotoFile: function removePhotoFile(state, file) {
+    state.entry.photo = state.entry.photo.filter(function (item) {
+      return item.id !== file.id;
+    });
   },
   setRememberToken: function setRememberToken(state, value) {
     state.entry.remember_token = value;
