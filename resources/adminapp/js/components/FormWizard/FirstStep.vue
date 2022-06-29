@@ -19,7 +19,7 @@
                                 <input type="text" class="form-control popcom-input" v-model="model.last_name" />
                             </div>
                         </div>
-                         <div class="col-md-3">
+                        <div class="col-md-3">
                             <div
                                 class="form-group bmd-form-group"
                                 :class="{
@@ -200,7 +200,7 @@
                             </div>
                         </div>
 
-                            <div class="col-md-4">
+                        <div class="col-md-4">
                             <div
                                 class="form-group bmd-form-group"
                                 :class="{
@@ -213,7 +213,7 @@
                         </div>
                     </div>
 
-                           <div class="row">
+                    <div class="row">
                         <div class="col-md-4">
                             <div
                                 class="form-group bmd-form-group"
@@ -294,7 +294,7 @@
                                 />
                             </div>
                         </div>
-                          <div class="col-md-3">
+                        <div class="col-md-3">
                             <div
                                 class="form-group bmd-form-group"
                                 :class="{

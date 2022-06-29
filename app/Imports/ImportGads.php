@@ -42,7 +42,8 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithCalculatedFormulas;
 use Maatwebsite\Excel\Concerns\WithCustomCsvSettings;
 use Maatwebsite\Excel\Concerns\RemembersChunkOffset;
-// use Maatwebsite\Excel\Concerns\WithChunkReading;
+use Maatwebsite\Excel\Concerns\WithBatchInserts;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
@@ -52,7 +53,17 @@ use Maatwebsite\Excel\Concerns\ToCollection;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
-class ImportGads implements ToCollection, WithHeadingRow, WithCalculatedFormulas, WithCustomCsvSettings, SkipsEmptyRows, SkipsOnError, WithValidation
+class ImportGads implements
+    ToCollection,
+    WithHeadingRow,
+    WithCalculatedFormulas,
+    WithCustomCsvSettings,
+    SkipsEmptyRows,
+    SkipsOnError,
+    WithValidation,
+    WithBatchInserts,
+    WithChunkReading
+
 {
     use RemembersChunkOffset;
     use Importable;
@@ -74,6 +85,7 @@ class ImportGads implements ToCollection, WithHeadingRow, WithCalculatedFormulas
 
     public function collection(Collection $rows)
     {
+        ini_set('memory_limit', '5G');
         foreach ($rows as $row) {
             $barangay_id = $this->convertStringToID(Barangay::class, 'barangay_name', $row['barangay_dropdown_option']);
             $birthday = Carbon::parse($row["concatenated_format_mmddyyyy_auto_generated"])->format('Y-m-d');
@@ -220,10 +232,15 @@ class ImportGads implements ToCollection, WithHeadingRow, WithCalculatedFormulas
         return 3;
     }
 
-    // public function chunkSize(): int
-    // {
-    //     return 1000;
-    // }
+    public function batchSize(): int
+    {
+        return 1000;
+    }
+
+    public function chunkSize(): int
+    {
+        return 1000;
+    }
 
     public function getCsvSettings(): array
     {
