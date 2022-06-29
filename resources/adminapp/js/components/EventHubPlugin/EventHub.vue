@@ -22,7 +22,6 @@ export default {
         this.$eventHub.$on('delete-success', this.itemDeleted)
         this.$eventHub.$on('archived-success', this.itemArchived)
         this.$eventHub.$on('restored-success', this.itemRestored)
-        this.$eventHub.$on('item-error', this.itemError(error))
     },
     methods: {
         itemCreated () {
@@ -30,15 +29,6 @@ export default {
                 {
                     icon: 'check',
                     message: this.$i18n.t('global.create_success')
-                },
-                this.notificationSettings
-            )
-        },
-        itemError (error) {
-            this.$jquery.notify(
-                {
-                    icon: 'check',
-                    message: this.$i18n.t(error)
                 },
                 this.notificationSettings
             )

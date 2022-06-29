@@ -25,10 +25,10 @@
             <center>
                 <b>
                     <div v-if="roles.title === 'Popcom'">
-                        <h1 style="color: white" v-if="!$can('powered_gad_access')">POPCOM</h1>
+                        <h1 style="color: white">POPCOM</h1>
                     </div>
                     <div v-else-if="roles.title === 'Barangay'">
-                        <h1 style="color: white">{{ user.barangays.barangay_name }}</h1>
+                        <h1 style="color: black">{{ user.barangays.barangay_name }}</h1>
                     </div>
                     <div v-else>
                         <h1 style="color: white">GAD</h1>
@@ -77,30 +77,30 @@ export default {
             type: String,
             default: '/images/gad-logo-login.png'
         },
-        backgroundColor: {
-            type: String,
-            default: 'black',
-            validator: value => {
-                let acceptedValues = ['', 'white', 'black']
-                return acceptedValues.indexOf(value) !== -1
-            }
-        },
-        itemColor: {
-            type: String,
-            default: 'green',
-            validator: value => {
-                let acceptedValues = [
-                    '',
-                    'purple',
-                    'azure',
-                    'green',
-                    'orange',
-                    'rose',
-                    'danger'
-                ]
-                return acceptedValues.indexOf(value) !== -1
-            }
-        },
+        // backgroundColor: {
+        //     type: String,
+        //     default: 'black',
+        //     validator: value => {
+        //         let acceptedValues = ['', 'white', 'black']
+        //         return acceptedValues.indexOf(value) !== -1
+        //     }
+        // },
+        // itemColor: {
+        //     type: String,
+        //     default: 'green',
+        //     validator: value => {
+        //         let acceptedValues = [
+        //             '',
+        //             'purple',
+        //             'azure',
+        //             'green',
+        //             'orange',
+        //             'rose',
+        //             'danger'
+        //         ]
+        //         return acceptedValues.indexOf(value) !== -1
+        //     }
+        // },
         sidebarLinks: {
             type: Array,
             default: () => []
@@ -110,6 +110,8 @@ export default {
         return {
             user: [],
             roles: [],
+            backgroundColor: 'black',
+            itemColor: 'green',
         }
     },
     computed: {
@@ -133,6 +135,10 @@ export default {
             axios.get('users/get-user-details').then(response => {
                 this.user = response.data.data
                 this.roles = this.user.roles[0];
+                if (this.roles.title === 'Barangay') {
+                    this.backgroundColor = 'white';
+                    this.itemColor = 'azure';
+                }
             });
         }
     }

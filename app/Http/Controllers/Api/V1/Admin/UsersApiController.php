@@ -40,13 +40,14 @@ class UsersApiController extends Controller
             'roles' => $request->roles
         ];
         $user = User::create($data);
-        $user->roles()->sync($request->input('roles.id', []));
 
         if ($media = $request->input('photo', [])) {
             Media::whereIn('id', data_get($media, '*.id'))
                 ->where('model_id', 0)
                 ->update(['model_id' => $user->id]);
         }
+
+        $user->roles()->sync($request->input('roles.id', []));
 
         return (new UserResource($user))
             ->response()

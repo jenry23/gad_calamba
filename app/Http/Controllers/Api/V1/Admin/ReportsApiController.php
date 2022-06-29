@@ -31,7 +31,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
 use Carbon\Carbon;
-
+use Illuminate\Database\Eloquent\Builder;
 
 class ReportsApiController extends Controller
 {
@@ -80,6 +80,74 @@ class ReportsApiController extends Controller
 
         return new ReportsResource($gads);
     }
+
+    public function printExcelData(Request $request)
+    {
+        $barangay_id = !empty($request->barangay) ? json_decode($request->barangay)->id : '';
+        $purok_id = !empty($request->purok) ? json_decode($request->purok)->id : '';
+        $sitio_id = !empty($request->sitio) ? json_decode($request->sitio)->id : '';
+        $sector_id = !empty($request->sector) ? json_decode($request->sector)->id : '';
+        $gender_id =  !empty($request->gender) ? json_decode($request->gender)->id : '';
+        $age_from = !empty($request->age_from) ? $request->age_from : '';
+        $age_to = !empty($request->age_to) ? $request->age_to : '';
+
+        $gads = Gad::with([
+            'household:id,household_name',
+            'barangay:id,barangay_name',
+            'purok:id,purok_name',
+            'sitio:id,sitio_name',
+            'native_province:id,province_name',
+            'native_city:id,city_name',
+            'validId:id,name',
+            'gender:id,gender_name',
+            'gender_preference:id,gender_preference_name',
+            'civil_status:id,civil_status_name',
+            'occupation:id,occupation_name',
+            'work_location_province:id,province_name',
+            'work_location_city:id,city_name',
+            'monthly_income:id,monthly_income_name,range_min,range_max',
+            'educational_attaintment:id,educational_attaintment_name',
+            'educational_status:id,educational_status_name',
+            'religion:id,religion_name',
+            'political_province_registered:id,province_name',
+            'political_city_registered:id,city_name',
+            'brgy_registered:id,barangay_name',
+            'house_ownership:id,house_ownership_name',
+            'house_type:id,house_type_name',
+            'house_make:id,house_make_name'
+
+        ])
+            ->where('barangay_id', $barangay_id)
+            ->when(
+                $sitio_id,
+                function (Builder $query) use ($sitio_id) {
+                    $query->where('sitio_id', $sitio_id);
+                }
+            )
+            ->when(
+                $purok_id,
+                function (Builder $query) use ($purok_id) {
+                    $query->where('purok_id', $purok_id);
+                }
+            )
+            ->when(
+                $sector_id,
+                function (Builder $query) use ($sector_id) {
+                    $query->where('sector_id', $sector_id);
+                }
+            )
+            ->when(
+                $gender_id,
+                function (Builder $query) use ($gender_id) {
+                    $query->where('gender_id', $gender_id);
+                }
+            )
+            ->orderBy('id', 'ASC')
+            ->get();
+
+        return new ReportsResource($gads);
+    }
+
     public function getData(Request $request)
     {
         $barangay_id = !empty($request->barangay) ? json_decode($request->barangay)->id : '';
@@ -89,53 +157,88 @@ class ReportsApiController extends Controller
         $gender_id =  !empty($request->gender) ? json_decode($request->gender)->id : '';
         $age_from = !empty($request->age_from) ? $request->age_from : '';
         $age_to = !empty($request->age_to) ? $request->age_to : '';
-        $gads = Gad::where('barangay_id', $barangay_id)
-            ->orWhere('sitio_id', $sitio_id)
-            ->orWhere('gender_id', $gender_id)
-            ->orderBy('gender_id', 'DESC')
+
+        $gads = Gad::with([
+            'gender:id,gender_name',
+            'barangay:id,barangay_name',
+            'civil_status:id,civil_status_name',
+            'sector:id,sector_name',
+        ])
+            ->where('barangay_id', $barangay_id)
+            ->when(
+                $sitio_id,
+                function (Builder $query) use ($sitio_id) {
+                    $query->where('sitio_id', $sitio_id);
+                }
+            )
+            ->when(
+                $purok_id,
+                function (Builder $query) use ($purok_id) {
+                    $query->where('purok_id', $purok_id);
+                }
+            )
+            ->when(
+                $sector_id,
+                function (Builder $query) use ($sector_id) {
+                    $query->where('sector_id', $sector_id);
+                }
+            )
+            ->when(
+                $gender_id,
+                function (Builder $query) use ($gender_id) {
+                    $query->where('gender_id', $gender_id);
+                }
+            )
+            ->orderBy('id', 'ASC')
             ->paginate();
-        // with([
-        //             'barangay:id,barangay_name',
-        //             'sector',
-        //             'resident_status',
-        //             'validId',
-        //             'native_province',
-        //             'native_city',
-        //             'work_location_province',
-        //             'work_location_city',
-        //             'political_province_registered',
-        //             'political_city_registered',
-        //             'educational_attaintment',
-        //             'educational_attaintment',
-        //             'educational_status',
-        //             'government_assistance',
-        //             'purok',
-        //             'vehicles',
-        //             'medicine',
-        //             'organization',
-        //             'sitio',
-        //             'ethnicity',
-        //             'household',
-        //             'gender',
-        //             'gender_preference',
-        //             'house_ownership',
-        //             'house_type',
-        //             'house_make',
-        //         ]
 
         if ($gender_id) {
             if ($gender_id == '1') {
                 $male = Gad::where('barangay_id', $barangay_id)
-                    ->orWhere('sitio_id', $sitio_id)
+                    ->when(
+                        $sitio_id,
+                        function (Builder $query) use ($sitio_id) {
+                            $query->where('sitio_id', $sitio_id);
+                        }
+                    )
+                    ->when(
+                        $purok_id,
+                        function (Builder $query) use ($purok_id) {
+                            $query->where('purok_id', $purok_id);
+                        }
+                    )
+                    ->when(
+                        $sector_id,
+                        function (Builder $query) use ($sector_id) {
+                            $query->where('sector_id', $sector_id);
+                        }
+                    )
                     ->orWhere('gender_id', $gender_id)
                     ->orderBy('gender_id', 'DESC')
                     ->count();
                 $female = 0;
             } else {
                 $male = Gad::where('barangay_id', $barangay_id)
-                    ->orWhere('sitio_id', $sitio_id)
-                    ->orWhere('gender_id', $gender_id)
-                    ->orderBy('gender_id', 'DESC')
+                    ->when(
+                        $sitio_id,
+                        function (Builder $query) use ($sitio_id) {
+                            $query->where('sitio_id', $sitio_id);
+                        }
+                    )
+                    ->when(
+                        $purok_id,
+                        function (Builder $query) use ($purok_id) {
+                            $query->where('purok_id', $purok_id);
+                        }
+                    )
+                    ->when(
+                        $sector_id,
+                        function (Builder $query) use ($sector_id) {
+                            $query->where('sector_id', $sector_id);
+                        }
+                    )
+                    ->where('gender_id', $gender_id)
+                    ->orderBy('id', 'ASC')
                     ->count();
                 $female = 0;
             }
@@ -143,72 +246,57 @@ class ReportsApiController extends Controller
 
             $male = Gad::where('barangay_id', $barangay_id)
                 ->where('gender_id', '1')
-                ->orWhere('sitio_id', $sitio_id)
+                ->when(
+                    $sitio_id,
+                    function (Builder $query) use ($sitio_id) {
+                        $query->where('sitio_id', $sitio_id);
+                    }
+                )
+                ->when(
+                    $purok_id,
+                    function (Builder $query) use ($purok_id) {
+                        $query->where('purok_id', $purok_id);
+                    }
+                )
+                ->when(
+                    $sector_id,
+                    function (Builder $query) use ($sector_id) {
+                        $query->where('sector_id', $sector_id);
+                    }
+                )
                 ->count();
             $female = Gad::where('barangay_id', $barangay_id)
                 ->where('gender_id', '2')
-                ->orWhere('sitio_id', $sitio_id)
+                ->when(
+                    $sitio_id,
+                    function (Builder $query) use ($sitio_id) {
+                        $query->where('sitio_id', $sitio_id);
+                    }
+                )
+                ->when(
+                    $purok_id,
+                    function (Builder $query) use ($purok_id) {
+                        $query->where('purok_id', $purok_id);
+                    }
+                )
+                ->when(
+                    $sector_id,
+                    function (Builder $query) use ($sector_id) {
+                        $query->where('sector_id', $sector_id);
+                    }
+                )
                 ->count();
-        }
-
-        foreach ($gads as $gad) {
-            $gad->id = !empty($gad->id) ? $gad->id : '';
-            $gad->full_name = $gad->last_name . ' , ' . $gad->first_name . ' ' . $gad->middle_name;
-            $gad->gender_name = !empty($gad->gender) ? $gad->gender->gender_name : '';
-            $gad->sector_name = !empty($gad->sector) ? $gad->sector->sector_name : '';
-            $gad->barangays_name = !empty($gad->barangay) ? $gad->barangay->barangay_name : '';
-            $gad->age = !empty($gad->age) ? $gad->age : '';
-            $gad->civil_status_names = !empty($gad->civil_status) ? $gad->civil_status->civil_status_name : '';
-            $gad->ethnicity_name = !empty($gad->ethnicity) ? $gad->ethnicity->ethnicity_name : '';
-        }
-
-        $all_gads = Gad::where('barangay_id', $barangay_id)
-            ->orWhere('sitio_id', $sitio_id)
-            ->orWhere('gender_id', $gender_id)
-            ->orderBy('id', 'ASC')
-            ->get();
-
-        foreach ($all_gads as $gad) {
-            $gad->id = !empty($gad->id) ? $gad->id : '';
-            $gad->full_name = $gad->last_name . ' , ' . $gad->first_name . ' ' . $gad->middle_name;
-            $gad->gender_name = !empty($gad->gender) ? $gad->gender->gender_name : '';
-            $gad->sector_name = !empty($gad->sector) ? $gad->sector->sector_name : '';
-            $gad->barangays_name = !empty($gad->barangay) ? $gad->barangay->barangay_name : '';
-            $gad->age = !empty($gad->age) ? $gad->age : '';
-            $gad->civil_status_names = !empty($gad->civil_status) ? $gad->civil_status->civil_status_name : '';
-            $gad->ethnicity_name = !empty($gad->ethnicity) ? $gad->ethnicity->ethnicity_name : '';
-
-            $gad->household_names = !empty($gad->household) ? $gad->household->household_name : '';
-            $gad->civil_status_names = !empty($gad->civil_status) ? $gad->civil_status->civil_status_name : '';
-            $gad->purok_names =  !empty($gad->purok) ? $gad->purok->purok_name : '';
-            $gad->sitio_names =  !empty($gad->sitio) ? $gad->sitio->sitio_name : '';
-            $gad->native_citys =  !empty($gad->native_city) ? $gad->native_city->city_name : '';
-            $gad->native_provinces =  !empty($gad->native_province) ? $gad->native_province->province_name : '';
-            $gad->work_location_citys =  !empty($gad->work_location_city) ? $gad->work_location_city->city_name : '';
-            $gad->work_location_provinces =  !empty($gad->work_location_province) ? $gad->work_location_province->province_name : '';
-            $gad->valid_id_names =  !empty($gad->validId) ? $gad->validId->name : '';
-            $gad->educational_attaintment_name =  !empty($gad->educational_attaintment) ? $gad->educational_attaintment->educational_attaintment_name : '';
-            $gad->educational_status_name =  !empty($gad->educational_status) ? $gad->educational_status->educational_status_name : '';
-            $gad->government_assistance_name =  !empty($gad->government_assistance) ? $gad->government_assistance->government_assistance_name : '';
-            $gad->political_province_registered =  !empty($gad->political_province_registered) ? $gad->political_province_registered->province_name : '';
-            $gad->political_city_registered =  !empty($gad->political_city_registered) ? $gad->political_city_registered->city_name : '';
-            $gad->house_ownership_names =  !empty($gad->house_ownership) ? $gad->house_ownership->house_ownership_name : '';
-            $gad->house_make_names =  !empty($gad->house_make) ? $gad->house_make->house_make_name : '';
-            $gad->house_type_names =  !empty($gad->house_type) ? $gad->house_type->house_type_name : '';
-            $gad->vehicles_name =  !empty($gad->vehicles) ? $gad->vehicles->vehicles_name : '';
-            $gad->medicine_name =  !empty($gad->medicine) ? $gad->medicine->medicine_name : '';
-            $gad->organization_name =  !empty($gad->organization) ? $gad->organization->organization_name : '';
         }
 
         return response([
             'data' => new ReportsResource($gads),
             'meta' => [
-                'report' => new ReportsResource($all_gads),
                 'Female' => $female,
                 'Male' => $male,
             ]
         ]);
     }
+
     public function getSitioPurok($id)
     {
         $purok = Purok::where('barangay_id', $id)->get();

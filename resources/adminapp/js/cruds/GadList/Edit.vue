@@ -823,7 +823,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
+                                                <!-- <tr>
                                                     <td>SAP</td>
                                                     <td>January 20, 2020</td>
                                                     <td>₱13,000</td>
@@ -832,7 +832,7 @@
                                                     <td>CAP</td>
                                                     <td>October 20, 2020</td>
                                                     <td>₱4,000</td>
-                                                </tr>
+                                                </tr> -->
                                             </tbody>
                                         </table>
                                     </div>

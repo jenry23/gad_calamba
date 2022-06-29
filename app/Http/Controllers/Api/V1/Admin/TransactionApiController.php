@@ -47,7 +47,7 @@ class TransactionApiController extends Controller
             'birthday' => Carbon::parse($gad->birth_date)->format('d F Y') ?? '',
             'age' => Carbon::parse($gad->birth_date)->diff(Carbon::now())->format('%y years') ?? '',
             'birth_place' => $gad->political_province_registered->province_name ?? '',
-            'status' => $this->residence_status($gad->calamba_residence_year) ?? '',
+            'status' => $this->residence_status(Carbon::parse($gad->calamba_residence_year)->format('Y')) ?? '',
             'logo' => Auth::user()->photo[0]['url'],
             'barangay' => Auth::user()->barangays,
         ];
@@ -58,10 +58,10 @@ class TransactionApiController extends Controller
     {
         $status = '';
         if ($date) {
-            $now = Carbon::now();
-            if ($date > $now()->year - 1) {
+            $now = Carbon::now()->format('Y');
+            if ($date > $now - 1) {
                 $status = "Immigrant";
-            } else if ($date < $now()->year - 2) {
+            } else if ($date < $now - 2) {
                 $status = "Native";
             } else {
                 $status = "Transient";

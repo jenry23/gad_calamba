@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Carbon\Carbon;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use \DateTimeInterface;
@@ -23,10 +24,28 @@ class Gad extends Model implements HasMedia
 
     protected $orderable = [
         'id',
+        'gender',
+        'sector_name'
     ];
 
     protected $appends = [
-        'photo',
+        'full_name',
+        'age',
+        'sector_name',
+        'health_condition',
+        'disability_condition',
+        'appliance_number',
+        'utilities_number',
+        'vehicle_name',
+        'government_assistance_number',
+        'government_educational_assistance_number',
+        'soft_skills_name',
+        'hard_skills_name',
+        'hobbies_name',
+        'sports_name',
+        'ethinicity_name',
+        'maintaining_medicine_name',
+        'organization_name'
     ];
 
     protected $filterable = [
@@ -149,6 +168,136 @@ class Gad extends Model implements HasMedia
             return $media;
         });
     }
+
+    public function getSectorNameAttribute()
+    {
+        $sector_id = $this->gadDetails()->whereHasMorph('item', [Sector::class])->get()->pluck('item_id')->toArray();
+
+        if ($sector_id) {
+            return Sector::whereIn('id', $sector_id)->get()->pluck('sector_name')->toArray();
+        }
+    }
+
+    public function getHealthConditionAttribute()
+    {
+        $health_id = $this->gadDetails()->whereHasMorph('item', [Health::class])->get()->pluck('item_id')->toArray();
+
+        if ($health_id) {
+            return Health::whereIn('id', $health_id)->get()->pluck('health_name')->toArray();
+        }
+    }
+
+    public function getDisabilityConditionAttribute()
+    {
+        $disability_id = $this->gadDetails()->whereHasMorph('item', [Disability::class])->get()->pluck('item_id')->toArray();
+
+        if ($disability_id) {
+            return Disability::whereIn('id', $disability_id)->get()->pluck('health_name')->toArray();
+        }
+    }
+
+    public function getGovernmentAssistanceNumberAttribute()
+    {
+        $government_assistance_id = $this->gadDetails()->whereHasMorph('item', [GovernmentAssistance::class])->get()->pluck('item_id')->toArray();
+
+        if ($government_assistance_id) {
+            return GovernmentAssistance::whereIn('id', $government_assistance_id)->get()->pluck('government_assistance_name')->toArray();
+        }
+    }
+
+    public function getApplianceNumberAttribute()
+    {
+        $appliance_id = $this->gadDetails()->whereHasMorph('item', [Appliances::class])->get()->pluck('item_id')->toArray();
+
+        if ($appliance_id) {
+            return Appliances::whereIn('id', $appliance_id)->get()->pluck('appliance_name')->toArray();
+        }
+    }
+
+    public function getUtilitiesNumberAttribute()
+    {
+        $utilities_id = $this->gadDetails()->whereHasMorph('item', [Utilities::class])->get()->pluck('item_id')->toArray();
+
+        if ($utilities_id) {
+            return Utilities::whereIn('id', $utilities_id)->get()->pluck('utilities_name')->toArray();
+        }
+    }
+
+    public function getVehicleNameAttribute()
+    {
+        $vehicle_id = $this->gadDetails()->whereHasMorph('item', [Vehicles::class])->get()->pluck('item_id')->toArray();
+
+        if ($vehicle_id) {
+            return Vehicles::whereIn('id', $vehicle_id)->get()->pluck('vehicles_name')->toArray();
+        }
+    }
+
+    public function getGovernmentEducationalAssistanceNumberAttribute()
+    {
+        $government_id = $this->gadDetails()->whereHasMorph('item', [EducationalAssistance::class])->get()->pluck('item_id')->toArray();
+
+        if ($government_id) {
+            return EducationalAssistance::whereIn('id', $government_id)->get()->pluck('educational_assistance_name')->toArray();
+        }
+    }
+
+    public function getSoftSkillsNameAttribute()
+    {
+        $soft_skill_id = $this->gadDetails()->whereHasMorph('item', [SoftSkill::class])->get()->pluck('item_id')->toArray();
+
+        if ($soft_skill_id) {
+            return SoftSkill::whereIn('id', $soft_skill_id)->get()->pluck('soft_skill_name')->toArray();
+        }
+    }
+
+    public function getHardSkillsNameAttribute()
+    {
+        $hard_skill_id = $this->gadDetails()->whereHasMorph('item', [HardSkill::class])->get()->pluck('item_id')->toArray();
+
+        if ($hard_skill_id) {
+            return HardSkill::whereIn('id', $hard_skill_id)->get()->pluck('hard_skills_name')->toArray();
+        }
+    }
+    public function getHobbiesNameAttribute()
+    {
+        $hobbies_id = $this->gadDetails()->whereHasMorph('item', [Hobbies::class])->get()->pluck('item_id')->toArray();
+
+        if ($hobbies_id) {
+            return Hobbies::whereIn('id', $hobbies_id)->get()->pluck('hobbies_name')->toArray();
+        }
+    }
+    public function getSportsNameAttribute()
+    {
+        $sports_id = $this->gadDetails()->whereHasMorph('item', [Sports::class])->get()->pluck('item_id')->toArray();
+
+        if ($sports_id) {
+            return Sports::whereIn('id', $sports_id)->get()->pluck('sports_name')->toArray();
+        }
+    }
+    public function getEthinicityNameAttribute()
+    {
+        $ethnicity_id = $this->gadDetails()->whereHasMorph('item', [Ethnicity::class])->get()->pluck('item_id')->toArray();
+
+        if ($ethnicity_id) {
+            return Ethnicity::whereIn('id', $ethnicity_id)->get()->pluck('ethnicity_name')->toArray();
+        }
+    }
+    public function getMaintainingMedicineNameAttribute()
+    {
+        $medicine_id = $this->gadDetails()->whereHasMorph('item', [Medicine::class])->get()->pluck('item_id')->toArray();
+
+        if ($medicine_id) {
+            return Medicine::whereIn('id', $medicine_id)->get()->pluck('medicine_name')->toArray();
+        }
+    }
+    public function getOrganizationNameAttribute()
+    {
+        $organization_id = $this->gadDetails()->whereHasMorph('item', [Organization::class])->get()->pluck('item_id')->toArray();
+
+        if ($organization_id) {
+            return Organization::whereIn('id', $organization_id)->get()->pluck('organization_name')->toArray();
+        }
+    }
     public function gadDetails(): HasMany
     {
         return $this->hasMany(GadItemDetails::class, 'gad_id', 'id');
@@ -197,6 +346,10 @@ class Gad extends Model implements HasMedia
     public function political_city_registered()
     {
         return $this->belongsTo(City::class, 'political_city_registered_id', 'id');
+    }
+    public function brgy_registered()
+    {
+        return $this->belongsTo(Barangay::class, 'political_brgy_registered', 'id');
     }
     public function educational_attaintment()
     {
@@ -269,7 +422,6 @@ class Gad extends Model implements HasMedia
     {
         return $this->belongsTo(Occupation::class, 'occupation_id', 'id');
     }
-
     public function monthly_income()
     {
         return $this->belongsTo(MonthlyIncome::class, 'monthly_income_id', 'id');
@@ -299,8 +451,14 @@ class Gad extends Model implements HasMedia
     {
         return !empty($this->barangay) ? $this->barangay->barangay_name : '';
     }
+
     public function getGenderNameAttribute()
     {
-        return !empty($this->genders) ? $this->genders->gender_name : '';
+        return !empty($this->gender) ? $this->gender->gender_name : '';
+    }
+
+    public function getAgeAttribute()
+    {
+        return Carbon::parse($this->birth_date)->diff(Carbon::now())->format('%y');
     }
 }

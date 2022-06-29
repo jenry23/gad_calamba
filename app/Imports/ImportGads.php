@@ -94,9 +94,9 @@ class ImportGads implements ToCollection, WithHeadingRow, WithCalculatedFormulas
             $gad->extension_name = $row['extension_name'] ?? null;
             $gad->barangay_id = $barangay_id ?? null;
             $gad->barangay_code  = $row["barangay_code_id_auto_generated"];
-            $gad->purok_id = $this->convertStringToID(Purok::class, 'purok_name', $row['purok_code_dropdown_option']);
+            $gad->purok_id = $this->convertStringToID(Purok::class, 'purok_name', $row['purok_code_dropdown_option'], $barangay_id);
             $gad->block_lot_house_id = $row['blocklotno_of_house_street_name'];
-            $gad->sitio_id = $this->convertStringToID(Sitio::class, 'sitio_name', $row['sitio_subdivision_dropdown_option']);
+            $gad->sitio_id = $this->convertStringToID(Sitio::class, 'sitio_name', $row['sitio_subdivision_dropdown_option'], $barangay_id);
             $gad->native_province_id = $this->convertStringToID(Province::class, 'province_name', $row["native_province_dropdown_option"]);
             $gad->native_city_id = $this->convertStringToID(City::class, 'city_name', $row["native_citymunicipality_dropdown_option"]);
             $gad->valid_id = $this->convertStringToID(ValidID::class, 'name', $row["valid_id_dropdown_option"]);
@@ -186,11 +186,15 @@ class ImportGads implements ToCollection, WithHeadingRow, WithCalculatedFormulas
         $result = substr($data, 0, 2);
         return (int) $result;
     }
-    private function convertStringToID($class, $fields, $query)
+    private function convertStringToID($class, $fields, $query, $barangay_id = null)
     {
         $id = null;
         if (!empty($query)) {
-            $result = $class::where($fields, 'LIKE', '%' . $query . '%')->first();
+            if (is_null($barangay_id)) {
+                $result = $class::where($fields, 'LIKE', '%' . $query . '%')->first();
+            } else {
+                $result = $class::where('barangay_id', $barangay_id)->where($fields, 'LIKE', '%' . $query . '%')->first();
+            }
             $id = isset($result) ? $result->id : null;
         }
 

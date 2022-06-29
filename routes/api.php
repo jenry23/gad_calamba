@@ -1,5 +1,6 @@
 <?php
 
+
 Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', 'middleware' => ['auth:sanctum']], function () {
     // Abilities
     Route::apiResource('abilities', 'AbilitiesController', ['only' => ['index']]);
@@ -104,6 +105,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     Route::resource('dashboard', 'DashboardApiController');
 
     //Generate Reports
+    Route::get('reports/print-excel', 'ReportsApiController@printExcelData')->name('reports.printExcelData');
     Route::get('reports/get-data', 'ReportsApiController@getData')->name('reports.getData');
     Route::get('reports/get-sitpurok/{id}', 'ReportsApiController@getSitioPurok')->name('reports.getSitioPurok');
     Route::resource('reports', 'ReportsApiController');

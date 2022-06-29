@@ -1,5 +1,6 @@
 <template>
     <div class="container-fluid">
+        <div class="loader" v-if="loader"></div>
         <div ref="content">
             <form @submit.prevent="submitForm">
                 <div class="row">
@@ -176,10 +177,12 @@
                                     </div>
                                     <download-excel
                                         class="btn btn-primary"
-                                        :data="json_data"
                                         :fields="json_fields"
+                                        :fetch="fetchData"
+                                        :before-generate="startDownload"
                                         worksheet="Resident List"
                                         :name="this.excel_name"
+                                        :before-finish="finishDownload"
                                     >
                                         Print Excel
                                     </download-excel>
@@ -205,17 +208,30 @@
         </div>
     </div>
 </template>
-
+<style scoped>
+.loader {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: #eceaea;
+    background-image: url('https://04.cadwork.com/wp-content/uploads/2019/08/ajax-loader.gif');
+    background-size: 300px;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 10000000;
+    opacity: 0.8;
+    filter: alpha(opacity=40);
+}
+</style>
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import PieChart from "@components/Charts/Pie";
-import DatatableActions from '@components/Datatables/DatatableActions'
 import DatatablesFields from '@components/Datatables/DatatablesFields'
 import TranslatedHeader from '@components/Datatables/TranslatedHeader'
 import HeaderSettings from '@components/Datatables/HeaderSettings'
 import GlobalSearch from '@components/Datatables/GlobalSearch'
-import jsPDF from 'jspdf'
-import html2canvas from "html2canvas"
 import html2pdf from 'html2pdf.js'
 
 export default {
@@ -227,6 +243,7 @@ export default {
     },
     data () {
         return {
+            loader: false,
             chartData: null,
             options: {
                 responsive: true,
@@ -253,13 +270,15 @@ export default {
                 },
                 {
                     title: 'Sex',
-                    field: 'gender_name',
+                    field: 'gender.gender_name',
                     thComp: TranslatedHeader,
+                    tdComp: DatatablesFields,
                     sortable: true,
                 },
                 {
                     title: 'Barangay',
-                    field: 'barangays_name',
+                    field: 'barangay.barangay_name',
+                    tdComp: DatatablesFields,
                     thComp: TranslatedHeader,
                 },
                 {
@@ -269,13 +288,16 @@ export default {
                 },
                 {
                     title: 'Civil Status',
-                    field: 'civil_status_names',
+                    field: 'civil_status.civil_status_name',
+                    tdComp: DatatablesFields,
                     thComp: TranslatedHeader,
                 },
                 {
                     title: 'Sector',
-                    field: 'sector_name',
+                    field: 'sector.sector_name',
+                    tdComp: DatatablesFields,
                     thComp: TranslatedHeader,
+                    sortable: true,
                 }
             ],
             query: { sort: 'id', order: 'asc', limit: 20, s: '' },
@@ -285,106 +307,102 @@ export default {
                 permission_prefix: 'reports_'
             },
             json_fields: {
-                "Item No.": "id",
-                "Household Number": "building_no",
-                "Family Code": "family_code",
-                "Relationship to Head of the Family": "household_names",
-                "Last Name": "last_name",
-                "First Name": "first_name",
-                "Middle Name": "middle_name",
-                "Extension Name": "extension_name",
-                Barangay: "barangays_name",
-                "Barangay Code/ ID": "barangay_code",
-                "Purok (Code)": "purok_names",
-                "Block/Lot/No. of House/ Street Name ": "block_lot_house_id",
-                "Sitio (Code)": "sitio_names",
-                "Native Province": "native_provinces",
-                "Native City/Municipality": "native_citys",
-                "Valid ID": "valid_id_names",
-                "ID No.": "id_number",
-                Birthday: "birthdate",
-                Sex: "gender_name",
-                "Gender Preference": "gender_preference_name",
-                "Civil Status": "civil_status_names",
-                "Spouse Last Name": "spouse_last_name",
-                "Spouse First Name": "spouse_first_name",
-                "Spouse Middle Name": "spouse_middle_name",
-                "Spouse Extension Name": "spouse_extension_name",
-                "No. of Dependents": "no_of_dependents",
-                "Cellphone Number": "mobile_no",
-                "Landline Number": "landline_number",
-                "Email Address": "email",
-                "Health Condition #1": "health_id",
-                "Health Condition #2": "''",
-                "Disability Condition #1": "disability_id",
-                "Disability Condition #2": ' ',
-                "Nutritional Status (Ideal, Wasted, Stunted, Obese, Overweight)": ' ',
-                "Government Assistance No. 01": "government_assistance_name",
-                "Government Assistance No. 02": ' ',
-                "Government Assistance No. 03": ' ',
-                Occupation: "occupation",
-                Employer: "employer",
-                "Work Location (Province)": "native_provinces",
-                "Work Location (City/Municipality)": "work_location_citys",
-                "Household Monthly Income": "monthly_income",
-                "Economic Status": ' ',
-                "OFW Relative No. 1 (as related to family head)": ' ',
-                "Country of Rel. No. 1": ' ',
-                "OFW Relative No. 1 (as related to family head)": ' ',
-                "Country of Rel. No. 2": ' ',
-                "OFW Relative No. 2 (as related to family head)": ' ',
-                "Beneficiary? (Any Member of the Family). YES/NO": ' ',
-                "Highest Educational Attainment": "educational_attaintment_name",
-                "Educational Status": "educational_status_name",
-                "Last School Attended": "last_school_attended",
-                "Government Educational Assistance #1": "government_assistance_name",
-                "Government Educational Assistance #2": ' ',
-                "Soft Skills #1": ' ',
-                "Soft Skills #2": ' ',
-                "Hard Skills #1": ' ',
-                "Hard Skills #2": ' ',
-                "Hobbies  #1": ' ',
-                "Hobbies  #2": ' ',
-                "Sports #1": ' ',
-                "Sports #2": ' ',
-                "Ethnicity No. 01": 'Tagalog',
-                "Religion (Catholic:test, Iglesia ni Cristo:test, etc)": ' ',
-                "Sector No. 01": "sector_name",
-                "Sector No. 02": ' ',
-                "Province Registered": "political_province_registered",
-                "City/ Municipality Registered": "political_city_registered",
-                "House Ownership": "house_ownership_names",
-                "House Type": "house_type_names",
-                "House Make": "house_make_names",
-                "No. of Nuclear Family in Household": "no_nuclear_family_household_id",
-                "No. of Bedrooms": "no_bedrooms_id",
-                "No. of  CRs": "no_cr_id",
-                "Utilities No. 01": "gad_utilities_no1",
-                "Utilities No. 02": "gad_utilities_no2",
-                "Utilities No. 03": "gad_utilities_no3",
-                "Utilities No. 04": "gad_utilities_no4",
-                "Appliances No. 01": "gad_appliances_no1",
-                "Appliances No. 02": "gad_appliances_no2",
-                "Appliances No. 03": "gad_appliances_no3",
-                "Appliances No. 04": "gad_appliances_no4",
-                "Vehicles No. 01": "vehicles_name",
-                "Vehicles No. 02": ' ',
-                "Full Immunization (YES, Public Hosp/ Center YES, Private Hosp/ Clinic, NO)": ' ',
-                "Covid 19 Test (No COVID Test, Tested Positive for COVID19, Tested Negative for COVID19)": ' ',
-                "Date of 1st Dosage Covid 19 Vaccination": ' ',
-                BRAND: ' ',
-                "Date of 2ndt Dosage Covid 19 Vaccination": ' ',
-                BRAND: ' ',
-                "Pregnancy Age": ' ',
-                "With Prenatal Check up (YES, Public Hosp/ Center YES, Private Hosp/ Clinic, NO)": ' ',
-                "With Postnatal Check up (YES, Public Hosp/ Center YES, Private Hosp/ Clinic, NO)": ' ',
-                "Maintaining  Medicine No. 01 ": "medicine_name",
-                "Maintaining Medicine No. 01 ": ' ',
-                "Organizations Involved No. 01": "organization_name",
-                "Organizations  Involved No. 02": ' ',
-                "Barangay Residence Year": "barangay_residence_year",
-                "Calamba Residence Year": "no_of_years_in_calamba",
-                REMARKS: "remarks",
+                'Item No.': 'id',
+                'Building No': 'building_no',
+                'House No': 'house_no',
+                'Household Number': 'household_no',
+                'Family Code': 'family_code',
+                'Relationship to Head of the Family': 'household.household_name',
+                'Last Name': 'last_name',
+                'First Name': 'first_name',
+                'Middle Name': 'middle_name',
+                'Extension Name': 'extension_name',
+                'Barangay': 'barangay.barangay_name',
+                'Barangay Code/ ID': 'barangay_code',
+                'Purok (Code)': 'purok.purok_name',
+                'Block/Lot/No. of House/ Street Name ': 'block_lot_house_id',
+                'Sitio (Code)': 'sitio.sitio_name',
+                'Native Province': 'native_province.province_name',
+                'Native City/Municipality': 'native_city.city_name',
+                'Valid ID': 'valid_id.name',
+                'ID No.': 'id_number',
+                'Birthday': 'birth_date',
+                'Sex': 'gender.gender_name',
+                'Gender Preference': 'gender_preference.gender_preference_name',
+                'Civil Status': 'civil_status.civil_status_name',
+                'No. of Dependents': 'no_of_dependents',
+                'Cellphone Number': 'mobile_no',
+                'Landline Number': 'landline_number',
+                'Email Address': 'email',
+                'Health Condition #1': 'health_condition.0',
+                'Health Condition #2': 'health_condition.1',
+                'Health Condition #3': 'health_condition.2',
+                'Disability Condition #1': 'disability_condition.0',
+                'Disability Condition #2': 'disability_condition.1',
+                'Disability Condition #2': 'disability_condition.2',
+                'Nutritional Status (Ideal, Wasted, Stunted, Obese, Overweight)': 'nutrition_status',
+                'Government Assistance No. 01': 'government_assistance_number.0',
+                'Government Assistance No. 02': 'government_assistance_number.1',
+                'Government Assistance No. 03': 'government_assistance_number.2',
+                'Occupation': 'occupation.occupation_name',
+                'Employer': 'employer',
+                'Work Location (Province)': 'work_location_province.province_name',
+                'Work Location (City/Municipality)': 'work_location_city.city_name',
+                'Household Monthly Income': 'monthly_income.monthly_income_name',
+                'Economic Status': 'monthly_income.range_max',
+                'Highest Educational Attainment': 'educational_attaintment.educational_attaintment_name',
+                'Educational Status': 'educational_status.educational_status_name',
+                'Last School Attended': 'last_school_attended',
+                'Government Educational Assistance #1': 'government_educational_assistance_number.0',
+                'Government Educational Assistance #2': 'government_educational_assistance_number.1',
+                'Soft Skills #1': 'soft_skills_name.0',
+                'Soft Skills #2': 'soft_skills_name.1',
+                'Hard Skills #1': 'hard_skills_name.0',
+                'Hard Skills #2': 'hard_skills_name.1',
+                'Hobbies #1': 'hobbies_name.0',
+                'Hobbies #2': 'hobbies_name.1',
+                'Sports #1': 'sports_name.0',
+                'Sports #2': 'sports_name.1',
+                'Ethnicity No. 01': 'ethinicity_name.0',
+                'Religion (Catholic:test, Iglesia ni Cristo:test, etc)': 'religion.religion_name',
+                'Sector No. 01': 'sector_name.0',
+                'Sector No. 02': 'sector_name.1',
+                'Province Registered': 'political_province_registered.province_name',
+                'City/ Municipality Registered': 'political_city_registered.city_name',
+                'Brgy Registered': 'brgy_registered.barangay_name',
+                'Precit No.': 'political_precinct_no',
+                'House Ownership': 'house_ownership.house_ownership_name',
+                'House Type': 'house_type.house_type_name',
+                'House Make': 'house_make.house_make_name',
+                'No. of Nuclear Family in Household': 'no_nuclear_family_household_id',
+                'No. of Bedrooms': 'no_bedrooms_id',
+                'No. of  CRs': 'no_cr_id',
+                'Utilities No. 01': 'utilities_number.0',
+                'Utilities No. 02': 'utilities_number.1',
+                'Utilities No. 03': 'utilities_number.2',
+                'Utilities No. 04': 'utilities_number.3',
+                'Appliances No. 01': 'appliance_number.0',
+                'Appliances No. 02': 'appliance_number.1',
+                'Appliances No. 03': 'appliance_number.2',
+                'Appliances No. 04': 'appliance_number.3',
+                'Vehicles No. 01': 'vehicle_name.0',
+                'Vehicles No. 02': 'vehicle_name.1',
+                'Full Immunization (YES, Public Hosp/ Center YES, Private Hosp/ Clinic, NO)': 'full_immunization',
+                'Covid 19 Test (No COVID Test, Tested Positive for COVID19, Tested Negative for COVID19)': 'covid_19_test',
+                'Date of 1st Dosage Covid 19 Vaccination': 'first_date_vaccination',
+                'BRAND 1': 'brand1',
+                'Date of 2ndt Dosage Covid 19 Vaccination': 'second_date_vaccination',
+                'BRAND 2': 'brand2',
+                'Pregnancy Age': 'pregnancy_age',
+                'With Prenatal Check up (YES, Public Hosp/ Center YES, Private Hosp/ Clinic, NO)': 'prental_checkup',
+                'With Postnatal Check up (YES, Public Hosp/ Center YES, Private Hosp/ Clinic, NO)': 'postnatal_checkup',
+                'Maintaining  Medicine No. 01 ': 'maintaining_medicine_name.0',
+                'Maintaining Medicine No. 01 ': 'maintaining_medicine_name.1',
+                'Organizations Involved No. 01': 'organization_name.0',
+                'Organizations  Involved No. 02': 'organization_name.1',
+                'Barangay Residence Year': 'barangay_residence_year',
+                'Calamba Residence Year': 'no_of_years_in_calamba',
+                'REMARKS': 'remarks',
             },
             json_data: [],
             json_meta: [
@@ -436,15 +454,23 @@ export default {
                 html2canvas: { dpi: 192, letterRendering: true },
                 jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
             })
-            // const doc = new jsPDF();
-            // /** WITH CSS */
-            // var canvasElement = document.createElement('canvas');
-            // html2canvas(this.$refs.content, { canvas: canvasElement }).then(function (canvas) {
-            //   const img = canvas.toDataURL("image/jpeg", 0.8);
-            //   doc.addImage(img,'JPEG',20,20);
-            //   doc.save("sample.pdf");
-            // });
         },
+
+        async fetchData () {
+            const response = await axios.get('reports/print-excel', { params: this.entry });
+            return response.data.data;
+        },
+
+        startDownload () {
+            let today = new Date().toLocaleDateString()
+            this.excel_name = `GAD-REPORT ${this.barangay.id}-${this.barangay.barangay_name} ${today}.xls`;
+            this.loader = true
+        },
+
+        finishDownload () {
+            this.loader = false;
+        },
+
         updateBarangay (value) {
             this.setBarangay(value)
             this.barangay = value;
@@ -478,11 +504,8 @@ export default {
             this.setAgeFrom(e.target.value)
         },
         submitForm () {
-            let today = new Date().toLocaleDateString()
-            this.excel_name = `GAD-REPORT ${this.barangay.id}-${this.barangay.barangay_name} ${today}.xls`;
             this.searchData()
                 .then((response) => {
-                    this.json_data = response.data.meta.report;
                     var data_array = response.data.meta;
                     var female = data_array['Female'];
                     var male = data_array['Male'];

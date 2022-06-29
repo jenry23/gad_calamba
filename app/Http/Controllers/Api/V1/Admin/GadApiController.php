@@ -352,7 +352,6 @@ class GadApiController extends Controller
                 ]);
             }
         }
-
         return true;
     }
 

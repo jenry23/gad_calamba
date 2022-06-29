@@ -50,7 +50,7 @@ export default {
                     ]
                 },
                 {
-                    title: 'Transaction',
+                    title: 'Services',
                     icon: 'history',
                     path: { name: 'transaction' },
                     gate: 'transaction_access',
