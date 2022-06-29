@@ -177,10 +177,10 @@
                                     </div>
                                     <download-excel
                                         class="btn btn-primary"
+                                        worksheet="Resident List"
                                         :fields="json_fields"
                                         :fetch="fetchData"
                                         :before-generate="startDownload"
-                                        worksheet="Resident List"
                                         :name="this.excel_name"
                                         :before-finish="finishDownload"
                                     >
@@ -401,7 +401,7 @@ export default {
                 'Organizations Involved No. 01': 'organization_name.0',
                 'Organizations  Involved No. 02': 'organization_name.1',
                 'Barangay Residence Year': 'barangay_residence_year',
-                'Calamba Residence Year': 'no_of_years_in_calamba',
+                'Calamba Residence Year': 'calamba_residence_year',
                 'REMARKS': 'remarks',
             },
             json_data: [],
@@ -447,6 +447,12 @@ export default {
             'setGender',
             'setAgeFrom',
         ]),
+
+        async fetchData () {
+            const response = await axios.get('reports/print-excel', { params: this.entry });
+            return response.data.data;
+        },
+
         downloads () {
             html2pdf(this.$refs.content, {
                 filename: 'content.pdf',
@@ -454,11 +460,6 @@ export default {
                 html2canvas: { dpi: 192, letterRendering: true },
                 jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
             })
-        },
-
-        async fetchData () {
-            const response = await axios.get('reports/print-excel', { params: this.entry });
-            return response.data.data;
         },
 
         startDownload () {

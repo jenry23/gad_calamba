@@ -447,7 +447,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         'Health Condition #3': 'health_condition.2',
         'Disability Condition #1': 'disability_condition.0',
         'Disability Condition #2': 'disability_condition.1'
-      }, _defineProperty(_json_fields, "Disability Condition #2", 'disability_condition.2'), _defineProperty(_json_fields, 'Nutritional Status (Ideal, Wasted, Stunted, Obese, Overweight)', 'nutrition_status'), _defineProperty(_json_fields, 'Government Assistance No. 01', 'government_assistance_number.0'), _defineProperty(_json_fields, 'Government Assistance No. 02', 'government_assistance_number.1'), _defineProperty(_json_fields, 'Government Assistance No. 03', 'government_assistance_number.2'), _defineProperty(_json_fields, 'Occupation', 'occupation.occupation_name'), _defineProperty(_json_fields, 'Employer', 'employer'), _defineProperty(_json_fields, 'Work Location (Province)', 'work_location_province.province_name'), _defineProperty(_json_fields, 'Work Location (City/Municipality)', 'work_location_city.city_name'), _defineProperty(_json_fields, 'Household Monthly Income', 'monthly_income.monthly_income_name'), _defineProperty(_json_fields, 'Economic Status', 'monthly_income.range_max'), _defineProperty(_json_fields, 'Highest Educational Attainment', 'educational_attaintment.educational_attaintment_name'), _defineProperty(_json_fields, 'Educational Status', 'educational_status.educational_status_name'), _defineProperty(_json_fields, 'Last School Attended', 'last_school_attended'), _defineProperty(_json_fields, 'Government Educational Assistance #1', 'government_educational_assistance_number.0'), _defineProperty(_json_fields, 'Government Educational Assistance #2', 'government_educational_assistance_number.1'), _defineProperty(_json_fields, 'Soft Skills #1', 'soft_skills_name.0'), _defineProperty(_json_fields, 'Soft Skills #2', 'soft_skills_name.1'), _defineProperty(_json_fields, 'Hard Skills #1', 'hard_skills_name.0'), _defineProperty(_json_fields, 'Hard Skills #2', 'hard_skills_name.1'), _defineProperty(_json_fields, 'Hobbies #1', 'hobbies_name.0'), _defineProperty(_json_fields, 'Hobbies #2', 'hobbies_name.1'), _defineProperty(_json_fields, 'Sports #1', 'sports_name.0'), _defineProperty(_json_fields, 'Sports #2', 'sports_name.1'), _defineProperty(_json_fields, 'Ethnicity No. 01', 'ethinicity_name.0'), _defineProperty(_json_fields, 'Religion (Catholic:test, Iglesia ni Cristo:test, etc)', 'religion.religion_name'), _defineProperty(_json_fields, 'Sector No. 01', 'sector_name.0'), _defineProperty(_json_fields, 'Sector No. 02', 'sector_name.1'), _defineProperty(_json_fields, 'Province Registered', 'political_province_registered.province_name'), _defineProperty(_json_fields, 'City/ Municipality Registered', 'political_city_registered.city_name'), _defineProperty(_json_fields, 'Brgy Registered', 'brgy_registered.barangay_name'), _defineProperty(_json_fields, 'Precit No.', 'political_precinct_no'), _defineProperty(_json_fields, 'House Ownership', 'house_ownership.house_ownership_name'), _defineProperty(_json_fields, 'House Type', 'house_type.house_type_name'), _defineProperty(_json_fields, 'House Make', 'house_make.house_make_name'), _defineProperty(_json_fields, 'No. of Nuclear Family in Household', 'no_nuclear_family_household_id'), _defineProperty(_json_fields, 'No. of Bedrooms', 'no_bedrooms_id'), _defineProperty(_json_fields, 'No. of  CRs', 'no_cr_id'), _defineProperty(_json_fields, 'Utilities No. 01', 'utilities_number.0'), _defineProperty(_json_fields, 'Utilities No. 02', 'utilities_number.1'), _defineProperty(_json_fields, 'Utilities No. 03', 'utilities_number.2'), _defineProperty(_json_fields, 'Utilities No. 04', 'utilities_number.3'), _defineProperty(_json_fields, 'Appliances No. 01', 'appliance_number.0'), _defineProperty(_json_fields, 'Appliances No. 02', 'appliance_number.1'), _defineProperty(_json_fields, 'Appliances No. 03', 'appliance_number.2'), _defineProperty(_json_fields, 'Appliances No. 04', 'appliance_number.3'), _defineProperty(_json_fields, 'Vehicles No. 01', 'vehicle_name.0'), _defineProperty(_json_fields, 'Vehicles No. 02', 'vehicle_name.1'), _defineProperty(_json_fields, 'Full Immunization (YES, Public Hosp/ Center YES, Private Hosp/ Clinic, NO)', 'full_immunization'), _defineProperty(_json_fields, 'Covid 19 Test (No COVID Test, Tested Positive for COVID19, Tested Negative for COVID19)', 'covid_19_test'), _defineProperty(_json_fields, 'Date of 1st Dosage Covid 19 Vaccination', 'first_date_vaccination'), _defineProperty(_json_fields, 'BRAND 1', 'brand1'), _defineProperty(_json_fields, 'Date of 2ndt Dosage Covid 19 Vaccination', 'second_date_vaccination'), _defineProperty(_json_fields, 'BRAND 2', 'brand2'), _defineProperty(_json_fields, 'Pregnancy Age', 'pregnancy_age'), _defineProperty(_json_fields, 'With Prenatal Check up (YES, Public Hosp/ Center YES, Private Hosp/ Clinic, NO)', 'prental_checkup'), _defineProperty(_json_fields, 'With Postnatal Check up (YES, Public Hosp/ Center YES, Private Hosp/ Clinic, NO)', 'postnatal_checkup'), _defineProperty(_json_fields, 'Maintaining  Medicine No. 01 ', 'maintaining_medicine_name.0'), _defineProperty(_json_fields, 'Maintaining Medicine No. 01 ', 'maintaining_medicine_name.1'), _defineProperty(_json_fields, 'Organizations Involved No. 01', 'organization_name.0'), _defineProperty(_json_fields, 'Organizations  Involved No. 02', 'organization_name.1'), _defineProperty(_json_fields, 'Barangay Residence Year', 'barangay_residence_year'), _defineProperty(_json_fields, 'Calamba Residence Year', 'no_of_years_in_calamba'), _defineProperty(_json_fields, 'REMARKS', 'remarks'), _json_fields),
+      }, _defineProperty(_json_fields, "Disability Condition #2", 'disability_condition.2'), _defineProperty(_json_fields, 'Nutritional Status (Ideal, Wasted, Stunted, Obese, Overweight)', 'nutrition_status'), _defineProperty(_json_fields, 'Government Assistance No. 01', 'government_assistance_number.0'), _defineProperty(_json_fields, 'Government Assistance No. 02', 'government_assistance_number.1'), _defineProperty(_json_fields, 'Government Assistance No. 03', 'government_assistance_number.2'), _defineProperty(_json_fields, 'Occupation', 'occupation.occupation_name'), _defineProperty(_json_fields, 'Employer', 'employer'), _defineProperty(_json_fields, 'Work Location (Province)', 'work_location_province.province_name'), _defineProperty(_json_fields, 'Work Location (City/Municipality)', 'work_location_city.city_name'), _defineProperty(_json_fields, 'Household Monthly Income', 'monthly_income.monthly_income_name'), _defineProperty(_json_fields, 'Economic Status', 'monthly_income.range_max'), _defineProperty(_json_fields, 'Highest Educational Attainment', 'educational_attaintment.educational_attaintment_name'), _defineProperty(_json_fields, 'Educational Status', 'educational_status.educational_status_name'), _defineProperty(_json_fields, 'Last School Attended', 'last_school_attended'), _defineProperty(_json_fields, 'Government Educational Assistance #1', 'government_educational_assistance_number.0'), _defineProperty(_json_fields, 'Government Educational Assistance #2', 'government_educational_assistance_number.1'), _defineProperty(_json_fields, 'Soft Skills #1', 'soft_skills_name.0'), _defineProperty(_json_fields, 'Soft Skills #2', 'soft_skills_name.1'), _defineProperty(_json_fields, 'Hard Skills #1', 'hard_skills_name.0'), _defineProperty(_json_fields, 'Hard Skills #2', 'hard_skills_name.1'), _defineProperty(_json_fields, 'Hobbies #1', 'hobbies_name.0'), _defineProperty(_json_fields, 'Hobbies #2', 'hobbies_name.1'), _defineProperty(_json_fields, 'Sports #1', 'sports_name.0'), _defineProperty(_json_fields, 'Sports #2', 'sports_name.1'), _defineProperty(_json_fields, 'Ethnicity No. 01', 'ethinicity_name.0'), _defineProperty(_json_fields, 'Religion (Catholic:test, Iglesia ni Cristo:test, etc)', 'religion.religion_name'), _defineProperty(_json_fields, 'Sector No. 01', 'sector_name.0'), _defineProperty(_json_fields, 'Sector No. 02', 'sector_name.1'), _defineProperty(_json_fields, 'Province Registered', 'political_province_registered.province_name'), _defineProperty(_json_fields, 'City/ Municipality Registered', 'political_city_registered.city_name'), _defineProperty(_json_fields, 'Brgy Registered', 'brgy_registered.barangay_name'), _defineProperty(_json_fields, 'Precit No.', 'political_precinct_no'), _defineProperty(_json_fields, 'House Ownership', 'house_ownership.house_ownership_name'), _defineProperty(_json_fields, 'House Type', 'house_type.house_type_name'), _defineProperty(_json_fields, 'House Make', 'house_make.house_make_name'), _defineProperty(_json_fields, 'No. of Nuclear Family in Household', 'no_nuclear_family_household_id'), _defineProperty(_json_fields, 'No. of Bedrooms', 'no_bedrooms_id'), _defineProperty(_json_fields, 'No. of  CRs', 'no_cr_id'), _defineProperty(_json_fields, 'Utilities No. 01', 'utilities_number.0'), _defineProperty(_json_fields, 'Utilities No. 02', 'utilities_number.1'), _defineProperty(_json_fields, 'Utilities No. 03', 'utilities_number.2'), _defineProperty(_json_fields, 'Utilities No. 04', 'utilities_number.3'), _defineProperty(_json_fields, 'Appliances No. 01', 'appliance_number.0'), _defineProperty(_json_fields, 'Appliances No. 02', 'appliance_number.1'), _defineProperty(_json_fields, 'Appliances No. 03', 'appliance_number.2'), _defineProperty(_json_fields, 'Appliances No. 04', 'appliance_number.3'), _defineProperty(_json_fields, 'Vehicles No. 01', 'vehicle_name.0'), _defineProperty(_json_fields, 'Vehicles No. 02', 'vehicle_name.1'), _defineProperty(_json_fields, 'Full Immunization (YES, Public Hosp/ Center YES, Private Hosp/ Clinic, NO)', 'full_immunization'), _defineProperty(_json_fields, 'Covid 19 Test (No COVID Test, Tested Positive for COVID19, Tested Negative for COVID19)', 'covid_19_test'), _defineProperty(_json_fields, 'Date of 1st Dosage Covid 19 Vaccination', 'first_date_vaccination'), _defineProperty(_json_fields, 'BRAND 1', 'brand1'), _defineProperty(_json_fields, 'Date of 2ndt Dosage Covid 19 Vaccination', 'second_date_vaccination'), _defineProperty(_json_fields, 'BRAND 2', 'brand2'), _defineProperty(_json_fields, 'Pregnancy Age', 'pregnancy_age'), _defineProperty(_json_fields, 'With Prenatal Check up (YES, Public Hosp/ Center YES, Private Hosp/ Clinic, NO)', 'prental_checkup'), _defineProperty(_json_fields, 'With Postnatal Check up (YES, Public Hosp/ Center YES, Private Hosp/ Clinic, NO)', 'postnatal_checkup'), _defineProperty(_json_fields, 'Maintaining  Medicine No. 01 ', 'maintaining_medicine_name.0'), _defineProperty(_json_fields, 'Maintaining Medicine No. 01 ', 'maintaining_medicine_name.1'), _defineProperty(_json_fields, 'Organizations Involved No. 01', 'organization_name.0'), _defineProperty(_json_fields, 'Organizations  Involved No. 02', 'organization_name.1'), _defineProperty(_json_fields, 'Barangay Residence Year', 'barangay_residence_year'), _defineProperty(_json_fields, 'Calamba Residence Year', 'calamba_residence_year'), _defineProperty(_json_fields, 'REMARKS', 'remarks'), _json_fields),
       json_data: [],
       json_meta: [[{
         key: "charset",
@@ -472,24 +472,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.resetState();
   },
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('ReportsSingle', ['searchData', 'fetchCreateData', 'resetState', 'setBarangay', 'setPurok', 'setSitio', 'setSector', 'setQuery', 'setAgeTo', 'setGender', 'setAgeFrom'])), {}, {
-    downloads: function downloads() {
-      html2pdf_js__WEBPACK_IMPORTED_MODULE_6___default()(this.$refs.content, {
-        filename: 'content.pdf',
-        image: {
-          type: 'jpeg',
-          quality: 0.98
-        },
-        html2canvas: {
-          dpi: 192,
-          letterRendering: true
-        },
-        jsPDF: {
-          unit: 'in',
-          format: 'letter',
-          orientation: 'landscape'
-        }
-      });
-    },
     fetchData: function fetchData() {
       var _this = this;
 
@@ -515,6 +497,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
         }, _callee);
       }))();
+    },
+    downloads: function downloads() {
+      html2pdf_js__WEBPACK_IMPORTED_MODULE_6___default()(this.$refs.content, {
+        filename: 'content.pdf',
+        image: {
+          type: 'jpeg',
+          quality: 0.98
+        },
+        html2canvas: {
+          dpi: 192,
+          letterRendering: true
+        },
+        jsPDF: {
+          unit: 'in',
+          format: 'letter',
+          orientation: 'landscape'
+        }
+      });
     },
     startDownload: function startDownload() {
       var today = new Date().toLocaleDateString();
@@ -1298,10 +1298,10 @@ var render = function () {
                       {
                         staticClass: "btn btn-primary",
                         attrs: {
+                          worksheet: "Resident List",
                           fields: _vm.json_fields,
                           fetch: _vm.fetchData,
                           "before-generate": _vm.startDownload,
-                          worksheet: "Resident List",
                           name: this.excel_name,
                           "before-finish": _vm.finishDownload,
                         },
