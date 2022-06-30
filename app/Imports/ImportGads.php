@@ -85,7 +85,6 @@ class ImportGads implements
 
     public function collection(Collection $rows)
     {
-        dd($rows[0]);
         ini_set('memory_limit', '5G');
         foreach ($rows as $row) {
             $barangay_id = $this->convertStringToID(Barangay::class, 'barangay_name', $row['barangay_dropdown_option']);
