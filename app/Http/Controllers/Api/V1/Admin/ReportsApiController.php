@@ -179,8 +179,13 @@ class ReportsApiController extends Controller
             )
             ->when(
                 $sector_id,
-                function (Builder $query) use ($sector_id) {
-                    $query->where('sector_id', $sector_id);
+                function ($query) use ($sector_id) {
+                    $query->whereHas(
+                        'gadDetails',
+                        function (Builder $query) use ($sector_id) {
+                            $query->where('item_id', $sector_id);
+                        }
+                    );
                 }
             )
             ->when(
@@ -209,8 +214,13 @@ class ReportsApiController extends Controller
                     )
                     ->when(
                         $sector_id,
-                        function (Builder $query) use ($sector_id) {
-                            $query->where('sector_id', $sector_id);
+                        function ($query) use ($sector_id) {
+                            $query->whereHas(
+                                'gadDetails',
+                                function (Builder $query) use ($sector_id) {
+                                    $query->where('item_id', $sector_id);
+                                }
+                            );
                         }
                     )
                     ->orWhere('gender_id', $gender_id)
@@ -233,8 +243,13 @@ class ReportsApiController extends Controller
                     )
                     ->when(
                         $sector_id,
-                        function (Builder $query) use ($sector_id) {
-                            $query->where('sector_id', $sector_id);
+                        function ($query) use ($sector_id) {
+                            $query->whereHas(
+                                'gadDetails',
+                                function (Builder $query) use ($sector_id) {
+                                    $query->where('item_id', $sector_id);
+                                }
+                            );
                         }
                     )
                     ->where('gender_id', $gender_id)
@@ -260,8 +275,13 @@ class ReportsApiController extends Controller
                 )
                 ->when(
                     $sector_id,
-                    function (Builder $query) use ($sector_id) {
-                        $query->where('sector_id', $sector_id);
+                    function ($query) use ($sector_id) {
+                        $query->whereHas(
+                            'gadDetails',
+                            function (Builder $query) use ($sector_id) {
+                                $query->where('item_id', $sector_id);
+                            }
+                        );
                     }
                 )
                 ->count();
@@ -281,8 +301,13 @@ class ReportsApiController extends Controller
                 )
                 ->when(
                     $sector_id,
-                    function (Builder $query) use ($sector_id) {
-                        $query->where('sector_id', $sector_id);
+                    function ($query) use ($sector_id) {
+                        $query->whereHas(
+                            'gadDetails',
+                            function (Builder $query) use ($sector_id) {
+                                $query->where('item_id', $sector_id);
+                            }
+                        );
                     }
                 )
                 ->count();

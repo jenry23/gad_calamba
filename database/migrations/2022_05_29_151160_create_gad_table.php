@@ -11,9 +11,9 @@ class CreateGadTable extends Migration
         Schema::create('gad', function (Blueprint $table) {
             $table->id();
             $table->string('gad_id')->nullable();
-            $table->integer('building_no')->nullable();
+            $table->string('building_no')->nullable();
             $table->integer('household_no')->nullable();
-            $table->integer('house_no')->nullable();
+            $table->string('house_no')->nullable();
             $table->string('family_code')->nullable();
             $table->foreignId('household_id')->nullable()->constrained('household');
             $table->string('last_name')->nullable();
@@ -43,6 +43,7 @@ class CreateGadTable extends Migration
             $table->foreignId('work_location_province_id')->nullable()->constrained('province');
             $table->foreignId('work_location_city_id')->nullable()->constrained('city');
             $table->foreignId('monthly_income_id')->nullable()->constrained('monthly_income');
+            $table->string('economic_status')->nullable();
             $table->foreignId('educational_attaintment_id')->nullable()->constrained('educational_attaintment');
             $table->foreignId('educational_status_id')->nullable()->constrained('educational_status');
             $table->string('last_school_attended')->nullable();
@@ -63,6 +64,8 @@ class CreateGadTable extends Migration
             $table->string('brand1')->nullable();
             $table->date('second_date_vaccination')->nullable();
             $table->string('brand2')->nullable();
+            $table->date('booster_date_vaccination')->nullable();
+            $table->string('brand3')->nullable();
             $table->string('pregnancy_age')->nullable();
             $table->string('prental_checkup')->nullable();
             $table->string('postnatal_checkup')->nullable();

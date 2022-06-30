@@ -85,6 +85,7 @@ class ImportGads implements
 
     public function collection(Collection $rows)
     {
+        dd($rows[0]);
         ini_set('memory_limit', '5G');
         foreach ($rows as $row) {
             $barangay_id = $this->convertStringToID(Barangay::class, 'barangay_name', $row['barangay_dropdown_option']);
@@ -127,6 +128,7 @@ class ImportGads implements
             $gad->work_location_province_id = $this->convertStringToID(Province::class, 'province_name', $row["work_location_province_dropdown_option"]);
             $gad->work_location_city_id = $this->convertStringToID(City::class, 'city_name', $row["work_location_citymunicipality_dropdown_option"]);
             $gad->monthly_income_id = $this->convertStringToID(MonthlyIncome::class, 'monthly_income_name', $row["economic_status_auto_generated"]);
+            $gad->economic_status = $row["household_monthly_income"] ?? null;
             $gad->educational_attaintment_id = $this->convertStringToID(EducationalAttaintment::class, 'educational_attaintment_name', $row["highest_educational_attainment_dropdown_option"]);
             $gad->educational_status_id = $this->convertStringToID(EducationalStatus::class, 'educational_status_name', $row["educational_status_dropdown_option"]) ?? null;
             $gad->last_school_attended = $row["last_school_attended"];
@@ -138,15 +140,17 @@ class ImportGads implements
             $gad->house_ownership_id = $this->convertStringToID(HouseOwnership::class, 'house_ownership_name', $row["house_ownership_dropdown_option"]);
             $gad->house_type_id = $this->convertStringToID(HouseType::class, 'house_type_name', $row["house_type_dropdown_option"]);
             $gad->house_make_id = $this->convertStringToID(HouseMake::class, 'house_make_name', $row["house_make_dropdown_option"]);
-            $gad->no_nuclear_family_household_id = is_numeric($row["no_of_nuclear_family_in_household"]) ? (int) $row["no_of_bedrooms"] : null;
+            $gad->no_nuclear_family_household_id = is_numeric($row["no_of_nuclear_family_in_household"]) ? (int) $row["no_of_nuclear_family_in_household"] : null;
             $gad->no_bedrooms_id = is_numeric($row["no_of_bedrooms"]) ? (int) $row["no_of_bedrooms"] : null;
-            $gad->no_cr_id = is_numeric($row["no_of_crs"]) ? (int) $row["no_of_bedrooms"] : null;
+            $gad->no_cr_id = is_numeric($row["no_of_crs"]) ? (int) $row["no_of_crs"] : null;
             $gad->full_immunization = $row["full_immunization_yes_public_hosp_center_yes_private_hosp_clinic_no"] ?? null;
             $gad->covid_19_test = $row["covid_19_test_no_covid_test_tested_positive_for_covid19_tested_negative_for_covid19"] ?? null;
             $gad->first_date_vaccination = Carbon::parse($row["date_of_1st_dosage_covid_19_vaccination_format_mmddyyyy"])->format('Y-m-d') ?? null;
             $gad->brand1 = $row["brand_1"] ?? null;
             $gad->second_date_vaccination = Carbon::parse($row["date_of_2nd_dosage_covid_19_vaccination_format_mmddyyyy"])->format('Y-m-d') ?? null;
             $gad->brand2 = $row["brand_2"] ?? null;
+            $gad->booster_date_vaccination = Carbon::parse($row["date_of_covid_booster_format_mmddyyyy"])->format('Y-m-d') ?? null;
+            $gad->brand3 = $row["brand_3"] ?? null;
             $gad->pregnancy_age = $row["pregnancy_age"] ?? null;
             $gad->prental_checkup = $row["with_prenatal_check_up_yes_public_hosp_center_yes_private_hosp_clinic_no"] ?? null;
             $gad->postnatal_checkup = $row["with_postnatal_check_up_yes_public_hosp_center_yes_private_hosp_clinic_no"] ?? null;
