@@ -90,7 +90,6 @@ class ImportGads implements
             $barangay_id = $this->convertStringToID(Barangay::class, 'barangay_name', $row['barangay_dropdown_option']);
             $birthday = Carbon::parse($row["concatenated_format_mmddyyyy_auto_generated"])->format('Y-m-d');
             $full_name = substr(trim($row['first_name']), 0, 1) . substr(trim($row['middle_name']), 0, 1) . substr(trim($row['last_name']), 0, 1);
-
             $gad_unique_id = 'LAG-CAL' . $barangay_id . '-' . $row['household_number'] . $full_name
                 . substr($birthday, -2) . '-00-0000';
             $gad = new Gad();
@@ -127,6 +126,7 @@ class ImportGads implements
             $gad->work_location_province_id = $this->convertStringToID(Province::class, 'province_name', $row["work_location_province_dropdown_option"]);
             $gad->work_location_city_id = $this->convertStringToID(City::class, 'city_name', $row["work_location_citymunicipality_dropdown_option"]);
             $gad->monthly_income_id = $this->convertStringToID(MonthlyIncome::class, 'monthly_income_name', $row["economic_status_auto_generated"]);
+
             $gad->economic_status = $row["household_monthly_income"] ?? null;
             $gad->educational_attaintment_id = $this->convertStringToID(EducationalAttaintment::class, 'educational_attaintment_name', $row["highest_educational_attainment_dropdown_option"]);
             $gad->educational_status_id = $this->convertStringToID(EducationalStatus::class, 'educational_status_name', $row["educational_status_dropdown_option"]) ?? null;
@@ -204,7 +204,7 @@ class ImportGads implements
     private function convertStringToID($class, $fields, $query, $barangay_id = null)
     {
         $id = null;
-        if (!empty($query)) {
+        if (!empty($query) && $query !== " ") {
             if (is_null($barangay_id)) {
                 $result = $class::where($fields, 'LIKE', '%' . $query . '%')->first();
             } else {
