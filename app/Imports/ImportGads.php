@@ -232,7 +232,7 @@ class ImportGads implements
 
     public function headingRow(): int
     {
-        return 3;
+        return 2;
     }
 
     public function batchSize(): int
