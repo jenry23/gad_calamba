@@ -44,7 +44,6 @@
                         </div>
 
                         <div class="col-md-3">
-                            +
                             <div
                                 class="form-group bmd-form-group"
                                 :class="{
@@ -66,12 +65,7 @@
                                 }"
                             >
                                 <label>Household Entry No:</label>
-                                <input
-                                    type="text"
-                                    class="form-control popcom-input"
-                                    readonly
-                                    v-model="model.household_no"
-                                />
+                                <input type="text" class="form-control popcom-input" v-model="model.household_no" />
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -156,11 +150,13 @@
                                     'is-focused': true
                                 }"
                             >
-                                <label>Spouse Name</label>
+                                <label>Spouse Name<small> (firstname, middlename, lastname)</small></label>
                                 <input
                                     type="text"
                                     class="form-control popcom-input"
-                                    v-model="model.spouse_first_name"
+                                    :value="`${model.spouse_first_name || ''} ${model.spouse_middle_name || ''} ${
+                                        model.spouse_last_name || ''
+                                    }`"
                                 />
                             </div>
                         </div>
@@ -423,6 +419,8 @@ export default {
                 gender_id: '',
                 civil_status_id: '',
                 spouse_first_name: '',
+                spouse_middle_name: '',
+                spouse_last_name: '',
                 birthdate: '',
                 gender_preference_id: '',
                 valid_id: '',

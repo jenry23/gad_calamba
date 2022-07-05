@@ -132,8 +132,13 @@ class ReportsApiController extends Controller
             )
             ->when(
                 $sector_id,
-                function (Builder $query) use ($sector_id) {
-                    $query->where('sector_id', $sector_id);
+                function ($query) use ($sector_id) {
+                    $query->whereHas(
+                        'gadDetails',
+                        function (Builder $query) use ($sector_id) {
+                            $query->where('item_id', $sector_id);
+                        }
+                    );
                 }
             )
             ->when(
@@ -189,7 +194,7 @@ class ReportsApiController extends Controller
                     $query->whereHas(
                         'gadDetails',
                         function (Builder $query) use ($sector_id) {
-                            $query->where('item_id', $sector_id);
+                            $query->where('item_id', $sector_id)->where('item_type', Sector::class);
                         }
                     );
                 }
@@ -230,7 +235,7 @@ class ReportsApiController extends Controller
                             $query->whereHas(
                                 'gadDetails',
                                 function (Builder $query) use ($sector_id) {
-                                    $query->where('item_id', $sector_id);
+                                    $query->where('item_id', $sector_id)->where('item_type', Sector::class);
                                 }
                             );
                         }
@@ -265,7 +270,7 @@ class ReportsApiController extends Controller
                             $query->whereHas(
                                 'gadDetails',
                                 function (Builder $query) use ($sector_id) {
-                                    $query->where('item_id', $sector_id);
+                                    $query->where('item_id', $sector_id)->where('item_type', Sector::class);
                                 }
                             );
                         }
@@ -302,7 +307,7 @@ class ReportsApiController extends Controller
                         $query->whereHas(
                             'gadDetails',
                             function (Builder $query) use ($sector_id) {
-                                $query->where('item_id', $sector_id);
+                                $query->where('item_id', $sector_id)->where('item_type', Sector::class);
                             }
                         );
                     }
@@ -335,7 +340,7 @@ class ReportsApiController extends Controller
                         $query->whereHas(
                             'gadDetails',
                             function (Builder $query) use ($sector_id) {
-                                $query->where('item_id', $sector_id);
+                                $query->where('item_id', $sector_id)->where('item_type', Sector::class);
                             }
                         );
                     }
