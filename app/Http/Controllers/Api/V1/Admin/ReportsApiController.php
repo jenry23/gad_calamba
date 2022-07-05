@@ -88,8 +88,8 @@ class ReportsApiController extends Controller
         $sitio_id = !empty($request->sitio) ? json_decode($request->sitio)->id : '';
         $sector_id = !empty($request->sector) ? json_decode($request->sector)->id : '';
         $gender_id =  !empty($request->gender) ? json_decode($request->gender)->id : '';
-        $age_from = !empty($request->age_from) ? $request->age_from : '';
-        $age_to = !empty($request->age_to) ? $request->age_to : '';
+        $age_from = !empty($request->age_from) ? Carbon::now()->subYears($request->age_from)->format('Y-m-d') : '';
+        $age_to = !empty($request->age_to) ? Carbon::now()->subYears($request->age_to)->format('Y-m-d') : '';
 
         $gads = Gad::with([
             'household:id,household_name',
@@ -142,6 +142,12 @@ class ReportsApiController extends Controller
                     $query->where('gender_id', $gender_id);
                 }
             )
+            ->when(
+                $age_to,
+                function (Builder $query) use ($age_from, $age_to) {
+                    $query->whereBetween('birth_date', [$age_to, $age_from]);
+                }
+            )
             ->orderBy('id', 'ASC')
             ->get();
 
@@ -155,8 +161,8 @@ class ReportsApiController extends Controller
         $sitio_id = !empty($request->sitio) ? json_decode($request->sitio)->id : '';
         $sector_id = !empty($request->sector) ? json_decode($request->sector)->id : '';
         $gender_id =  !empty($request->gender) ? json_decode($request->gender)->id : '';
-        $age_from = !empty($request->age_from) ? $request->age_from : '';
-        $age_to = !empty($request->age_to) ? $request->age_to : '';
+        $age_from = !empty($request->age_from) ? Carbon::now()->subYears($request->age_from)->format('Y-m-d') : '';
+        $age_to = !empty($request->age_to) ? Carbon::now()->subYears($request->age_to)->format('Y-m-d') : '';
 
         $gads = Gad::with([
             'gender:id,gender_name',
@@ -194,11 +200,17 @@ class ReportsApiController extends Controller
                     $query->where('gender_id', $gender_id);
                 }
             )
+            ->when(
+                $age_to,
+                function (Builder $query) use ($age_from, $age_to) {
+                    $query->whereBetween('birth_date', [$age_to, $age_from]);
+                }
+            )
             ->orderBy('id', 'ASC')
             ->paginate();
 
         if ($gender_id) {
-            if ($gender_id == '1') {
+            if ($gender_id == 1) {
                 $male = Gad::where('barangay_id', $barangay_id)
                     ->when(
                         $sitio_id,
@@ -223,42 +235,53 @@ class ReportsApiController extends Controller
                             );
                         }
                     )
-                    ->orWhere('gender_id', $gender_id)
-                    ->orderBy('gender_id', 'DESC')
-                    ->count();
-                $female = 0;
-            } else {
-                $male = Gad::where('barangay_id', $barangay_id)
                     ->when(
-                        $sitio_id,
-                        function (Builder $query) use ($sitio_id) {
-                            $query->where('sitio_id', $sitio_id);
-                        }
-                    )
-                    ->when(
-                        $purok_id,
-                        function (Builder $query) use ($purok_id) {
-                            $query->where('purok_id', $purok_id);
-                        }
-                    )
-                    ->when(
-                        $sector_id,
-                        function ($query) use ($sector_id) {
-                            $query->whereHas(
-                                'gadDetails',
-                                function (Builder $query) use ($sector_id) {
-                                    $query->where('item_id', $sector_id);
-                                }
-                            );
+                        $age_to,
+                        function (Builder $query) use ($age_from, $age_to) {
+                            $query->whereBetween('birth_date', [$age_to, $age_from]);
                         }
                     )
                     ->where('gender_id', $gender_id)
-                    ->orderBy('id', 'ASC')
                     ->count();
+
                 $female = 0;
+            } else {
+                $female = Gad::where('barangay_id', $barangay_id)
+                    ->when(
+                        $sitio_id,
+                        function (Builder $query) use ($sitio_id) {
+                            $query->where('sitio_id', $sitio_id);
+                        }
+                    )
+                    ->when(
+                        $purok_id,
+                        function (Builder $query) use ($purok_id) {
+                            $query->where('purok_id', $purok_id);
+                        }
+                    )
+                    ->when(
+                        $sector_id,
+                        function ($query) use ($sector_id) {
+                            $query->whereHas(
+                                'gadDetails',
+                                function (Builder $query) use ($sector_id) {
+                                    $query->where('item_id', $sector_id);
+                                }
+                            );
+                        }
+                    )
+                    ->when(
+                        $age_to,
+                        function (Builder $query) use ($age_from, $age_to) {
+                            $query->whereBetween('birth_date', [$age_to, $age_from]);
+                        }
+                    )
+                    ->where('gender_id', $gender_id)
+                    ->count();
+
+                $male = 0;
             }
         } else {
-
             $male = Gad::where('barangay_id', $barangay_id)
                 ->where('gender_id', '1')
                 ->when(
@@ -284,7 +307,14 @@ class ReportsApiController extends Controller
                         );
                     }
                 )
+                ->when(
+                    $age_to,
+                    function (Builder $query) use ($age_from, $age_to) {
+                        $query->whereBetween('birth_date', [$age_to, $age_from]);
+                    }
+                )
                 ->count();
+
             $female = Gad::where('barangay_id', $barangay_id)
                 ->where('gender_id', '2')
                 ->when(
@@ -308,6 +338,12 @@ class ReportsApiController extends Controller
                                 $query->where('item_id', $sector_id);
                             }
                         );
+                    }
+                )
+                ->when(
+                    $age_to,
+                    function (Builder $query) use ($age_from, $age_to) {
+                        $query->whereBetween('birth_date', [$age_to, $age_from]);
                     }
                 )
                 ->count();

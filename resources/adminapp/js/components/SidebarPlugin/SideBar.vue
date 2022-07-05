@@ -25,13 +25,13 @@
             <center>
                 <b>
                     <div v-if="roles.title === 'Popcom'">
-                        <h1 style="color: white">POPCOM</h1>
+                        <h1 style="color: black">POPCOM</h1>
                     </div>
                     <div v-else-if="roles.title === 'Barangay'">
                         <h1 style="color: black">{{ user.barangays.barangay_name }}</h1>
                     </div>
                     <div v-else>
-                        <h1 style="color: white">GAD</h1>
+                        <h1 style="color: black">GAD</h1>
                     </div>
                 </b>
             </center>
@@ -110,8 +110,8 @@ export default {
         return {
             user: [],
             roles: [],
-            backgroundColor: 'black',
-            itemColor: 'green',
+            backgroundColor: 'white',
+            itemColor: 'azure',
         }
     },
     computed: {

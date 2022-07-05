@@ -53,6 +53,7 @@ class Gad extends Model implements HasMedia
     ];
 
     protected $dates = [
+        'birth_date',
         'created_at',
         'updated_at',
         'deleted_at',
