@@ -136,7 +136,7 @@ class ReportsApiController extends Controller
                     $query->whereHas(
                         'gadDetails',
                         function (Builder $query) use ($sector_id) {
-                            $query->where('item_id', $sector_id);
+                            $query->where('item_id', $sector_id)->where('item_type', Sector::class);
                         }
                     );
                 }
