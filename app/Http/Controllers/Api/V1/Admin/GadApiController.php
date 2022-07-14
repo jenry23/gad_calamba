@@ -454,7 +454,8 @@ class GadApiController extends Controller
         $message = '';
 
         try {
-            $path = $request->file('import_file')->getRealPath();
+            $file = $request->file('import_file')->store('temp');
+            $path = storage_path('app') . '/' . $file;
             // Excel::import(new ImportGads, request()->file('import_file'));
             dispatch(new GadImportJob($path));
             $message = 'Success';
