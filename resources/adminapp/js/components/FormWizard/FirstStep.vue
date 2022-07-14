@@ -174,7 +174,7 @@
                                     'is-focused': true
                                 }"
                             >
-                                <label>Birthday</label>
+                                <label>Birthdate</label>
                                 <datetime-picker
                                     class="form-control popcom-input"
                                     type="text"
