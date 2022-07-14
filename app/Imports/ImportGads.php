@@ -52,6 +52,7 @@ use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Contracts\Queue\ShouldQueue;
 class ImportGads implements
     ToCollection,
     WithHeadingRow,
@@ -61,7 +62,8 @@ class ImportGads implements
     SkipsOnError,
     WithValidation,
     WithBatchInserts,
-    WithChunkReading
+    WithChunkReading,
+    ShouldQueue
 {
     use RemembersChunkOffset;
     use Importable;
