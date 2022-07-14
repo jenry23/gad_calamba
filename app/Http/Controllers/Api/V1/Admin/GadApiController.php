@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Admin\GadResource;
 use App\Imports\ImportGads;
+use App\Jobs\GadImportJob;
 use App\Models\Appliances;
 use App\Models\Barangay;
 use App\Models\City;
@@ -453,8 +454,9 @@ class GadApiController extends Controller
         $message = '';
 
         try {
-            // $path = $request->file('import_file')->getRealPath();
-            Excel::import(new ImportGads, request()->file('import_file'));
+            $path = $request->file('import_file')->getRealPath();
+            // Excel::import(new ImportGads, request()->file('import_file'));
+            dispatch(new GadImportJob($path));
             $message = 'Success';
         } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
             $message = $e->getMessage();
