@@ -454,10 +454,10 @@ class GadApiController extends Controller
         $message = '';
 
         try {
-            $file = $request->file('import_file')->store('temp');
-            $path = storage_path('app') . '/' . $file;
-            // Excel::import(new ImportGads, request()->file('import_file'));
-            dispatch(new GadImportJob($path));
+            // $file = $request->file('import_file')->store('temp');
+            // $path = storage_path('app') . '/' . $file;
+            Excel::import(new ImportGads, request()->file('import_file'));
+            // dispatch(new GadImportJob($path));
             $message = 'Success';
         } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
             $message = $e->getMessage();
