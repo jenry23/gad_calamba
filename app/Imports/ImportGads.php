@@ -84,6 +84,7 @@ class ImportGads implements
     public function collection(Collection $rows)
     {
         ini_set('memory_limit', '5G');
+
         $rows->groupBy('household_number')->map(function ($data_row) {
             $latest_number = Gad::latest('id')->first();
             $household_number = !empty($latest_number) ? $latest_number->household_no + 1 : 1;
@@ -195,6 +196,7 @@ class ImportGads implements
                 $this->addGadDetailsItem($gad_id, Medical::class, $this->convertStringToID(Medical::class, 'health_name', $row["maintaining_medicine_no_02"]), 'medical');
             }
         });
+
         return true;
     }
 
@@ -239,12 +241,12 @@ class ImportGads implements
 
     public function batchSize(): int
     {
-        return 500;
+        return 1000;
     }
 
     public function chunkSize(): int
     {
-        return 500;
+        return 1000;
     }
 
     public function getCsvSettings(): array
