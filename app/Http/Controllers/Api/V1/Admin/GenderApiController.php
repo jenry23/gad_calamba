@@ -10,6 +10,7 @@ use App\Models\Gender;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class GenderApiController extends Controller
 {

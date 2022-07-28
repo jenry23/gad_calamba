@@ -130,7 +130,10 @@
                             </div>
                             <div class="col-md-4" style="margin-top: -70px">
                                 <div class="card">
-                                    <div class="table-responsive table-sales anyClass">
+                                    <div
+                                        class="table-responsive table-sales anyClass"
+                                        v-if="data.barangays.length != 0"
+                                    >
                                         <center>
                                             <h4 class="card-title">LIST OF BARANGAY</h4>
                                         </center>
@@ -149,6 +152,32 @@
                                                             <td>{{ barangay.barangay_name }}</td>
                                                             <td>{{ barangay.count_resident }}</td>
                                                             <td>{{ barangay.percent }}%</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="table-responsive table-sales anyClass" v-else>
+                                        <center>
+                                            <h4 class="card-title">LIST OF Purok/Sitio/Subdivision</h4>
+                                        </center>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead class="text-primary">
+                                                        <tr>
+                                                            <th>Name</th>
+                                                            <th>Total Resident</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr v-for="sitio in data.sitios" :key="sitio.id">
+                                                            <td>{{ sitio.sitio_name }}</td>
+                                                            <td>{{ sitio.count_resident }}</td>
+                                                        </tr>
+                                                        <tr v-for="purok in data.puroks" :key="purok.id">
+                                                            <td>{{ purok.purok_name }}</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>

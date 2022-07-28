@@ -20,13 +20,25 @@ class TransactionApiController extends Controller
         abort_if(Gate::denies('barangay_permit_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         // Gad::all(['id', 'first_name', 'last_name'])->pluck('full_name', 'id'),
-        $gad = Gad::select(
-            "id",
-            "first_name",
-            "last_name",
-            DB::raw("CONCAT(first_name,' ',last_name) as full_name")
-        )->get();
-        $gad = $gad->makeHidden(['photo', 'media']);
+        $barangay_id = Auth::user()->barangay;
+
+        if (isset($barangay_id)) {
+            $gad = Gad::select(
+                "id",
+                "first_name",
+                "last_name",
+                DB::raw("CONCAT(first_name,' ',last_name) as full_name")
+            )->where('barangay_id', $barangay_id)->get();
+        } else {
+            $gad = Gad::select(
+                "id",
+                "first_name",
+                "last_name",
+                DB::raw("CONCAT(first_name,' ',last_name) as full_name")
+            )->get();
+        }
+
+        // $gad = $gad->makeHidden(['photo', 'media']);
 
         return response([
             'meta' => [
