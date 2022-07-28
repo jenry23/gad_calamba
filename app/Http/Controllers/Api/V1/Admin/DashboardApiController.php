@@ -91,8 +91,8 @@ class DashboardApiController extends Controller
             $total_household = Gad::where('household_id', 1)->count();
             // Add Here Counting
             $total_family = 204;
-            $sitio = [];
-            $purok = [];
+            $sitios = [];
+            $puroks = [];
 
             $barangays = Barangay::all();
             foreach ($barangays as $barangay) {
