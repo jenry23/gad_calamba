@@ -96,10 +96,13 @@ class DashboardApiController extends Controller
 
             $barangays = Barangay::all();
             foreach ($barangays as $barangay) {
-                $resident = Gad::where('barangay_id', $barangay->id)->get();
-                $barangay->count_resident = $resident->count();
+                $barangay->count_resident = Gad::where('barangay_id', $barangay->id)->count();
                 $total = Gad::count();
-                $barangay->percent = number_format($resident->count() / $total * 100, 2);
+                if($barangay->count_resident != 0) {
+                    $barangay->percent = number_format($barangay->count_resident / $total * 100, 2);
+                } else {
+                    $barangay->percent = 0;
+                }
             }
         }
 
