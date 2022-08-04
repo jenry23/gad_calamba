@@ -54,13 +54,13 @@ class DashboardApiController extends Controller
 
             $barangays = [];
 
-            $sitios = Sitio::all();
+            $sitios = Sitio::where('barangay_id', $user_with_barangay)->get();
             foreach ($sitios as $sitio) {
                 $resident = Gad::where('barangay_id', $user_with_barangay)->where('sitio_id', $sitio->id)->get();
                 $sitio->count_resident = $resident->count();
             }
 
-            $puroks = Purok::all();
+            $puroks = Purok::where('barangay_id', $user_with_barangay)->get();
             foreach ($puroks as $purok) {
                 $resident = Gad::where('barangay_id', $user_with_barangay)->where('purok_id', $purok->id)->get();
                 $purok->count_resident = $resident->count();
@@ -99,7 +99,7 @@ class DashboardApiController extends Controller
                 $resident = Gad::where('barangay_id', $barangay->id)->get();
                 $barangay->count_resident = $resident->count();
                 $total = Gad::count();
-                $barangay->percent = $resident->count() / $total * 100;
+                $barangay->percent = number_format($resident->count() / $total * 100, 2);
             }
         }
 
