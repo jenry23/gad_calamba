@@ -72,7 +72,7 @@
                             </div>
                         </div>
                         <div class="card-header">
-                            Total Senior Citizen
+                            <p class="mt-2">Total Senior / Citizen </p>
                             <h3 class="card-title" style="color: white">{{ data.total_senior_count }}</h3>
                         </div>
                         <div class="row">
@@ -98,16 +98,16 @@
                         </div>
                         <div class="card-header">
                             Total Registered Voters in Calamba
-                            <h3 class="card-title" style="color: white">900</h3>
+                            <h3 class="card-title" style="color: white">{{ data.total_voters_count }}</h3>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <h5>Male</h5>
-                                410
+                                <h3 style="margin-top: -20px">{{ data.total_voters_male_count }}</h3>
                             </div>
                             <div class="col-md-6">
                                 <h5>Female</h5>
-                                390
+                                <h3 style="margin-top: -20px">{{ data.total_voters_female_count }}</h3>
                             </div>
                         </div>
                     </center>

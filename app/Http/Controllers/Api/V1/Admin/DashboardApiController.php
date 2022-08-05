@@ -128,6 +128,10 @@ class DashboardApiController extends Controller
                 $resident = Gad::where('barangay_id', $user_with_barangay)->where('purok_id', $purok->id)->get();
                 $purok->count_resident = $resident->count();
             }
+
+            $total_voters_count = Gad::where('barangay_id', $user_with_barangay)->whereNotNull('political_province_registered_id')->count();
+            $total_voters_male_count = Gad::where('barangay_id', $user_with_barangay)->where('gender_id', 1)->whereNotNull('political_province_registered_id')->count();
+            $total_voters_female_count = Gad::where('barangay_id', $user_with_barangay)->where('gender_id', 2)->whereNotNull('political_province_registered_id')->count();
         } else {
             $total_people_count = Gad::all()->count();
             $total_male_count = Gad::where('gender_id', '1')->count();
@@ -196,6 +200,10 @@ class DashboardApiController extends Controller
                     $barangay->percent = 0;
                 }
             }
+
+            $total_voters_count = Gad::whereNotNull('political_province_registered_id')->count();
+            $total_voters_male_count = Gad::where('gender_id', 1)->whereNotNull('political_province_registered_id')->count();
+            $total_voters_female_count = Gad::where('gender_id', 2)->whereNotNull('political_province_registered_id')->count();
         }
 
         return response([
@@ -211,6 +219,9 @@ class DashboardApiController extends Controller
                 'total_female_disablity_count' => $total_female_disablity_count,
                 'total_household' => $total_household,
                 'total_family' => $total_family,
+                'total_voters_count' => $total_voters_count,
+                'total_voters_male_count' => $total_voters_male_count,
+                'total_voters_female_count' => $total_voters_female_count,
                 'barangays' => $barangays,
                 'sitios' => $sitios ? $sitios : [],
                 'puroks' => $puroks ? $puroks : [],
