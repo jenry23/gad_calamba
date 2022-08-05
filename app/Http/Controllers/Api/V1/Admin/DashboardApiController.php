@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Sitio;
+use App\Models\Sector;
 use App\Models\Purok;
 
 class DashboardApiController extends Controller
@@ -30,24 +31,86 @@ class DashboardApiController extends Controller
             $total_male_count = Gad::where('barangay_id', $user_with_barangay)->where('gender_id', '1')->count();
             $total_female_count = Gad::where('barangay_id', $user_with_barangay)->where('gender_id', '2')->count();
 
-            $total_senior_count = GadItemDetails::whereHasMorph('item', [GovernmentAssistance::class], function ($query) {
-                $query->where('item_id', 2);
-            })->count();
+            // Total Senior
+            $total_senior_count = GadItemDetails::whereHas(
+                'gad',
+                fn ($query) => $query->where('barangay_id', $user_with_barangay)
+            )->whereHasMorph(
+                'item',
+                [Sector::class],
+                function ($query) {
+                    $query->where('item_id', 2);
+                }
+            )->count();
             //Senior Male
-            // $total_male_senior_count = Gad::where('sector_id', '2')->where('gender_id', '1')->count();
-            $total_male_senior_count = 512;
+            $total_male_senior_count = GadItemDetails::whereHas(
+                'gad',
+                function ($query) use ($user_with_barangay) {
+                    $query->where('barangay_id', $user_with_barangay);
+                    $query->where('gender_id', 1);
+                }
+            )->whereHasMorph(
+                'item',
+                [Sector::class],
+                function ($query) {
+                    $query->where('item_id', 2);
+                }
+            )->count();
             //Senior Female
-            // $total_female_senior_count = Gad::where('sector_id', '2')->where('gender_id', '2')->count();
-            $total_female_senior_count = 261;
+            $total_female_senior_count = GadItemDetails::whereHas(
+                'gad',
+                function ($query) use ($user_with_barangay) {
+                    $query->where('barangay_id', $user_with_barangay);
+                    $query->where('gender_id', 2);
+                }
+            )->whereHasMorph(
+                'item',
+                [Sector::class],
+                function ($query) {
+                    $query->where('item_id', 2);
+                }
+            )->count();
+
             //Total Person With Disablitiy
-            // $total_person_disability_count = Gad::where('sector_id', '1')->count();
-            $total_person_disability_count = 50;
+            $total_person_disability_count = GadItemDetails::whereHas(
+                'gad',
+                fn ($query) => $query->where('barangay_id', $user_with_barangay)
+            )->whereHasMorph(
+                'item',
+                [Sector::class],
+                function ($query) {
+                    $query->where('item_id', 1);
+                }
+            )->count();
             //Person With Disablitiy Male
-            // $total_male_disablity_count = Gad::where('sector_id', '1')->where('gender_id', '1')->count();
-            $total_male_disablity_count = 40;
+            $total_male_disablity_count = GadItemDetails::whereHas(
+                'gad',
+                function ($query) use ($user_with_barangay) {
+                    $query->where('barangay_id', $user_with_barangay);
+                    $query->where('gender_id', 1);
+                }
+            )->whereHasMorph(
+                'item',
+                [Sector::class],
+                function ($query) {
+                    $query->where('item_id', 1);
+                }
+            )->count();
             //Person With Disablitiy Female
-            // $total_female_disablity_count = Gad::where('sector_id', '1')->where('gender_id', '2')->count();
-            $total_female_disablity_count = 20;
+            $total_female_disablity_count = GadItemDetails::whereHas(
+                'gad',
+                function ($query) use ($user_with_barangay) {
+                    $query->where('barangay_id', $user_with_barangay);
+                    $query->where('gender_id', 2);
+                }
+            )->whereHasMorph(
+                'item',
+                [Sector::class],
+                function ($query) {
+                    $query->where('item_id', 1);
+                }
+            )->count();
+
             $total_household = Gad::where('barangay_id', $user_with_barangay)->where('household_id', 1)->count();
             // Add Here Counting
             $total_family = 204;
@@ -70,24 +133,53 @@ class DashboardApiController extends Controller
             $total_male_count = Gad::where('gender_id', '1')->count();
             $total_female_count = Gad::where('gender_id', '2')->count();
 
-            $total_senior_count = GadItemDetails::whereHasMorph('item', [GovernmentAssistance::class], function ($query) {
-                $query->where('item_id', 2);
-            })->count();
+            $total_senior_count = GadItemDetails::whereHasMorph(
+                'item',
+                [Sector::class],
+                function ($query) {
+                    $query->where('item_id', 2);
+                }
+            )->count();
             //Senior Male
-            // $total_male_senior_count = Gad::where('sector_id', '2')->where('gender_id', '1')->count();
-            $total_male_senior_count = 512;
+            $total_male_senior_count = $total_male_senior_count = GadItemDetails::whereHasMorph(
+                'item',
+                [Sector::class],
+                function ($query) {
+                    $query->where('item_id', 2);
+                }
+            )->count();;
             //Senior Female
-            // $total_female_senior_count = Gad::where('sector_id', '2')->where('gender_id', '2')->count();
-            $total_female_senior_count = 261;
+            $total_female_senior_count = $total_female_senior_count = GadItemDetails::whereHasMorph(
+                'item',
+                [Sector::class],
+                function ($query) {
+                    $query->where('item_id', 2);
+                }
+            )->count();
             //Total Person With Disablitiy
-            // $total_person_disability_count = Gad::where('sector_id', '1')->count();
-            $total_person_disability_count = 50;
+            $total_person_disability_count = GadItemDetails::whereHasMorph(
+                'item',
+                [Sector::class],
+                function ($query) {
+                    $query->where('item_id', 1);
+                }
+            )->count();
             //Person With Disablitiy Male
-            // $total_male_disablity_count = Gad::where('sector_id', '1')->where('gender_id', '1')->count();
-            $total_male_disablity_count = 40;
+            $total_male_disablity_count = GadItemDetails::whereHasMorph(
+                'item',
+                [Sector::class],
+                function ($query) {
+                    $query->where('item_id', 1);
+                }
+            )->count();
             //Person With Disablitiy Female
-            // $total_female_disablity_count = Gad::where('sector_id', '1')->where('gender_id', '2')->count();
-            $total_female_disablity_count = 20;
+            $total_female_disablity_count = GadItemDetails::whereHasMorph(
+                'item',
+                [Sector::class],
+                function ($query) {
+                    $query->where('item_id', 1);
+                }
+            )->count();
             $total_household = Gad::where('household_id', 1)->count();
             // Add Here Counting
             $total_family = 204;
@@ -98,7 +190,7 @@ class DashboardApiController extends Controller
             foreach ($barangays as $barangay) {
                 $barangay->count_resident = Gad::where('barangay_id', $barangay->id)->count();
                 $total = Gad::count();
-                if($barangay->count_resident != 0) {
+                if ($barangay->count_resident != 0) {
                     $barangay->percent = number_format($barangay->count_resident / $total * 100, 2);
                 } else {
                     $barangay->percent = 0;
