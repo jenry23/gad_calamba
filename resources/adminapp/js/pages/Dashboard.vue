@@ -72,7 +72,7 @@
                             </div>
                         </div>
                         <div class="card-header">
-                            <p class="mt-2">Total Senior / Citizen </p>
+                            <p class="mt-2">Total Senior / Citizen</p>
                             <h3 class="card-title" style="color: white">{{ data.total_senior_count }}</h3>
                         </div>
                         <div class="row">
@@ -220,7 +220,7 @@
                         <div class="ct-chart" id="websiteViewsChart">Resident Status</div>
                     </div>
                     <div class="card-body">
-                        <table class="table table-resposinve">
+                        <table class="table table-responsive">
                             <thead>
                                 <tr>
                                     <th></th>
@@ -230,25 +230,22 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Transent</td>
-                                    <td>50</td>
-                                    <td>10</td>
+                                    <td>Transient</td>
+                                    <td>{{ data.transient_status_male }}</td>
+                                    <td>{{ data.transient_status_female }}</td>
                                 </tr>
                                 <tr>
                                     <td>Immigrant</td>
-                                    <td>6</td>
-                                    <td>10</td>
+                                    <td>{{ data.immigrant_status_male }}</td>
+                                    <td>{{ data.immigrant_status_female }}</td>
                                 </tr>
                                 <tr>
                                     <td>Native</td>
-                                    <td>40</td>
-                                    <td>20</td>
+                                    <td>{{ data.native_status_male }}</td>
+                                    <td>{{ data.native_status_female }}</td>
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats"><i class="material-icons">access_time</i> campaign sent 2 days ago</div>
                     </div>
                 </div>
             </div>
