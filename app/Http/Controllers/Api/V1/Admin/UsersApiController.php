@@ -36,7 +36,7 @@ class UsersApiController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password,
-            'barangay' => $request->barangay['id'] ?? '',
+            'barangay' => $request->barangay['id'] ?? NULL,
             'roles' => $request->roles
         ];
         $user = User::create($data);

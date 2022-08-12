@@ -12,7 +12,7 @@ class Disability extends Model
 {
     use HasAdvancedFilter, SoftDeletes, HasFactory;
 
-    public $table = 'health';
+    public $table = 'disability';
 
     protected $orderable = [
         'id',
@@ -29,7 +29,7 @@ class Disability extends Model
     ];
 
     protected $fillable = [
-        'health_name',
+        'disability_name',
         'created_at',
         'updated_at',
         'deleted_at'

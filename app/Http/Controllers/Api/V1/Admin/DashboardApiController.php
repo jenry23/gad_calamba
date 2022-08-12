@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Api\V1\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Admin\DashboardResource;
 use App\Models\Barangay;
+use App\Models\Disability;
+use App\Models\EducationalAttaintment;
 use App\Models\Gad;
 use App\Models\GadItemDetails;
 use App\Models\GovernmentAssistance;
+use App\Models\HouseOwnership;
 use App\Models\MonthlyIncome;
 use App\Models\Occupation;
 use Illuminate\Support\Facades\Gate;
@@ -76,13 +79,7 @@ class DashboardApiController extends Controller
             $total_person_disability_count = GadItemDetails::whereHas(
                 'gad',
                 fn ($query) => $query->where('barangay_id', $user_with_barangay)
-            )->whereHasMorph(
-                'item',
-                [Sector::class],
-                function ($query) {
-                    $query->where('item_id', 1);
-                }
-            )->count();
+            )->where('item_name', 'disability')->count();
             //Person With Disablitiy Male
             $total_male_disablity_count = GadItemDetails::whereHas(
                 'gad',
@@ -90,13 +87,7 @@ class DashboardApiController extends Controller
                     $query->where('barangay_id', $user_with_barangay);
                     $query->where('gender_id', 1);
                 }
-            )->whereHasMorph(
-                'item',
-                [Sector::class],
-                function ($query) {
-                    $query->where('item_id', 1);
-                }
-            )->count();
+            )->where('item_name', 'disability')->count();
             //Person With Disablitiy Female
             $total_female_disablity_count = GadItemDetails::whereHas(
                 'gad',
@@ -104,15 +95,9 @@ class DashboardApiController extends Controller
                     $query->where('barangay_id', $user_with_barangay);
                     $query->where('gender_id', 2);
                 }
-            )->whereHasMorph(
-                'item',
-                [Sector::class],
-                function ($query) {
-                    $query->where('item_id', 1);
-                }
-            )->count();
+            )->where('item_name', 'disability')->count();
 
-            $total_household = Gad::where('barangay_id', $user_with_barangay)->where('household_id', 1)->count();
+            $total_household = Gad::where('barangay_id', $user_with_barangay)->where('household_id', 1)->where('family_code', 'A')->count();
             // Add Here Counting
             $total_family = 204;
 
@@ -130,14 +115,14 @@ class DashboardApiController extends Controller
                 $purok->count_resident = $resident->count();
             }
 
-            $total_voters_count = Gad::where('barangay_id', $user_with_barangay)->where('political_city_registered_id', 410)->count();
-            $total_voters_male_count = Gad::where('barangay_id', $user_with_barangay)->where('gender_id', 1)->where('political_city_registered_id', 410)->count();
-            $total_voters_female_count = Gad::where('barangay_id', $user_with_barangay)->where('gender_id', 2)->where('political_city_registered_id', 410)->count();
+            $total_voters_count = Gad::where('barangay_id', $user_with_barangay)->where('political_brgy_registered', $user_with_barangay)->count();
+            $total_voters_male_count = Gad::where('barangay_id', $user_with_barangay)->where('gender_id', 1)->where('political_brgy_registered', $user_with_barangay)->count();
+            $total_voters_female_count = Gad::where('barangay_id', $user_with_barangay)->where('gender_id', 2)->where('political_brgy_registered', $user_with_barangay)->count();
 
             $transient_status_male = Gad::where('barangay_id', $user_with_barangay)->where('gender_id', 1)->whereDate('calamba_residence_year', '>', Carbon::now()->subMonth(6))->count();
             $transient_status_female = Gad::where('barangay_id', $user_with_barangay)->where('gender_id', 2)->whereDate('calamba_residence_year', '>', Carbon::now()->subMonth(6))->count();
-            $immigrant_status_male = Gad::where('barangay_id', $user_with_barangay)->where('gender_id', 1)->whereBetween('calamba_residence_year', [Carbon::now()->subMonth(6)->addDay(1), Carbon::now()->subYear(2)])->count();
-            $immigrant_status_female = Gad::where('barangay_id', $user_with_barangay)->where('gender_id', 2)->whereBetween('calamba_residence_year', [Carbon::now()->subMonth(6)->addDay(1), Carbon::now()->subYear(2)])->count();
+            $immigrant_status_male = Gad::where('barangay_id', $user_with_barangay)->where('gender_id', 1)->whereBetween('calamba_residence_year', [Carbon::now()->subYear(2), Carbon::now()->subMonth(6)->addDay(1)])->count();
+            $immigrant_status_female = Gad::where('barangay_id', $user_with_barangay)->where('gender_id', 2)->whereBetween('calamba_residence_year', [Carbon::now()->subYear(2), Carbon::now()->subMonth(6)->addDay(1)])->count();
             $native_status_male  =
                 Gad::where('barangay_id', $user_with_barangay)->where('gender_id', 1)->whereDate('calamba_residence_year', '<', Carbon::now()->subYear(2)->addDay(1))->count();
             $native_status_female  =
@@ -182,42 +167,24 @@ class DashboardApiController extends Controller
                 }
             )->count();
             //Total Person With Disablitiy
-            $total_person_disability_count = GadItemDetails::whereHasMorph(
-                'item',
-                [Sector::class],
-                function ($query) {
-                    $query->where('item_id', 1);
-                }
-            )->count();
+            $total_person_disability_count = GadItemDetails::where('item_name', 'disability')->count();
             //Person With Disablitiy Male
             $total_male_disablity_count = GadItemDetails::whereHas(
                 'gad',
                 function ($query) {
                     $query->where('gender_id', 1);
                 }
-            )->whereHasMorph(
-                'item',
-                [Sector::class],
-                function ($query) {
-                    $query->where('item_id', 1);
-                }
-            )->count();
+            )->where('item_name', 'disability')->count();
             //Person With Disablitiy Female
             $total_female_disablity_count = GadItemDetails::whereHas(
                 'gad',
                 function ($query) {
                     $query->where('gender_id', 2);
                 }
-            )->whereHasMorph(
-                'item',
-                [Sector::class],
-                function ($query) {
-                    $query->where('item_id', 1);
-                }
-            )->count();
-            $total_household = Gad::where('household_id', 1)->count();
+            )->where('item_name', 'disability')->count();
+            $total_household = Gad::where('household_id', 1)->where('family_code', 'A')->count();
             // Add Here Counting
-            $total_family = 204;
+            $total_family = Gad::where('household_id', 1)->count();
             $sitios = [];
             $puroks = [];
 
@@ -238,8 +205,8 @@ class DashboardApiController extends Controller
 
             $transient_status_male = Gad::where('gender_id', 1)->whereDate('calamba_residence_year', '>', Carbon::now()->subMonth(6))->count();
             $transient_status_female = Gad::where('gender_id', 2)->whereDate('calamba_residence_year', '>', Carbon::now()->subMonth(6))->count();
-            $immigrant_status_male = Gad::where('gender_id', 1)->whereBetween('calamba_residence_year', [Carbon::now()->subMonth(6)->addDay(1), Carbon::now()->subYear(2)])->count();
-            $immigrant_status_female = Gad::where('gender_id', 2)->whereBetween('calamba_residence_year', [Carbon::now()->subMonth(6)->addDay(1), Carbon::now()->subYear(2)])->count();
+            $immigrant_status_male = Gad::where('gender_id', 1)->whereBetween('calamba_residence_year', [Carbon::now()->subYear(2), Carbon::now()->subMonth(6)->addDay(1)])->count();
+            $immigrant_status_female = Gad::where('gender_id', 2)->whereBetween('calamba_residence_year', [Carbon::now()->subYear(2), Carbon::now()->subMonth(6)->addDay(1)])->count();
             $native_status_male  =
                 Gad::where('gender_id', 1)->whereDate('calamba_residence_year', '<', Carbon::now()->subYear(2)->addDay(1))->count();
             $native_status_female  =
@@ -289,6 +256,39 @@ class DashboardApiController extends Controller
         }
         return new DashboardResource($occupations);
     }
+
+    public function getEducational(Request $request)
+    {
+        $user_with_barangay = Auth::user()->barangay;
+        $educationals = EducationalAttaintment::all();
+
+        foreach ($educationals as $educational) {
+            $educational->count_educational = Gad::when(
+                $user_with_barangay,
+                function ($query) use ($user_with_barangay) {
+                    $query->where('barangay_id', $user_with_barangay);
+                }
+            )->where('educational_attaintment_id', $educational->id)->count();
+        }
+        return new DashboardResource($educationals);
+    }
+
+    public function getHouseOwnership(Request $request)
+    {
+        $user_with_barangay = Auth::user()->barangay;
+        $house_ownerships = HouseOwnership::all();
+
+        foreach ($house_ownerships as $house_ownership) {
+            $house_ownership->count_house_ownership = Gad::when(
+                $user_with_barangay,
+                function ($query) use ($user_with_barangay) {
+                    $query->where('barangay_id', $user_with_barangay);
+                }
+            )->where('house_ownership_id', $house_ownership->id)->count();
+        }
+        return new DashboardResource($house_ownerships);
+    }
+
     public function getMonthlyIncome(Request $request)
     {
         $user_with_barangay = Auth::user()->barangay;

@@ -171,8 +171,9 @@ class ImportGads implements
                         $this->addGadDetailsItem($gad_id, Health::class, $this->convertStringToID(Health::class, 'health_name', $row["health_condition_1_not_required_dropdown_option"]), 'health');
                         $this->addGadDetailsItem($gad_id, Health::class, $this->convertStringToID(Health::class, 'health_name', $row["health_condition_2_not_required_dropdown_option"]), 'health');
                         $this->addGadDetailsItem($gad_id, Health::class, $this->convertStringToID(Health::class, 'health_name', $row["health_condition_3_not_required_dropdown_option"]), 'health');
-                        $this->addGadDetailsItem($gad_id, Disability::class, $this->convertStringToID(Health::class, 'health_name', $row["disability_condition_2_not_required_dropdown_option"]), 'disability');
-                        $this->addGadDetailsItem($gad_id, Disability::class, $this->convertStringToID(Health::class, 'health_name', $row["disability_condition_3_not_required_dropdown_option"]), 'disability');
+                        $this->addGadDetailsItem($gad_id, Disability::class, $this->convertStringToID(Disability::class, 'disability_name', $row["disability_condition_1_not_required_dropdown_option"]), 'disability');
+                        $this->addGadDetailsItem($gad_id, Disability::class, $this->convertStringToID(Disability::class, 'disability_name', $row["disability_condition_2_not_required_dropdown_option"]), 'disability');
+                        $this->addGadDetailsItem($gad_id, Disability::class, $this->convertStringToID(Disability::class, 'disability_name', $row["disability_condition_3_not_required_dropdown_option"]), 'disability');
                         $this->addGadDetailsItem($gad_id, GovernmentAssistance::class, $this->convertStringToID(GovernmentAssistance::class, 'government_assistance_name', $row["government_assistance_no_02_dropdown_option"]), 'government_assistance');
                         $this->addGadDetailsItem($gad_id, GovernmentAssistance::class, $this->convertStringToID(GovernmentAssistance::class, 'government_assistance_name', $row["government_assistance_no_03_dropdown_option"]), 'government_assistance');
                         $this->addGadDetailsItem($gad_id, SoftSkill::class, $this->convertStringToID(SoftSkill::class, 'soft_skill_name', $row["soft_skills_1_not_required_dropdown_option"]), 'soft_skill');
@@ -219,7 +220,11 @@ class ImportGads implements
         $id = null;
         if (!empty($query) && $query !== " ") {
             if (is_null($barangay_id)) {
-                $result = $class::where($fields, 'LIKE', '%' . $query . '%')->first();
+                if ($fields === 'monthly_income_name') {
+                    $result = $class::where($fields, $query)->first();
+                } else {
+                    $result = $class::where($fields, 'LIKE', '%' . $query . '%')->first();
+                }
             } else {
                 $result = $class::where('barangay_id', $barangay_id)->where($fields, 'LIKE', '%' . $query . '%')->first();
             }

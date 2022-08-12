@@ -178,6 +178,7 @@
                                                         </tr>
                                                         <tr v-for="purok in data.puroks" :key="purok.id">
                                                             <td>{{ purok.purok_name }}</td>
+                                                            <td>{{ purok.count_resident }}</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -201,11 +202,13 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <h5>Male</h5>
-                                {{ data.total_male_count }}
+                                0
+                                <!-- {{ data.total_male_count }} -->
                             </div>
                             <div class="col-md-6">
                                 <h5>Female</h5>
-                                {{ data.total_female_count }}
+                                0
+                                <!-- {{ data.total_female_count }} -->
                             </div>
                         </div>
                     </div>
@@ -276,13 +279,15 @@
             <div class="col-md-6">
                 <div class="card card-stats">
                     <div class="card-header card-header-info">
-                        <h3 class="card-title">Employment Information</h3>
+                        <h3 class="card-title">EDUCATIONAL ATTAINTMENT</h3>
                     </div>
                     <div class="card-body">
-                        <line-chart :chart-data="data_assistance"></line-chart>
+                        <bar-chart :chart-data="chartData"></bar-chart>
+                        <!-- <pie-chart :chart-data="chartData" :options="options"></pie-chart> -->
                     </div>
                 </div>
             </div>
+
             <div class="col-md-6">
                 <div class="card card-stats">
                     <div class="card-header card-header-info">
@@ -298,20 +303,20 @@
             <div class="col-md-6">
                 <div class="card card-stats">
                     <div class="card-header card-header-info">
-                        <h3 class="card-title">EDUCATIONAL ATTAINTMENT</h3>
+                        <h3 class="card-title">Employment Information</h3>
                     </div>
                     <div class="card-body">
-                        <pie-chart :chart-data="chartData" :options="options"></pie-chart>
+                        <line-chart :chart-data="data_assistance"></line-chart>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="card card-stats">
                     <div class="card-header card-header-info">
-                        <h3 class="card-title">SENIOR CITIZEN (Current Year)</h3>
+                        <h3 class="card-title">House Ownership</h3>
                     </div>
                     <div class="card-body">
-                        <AreaChart />
+                        <line-chart :chart-data="data_houseownership"></line-chart>
                     </div>
                 </div>
             </div>
@@ -344,21 +349,14 @@ export default {
         return {
             data_assistance: null,
             data_income: null,
+            data_houseownership: null,
             query: { sort: 'id', order: 'asc', limit: 20, s: '' },
             xprops: {
                 module: 'DashboardIndex',
                 route: 'dashboard',
                 permission_prefix: 'dashboard_'
             },
-            chartData: {
-                labels: ['Graduate School', 'College School'],
-                datasets: [
-                    {
-                        backgroundColor: ["#993366", "#0099CC"],
-                        data: [200, 100]
-                    }
-                ]
-            },
+            chartData: null,
             options: {
                 responsive: true,
                 maintainAspectRatio: false
@@ -374,6 +372,8 @@ export default {
     mounted () {
         this.employmentInformation()
         this.MonthlyIncomeGraph()
+        this.educationalAttaintmentGraph()
+        this.houseOwnershipData()
         this.fetchIndexData()
     },
     methods: {
@@ -382,6 +382,29 @@ export default {
             'setQuery',
             'resetState'
         ]),
+
+        educationalAttaintmentGraph () {
+            axios.get(`dashboard/educational`).then(response => {
+                var educational = response.data.data;
+                var data_charts = [];
+                var data_label = []
+                var data_backgroundcolor = []
+                educational.forEach(data => {
+                    data_charts.push(data.count_educational);
+                    data_label.push(data.educational_attaintment_name);
+                    data_backgroundcolor.push('#' + Math.floor(Math.random() * 16777215).toString(16));
+                });
+                const labels = data_label;
+                this.chartData = {
+                    labels: labels,
+                    datasets: [{
+                        data: data_charts,
+                        backgroundColor: data_backgroundcolor,
+                    }]
+                };
+            })
+        },
+
         employmentInformation () {
             axios.get(`dashboard/government-assistance`).then(response => {
                 var government = response.data.data;
@@ -405,6 +428,32 @@ export default {
                 };
             })
         },
+
+        houseOwnershipData () {
+            axios.get(`dashboard/house-ownership`).then(response => {
+                var house_ownership = response.data.data;
+                var data_charts = [];
+                var data_label = []
+                house_ownership.forEach(data => {
+                    data_charts.push(data.count_house_ownership);
+                    data_label.push(data.house_ownership_name);
+                });
+                const labels = data_label;
+                this.data_houseownership = {
+                    labels: labels,
+                    datasets: [{
+                        label: 'ALL',
+                        data: data_charts,
+                        fill: false,
+                        backgroundColor: '#80CEB9',
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1
+                    }]
+                };
+            })
+        },
+
+
         MonthlyIncomeGraph () {
             axios.get(`dashboard/monthly-income`).then(response => {
                 var monthly_income = response.data.data;
