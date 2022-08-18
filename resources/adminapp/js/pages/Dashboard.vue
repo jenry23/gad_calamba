@@ -202,13 +202,11 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <h5>Male</h5>
-                                0
-                                <!-- {{ data.total_male_count }} -->
+                                {{ data.total_male_migration_rate }}
                             </div>
                             <div class="col-md-6">
                                 <h5>Female</h5>
-                                0
-                                <!-- {{ data.total_female_count }} -->
+                                {{ data.total_female_migration_rate }}
                             </div>
                         </div>
                     </div>
@@ -279,34 +277,10 @@
             <div class="col-md-6">
                 <div class="card card-stats">
                     <div class="card-header card-header-info">
-                        <h3 class="card-title">EDUCATIONAL ATTAINTMENT</h3>
+                        <h3 class="card-title">Utilities</h3>
                     </div>
                     <div class="card-body">
-                        <bar-chart :chart-data="chartData"></bar-chart>
-                        <!-- <pie-chart :chart-data="chartData" :options="options"></pie-chart> -->
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="card card-stats">
-                    <div class="card-header card-header-info">
-                        <h3 class="card-title">Economic Status Graph</h3>
-                    </div>
-                    <div class="card-body">
-                        <bar-chart :chart-data="data_income"></bar-chart>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card card-stats">
-                    <div class="card-header card-header-info">
-                        <h3 class="card-title">Employment Information</h3>
-                    </div>
-                    <div class="card-body">
-                        <line-chart :chart-data="data_assistance"></line-chart>
+                        <line-chart :chart-data="data_utilities"></line-chart>
                     </div>
                 </div>
             </div>
@@ -317,6 +291,29 @@
                     </div>
                     <div class="card-body">
                         <line-chart :chart-data="data_houseownership"></line-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-info">
+                        <h3 class="card-title">EDUCATIONAL ATTAINTMENT</h3>
+                    </div>
+                    <div class="card-body">
+                        <bar-chart :chart-data="chartData"></bar-chart>
+                        <!-- <pie-chart :chart-data="chartData" :options="options"></pie-chart> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-info">
+                        <h3 class="card-title">Economic Status Graph</h3>
+                    </div>
+                    <div class="card-body">
+                        <bar-chart :chart-data="data_income"></bar-chart>
                     </div>
                 </div>
             </div>
@@ -347,7 +344,7 @@ export default {
     },
     data () {
         return {
-            data_assistance: null,
+            data_utilities: null,
             data_income: null,
             data_houseownership: null,
             query: { sort: 'id', order: 'asc', limit: 20, s: '' },
@@ -370,7 +367,7 @@ export default {
         ...mapGetters('DashboardIndex', ['data', 'loading'])
     },
     mounted () {
-        this.employmentInformation()
+        this.utilitiesInformation()
         this.MonthlyIncomeGraph()
         this.educationalAttaintmentGraph()
         this.houseOwnershipData()
@@ -405,17 +402,17 @@ export default {
             })
         },
 
-        employmentInformation () {
-            axios.get(`dashboard/government-assistance`).then(response => {
-                var government = response.data.data;
+        utilitiesInformation () {
+            axios.get(`dashboard/utilities`).then(response => {
+                var utility = response.data.data;
                 var data_charts = [];
                 var data_label = []
-                government.forEach(data => {
-                    data_charts.push(data.count_occupation);
-                    data_label.push(data.occupation_name);
+                utility.forEach(data => {
+                    data_charts.push(data.count_utilities);
+                    data_label.push(data.utilities_name);
                 });
                 const labels = data_label;
-                this.data_assistance = {
+                this.data_utilities = {
                     labels: labels,
                     datasets: [{
                         label: 'ALL',
@@ -461,7 +458,7 @@ export default {
                 var data_label = []
                 monthly_income.forEach(data => {
                     data_charts.push(data.count_income);
-                    data_label.push(data.monthly_income_name);
+                    data_label.push(data.range_min + '-' + data.range_maxf);
                 });
                 const labels = data_label;
                 this.data_income = {

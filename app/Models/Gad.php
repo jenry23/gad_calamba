@@ -62,6 +62,7 @@ class Gad extends Model implements HasMedia
     protected $fillable = [
         'id',
         'gad_id',
+        'migration_rate_id',
         'building_no',
         'household_no',
         'house_no',

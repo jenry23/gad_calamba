@@ -301,10 +301,13 @@ class GadApiController extends Controller
         if ($gad->barangay_id != $barangay_id) {
             $barangay_id = $barangay_id;
             $data['barangay_id'] = $barangay_id;
-            $lead_by_zero_barangay = sprintf("%02d", $barangay_id);
-            $replace = '-' . $lead_by_zero_barangay . '-' . $request->household_no;
-            $barangay_previous = '-' . $lead_by_zero_barangay . '-' . '000';
-            $gad_id = str_replace($barangay_previous, $replace, $request->gad_id);
+            $gad_id = substr($request->gad_id, 0, -2) . $barangay_id;
+            $data['migration_rate_id'] = $barangay_id;
+            $data['barangay_residence_year'] = Carbon::now()->format('Y-m-d');
+            // $lead_by_zero_barangay = sprintf("%02d", $barangay_id);
+            // $replace = '-' . $lead_by_zero_barangay . '-' . $request->household_no;
+            // $barangay_previous = '-' . $lead_by_zero_barangay . '-' . '000';
+            // $gad_id = str_replace($barangay_previous, $replace, $request->gad_id);
             $data['gad_id'] = $gad_id;
         }
 
@@ -481,7 +484,7 @@ class GadApiController extends Controller
                     return $spouse->household_id == $mainhousehold_id;
                 })->first();
 
-                if(isset($main)){
+                if (isset($main)) {
                     $main->update($data);
                 }
             }

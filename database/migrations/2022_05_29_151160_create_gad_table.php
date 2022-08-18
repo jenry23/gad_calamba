@@ -12,6 +12,7 @@ class CreateGadTable extends Migration
             $table->id();
             $table->string('gad_id')->nullable();
             $table->string('building_no')->nullable();
+            $table->integer('migration_rate_id')->nullable();
             $table->integer('household_no')->nullable();
             $table->string('house_no')->nullable();
             $table->string('family_code')->nullable();

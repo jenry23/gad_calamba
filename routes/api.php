@@ -100,7 +100,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     Route::resource('educational-assistance', 'EducationalAssistanceApiController');
 
     //Dashboard
-    Route::get('dashboard/government-assistance', 'DashboardApiController@getGoverment')->name('dashboard.getGoverment');
+    Route::get('dashboard/utilities', 'DashboardApiController@getUtilities')->name('dashboard.getUtilities');
     Route::get('dashboard/house-ownership', 'DashboardApiController@getHouseOwnership')->name('dashboard.getHouseOwnership');
     Route::get('dashboard/monthly-income', 'DashboardApiController@getMonthlyIncome')->name('dashboard.getMonthlyIncome');
     Route::get('dashboard/educational', 'DashboardApiController@getEducational')->name('dashboard.getEducational');
