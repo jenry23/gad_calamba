@@ -45,8 +45,6 @@ function initialState () {
       gender: [],
       gender_preference: [],
       civil_status: [],
-      health_id: '',
-      disability_id: '',
       household_monthly_income_id: '',
       economic_status_id: '',
       educational_attaintment: [],
@@ -65,10 +63,12 @@ function initialState () {
       medicine: [],
       full_immunization: '',
       covid_19_test: '',
-      first_date_vaccination: '',
       brand1: '',
-      second_date_vaccination: '',
+      first_date_vaccination: '',
       brand2: '',
+      second_date_vaccination: '',
+      brand3: '',
+      booster_date_vaccination: '',
       pregnancy_age: '',
       prental_checkup: '',
       postnatal_checkup: '',
@@ -83,6 +83,8 @@ function initialState () {
       remarks: '',
       permissions: [],
       questions: [],
+      disability_condition: [],
+      health_condition: [],
       created_at: '',
       updated_at: '',
       deleted_at: ''
@@ -120,6 +122,8 @@ function initialState () {
       monthly_income: [],
       barangay: [],
       questions: [],
+      disability_condition: [],
+      health_condition: [],
     },
     items: [
       { name: 'health', value: 'App\\Models\\Health' },
@@ -228,6 +232,12 @@ const actions = {
   },
   setBrand2 ({ commit }, value) {
     commit('setBrand2', value)
+  },
+  setBrand3 ({ commit }, value) {
+    commit('setBrand3', value)
+  },
+  setBoosterDateVaccination ({ commit }, value) {
+    commit('setBoosterDateVaccination', value)
   },
   setSecondDateVaccination ({ commit }, value) {
     commit('setSecondDateVaccination', value)
@@ -397,6 +407,12 @@ const actions = {
   setUtilities ({ commit }, value) {
     commit('setUtilities', value)
   },
+  setHealthCondition ({ commit }, value) {
+    commit('setHealthCondition', value)
+  },
+  setDisability ({ commit }, value) {
+    commit('setDisability', value)
+  },
   insertPhotoFile ({ commit }, file) {
     commit('insertPhotoFile', file)
   },
@@ -539,6 +555,12 @@ const mutations = {
   setSector (state, value) {
     state.entry.sector = value
   },
+  setHealthCondition (state, value) {
+    state.entry.health_condition = value
+  },
+  setDisability (state, value) {
+    state.entry.disability_condition = value
+  },
   setPoliticalProvinceRegistered (state, value) {
     state.entry.political_province_registered = value
   },
@@ -652,6 +674,12 @@ const mutations = {
   },
   setBrand2 (state, value) {
     state.entry.brand2 = value;
+  },
+  setBrand3 (state, value) {
+    state.entry.brand3 = value;
+  },
+  setBoosterDateVaccination (state, value) {
+    state.entry.booster_date_vaccination = value;
   },
   setSecondDateVaccination (state, value) {
     state.entry.second_date_vaccination = value;

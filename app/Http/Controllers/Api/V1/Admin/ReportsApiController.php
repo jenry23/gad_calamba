@@ -70,7 +70,6 @@ class ReportsApiController extends Controller
 
         foreach ($gads as $gad) {
             $gad->id = !empty($gad->id) ? $gad->id : '';
-            $gad->full_name = $gad->last_name . ' , ' . $gad->first_name . ' ' . $gad->middle_name;
             $gad->gender_name = !empty($gad->gender) ? $gad->gender->gender_name : '';
             $gad->sector_name = !empty($gad->sector) ? $gad->sector->sector_name : '';
             $gad->barangays_name = !empty($gad->barangay) ? $gad->barangay->barangay_name : '';
@@ -173,7 +172,15 @@ class ReportsApiController extends Controller
             'gender:id,gender_name',
             'barangay:id,barangay_name',
             'civil_status:id,civil_status_name',
-            'sector:id,sector_name',
+            'gender_preference:id,gender_preference_name',
+            'occupation:id,occupation_name',
+            'educational_attaintment:id,educational_attaintment_name',
+            'educational_status:id,educational_status_name',
+            'religion:id,religion_name',
+            'house_ownership:id,house_ownership_name',
+            'house_type:id,house_type_name',
+            'house_make:id,house_make_name',
+            'resident_status:id,resident_status_name',
         ])
             ->where('barangay_id', $barangay_id)
             ->when(

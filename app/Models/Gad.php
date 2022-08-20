@@ -141,7 +141,7 @@ class Gad extends Model implements HasMedia
 
     public function getFullNameAttribute()
     {
-        return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
+        return ucfirst($this->last_name) . ' , ' . ucfirst($this->first_name) . ' ' . ucfirst($this->middle_name);
     }
 
     public function registerMediaConversions(Media $media = null): void
@@ -347,6 +347,10 @@ class Gad extends Model implements HasMedia
     public function political_province_registered()
     {
         return $this->belongsTo(Province::class, 'political_province_registered_id', 'id');
+    }
+    public function political_brgy_registered_name()
+    {
+        return $this->belongsTo(Barangay::class, 'political_brgy_registered', 'id');
     }
     public function political_city_registered()
     {

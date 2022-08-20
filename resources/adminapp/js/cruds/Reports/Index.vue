@@ -1,7 +1,44 @@
 <template>
     <div class="container-fluid">
         <div class="loader" v-if="loader"></div>
-        <div ref="content">
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Advance Search</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success">Save changes</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <vue-html2pdf
+                    :show-layout="false"
+                    :float-layout="false"
+                    :enable-download="true"
+                    :preview-modal="true"
+                    :paginate-elements-by-height="1000"
+                    filename="content"
+                    :pdf-quality="2"
+                    :manual-pagination="false"
+                    pdf-format="a4"
+                    pdf-orientation="landscape"
+                    pdf-content-width="1200px"
+
+                    @progress="onProgress($event)"
+                    @hasStartedGeneration="hasStartedGeneration()"
+                    @hasGenerated="hasGenerated($event)"
+                    ref="html2Pdf"
+                >
+                <section slot="pdf-content">
             <form @submit.prevent="submitForm">
                 <div class="row">
                     <div class="col-md-8">
@@ -9,15 +46,15 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <br />
-                                    <img src="/images/calamba-logo.png" height="95px" width="100px" />
-                                    <img src="/images/gad-logo-login.png" height="95px" width="100px" />
+                                    <img src="/images/cap.jpg" height="108px" width="110px" />
+                                    <img src="/images/popcom.png" height="108px" width="110px" />
                                 </div>
                                 <div class="col-md-8">
                                     <div>
                                         <h3 style="color: black">
                                             <b style="text-transform: uppercase">City Government of Calamba</b><br />
-                                            <b style="text-transform: uppercase; margin-right: 50px"
-                                                >Gender and Development</b
+                                            <b style="text-transform: uppercase; "
+                                                >CITY POPULATION MANAGEMENT OFFICE</b
                                             ><br />
                                             <b style="text-transform: uppercase; margin-right: 130px"
                                                 >Household Profile</b
@@ -40,8 +77,8 @@
                     </div>
                     <div class="col-md-4">
                         <div class="card">
-                            <div class="card-header card-header-primary">
-                                <h4 class="card-title">GAD Generate Reports</h4>
+                            <div class="card-header card-header-success">
+                                <h4 class="card-title">Generate Reports</h4>
                                 <p class="crd-category">Advance Search</p>
                             </div>
                             <div class="card-body">
@@ -148,98 +185,109 @@
                                 >
                                     Search
                                 </vue-button-spinner>
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">
+                                    Advance Filter
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </form>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header card-header-primary card-header-icon">
-                            <div class="card-icon">
-                                <i class="material-icons">assignment</i>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-success card-header-icon">
+                                <div class="card-icon">
+                                    <i class="material-icons">assignment</i>
+                                </div>
+                                <h4 class="card-title">
+                                    Table
+                                    <strong>Resident List</strong>
+                                </h4>
                             </div>
-                            <h4 class="card-title">
-                                Table
-                                <strong>Resident List</strong>
-                            </h4>
-                        </div>
 
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="table-overlay" v-show="loading">
-                                        <div class="table-overlay-container">
-                                            <material-spinner></material-spinner>
-                                            <span>Loading...</span>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="table-overlay" v-show="loading">
+                                            <div class="table-overlay-container">
+                                                <material-spinner></material-spinner>
+                                                <span>Loading...</span>
+                                            </div>
                                         </div>
+                                        <download-excel
+                                            class="btn btn-success"
+                                            worksheet="Resident List"
+                                            :fields="json_fields"
+                                            :fetch="fetchData"
+                                            :before-generate="startDownload"
+                                            :name="this.excel_name"
+                                            :before-finish="finishDownload"
+                                        >
+                                            Print Excel
+                                        </download-excel>
+                                        <button class="btn btn-info" @click="downloads">Download PDF</button>
+                                        <datatable
+                                            :columns="columns"
+                                            :data="data"
+                                            :total="total"
+                                            :query="query"
+                                            :xprops="xprops"
+                                            :HeaderSettings="false"
+                                            :pageSizeOptions="[10, 25, 50, 100]"
+                                        >
+                                            <global-search :query="query" class="pull-left" />
+                                            <header-settings :columns="columns" class="pull-right" />
+                                        </datatable>
                                     </div>
-                                    <download-excel
-                                        class="btn btn-primary"
-                                        worksheet="Resident List"
-                                        :fields="json_fields"
-                                        :fetch="fetchData"
-                                        :before-generate="startDownload"
-                                        :name="this.excel_name"
-                                        :before-finish="finishDownload"
-                                    >
-                                        Print Excel
-                                    </download-excel>
-                                    <button class="btn btn-info" @click="downloads">Download PDF</button>
-                                    <datatable
-                                        :columns="columns"
-                                        :data="data"
-                                        :total="total"
-                                        :query="query"
-                                        :xprops="xprops"
-                                        :HeaderSettings="false"
-                                        :pageSizeOptions="[10, 25, 50, 100]"
-                                    >
-                                        <global-search :query="query" class="pull-left" />
-                                        <header-settings :columns="columns" class="pull-right" />
-                                    </datatable>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                </section>
+        </vue-html2pdf>
         </div>
-    </div>
+</div>
 </template>
 <style scoped>
 .loader {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    width: 100%;
-    height: 100%;
-    background-color: #eceaea;
-    background-image: url('https://04.cadwork.com/wp-content/uploads/2019/08/ajax-loader.gif');
-    background-size: 300px;
-    background-repeat: no-repeat;
-    background-position: center;
-    z-index: 10000000;
-    opacity: 0.8;
-    filter: alpha(opacity=40);
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: #eceaea;
+	background-image: url('https://04.cadwork.com/wp-content/uploads/2019/08/ajax-loader.gif');
+	background-size: 300px;
+	background-repeat: no-repeat;
+	background-position: center;
+	z-index: 10000000;
+	opacity: 0.8;
+	filter: alpha(opacity=40);
 }
 </style>
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import PieChart from "@components/Charts/Pie";
 import DatatablesFields from '@components/Datatables/DatatablesFields'
+import DatatablesFieldsMultiple from '@components/Datatables/DatatablesFieldsMultiple'
 import TranslatedHeader from '@components/Datatables/TranslatedHeader'
+import TranslatedMultitpleHeader from '@components/Datatables/TranslatedMultitpleHeader'
 import HeaderSettings from '@components/Datatables/HeaderSettings'
 import GlobalSearch from '@components/Datatables/GlobalSearch'
 import html2pdf from 'html2pdf.js'
+import VueHtml2pdf from 'vue-html2pdf'
 
 export default {
     components: {
         PieChart,
         GlobalSearch,
         DatatablesFields,
-        HeaderSettings
+        HeaderSettings,
+        VueHtml2pdf,
+        TranslatedMultitpleHeader,
+        DatatablesFieldsMultiple
     },
     data () {
         return {
@@ -291,14 +339,99 @@ export default {
                     field: 'civil_status.civil_status_name',
                     tdComp: DatatablesFields,
                     thComp: TranslatedHeader,
+                    visible : false,
                 },
                 {
                     title: 'Sector',
-                    field: 'sector.sector_name',
+                    field: 'sector_name',
+                    tdComp: DatatablesFieldsMultiple,
+                    thComp: TranslatedMultitpleHeader,
+                    visible : false,
+                },
+                {
+                    title: 'Gender Preference',
+                    field: 'gender_preference.gender_preference_name',
                     tdComp: DatatablesFields,
-                    thComp: TranslatedHeader,
-                    sortable: true,
-                }
+                    thComp: TranslatedMultitpleHeader,
+                    visible : false,
+                },
+                {
+                    title: 'Occupation',
+                    field: 'occupation.occupation_name',
+                    tdComp: DatatablesFields,
+                    thComp: TranslatedMultitpleHeader,
+                    visible : false,
+                },
+                {
+                    title: 'Employer',
+                    field: 'employer',
+                    thComp: TranslatedMultitpleHeader,
+                    visible : false,
+                },
+                {
+                    title: 'Highest Education',
+                    field: 'educational_attaintment.educational_attaintment_name',
+                    tdComp: DatatablesFields,
+                    thComp: TranslatedMultitpleHeader,
+                    visible : false,
+                },
+                {
+                    title: 'Educational Status',
+                    field: 'educational_status.educational_status_name',
+                    tdComp: DatatablesFields,
+                    thComp: TranslatedMultitpleHeader,
+                    visible : false,
+                },
+                {
+                    title: 'Ethnicity',
+                    field: 'ethinicity_name',
+                    tdComp: DatatablesFieldsMultiple,
+                    thComp: TranslatedMultitpleHeader,
+                    visible : false,
+                },
+                {
+                    title: 'Religion',
+                    field: 'religion.religion_name',
+                    tdComp: DatatablesFields,
+                    thComp: TranslatedMultitpleHeader,
+                    visible : false,
+                },
+                {
+                    title: 'House Ownership',
+                    field: 'house_ownership.house_ownership_name',
+                    tdComp: DatatablesFields,
+                    thComp: TranslatedMultitpleHeader,
+                    visible : false,
+                },
+                {
+                    title: 'House Type',
+                    field: 'house_type.house_type_name',
+                    tdComp: DatatablesFields,
+                    thComp: TranslatedMultitpleHeader,
+                    visible : false,
+                },
+                {
+                    title: 'House Make',
+                    field: 'house_make.house_make_name',
+                    tdComp: DatatablesFields,
+                    thComp: TranslatedMultitpleHeader,
+                    visible : false,
+                },
+                {
+                    title: 'Utilities',
+                    field: 'utilities_number',
+                    tdComp: DatatablesFieldsMultiple,
+                    thComp: TranslatedMultitpleHeader,
+                    visible : false,
+                },
+                {
+                    title: 'Resident Status',
+                    field: 'resuident_status.resuident_status_name',
+                    tdComp: DatatablesFields,
+                    thComp: TranslatedMultitpleHeader,
+                    visible : false,
+                },
+
             ],
             query: { sort: 'id', order: 'asc', limit: 20, s: '' },
             xprops: {
@@ -456,12 +589,7 @@ export default {
         },
 
         downloads () {
-            html2pdf(this.$refs.content, {
-                filename: 'content.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { dpi: 192, letterRendering: true },
-                jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
-            })
+            this.$refs.html2Pdf.generatePdf()
         },
 
         startDownload () {

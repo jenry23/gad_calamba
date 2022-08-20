@@ -19,7 +19,7 @@
                     <img class="img-fluid" :src="user.photo[0].url" />
                 </div>
                 <div v-else class="d-flex justify-content-center">
-                    <img class="img-fluid" src="/images/gad-logo-login.png" />
+                    <img class="img-fluid" src="/images/cpmo.png" />
                 </div>
             </a>
             <center>
@@ -29,7 +29,6 @@
                     </div>
                     <div v-else-if="roles.title === 'Barangay'"></div>
                     <div v-else>
-                        <h1 style="color: black">GAD</h1>
                     </div>
                 </b>
             </center>
@@ -108,8 +107,8 @@ export default {
         return {
             user: [],
             roles: [],
-            backgroundColor: 'white',
-            itemColor: 'azure',
+            backgroundColor: 'black',
+            itemColor: 'green',
         }
     },
     computed: {

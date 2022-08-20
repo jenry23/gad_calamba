@@ -81,8 +81,30 @@
                 </div>
             </div>
         </form>
+            <button class="btn btn-info" @click="downloads">Print</button>
+        	<vue-html2pdf
+						:show-layout="false"
+						:float-layout="false"
+						:enable-download="true"
+						:preview-modal="true"
+						:paginate-elements-by-height="2000"
+						filename="content"
+						:pdf-quality="2"
+						:manual-pagination="false"
+						pdf-format="a3"
+						pdf-orientation="portrait"
+						pdf-content-width="1200px"
+
+						@progress="onProgress($event)"
+						@hasStartedGeneration="hasStartedGeneration()"
+						@hasGenerated="hasGenerated($event)"
+						ref="html2Pdf"
+					>
+					<section slot="pdf-content">
         <barangay-clearance ref="barangay_clearance" v-if="is_barangay === 1" :data="result" />
         <cohabitation ref="barangay_clearance" v-if="is_barangay === 3" :data="result" />
+                    </section>
+            </vue-html2pdf>
     </div>
 </template>
 
@@ -101,11 +123,13 @@
 import { mapGetters, mapActions } from 'vuex'
 import BarangayClearance from './Transaction/BarangayClearance'
 import Cohabitation from './Transaction/Cohabitation'
+import VueHtml2pdf from 'vue-html2pdf'
 
 export default {
     components: {
         BarangayClearance,
         Cohabitation,
+        VueHtml2pdf,
     },
     data () {
         return {
@@ -136,6 +160,9 @@ export default {
         updateResident (value) {
             this.resident_required = true;
             this.setResident(value)
+        },
+        downloads () {
+			this.$refs.html2Pdf.generatePdf()
         },
         submitForm () {
             axios.post('transaction', this.entry).then(response => {

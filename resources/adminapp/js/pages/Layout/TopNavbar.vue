@@ -1,10 +1,9 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top">
         <div class="container-fluid">
-            <div class="navbar-wrapper">
-                <div class="navbar-brand">GAD</div>
-            </div>
-            <autocomplete></autocomplete>
+                <div class="col-md-3">
+                    <img src="/images/topbar.png">
+                </div>
             <button
                 class="navbar-toggler"
                 type="button"
@@ -21,24 +20,21 @@
                 <span class="navbar-toggler-icon icon-bar"></span>
             </button>
             <!-- Collapsable -->
-            <div>
                 <br />
-                <div class="row">
-                    <div class="col-md-4">
-                        <img class="img-fluid" style="width: 100px; height: 50px" src="/images/gad-logo-login.png" />
+                    <div class="col-md-12" style="margin-left: 7%;">
+                        <autocomplete></autocomplete>
                     </div>
-                    <div class="col-md-8">
-                        <h5 v-if="!$can('powered_gad_access')">
-                            DATABASE <br />POWERED <br />
-                            BY GAD
-                        </h5>
-                    </div>
-                </div>
-            </div>
         </div>
     </nav>
 </template>
-
+<style>
+.topbar-image {
+	background: url('/images/topbar.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+</style>
 <script>
 export default {
     methods: {

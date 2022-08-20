@@ -1,6 +1,5 @@
 <template>
-<div class="col-md-6">
-  <vue-suggestion
+      <vue-suggestion
                   :items="items"
                   v-model="item"
                   placeholder="SEARCH RESIDENT"
@@ -10,7 +9,6 @@
                   @click="enterItem"
                   @selected="itemSelected">
   </vue-suggestion>
-</div>
 </template>
 <style>
 .vue-suggestion {

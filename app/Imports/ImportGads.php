@@ -149,11 +149,11 @@ class ImportGads implements
                         $gad->no_cr_id = is_numeric($row["no_of_crs"]) ? (int) $row["no_of_crs"] : null;
                         $gad->full_immunization = $row["full_immunization_yes_public_hosp_center_yes_private_hosp_clinic_no"] ?? null;
                         $gad->covid_19_test = $row["covid_19_test_no_covid_test_tested_positive_for_covid19_tested_negative_for_covid19"] ?? null;
-                        $gad->first_date_vaccination = Carbon::parse($row["date_of_1st_dosage_covid_19_vaccination_format_mmddyyyy"])->format('Y-m-d') ?? null;
+                        $gad->first_date_vaccination = !empty($row["date_of_1st_dosage_covid_19_vaccination_format_mmddyyyy"]) ? Carbon::parse($row["date_of_1st_dosage_covid_19_vaccination_format_mmddyyyy"])->format('Y-m-d') : null;
                         $gad->brand1 = $row["brand_1"] ?? null;
-                        $gad->second_date_vaccination = Carbon::parse($row["date_of_2nd_dosage_covid_19_vaccination_format_mmddyyyy"])->format('Y-m-d') ?? null;
+                        $gad->second_date_vaccination = !empty($row["date_of_2nd_dosage_covid_19_vaccination_format_mmddyyyy"]) ? Carbon::parse($row["date_of_2nd_dosage_covid_19_vaccination_format_mmddyyyy"])->format('Y-m-d') : null;
                         $gad->brand2 = $row["brand_2"] ?? null;
-                        $gad->booster_date_vaccination = Carbon::parse($row["date_of_covid_booster_format_mmddyyyy"])->format('Y-m-d') ?? null;
+                        $gad->booster_date_vaccination = !empty($row["date_of_covid_booster_format_mmddyyyy"]) ? Carbon::parse($row["date_of_covid_booster_format_mmddyyyy"])->format('Y-m-d') : null;
                         $gad->brand3 = $row["brand_3"] ?? null;
                         $gad->pregnancy_age = $row["pregnancy_age"] ?? null;
                         $gad->prental_checkup = $row["with_prenatal_check_up_yes_public_hosp_center_yes_private_hosp_clinic_no"] ?? null;
@@ -174,6 +174,7 @@ class ImportGads implements
                         $this->addGadDetailsItem($gad_id, Disability::class, $this->convertStringToID(Disability::class, 'disability_name', $row["disability_condition_1_not_required_dropdown_option"]), 'disability');
                         $this->addGadDetailsItem($gad_id, Disability::class, $this->convertStringToID(Disability::class, 'disability_name', $row["disability_condition_2_not_required_dropdown_option"]), 'disability');
                         $this->addGadDetailsItem($gad_id, Disability::class, $this->convertStringToID(Disability::class, 'disability_name', $row["disability_condition_3_not_required_dropdown_option"]), 'disability');
+                        $this->addGadDetailsItem($gad_id, GovernmentAssistance::class, $this->convertStringToID(GovernmentAssistance::class, 'government_assistance_name', $row["government_assistance_no_01_dropdown_option"]), 'government_assistance');
                         $this->addGadDetailsItem($gad_id, GovernmentAssistance::class, $this->convertStringToID(GovernmentAssistance::class, 'government_assistance_name', $row["government_assistance_no_02_dropdown_option"]), 'government_assistance');
                         $this->addGadDetailsItem($gad_id, GovernmentAssistance::class, $this->convertStringToID(GovernmentAssistance::class, 'government_assistance_name', $row["government_assistance_no_03_dropdown_option"]), 'government_assistance');
                         $this->addGadDetailsItem($gad_id, SoftSkill::class, $this->convertStringToID(SoftSkill::class, 'soft_skill_name', $row["soft_skills_1_not_required_dropdown_option"]), 'soft_skill');

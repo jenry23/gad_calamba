@@ -10,6 +10,7 @@ use App\Models\Appliances;
 use App\Models\Barangay;
 use App\Models\City;
 use App\Models\CivilStatus;
+use App\Models\Disability;
 use App\Models\EducationalAttaintment;
 use App\Models\EducationalStatus;
 use App\Models\Ethnicity;
@@ -19,6 +20,7 @@ use App\Models\Gender;
 use App\Models\GenderPreference;
 use App\Models\GovernmentAssistance;
 use App\Models\HardSkill;
+use App\Models\Health;
 use App\Models\Household;
 use App\Models\MonthlyIncome;
 use App\Models\Occupation;
@@ -182,7 +184,7 @@ class GadApiController extends Controller
     public function showData($id, $barangay_id)
     {
         $gads = Gad::where('household_no', $id)->where('barangay_id', $barangay_id)->get();
-        $gads1 = Gad::with(['house_type', 'house_make', 'house_ownership'])->where('household_no', $id)->where('barangay_id', $barangay_id)->orderBy('household_id', 'asc')->first();
+        $gads1 = Gad::with(['purok','sitio','barangay','house_type', 'house_make', 'house_ownership'])->where('household_no', $id)->where('barangay_id', $barangay_id)->orderBy('household_id', 'asc')->first();
 
         foreach ($gads as $gad) {
             $gad->id = !empty($gad->id) ? $gad->id : '';
@@ -281,16 +283,18 @@ class GadApiController extends Controller
             'barangay_code' => $request->barangay_code,
             'block_lot_house_id' => $request->block_lot_house_id,
             'monthly_income' => $request->monthly_income['id'] ?? null,
-            'birthdate' => Carbon::parse($request->birthdate)->format('Y-m-d'),
+            'birthdate' => !empty($request->birthdate) ? Carbon::parse($request->birthdate)->format('Y-m-d') : null,
             'vehicle_no' => $request->vehicle_no,
             'medical_id' => $request->medical_id,
             'religion_id' => $request->religion['id'] ?? null,
             'full_immunization' => $request->full_immunization,
             'covid_19_test' => $request->covid_19_test,
-            'first_date_vaccination' => Carbon::parse($request->first_date_vaccination)->format('Y-m-d') ?? null,
+            'first_date_vaccination' => !empty($request->first_date_vaccination) ? Carbon::parse($request->first_date_vaccination)->format('Y-m-d') : null,
             'brand1' => $request->brand1,
-            'second_date_vaccination' => Carbon::parse($request->second_date_vaccination)->format('Y-m-d') ?? null,
+            'second_date_vaccination' => !empty($request->second_date_vaccination) ? Carbon::parse()->format('Y-m-d') : null,
             'brand2' => $request->brand2,
+            'booster_date_vaccination' => !empty($request->booster_date_vaccination) ? Carbon::parse($request->booster_date_vaccination)->format('Y-m-d') : null,
+            'brand3' => $request->brand3,
             'pregnancy_age' => $request->pregnancy_age,
             'prental_checkup' => $request->prental_checkup,
             'postnatal_checkup' => $request->postnatal_checkup,
@@ -322,7 +326,6 @@ class GadApiController extends Controller
             }
         }
         $gad->update($data);
-
         $this->itemDetails($gad, Ethnicity::class, 'ethnicity', $request->input('ethnicity.*.id', []));
         $this->itemDetails($gad, GovernmentAssistance::class, 'government_assistance', $request->input('government_assistance.*.id', []));
         $this->itemDetails($gad, Medicine::class, 'medicine', $request->input('medicine.*.id', []));
@@ -333,6 +336,8 @@ class GadApiController extends Controller
         $this->itemDetails($gad, Utilities::class, 'utilities', $request->input('utilities.*.id', []));
         $this->itemDetails($gad, Appliances::class, 'appliances', $request->input('appliances.*.id', []));
         $this->itemDetails($gad, Vehicles::class, 'vehicle', $request->input('vehicle.*.id', []));
+        $this->itemDetails($gad, Health::class, 'health', $request->input('health_condition.*.id', []));
+        $this->itemDetails($gad, Disability::class, 'disability', $request->input('disability_condition.*.id', []));
 
         return (new GadResource($gad))
             ->response()
@@ -343,7 +348,7 @@ class GadApiController extends Controller
     {
         $result = $gad->gadDetails()->whereHasMorph('item', [$class], function () {
         });
-        $details = array_diff($items, $result->pluck('item_id')->toArray());
+        $details = array_diff(array_filter($items), $result->pluck('item_id')->toArray());
         if (!empty($details)) {
             $result->delete();
             foreach ($items as $item) {
@@ -388,6 +393,8 @@ class GadApiController extends Controller
         $gad->educational_status_name =  !empty($gad->educational_status) ? $gad->educational_status->educational_status_name : '';
         $gad->government_assistance_name =  !empty($gad->government_assistance) ? $gad->government_assistance->government_assistance_name : '';
         $gad->political_province_registered =  !empty($gad->political_province_registered) ? $gad->political_province_registered->province_name : '';
+        '';
+        $gad->political_brgy_registered =  !empty($gad->political_brgy_registered_name) ? $gad->political_brgy_registered_name->barangay_name : '';
         $gad->political_city_registered =  !empty($gad->political_city_registered) ? $gad->political_city_registered->city_name : '';
         $gad->house_ownership_names =  !empty($gad->house_ownership) ? $gad->house_ownership->house_ownership_name : '';
         $gad->house_make_names =  !empty($gad->house_make) ? $gad->house_make->house_make_name : '';
@@ -398,6 +405,7 @@ class GadApiController extends Controller
 
         $gad->first_date_vaccination = !empty($gad->first_date_vaccination) ? Carbon::parse($gad->first_date_vaccination)->format('d F Y') : '';
         $gad->second_date_vaccination = !empty($gad->second_date_vaccination) ? Carbon::parse($gad->second_date_vaccination)->format('d F Y') : '';
+        $gad->booster_date_vaccination = !empty($gad->booster_date_vaccination) ? Carbon::parse($gad->booster_date_vaccination)->format('d F Y') : '';
 
         $questions = Question::with(['answers'])->get();
         return response([
@@ -413,8 +421,9 @@ class GadApiController extends Controller
                 'sector' => Sector::get(['id', 'sector_name']),
                 'political_province_registered' => Province::get(['id', 'province_name']),
                 'political_city_registered' => City::get(['id', 'city_name']),
-                'purok' => Purok::get(['id', 'purok_name']),
-                'sitio' => Sitio::get(['id', 'sitio_name']),
+                'purok' => Purok::where('barangay_id', $gad->barangay_id)->get(['id', 'purok_name']),
+                'sitio' => Sitio::where('barangay_id', $gad->barangay_id)->get(['id', 'sitio_name']),
+                'political_brgy_registered' =>  Barangay::get(['id', 'barangay_name']),
                 'educational_attaintment' => EducationalAttaintment::get(['id', 'educational_attaintment_name']),
                 'educational_status' => EducationalStatus::get(['id', 'educational_status_name']),
                 'government_assistance' => GovernmentAssistance::get(['id', 'government_assistance_name']),
@@ -435,6 +444,8 @@ class GadApiController extends Controller
                 'appliance' => Appliances::get(['id', 'appliance_name']),
                 'utilities' => Utilities::get(['id', 'utilities_name']),
                 'medicine' => Medicine::get(['id', 'medicine_name']),
+                'health_condition' => Health::get(['id', 'health_name']),
+                'disability_condition' => Disability::get(['id', 'disability_name']),
                 'questions' => $questions
             ],
         ]);

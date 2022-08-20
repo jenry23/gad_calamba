@@ -43,6 +43,7 @@
         "v-money": "^0.8.1",
         "vue-chartjs": "^3.5.1",
         "vue-form-wizard": "^0.8.4",
+        "vue-html2pdf": "^1.8.0",
         "vue-json-excel": "^0.3.0",
         "vue-suggestion": "^1.1.0",
         "vue-the-mask": "^0.11.1",
