@@ -49,6 +49,7 @@ use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class GadApiController extends Controller
 {
@@ -108,14 +109,17 @@ class GadApiController extends Controller
 
     public function getName(Request $request)
     {
+        $user_with_barangay = Auth::user()->barangay;
+
         $search = $request->query()['query'];
         $gad_search = Gad::whereRaw(
             "TRIM(CONCAT(first_name, ' ', last_name, ' ', COALESCE(middle_name, ''))) like '%{$search}%'"
-        )
-            // orWhere('first_name', 'like', '%' . $search . '%')
-            // ->orWhere('last_name', 'like', '%' . $search . '%')
-            // ->orWhere('middle_name', 'like', '%' . $search . '%')
-            ->get();
+        )->when(
+            $user_with_barangay,
+            function ($query) use ($user_with_barangay) {
+                $query->where('barangay_id', $user_with_barangay);
+            }
+        )->get();
 
         foreach ($gad_search as $gad) {
             $barangay = Barangay::where('id', $gad->barangay_id)->first();
@@ -184,7 +188,7 @@ class GadApiController extends Controller
     public function showData($id, $barangay_id)
     {
         $gads = Gad::where('household_no', $id)->where('barangay_id', $barangay_id)->get();
-        $gads1 = Gad::with(['purok','sitio','barangay','house_type', 'house_make', 'house_ownership'])->where('household_no', $id)->where('barangay_id', $barangay_id)->orderBy('household_id', 'asc')->first();
+        $gads1 = Gad::with(['purok', 'sitio', 'barangay', 'house_type', 'house_make', 'house_ownership'])->where('household_no', $id)->where('barangay_id', $barangay_id)->orderBy('household_id', 'asc')->first();
 
         foreach ($gads as $gad) {
             $gad->id = !empty($gad->id) ? $gad->id : '';
