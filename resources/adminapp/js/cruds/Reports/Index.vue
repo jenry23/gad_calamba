@@ -268,403 +268,403 @@
 }
 </style>
 <script>
-import { mapGetters, mapActions } from 'vuex'
-import PieChart from "@components/Charts/Pie";
-import DatatablesFields from '@components/Datatables/DatatablesFields'
-import DatatablesFieldsMultiple from '@components/Datatables/DatatablesFieldsMultiple'
-import TranslatedHeader from '@components/Datatables/TranslatedHeader'
-import TranslatedMultitpleHeader from '@components/Datatables/TranslatedMultitpleHeader'
-import HeaderSettings from '@components/Datatables/HeaderSettings'
-import GlobalSearch from '@components/Datatables/GlobalSearch'
-import html2pdf from 'html2pdf.js'
-import VueHtml2pdf from 'vue-html2pdf'
+	import { mapGetters, mapActions } from 'vuex'
+	import PieChart from "@components/Charts/Pie";
+	import DatatablesFields from '@components/Datatables/DatatablesFields'
+	import DatatablesFieldsMultiple from '@components/Datatables/DatatablesFieldsMultiple'
+	import TranslatedHeader from '@components/Datatables/TranslatedHeader'
+	import TranslatedMultitpleHeader from '@components/Datatables/TranslatedMultitpleHeader'
+	import HeaderSettings from '@components/Datatables/HeaderSettings'
+	import GlobalSearch from '@components/Datatables/GlobalSearch'
+	import html2pdf from 'html2pdf.js'
+	import VueHtml2pdf from 'vue-html2pdf'
 
-export default {
-    components: {
-        PieChart,
-        GlobalSearch,
-        DatatablesFields,
-        HeaderSettings,
-        VueHtml2pdf,
-        TranslatedMultitpleHeader,
-        DatatablesFieldsMultiple
-    },
-    data () {
-        return {
-            loader: false,
-            chartData: null,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                pieceLabel: {
-                    render: 'value',
-                    precision: 1
-                },
-                showAllTooltips: true
-            },
-            male: '',
-            female: '',
-            status: '',
-            activeField: '',
-            disabled_purok: 0,
-            disabled_sitio: 0,
-            barangay: '',
-            excel_name: 'gad.xls',
-            columns: [
-                {
-                    title: 'Member Name',
-                    field: 'full_name',
-                    thComp: TranslatedHeader,
-                },
-                {
-                    title: 'Sex',
-                    field: 'gender.gender_name',
-                    thComp: TranslatedHeader,
-                    tdComp: DatatablesFields,
-                    sortable: true,
-                },
-                {
-                    title: 'Barangay',
-                    field: 'barangay.barangay_name',
-                    tdComp: DatatablesFields,
-                    thComp: TranslatedHeader,
-                },
-                {
-                    title: 'Age',
-                    field: 'age',
-                    thComp: TranslatedHeader,
-                },
-                {
-                    title: 'Civil Status',
-                    field: 'civil_status.civil_status_name',
-                    tdComp: DatatablesFields,
-                    thComp: TranslatedHeader,
-                    visible : false,
-                },
-                {
-                    title: 'Sector',
-                    field: 'sector_name',
-                    tdComp: DatatablesFieldsMultiple,
-                    thComp: TranslatedMultitpleHeader,
-                    visible : false,
-                },
-                {
-                    title: 'Gender Preference',
-                    field: 'gender_preference.gender_preference_name',
-                    tdComp: DatatablesFields,
-                    thComp: TranslatedMultitpleHeader,
-                    visible : false,
-                },
-                {
-                    title: 'Occupation',
-                    field: 'occupation.occupation_name',
-                    tdComp: DatatablesFields,
-                    thComp: TranslatedMultitpleHeader,
-                    visible : false,
-                },
-                {
-                    title: 'Employer',
-                    field: 'employer',
-                    thComp: TranslatedMultitpleHeader,
-                    visible : false,
-                },
-                {
-                    title: 'Highest Education',
-                    field: 'educational_attaintment.educational_attaintment_name',
-                    tdComp: DatatablesFields,
-                    thComp: TranslatedMultitpleHeader,
-                    visible : false,
-                },
-                {
-                    title: 'Educational Status',
-                    field: 'educational_status.educational_status_name',
-                    tdComp: DatatablesFields,
-                    thComp: TranslatedMultitpleHeader,
-                    visible : false,
-                },
-                {
-                    title: 'Ethnicity',
-                    field: 'ethinicity_name',
-                    tdComp: DatatablesFieldsMultiple,
-                    thComp: TranslatedMultitpleHeader,
-                    visible : false,
-                },
-                {
-                    title: 'Religion',
-                    field: 'religion.religion_name',
-                    tdComp: DatatablesFields,
-                    thComp: TranslatedMultitpleHeader,
-                    visible : false,
-                },
-                {
-                    title: 'House Ownership',
-                    field: 'house_ownership.house_ownership_name',
-                    tdComp: DatatablesFields,
-                    thComp: TranslatedMultitpleHeader,
-                    visible : false,
-                },
-                {
-                    title: 'House Type',
-                    field: 'house_type.house_type_name',
-                    tdComp: DatatablesFields,
-                    thComp: TranslatedMultitpleHeader,
-                    visible : false,
-                },
-                {
-                    title: 'House Make',
-                    field: 'house_make.house_make_name',
-                    tdComp: DatatablesFields,
-                    thComp: TranslatedMultitpleHeader,
-                    visible : false,
-                },
-                {
-                    title: 'Utilities',
-                    field: 'utilities_number',
-                    tdComp: DatatablesFieldsMultiple,
-                    thComp: TranslatedMultitpleHeader,
-                    visible : false,
-                },
-                {
-                    title: 'Resident Status',
-                    field: 'resuident_status.resuident_status_name',
-                    tdComp: DatatablesFields,
-                    thComp: TranslatedMultitpleHeader,
-                    visible : false,
-                },
+	export default {
+		components: {
+			PieChart,
+			GlobalSearch,
+			DatatablesFields,
+			HeaderSettings,
+			VueHtml2pdf,
+			TranslatedMultitpleHeader,
+			DatatablesFieldsMultiple
+		},
+		data () {
+			return {
+				loader: false,
+				chartData: null,
+				options: {
+					responsive: true,
+					maintainAspectRatio: false,
+					pieceLabel: {
+						render: 'value',
+						precision: 1
+					},
+					showAllTooltips: true
+				},
+				male: '',
+				female: '',
+				status: '',
+				activeField: '',
+				disabled_purok: 0,
+				disabled_sitio: 0,
+				barangay: '',
+				excel_name: 'gad.xls',
+				columns: [
+					{
+						title: 'Member Name',
+						field: 'full_name',
+						thComp: TranslatedHeader,
+					},
+					{
+						title: 'Sex',
+						field: 'gender.gender_name',
+						thComp: TranslatedHeader,
+						tdComp: DatatablesFields,
+						sortable: true,
+					},
+					{
+						title: 'Barangay',
+						field: 'barangay.barangay_name',
+						tdComp: DatatablesFields,
+						thComp: TranslatedHeader,
+					},
+					{
+						title: 'Age',
+						field: 'age',
+						thComp: TranslatedHeader,
+					},
+					{
+						title: 'Civil Status',
+						field: 'civil_status.civil_status_name',
+						tdComp: DatatablesFields,
+						thComp: TranslatedHeader,
+						visible: false,
+					},
+					{
+						title: 'Sector',
+						field: 'sector_name',
+						tdComp: DatatablesFieldsMultiple,
+						thComp: TranslatedMultitpleHeader,
+						visible: false,
+					},
+					{
+						title: 'Gender Preference',
+						field: 'gender_preference.gender_preference_name',
+						tdComp: DatatablesFields,
+						thComp: TranslatedMultitpleHeader,
+						visible: false,
+					},
+					{
+						title: 'Occupation',
+						field: 'occupation.occupation_name',
+						tdComp: DatatablesFields,
+						thComp: TranslatedMultitpleHeader,
+						visible: false,
+					},
+					{
+						title: 'Employer',
+						field: 'employer',
+						thComp: TranslatedMultitpleHeader,
+						visible: false,
+					},
+					{
+						title: 'Highest Education',
+						field: 'educational_attaintment.educational_attaintment_name',
+						tdComp: DatatablesFields,
+						thComp: TranslatedMultitpleHeader,
+						visible: false,
+					},
+					{
+						title: 'Educational Status',
+						field: 'educational_status.educational_status_name',
+						tdComp: DatatablesFields,
+						thComp: TranslatedMultitpleHeader,
+						visible: false,
+					},
+					{
+						title: 'Ethnicity',
+						field: 'ethinicity_name',
+						tdComp: DatatablesFieldsMultiple,
+						thComp: TranslatedMultitpleHeader,
+						visible: false,
+					},
+					{
+						title: 'Religion',
+						field: 'religion.religion_name',
+						tdComp: DatatablesFields,
+						thComp: TranslatedMultitpleHeader,
+						visible: false,
+					},
+					{
+						title: 'House Ownership',
+						field: 'house_ownership.house_ownership_name',
+						tdComp: DatatablesFields,
+						thComp: TranslatedMultitpleHeader,
+						visible: false,
+					},
+					{
+						title: 'House Type',
+						field: 'house_type.house_type_name',
+						tdComp: DatatablesFields,
+						thComp: TranslatedMultitpleHeader,
+						visible: false,
+					},
+					{
+						title: 'House Make',
+						field: 'house_make.house_make_name',
+						tdComp: DatatablesFields,
+						thComp: TranslatedMultitpleHeader,
+						visible: false,
+					},
+					{
+						title: 'Utilities',
+						field: 'utilities_number',
+						tdComp: DatatablesFieldsMultiple,
+						thComp: TranslatedMultitpleHeader,
+						visible: false,
+					},
+					{
+						title: 'Resident Status',
+						field: 'resuident_status.resuident_status_name',
+						tdComp: DatatablesFields,
+						thComp: TranslatedMultitpleHeader,
+						visible: false,
+					},
 
-            ],
-            query: { sort: 'id', order: 'asc', limit: 20, s: '' },
-            xprops: {
-                module: 'ReportsSingle',
-                route: 'reports',
-                permission_prefix: 'reports_'
-            },
-            json_fields: {
-                'Item No.': 'id',
-                'Building No': 'building_no',
-                'House No': 'house_no',
-                'Household Number': 'household_no',
-                'Family Code': 'family_code',
-                'Relationship to Head of the Family': 'household.household_name',
-                'Last Name': 'last_name',
-                'First Name': 'first_name',
-                'Middle Name': 'middle_name',
-                'Extension Name': 'extension_name',
-                'Barangay': 'barangay.barangay_name',
-                'Barangay Code/ ID': 'barangay_code',
-                'Purok (Code)': 'purok.purok_name',
-                'Block/Lot/No. of House/ Street Name ': 'block_lot_house_id',
-                'Sitio (Code)': 'sitio.sitio_name',
-                'Native Province': 'native_province.province_name',
-                'Native City/Municipality': 'native_city.city_name',
-                'Valid ID': 'valid_id.name',
-                'ID No.': 'id_number',
-                'Birthday': 'birth_date',
-                'Sex': 'gender.gender_name',
-                'Gender Preference': 'gender_preference.gender_preference_name',
-                'Civil Status': 'civil_status.civil_status_name',
-                'No. of Dependents': 'no_of_dependents',
-                'Cellphone Number': 'mobile_no',
-                'Landline Number': 'landline_number',
-                'Email Address': 'email',
-                'Health Condition #1': 'health_condition.0',
-                'Health Condition #2': 'health_condition.1',
-                'Health Condition #3': 'health_condition.2',
-                'Disability Condition #1': 'disability_condition.0',
-                'Disability Condition #2': 'disability_condition.1',
-                'Disability Condition #2': 'disability_condition.2',
-                'Nutritional Status (Ideal, Wasted, Stunted, Obese, Overweight)': 'nutrition_status',
-                'Government Assistance No. 01': 'government_assistance_number.0',
-                'Government Assistance No. 02': 'government_assistance_number.1',
-                'Government Assistance No. 03': 'government_assistance_number.2',
-                'Occupation': 'occupation.occupation_name',
-                'Employer': 'employer',
-                'Work Location (Province)': 'work_location_province.province_name',
-                'Work Location (City/Municipality)': 'work_location_city.city_name',
-                'Household Monthly Income': 'economic_status',
-                'Economic Status': 'monthly_income.monthly_income_name',
-                'Highest Educational Attainment': 'educational_attaintment.educational_attaintment_name',
-                'Educational Status': 'educational_status.educational_status_name',
-                'Last School Attended': 'last_school_attended',
-                'Government Educational Assistance #1': 'government_educational_assistance_number.0',
-                'Government Educational Assistance #2': 'government_educational_assistance_number.1',
-                'Soft Skills #1': 'soft_skills_name.0',
-                'Soft Skills #2': 'soft_skills_name.1',
-                'Hard Skills #1': 'hard_skills_name.0',
-                'Hard Skills #2': 'hard_skills_name.1',
-                'Hobbies #1': 'hobbies_name.0',
-                'Hobbies #2': 'hobbies_name.1',
-                'Sports #1': 'sports_name.0',
-                'Sports #2': 'sports_name.1',
-                'Ethnicity No. 01': 'ethinicity_name.0',
-                'Religion (Catholic:test, Iglesia ni Cristo:test, etc)': 'religion.religion_name',
-                'Sector No. 01': 'sector_name.0',
-                'Sector No. 02': 'sector_name.1',
-                'Province Registered': 'political_province_registered.province_name',
-                'City/ Municipality Registered': 'political_city_registered.city_name',
-                'Brgy Registered': 'brgy_registered.barangay_name',
-                'Precit No.': 'political_precinct_no',
-                'House Ownership': 'house_ownership.house_ownership_name',
-                'House Type': 'house_type.house_type_name',
-                'House Make': 'house_make.house_make_name',
-                'No. of Nuclear Family in Household': 'no_nuclear_family_household_id',
-                'No. of Bedrooms': 'no_bedrooms_id',
-                'No. of  CRs': 'no_cr_id',
-                'Utilities No. 01': 'utilities_number.0',
-                'Utilities No. 02': 'utilities_number.1',
-                'Utilities No. 03': 'utilities_number.2',
-                'Utilities No. 04': 'utilities_number.3',
-                'Appliances No. 01': 'appliance_number.0',
-                'Appliances No. 02': 'appliance_number.1',
-                'Appliances No. 03': 'appliance_number.2',
-                'Appliances No. 04': 'appliance_number.3',
-                'Vehicles No. 01': 'vehicle_name.0',
-                'Vehicles No. 02': 'vehicle_name.1',
-                'Full Immunization (YES, Public Hosp/ Center YES, Private Hosp/ Clinic, NO)': 'full_immunization',
-                'Covid 19 Test (No COVID Test, Tested Positive for COVID19, Tested Negative for COVID19)': 'covid_19_test',
-                'Date of 1st Dosage Covid 19 Vaccination': 'first_date_vaccination',
-                'BRAND 1': 'brand1',
-                'Date of 2nd Dosage Covid 19 Vaccination': 'second_date_vaccination',
-                'BRAND 2': 'brand2',
-                'Date of Covid Booster': 'booster_date_vaccination',
-                'BRAND 3': 'brand3',
-                'Pregnancy Age': 'pregnancy_age',
-                'With Prenatal Check up (YES, Public Hosp/ Center YES, Private Hosp/ Clinic, NO)': 'prental_checkup',
-                'With Postnatal Check up (YES, Public Hosp/ Center YES, Private Hosp/ Clinic, NO)': 'postnatal_checkup',
-                'Maintaining  Medicine No. 01 ': 'maintaining_medicine_name.0',
-                'Maintaining Medicine No. 01 ': 'maintaining_medicine_name.1',
-                'Organizations Involved No. 01': 'organization_name.0',
-                'Organizations  Involved No. 02': 'organization_name.1',
-                'Barangay Residence Year': 'barangay_residence_year',
-                'Calamba Residence Year': 'calamba_residence_year',
-                'REMARKS': 'remarks',
-            },
-            json_data: [],
-            json_meta: [
-                [
-                    {
-                        key: "charset",
-                        value: "utf-8",
-                    },
-                ],
-            ],
-        }
-    },
-    computed: {
-        ...mapGetters('ReportsSingle', ['data', 'total', 'entry', 'loading', 'lists', 'others'])
-    },
-    mounted () {
-        this.fetchCreateData()
-    },
-    watch: {
-        query: {
-            handler (query) {
-                this.setQuery(query)
-                this.searchData()
-            },
-            deep: true
-        }
-    },
-    beforeDestroy () {
-        this.resetState()
-    },
-    methods: {
-        ...mapActions('ReportsSingle', [
-            'searchData',
-            'fetchCreateData',
-            'resetState',
-            'setBarangay',
-            'setPurok',
-            'setSitio',
-            'setSector',
-            'setQuery',
-            'setAgeTo',
-            'setGender',
-            'setAgeFrom',
-        ]),
+				],
+				query: { sort: 'id', order: 'asc', limit: 20, s: '' },
+				xprops: {
+					module: 'ReportsSingle',
+					route: 'reports',
+					permission_prefix: 'reports_'
+				},
+				json_fields: {
+					'Item No.': 'id',
+					'Building No': 'building_no',
+					'House No': 'house_no',
+					'Household Number': 'household_no',
+					'Family Code': 'family_code',
+					'Relationship to Head of the Family': 'household.household_name',
+					'Last Name': 'last_name',
+					'First Name': 'first_name',
+					'Middle Name': 'middle_name',
+					'Extension Name': 'extension_name',
+					'Barangay': 'barangay.barangay_name',
+					'Barangay Code/ ID': 'barangay_code',
+					'Purok (Code)': 'purok.purok_name',
+					'Block/Lot/No. of House/ Street Name ': 'block_lot_house_id',
+					'Sitio (Code)': 'sitio.sitio_name',
+					'Native Province': 'native_province.province_name',
+					'Native City/Municipality': 'native_city.city_name',
+					'Valid ID': 'valid_id.name',
+					'ID No.': 'id_number',
+					'Birthday': 'birth_date',
+					'Sex': 'gender.gender_name',
+					'Gender Preference': 'gender_preference.gender_preference_name',
+					'Civil Status': 'civil_status.civil_status_name',
+					'No. of Dependents': 'no_of_dependents',
+					'Cellphone Number': 'mobile_no',
+					'Landline Number': 'landline_number',
+					'Email Address': 'email',
+					'Health Condition #1': 'health_condition.0',
+					'Health Condition #2': 'health_condition.1',
+					'Health Condition #3': 'health_condition.2',
+					'Disability Condition #1': 'disability_condition.0',
+					'Disability Condition #2': 'disability_condition.1',
+					'Disability Condition #2': 'disability_condition.2',
+					'Nutritional Status (Ideal, Wasted, Stunted, Obese, Overweight)': 'nutrition_status',
+					'Government Assistance No. 01': 'government_assistance_number.0',
+					'Government Assistance No. 02': 'government_assistance_number.1',
+					'Government Assistance No. 03': 'government_assistance_number.2',
+					'Occupation': 'occupation.occupation_name',
+					'Employer': 'employer',
+					'Work Location (Province)': 'work_location_province.province_name',
+					'Work Location (City/Municipality)': 'work_location_city.city_name',
+					'Household Monthly Income': 'economic_status',
+					'Economic Status': 'monthly_income.monthly_income_name',
+					'Highest Educational Attainment': 'educational_attaintment.educational_attaintment_name',
+					'Educational Status': 'educational_status.educational_status_name',
+					'Last School Attended': 'last_school_attended',
+					'Government Educational Assistance #1': 'government_educational_assistance_number.0',
+					'Government Educational Assistance #2': 'government_educational_assistance_number.1',
+					'Soft Skills #1': 'soft_skills_name.0',
+					'Soft Skills #2': 'soft_skills_name.1',
+					'Hard Skills #1': 'hard_skills_name.0',
+					'Hard Skills #2': 'hard_skills_name.1',
+					'Hobbies #1': 'hobbies_name.0',
+					'Hobbies #2': 'hobbies_name.1',
+					'Sports #1': 'sports_name.0',
+					'Sports #2': 'sports_name.1',
+					'Ethnicity No. 01': 'ethinicity_name.0',
+					'Religion (Catholic:test, Iglesia ni Cristo:test, etc)': 'religion.religion_name',
+					'Sector No. 01': 'sector_name.0',
+					'Sector No. 02': 'sector_name.1',
+					'Province Registered': 'political_province_registered.province_name',
+					'City/ Municipality Registered': 'political_city_registered.city_name',
+					'Brgy Registered': 'brgy_registered.barangay_name',
+					'Precit No.': 'political_precinct_no',
+					'House Ownership': 'house_ownership.house_ownership_name',
+					'House Type': 'house_type.house_type_name',
+					'House Make': 'house_make.house_make_name',
+					'No. of Nuclear Family in Household': 'no_nuclear_family_household_id',
+					'No. of Bedrooms': 'no_bedrooms_id',
+					'No. of  CRs': 'no_cr_id',
+					'Utilities No. 01': 'utilities_number.0',
+					'Utilities No. 02': 'utilities_number.1',
+					'Utilities No. 03': 'utilities_number.2',
+					'Utilities No. 04': 'utilities_number.3',
+					'Appliances No. 01': 'appliance_number.0',
+					'Appliances No. 02': 'appliance_number.1',
+					'Appliances No. 03': 'appliance_number.2',
+					'Appliances No. 04': 'appliance_number.3',
+					'Vehicles No. 01': 'vehicle_name.0',
+					'Vehicles No. 02': 'vehicle_name.1',
+					'Full Immunization (YES, Public Hosp/ Center YES, Private Hosp/ Clinic, NO)': 'full_immunization',
+					'Covid 19 Test (No COVID Test, Tested Positive for COVID19, Tested Negative for COVID19)': 'covid_19_test',
+					'Date of 1st Dosage Covid 19 Vaccination': 'first_date_vaccination',
+					'BRAND 1': 'brand1',
+					'Date of 2nd Dosage Covid 19 Vaccination': 'second_date_vaccination',
+					'BRAND 2': 'brand2',
+					'Date of Covid Booster': 'booster_date_vaccination',
+					'BRAND 3': 'brand3',
+					'Pregnancy Age': 'pregnancy_age',
+					'With Prenatal Check up (YES, Public Hosp/ Center YES, Private Hosp/ Clinic, NO)': 'prental_checkup',
+					'With Postnatal Check up (YES, Public Hosp/ Center YES, Private Hosp/ Clinic, NO)': 'postnatal_checkup',
+					'Maintaining  Medicine No. 01 ': 'maintaining_medicine_name.0',
+					'Maintaining Medicine No. 01 ': 'maintaining_medicine_name.1',
+					'Organizations Involved No. 01': 'organization_name.0',
+					'Organizations  Involved No. 02': 'organization_name.1',
+					'Barangay Residence Year': 'barangay_residence_year',
+					'Calamba Residence Year': 'calamba_residence_year',
+					'REMARKS': 'remarks',
+				},
+				json_data: [],
+				json_meta: [
+					[
+						{
+							key: "charset",
+							value: "utf-8",
+						},
+					],
+				],
+			}
+		},
+		computed: {
+			...mapGetters('ReportsSingle', ['data', 'total', 'entry', 'loading', 'lists', 'others'])
+		},
+		mounted () {
+			this.fetchCreateData()
+		},
+		watch: {
+			query: {
+				handler (query) {
+					this.setQuery(query)
+					this.searchData()
+				},
+				deep: true
+			}
+		},
+		beforeDestroy () {
+			this.resetState()
+		},
+		methods: {
+			...mapActions('ReportsSingle', [
+				'searchData',
+				'fetchCreateData',
+				'resetState',
+				'setBarangay',
+				'setPurok',
+				'setSitio',
+				'setSector',
+				'setQuery',
+				'setAgeTo',
+				'setGender',
+				'setAgeFrom',
+			]),
 
-        async fetchData () {
-            const response = await axios.get('reports/print-excel', { params: this.entry });
-            return response.data.data;
-        },
+			async fetchData () {
+				const response = await axios.get('reports/print-excel', { params: this.entry });
+				return response.data.data;
+			},
 
-        downloads () {
-            this.$refs.html2Pdf.generatePdf()
-        },
+			downloads () {
+				this.$refs.html2Pdf.generatePdf()
+			},
 
-        startDownload () {
-            let today = new Date().toLocaleDateString()
-            this.excel_name = `GAD-REPORT ${this.barangay.id}-${this.barangay.barangay_name} ${today}.xls`;
-            this.loader = true
-        },
+			startDownload () {
+				let today = new Date().toLocaleDateString()
+				this.excel_name = `GAD-REPORT ${this.barangay.id}-${this.barangay.barangay_name} ${today}.xls`;
+				this.loader = true
+			},
 
-        finishDownload () {
-            this.loader = false;
-        },
+			finishDownload () {
+				this.loader = false;
+			},
 
-        updateBarangay (value) {
-            this.setBarangay(value)
-            this.barangay = value;
-            this.disabled_sitio = 0
-            this.disabled_purok = 0
-            this.setSitio();
-            this.setPurok();
-        },
-        updatePurok (value) {
-            this.setPurok(value);
-            if (value) {
-                this.disabled_sitio = 1
-            }
-        },
-        updateSitio (value) {
-            this.setSitio(value)
-            if (value) {
-                this.disabled_purok = 1
-            }
-        },
-        updateGender (value) {
-            this.setGender(value);
-        },
-        updateSector (value) {
-            this.setSector(value)
-        },
-        updateAgeTo (e) {
-            this.setAgeTo(e.target.value)
-        },
-        updateAgeFrom (e) {
-            this.setAgeFrom(e.target.value)
-        },
-        submitForm () {
-            this.searchData()
-                .then((response) => {
-                    var data_array = response.data.meta;
-                    var female = data_array['Female'];
-                    var male = data_array['Male'];
-                    this.male = male;
-                    this.female = female;
-                    this.chartData = {
-                        labels: ['Female', 'Male'],
-                        datasets: [
-                            {
-                                backgroundColor: ["#993366", "#0099CC"],
-                                data: [female, male]
-                            }
-                        ]
-                    }
-                })
-                .catch(error => {
-                    this.status = 'failed'
-                    _.delay(() => {
-                        this.status = ''
-                    }, 3000)
-                })
-        },
-        focusField (name) {
-            this.activeField = name
-        },
-        clearFocus () {
-            this.activeField = ''
-        }
-    }
-}
+			updateBarangay (value) {
+				this.setBarangay(value)
+				this.barangay = value;
+				this.disabled_sitio = 0
+				this.disabled_purok = 0
+				this.setSitio();
+				this.setPurok();
+			},
+			updatePurok (value) {
+				this.setPurok(value);
+				if (value) {
+					this.disabled_sitio = 1
+				}
+			},
+			updateSitio (value) {
+				this.setSitio(value)
+				if (value) {
+					this.disabled_purok = 1
+				}
+			},
+			updateGender (value) {
+				this.setGender(value);
+			},
+			updateSector (value) {
+				this.setSector(value)
+			},
+			updateAgeTo (e) {
+				this.setAgeTo(e.target.value)
+			},
+			updateAgeFrom (e) {
+				this.setAgeFrom(e.target.value)
+			},
+			submitForm () {
+				this.searchData()
+					.then((response) => {
+						var data_array = response.data.meta;
+						var female = data_array['Female'];
+						var male = data_array['Male'];
+						this.male = male;
+						this.female = female;
+						this.chartData = {
+							labels: ['Female', 'Male'],
+							datasets: [
+								{
+									backgroundColor: ["#993366", "#0099CC"],
+									data: [female, male]
+								}
+							]
+						}
+					})
+					.catch(error => {
+						this.status = 'failed'
+						_.delay(() => {
+							this.status = ''
+						}, 3000)
+					})
+			},
+			focusField (name) {
+				this.activeField = name
+			},
+			clearFocus () {
+				this.activeField = ''
+			}
+		}
+	}
 </script>

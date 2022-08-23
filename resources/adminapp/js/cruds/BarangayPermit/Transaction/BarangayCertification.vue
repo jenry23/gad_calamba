@@ -29,7 +29,7 @@
 					</div>
 					<div class="col-md-2">
 						<img
-							:src="data.logo"
+							src="/transaction/transparent_logo.png"
 							class="pull-left"
 							style="width: 120px; margin-top: -50%; margin-left: 20px"
 						/>
@@ -89,18 +89,13 @@
 							</b>
 						</div>
 						<div class="col-md-9">
-							<img
-								class="barangay-watermark"
-								src="/transaction/bucal.png"
-								style="width: 574px"
-								alt=""
-							/>
+							<img class="barangay-watermark" :src="data.logo" style="width: 574px" alt="" />
 							<div class="barangay-content">
 								<!-- Props -->
 								<div class="barangay-body">
 									<div class="text-center">
 										<h3 style="font-weight: 600; font-size: 1.5rem">
-											B A R A N G A Y C L E A R A N C E <br />
+											B A R A N G A Y C E R T I F I C A T I O N <br />
 											(Residency)
 										</h3>
 									</div>
@@ -110,24 +105,39 @@
 									<div class="container" style="margin-top: -7%">
 										<div class="barangay-body-paragraph">
 											<p class="text-justify">
-												This is to certify that {{ data.full_name }}, {{ data.age }},
-												{{ data.civil_status }}, is a bonafide and
-												{{ data.resident_status }} resident of {{ data.address }} Barangay
-												{{ data.barangay.barangay_name }} Calamba City, Laguna since
-												{{ data.barangay_residence_year }}.
+												This is to certify that person, whose personal details appears below,
+												is a bonafide resident of Barangay
+												{{ data.barangay.barangay_name }} Calamba City, Laguna.
 											</p>
+											<div>
+												<b style="margin-right: 67px">Name of Resident</b>
+												<b style="margin-right: 145px">:</b><b>{{ data.full_name }} </b>
+											</div>
+											<div>
+												<b style="margin-right: 155px">Age</b>
+												<b style="margin-right: 141px">:</b><b> {{ data.age }}</b>
+											</div>
+											<div>
+												<b style="margin-right: 108px">Civil Status</b>
+												<b style="margin-right: 141px">:</b><b> {{ data.civil_status }}</b>
+											</div>
+											<div>
+												<b style="margin-right: 127px">Address</b>
+												<b style="margin-right: 142px">:</b><b> {{ data.address }}</b>
+											</div>
+											<div>
+												<b style="margin-right: 69px">Residence Status</b>
+												<b style="margin-right: 145px">:</b><b>{{ data.resident_status }} </b>
+											</div>
+											<div>
+												<b style="margin-right: 50px">Brgy Residence Date</b>
+												<b style="margin-right: 140px">:</b
+												><b> {{ data.barangay_residence_year }}</b>
+											</div>
 											<br />
-											<p>
-												He/ she has been known to be a person of good moral character, a
-												law-abiding citizen of the community. He/she has never been involved
-												in any act of criminal cases or member of any group or movement which
-												aims to subvert this duly constituted government of the Republic of
-												the Philippines. Certifying also that he/she did not violate any
-												Barangay / City Ordinance.
-											</p>
 											<p class="text-justify">
-												This Certification is being issued upon his/her request for the
-												following purposes:
+												This clearance is being issued upon his/her request for the following
+												purpose/s.
 											</p>
 											<div>
 												<table class="table table-responsive">
@@ -319,8 +329,8 @@
 												</table>
 											</div>
 											<p>
-												Given this _____ day of _________ at Barangay
-												{{ data.barangay.barangay_name }}, Calamba City Laguna
+												Given this _____ day of _________ at Barangay Bucal, Calamba City
+												Laguna
 											</p>
 											<br />
 											<div class="pull-right" style="margin-right: 20%">Approved By:</div>

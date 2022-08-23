@@ -1034,7 +1034,7 @@
 										<tr>
 											<td>Booster Shot</td>
 											<td>
-											<input
+												<input
 													type="text"
 													class="form-control"
 													@input="updateBrand3"
@@ -1546,394 +1546,394 @@ hr {
 }
 </style>
 <script>
-import { mapGetters, mapActions } from "vuex";
-import Attachment from '@components/Attachments/Attachment'
-import DatatablePictures from '@components/Datatables/DatatablePictures'
+	import { mapGetters, mapActions } from "vuex";
+	import Attachment from '@components/Attachments/Attachment'
+	import DatatablePictures from '@components/Datatables/DatatablePictures'
 
-export default {
-    components: {
-        Attachment,
-        DatatablePictures
-    },
-    data () {
-        return {
-            status: "",
-            activeField: "",
-        };
-    },
-    computed: {
-        ...mapGetters("GadListSingle", ["entry", "loading", "lists"]),
-        total_age () {
-            var today = new Date();
-            var birthDate = new Date(this.entry.birth_date);
-            var age = today.getFullYear() - birthDate.getFullYear();
-            var m = today.getMonth() - birthDate.getMonth();
-            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-                age--;
-            }
-            return age;
-        },
-        calamba_residence () {
-            var date = this.entry.calamba_residence_year;
-            if (date) {
-                let calamba_date = new Date(date).toLocaleDateString();
-                let native_date = this.subtractYears(2, new Date(), 1);
-                let transient_date_first = this.subtractYears(2, new Date(), 1);
-                let transient_date_second = this.subtractMonths(6, new Date(), 1);
-                if (calamba_date > this.subtractMonths(6)) {
-                    return "Immigrant";
-                } else if (calamba_date < native_date) {
-                    return "Native";
-                } else if (calamba_date > transient_date_first && transient_date_second < calamba_date) {
-                    return "Transient";
-                }
-            } else {
-                return '';
-            }
-        },
-        barangay_residence () {
-            var date = this.entry.barangay_residence_year;
-            if (date) {
-                let barangay_date = new Date(date).toLocaleDateString();
-                let native_date = this.subtractYears(2, new Date(), 1);
-                let transient_date_first = this.subtractYears(2, new Date(), 1);
-                let transient_date_second = this.subtractMonths(6, new Date(), 1);
-                if (barangay_date > this.subtractMonths(6)) {
-                    return "Immigrant";
-                } else if (barangay_date < native_date) {
-                    return "Native";
-                } else if (barangay_date > transient_date_first && transient_date_second < barangay_date) {
-                    return "Transient";
-                }
-            } else {
-                return '';
-            }
-        },
-
-    },
-    beforeDestroy () {
-        this.resetState();
-    },
-    watch: {
-        "$route.params.id": {
-            immediate: true,
-            handler () {
-                this.resetState();
-                this.fetchEditData(this.$route.params.id);
-            },
-        },
-    },
-
-    methods: {
-        ...mapActions("GadListSingle", [
-            'setEmail',
-            'setMobileNumber',
-            'setGender',
-            'setFamilyCode',
-            'setHousehold',
-            'setCivilStatus',
-            'setSpouseName',
-            'setBirthdate',
-            'setGenderPreference',
-            'setValidID',
-            'setIDNumber',
-            'setReligion',
-            'setEthnicity',
-            'setSector',
-            'setPoliticalProvinceRegistered',
-            'setPoliticalCityRegistered',
-            'setBuildingHouseUnit',
-            'setBlockNoStreet',
-            'setSitio',
-            'setPurok',
-            'setYearsInCalamba',
-            'setYearsInBarangay',
-            'setEducationalAttaintment',
-            'setEducationalStatus',
-            'setLastSchoolAttended',
-            'setGovernmentAssistance',
-            'setOrganization',
-            'setOccupation',
-            'setEmployer',
-            'setWorkLocationProvince',
-            'setWorkLocationCity',
-            'setMonthlyIncome',
-            'setBarangay',
-            'setHouseholdNumber',
-            'setSoftSkills',
-            'setHardSkills',
-            'setHobbies',
-            'setSports',
-            'setHouseOwnership',
-            'setHouseType',
-            'setHouseMake',
-            'setNuclearFamilyHousehold',
-            'setBedRooms',
-            'setCRID',
-            'setPoliticalBarangay',
-            'setPoliticalPrecintNumber',
-            'fetchEditData',
-            'insertPhotoFile',
-            'removePhotoFile',
-            'setRemarks',
-            'resetState',
-            'setLandlineNumber',
-            'setTitle',
-            'setVehicle',
-            'setAppliance',
-            'setUtilities',
-            'setFullImmunization',
-            'setMedicine',
-            'setPregnancyAge',
-            'setPrentalCheckup',
-            'setPostalCheckup',
-            'setBrand1',
-            'setFirstDateVaccination',
-            'setBrand2',
-            'setSecondDateVaccination',
-            'setHealthCondition',
-            'setDisability',
-			'setBrand3',
-			'setBoosterDateVaccination',
-            'updateData',
-        ]),
-        subtractYears (numOfYears, date = new Date(), add_date = 0) {
-            if (add_date != 0) {
-                date.setDate(date.getDate() + add_date);
-            }
-            date.setFullYear(date.getFullYear() - numOfYears);
-            return date.toLocaleDateString;
-        },
-
-        subtractMonths (numOfMonths, date = new Date(), add_date = 0) {
-            if (add_date != 0) {
-                date.setDate(date.getDate() + add_date);
-            }
-            date.setMonth(date.getMonth() - numOfMonths);
-            return date;
-        },
-
-        switchSelect (e) {
-            var value = e.target.value;
-            $("#myTab li a").eq(value).tab("show");
-        },
-        getRoute (name) {
-            return `${axios.defaults.baseURL}${name}/media`
-        },
-        updateBrand1 (e) {
-            this.setBrand1(e.target.value);
-        },
-        updateFirstDateVaccination (e) {
-            this.setFirstDateVaccination(e.target.value);
-        },
-		updateBrand3 (e) {
-			 this.setBrand3(e.target.value);
+	export default {
+		components: {
+			Attachment,
+			DatatablePictures
 		},
-		updateBoosterDateVaccination (e) {
-            this.setBoosterDateVaccination(e.target.value);
-        },
-        updateBrand2 (e) {
-            this.setBrand2(e.target.value);
-        },
-        updateSecondDateVaccination (e) {
-            this.setSecondDateVaccination(e.target.value);
-        },
-        updateNuclearFamilyHousehold (e) {
-            this.setNuclearFamilyHousehold(e.target.value);
-        },
-        updateBedRooms (e) {
-            this.setBedRooms(e.target.value);
-        },
-        updateFullImmunization (e) {
-            this.setFullImmunization(e.target.value);
-        },
-        updateMedicine (e) {
-            this.setMedicine(e);
-        },
-        updatePregnancyAge (e) {
-            this.setPregnancyAge(e.target.value);
-        },
-        updatePrentalCheckup (e) {
-            this.setPrentalCheckup(e.target.value);
-        },
-        updatePostalCheckup (e) {
-            this.setPostalCheckup(e.target.value);
-        },
-        updateCRID (e) {
-            this.setCRID(e.target.value);
-        },
-        updatePoliticalPrecintNumber (e) {
-            this.setPoliticalPrecintNumber(e.target.value);
-        },
-        updatePoliticalBarangay (e) {
-            this.setPoliticalBarangay(e.target.value);
-        },
-        updateHealthCondition (e) {
-            this.setHealthCondition(e)
-        },
-        updateDisability (e) {
-            this.setDisability(e)
-        },
-        updateSoftSkills (e) {
-            this.setSoftSkills(e)
-        },
-        updateHardSkills (e) {
-            this.setHardSkills(e)
-        },
-        updateHobbies (e) {
-            this.setHobbies(e)
-        },
-        updateSports (e) {
-            this.setSports(e)
-        },
-        updateHouseOwnership (e) {
-            this.setHouseOwnership(e)
-        },
-        updateHouseType (e) {
-            this.setHouseType(e)
-        },
-        updateHouseMake (e) {
-            this.setHouseMake(e)
-        },
-        updateBarangay (e) {
-            this.setBarangay(e);
-        },
-        updateHouseholdNumber (e) {
-            this.setHouseholdNumber(e.target.value)
-        },
-        updateLandlineNumber (e) {
-            this.setLandlineNumber(e.target.value)
-        },
-        updateEmail (e) {
-            this.setEmail(e.target.value)
-        },
-        updateMobileNumber (e) {
-            this.setMobileNumber(e.target.value)
-        },
-        updateGender (e) {
-            this.setGender(e);
-        },
-        updateGenderPreference (e) {
-            this.setGenderPreference(e)
-        },
-        updateFamilyCode (e) {
-            this.setFamilyCode(e.target.value)
-        },
-        updateHousehold (e) {
-            this.setHousehold(e);
-        },
-        updateCivilStatus (e) {
-            this.setCivilStatus(e)
-        },
-        inputSpouseName (e) {
-            this.setSpouseName(e.target.value);
-        },
-        updateBirthdate (e) {
-            this.setBirthdate(e.target.value);
-        },
-        updateValidID (e) {
-            this.setValidID(e);
-        },
-        updateIDNumber (e) {
-            this.setIDNumber(e.target.value);
-        },
-        updateReligion (e) {
-            this.setReligion(e);
-        },
-        updateEthnicity (e) {
-            this.setEthnicity(e);
-        },
-        updateSector (e) {
-            this.setSector(e);
-        },
-        updatePoliticalProvinceRegistered (e) {
-            this.setPoliticalProvinceRegistered(e)
-        },
-        updatePoliticalCityRegistered (e) {
-            this.setPoliticalCityRegistered(e)
-        },
-        updateBuildingHouseUnit (e) {
-            this.setBuildingHouseUnit(e.target.value)
-        },
-        updateBlockNoStreet (e) {
-            this.setBlockNoStreet(e.target.value)
-        },
-        updatePurok (e) {
-            this.setPurok(e);
-        },
-        updateSitio (e) {
-            this.setSitio(e)
-        },
-        updateYearsInCalamba (e) {
-            this.setYearsInCalamba(e.target.value);
-        },
-        updateYearsInBarangay (e) {
-            this.setYearsInBarangay(e.target.value);
-        },
-        updateRemarks (e) {
-            this.setRemarks(e.target.value);
-        },
-        updateEducationalAttaintment (e) {
-            this.setEducationalAttaintment(e)
-        },
-        updateEducationalStatus (e) {
-            this.setEducationalStatus(e)
-        },
-        updateLastSchoolAttended (e) {
-            this.setLastSchoolAttended(e.target.value)
-        },
-        updateGovernmentAssistance (e) {
-            this.setGovernmentAssistance(e)
-        },
-        updateOrganization (e) {
-            this.setOrganization(e)
-        },
-        updateOccupation (e) {
-            this.setOccupation(e)
-        },
-        updateEmployer (e) {
-            this.setEmployer(e.target.value)
-        },
-        updateWorkLocationProvince (e) {
-            this.setWorkLocationProvince(e)
-        },
-        updateWorkLocationCity (e) {
-            this.setWorkLocationCity(e)
-        },
-        updateMonthlyIncome (e) {
-            this.setMonthlyIncome(e)
-        },
-        updateVehicle (e) {
-            this.setVehicle(e)
-        },
-        updateAppliance (e) {
-            this.setAppliance(e)
-        },
-        updateUtilities (e) {
-            this.setUtilities(e)
-        },
+		data () {
+			return {
+				status: "",
+				activeField: "",
+			};
+		},
+		computed: {
+			...mapGetters("GadListSingle", ["entry", "loading", "lists"]),
+			total_age () {
+				var today = new Date();
+				var birthDate = new Date(this.entry.birth_date);
+				var age = today.getFullYear() - birthDate.getFullYear();
+				var m = today.getMonth() - birthDate.getMonth();
+				if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+					age--;
+				}
+				return age;
+			},
+			calamba_residence () {
+				var date = this.entry.calamba_residence_year;
+				if (date) {
+					let calamba_date = new Date(date).toLocaleDateString();
+					let native_date = this.subtractYears(2, new Date(), 1);
+					let transient_date_first = this.subtractYears(2, new Date(), 1);
+					let transient_date_second = this.subtractMonths(6, new Date(), 1);
+					if (calamba_date > this.subtractMonths(6)) {
+						return "Transient";
+					} else if (calamba_date < native_date) {
+						return "Native";
+					} else if (calamba_date > transient_date_first && transient_date_second < calamba_date) {
+						return "Immigrant";
+					}
+				} else {
+					return '';
+				}
+			},
+			barangay_residence () {
+				var date = this.entry.barangay_residence_year;
+				if (date) {
+					let barangay_date = new Date(date).toLocaleDateString();
+					let native_date = this.subtractYears(2, new Date(), 1);
+					let transient_date_first = this.subtractYears(2, new Date(), 1);
+					let transient_date_second = this.subtractMonths(6, new Date(), 1);
+					if (barangay_date > this.subtractMonths(6)) {
+						return "Transient";
+					} else if (barangay_date < native_date) {
+						return "Native";
+					} else if (barangay_date > transient_date_first && transient_date_second < barangay_date) {
+						return "Immigrant";
+					}
+				} else {
+					return '';
+				}
+			},
 
-        submitForm () {
-            $('#exampleModal').modal('hide');
-            this.updateData()
-                .then(() => {
-                    this.$eventHub.$emit("update-success");
-                })
-                .catch((error) => {
-                    this.status = "failed";
-                    _.delay(() => {
-                        this.status = "";
-                    }, 3000);
-                });
-        },
+		},
+		beforeDestroy () {
+			this.resetState();
+		},
+		watch: {
+			"$route.params.id": {
+				immediate: true,
+				handler () {
+					this.resetState();
+					this.fetchEditData(this.$route.params.id);
+				},
+			},
+		},
 
-        focusField (name) {
-            this.activeField = name;
-        },
+		methods: {
+			...mapActions("GadListSingle", [
+				'setEmail',
+				'setMobileNumber',
+				'setGender',
+				'setFamilyCode',
+				'setHousehold',
+				'setCivilStatus',
+				'setSpouseName',
+				'setBirthdate',
+				'setGenderPreference',
+				'setValidID',
+				'setIDNumber',
+				'setReligion',
+				'setEthnicity',
+				'setSector',
+				'setPoliticalProvinceRegistered',
+				'setPoliticalCityRegistered',
+				'setBuildingHouseUnit',
+				'setBlockNoStreet',
+				'setSitio',
+				'setPurok',
+				'setYearsInCalamba',
+				'setYearsInBarangay',
+				'setEducationalAttaintment',
+				'setEducationalStatus',
+				'setLastSchoolAttended',
+				'setGovernmentAssistance',
+				'setOrganization',
+				'setOccupation',
+				'setEmployer',
+				'setWorkLocationProvince',
+				'setWorkLocationCity',
+				'setMonthlyIncome',
+				'setBarangay',
+				'setHouseholdNumber',
+				'setSoftSkills',
+				'setHardSkills',
+				'setHobbies',
+				'setSports',
+				'setHouseOwnership',
+				'setHouseType',
+				'setHouseMake',
+				'setNuclearFamilyHousehold',
+				'setBedRooms',
+				'setCRID',
+				'setPoliticalBarangay',
+				'setPoliticalPrecintNumber',
+				'fetchEditData',
+				'insertPhotoFile',
+				'removePhotoFile',
+				'setRemarks',
+				'resetState',
+				'setLandlineNumber',
+				'setTitle',
+				'setVehicle',
+				'setAppliance',
+				'setUtilities',
+				'setFullImmunization',
+				'setMedicine',
+				'setPregnancyAge',
+				'setPrentalCheckup',
+				'setPostalCheckup',
+				'setBrand1',
+				'setFirstDateVaccination',
+				'setBrand2',
+				'setSecondDateVaccination',
+				'setHealthCondition',
+				'setDisability',
+				'setBrand3',
+				'setBoosterDateVaccination',
+				'updateData',
+			]),
+			subtractYears (numOfYears, date = new Date(), add_date = 0) {
+				if (add_date != 0) {
+					date.setDate(date.getDate() + add_date);
+				}
+				date.setFullYear(date.getFullYear() - numOfYears);
+				return date.toLocaleDateString;
+			},
 
-        clearFocus () {
-            this.activeField = "";
-        },
-    },
-};
+			subtractMonths (numOfMonths, date = new Date(), add_date = 0) {
+				if (add_date != 0) {
+					date.setDate(date.getDate() + add_date);
+				}
+				date.setMonth(date.getMonth() - numOfMonths);
+				return date;
+			},
+
+			switchSelect (e) {
+				var value = e.target.value;
+				$("#myTab li a").eq(value).tab("show");
+			},
+			getRoute (name) {
+				return `${axios.defaults.baseURL}${name}/media`
+			},
+			updateBrand1 (e) {
+				this.setBrand1(e.target.value);
+			},
+			updateFirstDateVaccination (e) {
+				this.setFirstDateVaccination(e.target.value);
+			},
+			updateBrand3 (e) {
+				this.setBrand3(e.target.value);
+			},
+			updateBoosterDateVaccination (e) {
+				this.setBoosterDateVaccination(e.target.value);
+			},
+			updateBrand2 (e) {
+				this.setBrand2(e.target.value);
+			},
+			updateSecondDateVaccination (e) {
+				this.setSecondDateVaccination(e.target.value);
+			},
+			updateNuclearFamilyHousehold (e) {
+				this.setNuclearFamilyHousehold(e.target.value);
+			},
+			updateBedRooms (e) {
+				this.setBedRooms(e.target.value);
+			},
+			updateFullImmunization (e) {
+				this.setFullImmunization(e.target.value);
+			},
+			updateMedicine (e) {
+				this.setMedicine(e);
+			},
+			updatePregnancyAge (e) {
+				this.setPregnancyAge(e.target.value);
+			},
+			updatePrentalCheckup (e) {
+				this.setPrentalCheckup(e.target.value);
+			},
+			updatePostalCheckup (e) {
+				this.setPostalCheckup(e.target.value);
+			},
+			updateCRID (e) {
+				this.setCRID(e.target.value);
+			},
+			updatePoliticalPrecintNumber (e) {
+				this.setPoliticalPrecintNumber(e.target.value);
+			},
+			updatePoliticalBarangay (e) {
+				this.setPoliticalBarangay(e.target.value);
+			},
+			updateHealthCondition (e) {
+				this.setHealthCondition(e)
+			},
+			updateDisability (e) {
+				this.setDisability(e)
+			},
+			updateSoftSkills (e) {
+				this.setSoftSkills(e)
+			},
+			updateHardSkills (e) {
+				this.setHardSkills(e)
+			},
+			updateHobbies (e) {
+				this.setHobbies(e)
+			},
+			updateSports (e) {
+				this.setSports(e)
+			},
+			updateHouseOwnership (e) {
+				this.setHouseOwnership(e)
+			},
+			updateHouseType (e) {
+				this.setHouseType(e)
+			},
+			updateHouseMake (e) {
+				this.setHouseMake(e)
+			},
+			updateBarangay (e) {
+				this.setBarangay(e);
+			},
+			updateHouseholdNumber (e) {
+				this.setHouseholdNumber(e.target.value)
+			},
+			updateLandlineNumber (e) {
+				this.setLandlineNumber(e.target.value)
+			},
+			updateEmail (e) {
+				this.setEmail(e.target.value)
+			},
+			updateMobileNumber (e) {
+				this.setMobileNumber(e.target.value)
+			},
+			updateGender (e) {
+				this.setGender(e);
+			},
+			updateGenderPreference (e) {
+				this.setGenderPreference(e)
+			},
+			updateFamilyCode (e) {
+				this.setFamilyCode(e.target.value)
+			},
+			updateHousehold (e) {
+				this.setHousehold(e);
+			},
+			updateCivilStatus (e) {
+				this.setCivilStatus(e)
+			},
+			inputSpouseName (e) {
+				this.setSpouseName(e.target.value);
+			},
+			updateBirthdate (e) {
+				this.setBirthdate(e.target.value);
+			},
+			updateValidID (e) {
+				this.setValidID(e);
+			},
+			updateIDNumber (e) {
+				this.setIDNumber(e.target.value);
+			},
+			updateReligion (e) {
+				this.setReligion(e);
+			},
+			updateEthnicity (e) {
+				this.setEthnicity(e);
+			},
+			updateSector (e) {
+				this.setSector(e);
+			},
+			updatePoliticalProvinceRegistered (e) {
+				this.setPoliticalProvinceRegistered(e)
+			},
+			updatePoliticalCityRegistered (e) {
+				this.setPoliticalCityRegistered(e)
+			},
+			updateBuildingHouseUnit (e) {
+				this.setBuildingHouseUnit(e.target.value)
+			},
+			updateBlockNoStreet (e) {
+				this.setBlockNoStreet(e.target.value)
+			},
+			updatePurok (e) {
+				this.setPurok(e);
+			},
+			updateSitio (e) {
+				this.setSitio(e)
+			},
+			updateYearsInCalamba (e) {
+				this.setYearsInCalamba(e.target.value);
+			},
+			updateYearsInBarangay (e) {
+				this.setYearsInBarangay(e.target.value);
+			},
+			updateRemarks (e) {
+				this.setRemarks(e.target.value);
+			},
+			updateEducationalAttaintment (e) {
+				this.setEducationalAttaintment(e)
+			},
+			updateEducationalStatus (e) {
+				this.setEducationalStatus(e)
+			},
+			updateLastSchoolAttended (e) {
+				this.setLastSchoolAttended(e.target.value)
+			},
+			updateGovernmentAssistance (e) {
+				this.setGovernmentAssistance(e)
+			},
+			updateOrganization (e) {
+				this.setOrganization(e)
+			},
+			updateOccupation (e) {
+				this.setOccupation(e)
+			},
+			updateEmployer (e) {
+				this.setEmployer(e.target.value)
+			},
+			updateWorkLocationProvince (e) {
+				this.setWorkLocationProvince(e)
+			},
+			updateWorkLocationCity (e) {
+				this.setWorkLocationCity(e)
+			},
+			updateMonthlyIncome (e) {
+				this.setMonthlyIncome(e)
+			},
+			updateVehicle (e) {
+				this.setVehicle(e)
+			},
+			updateAppliance (e) {
+				this.setAppliance(e)
+			},
+			updateUtilities (e) {
+				this.setUtilities(e)
+			},
+
+			submitForm () {
+				$('#exampleModal').modal('hide');
+				this.updateData()
+					.then(() => {
+						this.$eventHub.$emit("update-success");
+					})
+					.catch((error) => {
+						this.status = "failed";
+						_.delay(() => {
+							this.status = "";
+						}, 3000);
+					});
+			},
+
+			focusField (name) {
+				this.activeField = name;
+			},
+
+			clearFocus () {
+				this.activeField = "";
+			},
+		},
+	};
 </script>

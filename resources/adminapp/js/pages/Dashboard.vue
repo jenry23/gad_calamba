@@ -28,10 +28,7 @@
 							</div>
 							<div class="col-md-4" style="margin-top: -70px">
 								<div class="card">
-									<div
-										class="table-responsive table-sales anyClass"
-										v-if="data.barangays.length != 0"
-									>
+									<div class="table-responsive table-sales anyClass" v-if="data.barangays">
 										<center>
 											<h4 class="card-title">LIST OF BARANGAY</h4>
 										</center>
@@ -195,7 +192,7 @@
 		<div class="row">
 			<div class="col-md-4">
 				<div class="card card-chart">
-					<div class="card-header card-header-info">
+					<div class="card-header card-header-success">
 						<div class="ct-chart" id="websiteViewsChart">Migration Rate</div>
 					</div>
 					<div class="card-body">
@@ -217,7 +214,7 @@
 			</div>
 			<div class="col-md-4">
 				<div class="card card-chart">
-					<div class="card-header card-header-warning">
+					<div class="card-header card-header-success">
 						<div class="ct-chart" id="websiteViewsChart">Resident Status</div>
 					</div>
 					<div class="card-body">
@@ -252,7 +249,7 @@
 			</div>
 			<div class="col-md-4">
 				<div class="card card-chart">
-					<div class="card-header card-header-danger">
+					<div class="card-header card-header-success">
 						<div class="ct-chart" id="completedTasksChart">Total Number Of</div>
 					</div>
 					<div class="card-body">
@@ -277,7 +274,7 @@
 			<div class="col-md-6">
 				<div class="card card-stats">
 					<div class="card-header card-header-success">
-						<h3 class="card-title">UTILITIES</h3>
+						<h3 class="card-title">Utilities</h3>
 					</div>
 					<div class="card-body">
 						<line-chart :chart-data="data_utilities"></line-chart>
@@ -299,7 +296,7 @@
 			<div class="col-md-6">
 				<div class="card card-stats">
 					<div class="card-header card-header-success">
-						<h3 class="card-title">EDUCATIONAL ATTAINTMENT</h3>
+						<h3 class="card-title">Educational Attaintment</h3>
 					</div>
 					<div class="card-body">
 						<bar-chart :chart-data="chartData"></bar-chart>

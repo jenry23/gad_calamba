@@ -16,7 +16,7 @@
 					<img class="img-fluid" src="/images/popcom.png" style="margin-top: -20px" />
 				</div>
 				<div v-else-if="roles.title === 'Barangay'" class="d-flex justify-content-center">
-					<img class="img-fluid" :src="user.photo[0].url" />
+					<img class="img-fluid" :src="user.photo[0].url" style="margin-top: -20px" />
 				</div>
 				<div v-else class="d-flex justify-content-center">
 					<img class="img-fluid" src="/images/cpmo.png" style="margin-top: -20px" />
@@ -133,7 +133,7 @@
 					this.roles = this.user.roles[0];
 					if (this.roles.title === 'Barangay') {
 						this.backgroundColor = 'white';
-						this.itemColor = 'azure';
+						this.itemColor = 'green';
 					}
 				});
 			}

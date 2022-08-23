@@ -12,7 +12,7 @@
             @vdropzone-thumbnail="updateDataUrl"
         >
             <div class="dropzone-container" v-show="!hasFiles">
-                <div class="file-selector" style="margin-top: -30px; margin-left: -8px">
+                <div class="file-selector">
                     <figure>
                         <svg
                             width="104px"
@@ -123,10 +123,14 @@
                             </g>
                         </svg>
                     </figure>
+                    <span class="font-weight-bold">Drop files here to upload</span>
+                    <p class="separator"><span> or </span></p>
+                    <button type="button" class="btn btn-azure">Browse</button>
                 </div>
             </div>
 
-            <div v-show="hasFiles">
+            <div class="file-preview-container" v-show="hasFiles">
+                <button type="button" class="btn btn-azure">Browse</button>
                 <component
                     :is="previewComponent"
                     :key="childKey"
@@ -135,8 +139,6 @@
                     @tmp-file-removed="handleTmpFileRemoved"
                     @file-removed="fileRemoved"
                 ></component>
-                <!-- TODO: Next updated data -->
-                <!-- <button type="button mt-1" class="btn-azure">Browse</button> -->
             </div>
         </vue-dropzone>
     </div>
@@ -244,11 +246,6 @@ export default {
                 dz.dropzone.options.maxFiles = this.maxFiles - fo.length
             },
             deep: true
-        }
-    },
-    mounted () {
-        if (this.media.length) {
-            this.hasFiles = this.media.length + this.tmpAttachments.length
         }
     },
     methods: {
@@ -369,6 +366,10 @@ export default {
     top: 50%;
     left: 130px;
     transform: translate(-50%, -50%);
+}
+
+.file-preview-container {
+    text-align: left;
 }
 
 .dropzone-container {

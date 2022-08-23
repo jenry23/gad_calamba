@@ -19,23 +19,36 @@ class TransactionApiController extends Controller
     {
         abort_if(Gate::denies('barangay_permit_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        // Gad::all(['id', 'first_name', 'last_name'])->pluck('full_name', 'id'),
         $barangay_id = Auth::user()->barangay;
 
+        // Address
+        // $gad->purok->purok_name . ', Brgy ' . $gad->barangay->barangay_name . ' Calamba City' ?? '
         if (isset($barangay_id)) {
-            $gad = Gad::select(
+            $gad = Gad::with(['barangay', 'civil_status', 'purok', 'sitio'])->select(
                 "id",
                 "first_name",
                 "last_name",
+                "birth_date",
+                "barangay_id",
+                "civil_status_id",
+                "purok_id",
+                "sitio_id",
+                "barangay_residence_year",
                 DB::raw("CONCAT(first_name,' ',last_name) as full_name")
-            )->where('barangay_id', $barangay_id)->get();
+            )->withoutAppends()->where('barangay_id', $barangay_id)->get();
         } else {
-            $gad = Gad::select(
+            $gad = Gad::with(['barangay', 'civil_status', 'purok', 'sitio'])->select(
                 "id",
                 "first_name",
                 "last_name",
+                "birth_date",
+                "barangay_id",
+                "civil_status_id",
+                "purok_id",
+                "sitio_id",
+                "barangay_residence_year",
                 DB::raw("CONCAT(first_name,' ',last_name) as full_name")
-            )->get();
+            )->withoutAppends()->get();
         }
 
         // $gad = $gad->makeHidden(['photo', 'media']);
@@ -54,13 +67,15 @@ class TransactionApiController extends Controller
         $gad = Gad::find($gad_id);
 
         $data_collection = [
-            'full_name' => $gad->first_name . ' ' . $gad->last_name . ' ' . $gad->middle_name ?? '',
+            'full_name' => $gad->full_name ?? '',
             'address' => $gad->purok->purok_name . ', Brgy ' . $gad->barangay->barangay_name . ' Calamba City' ?? '',
             'birthday' => Carbon::parse($gad->birth_date)->format('d F Y') ?? '',
             'age' => Carbon::parse($gad->birth_date)->diff(Carbon::now())->format('%y years') ?? '',
             'birth_place' => $gad->political_province_registered->province_name ?? '',
-            'status' => $this->residence_status(Carbon::parse($gad->calamba_residence_year)->format('Y')) ?? '',
-            'logo' => Auth::user()->photo[0]['url'],
+            'resident_status' => $this->residence_status(Carbon::parse($gad->barangay_residence_year)->format('Y')) ?? '',
+            'logo' => Auth::user()->photo[1]['url'] ?? Auth::user()->photo[0]['url'],
+            'civil_status' => $gad->civil_status->civil_status_name ?? '',
+            'barangay_residence_year' => Carbon::parse($gad->barangay_residence_year)->format('F d Y'),
             'barangay' => Auth::user()->barangays,
         ];
         return response()->json($data_collection);
@@ -69,13 +84,17 @@ class TransactionApiController extends Controller
     public function residence_status($date)
     {
         $status = '';
+
         if ($date) {
-            $now = Carbon::now()->format('Y');
-            if ($date > $now - 1) {
+            $now = Carbon::now()->format('Y-m-d');
+            if ($date > Carbon::now()->subMonth(6)->format('Y-m-d')) {
                 $status = "Immigrant";
-            } else if ($date < $now - 2) {
+            } else if ($date < Carbon::now()->subYear(2)->addDay(1)->format('Y-m-d')) {
                 $status = "Native";
-            } else {
+            } else if (
+                $now > Carbon::now()->subYear(2)->format('Y-m-d') && Carbon::now()->subMonth(6)->addDay(1)
+                ->format('Y-m-d') < $now
+            ) {
                 $status = "Transient";
             }
         }

@@ -19,6 +19,7 @@ class Gad extends Model implements HasMedia
     use HasAdvancedFilter, SoftDeletes, HasFactory, InteractsWithMedia;
 
     public $table = 'gad';
+    public static $withoutAppends = false;
 
     protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
 
@@ -142,6 +143,22 @@ class Gad extends Model implements HasMedia
     public function getFullNameAttribute()
     {
         return ucfirst($this->last_name) . ' , ' . ucfirst($this->first_name) . ' ' . ucfirst($this->middle_name);
+    }
+
+    public function scopeWithoutAppends($query)
+    {
+        self::$withoutAppends = true;
+
+        return $query;
+    }
+
+    protected function getArrayableAppends()
+    {
+        if (self::$withoutAppends) {
+            return ['age'];
+        }
+
+        return parent::getArrayableAppends();
     }
 
     public function registerMediaConversions(Media $media = null): void
@@ -310,7 +327,7 @@ class Gad extends Model implements HasMedia
 
     public function barangay()
     {
-        return $this->belongsTo(Barangay::class, 'barangay_id', 'id');
+        return $this->belongsTo(Barangay::class, 'barangay_id');
     }
     public function sector()
     {
