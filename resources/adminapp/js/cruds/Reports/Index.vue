@@ -31,7 +31,7 @@
                     :manual-pagination="false"
                     pdf-format="a4"
                     pdf-orientation="landscape"
-                    pdf-content-width="1200px"
+                    pdf-content-width="1120px"
 
                     @progress="onProgress($event)"
                     @hasStartedGeneration="hasStartedGeneration()"
@@ -426,12 +426,10 @@
 					},
 					{
 						title: 'Resident Status',
-						field: 'resuident_status.resuident_status_name',
-						tdComp: DatatablesFields,
+						field: 'barangay_resident_status_name',
 						thComp: TranslatedMultitpleHeader,
 						visible: false,
-					},
-
+					}
 				],
 				query: { sort: 'id', order: 'asc', limit: 20, s: '' },
 				xprops: {

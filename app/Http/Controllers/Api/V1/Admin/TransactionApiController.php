@@ -11,6 +11,7 @@ use App\Models\Gad;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class TransactionApiController extends Controller
 {
@@ -65,6 +66,11 @@ class TransactionApiController extends Controller
     {
         $gad_id = $request->resident['id'];
         $gad = Gad::find($gad_id);
+        if (Auth::user()->photo->isEmpty()) {
+            $images = asset('images/cpmo.png');
+        } else {
+            $images = Auth::user()->photo[1]['url'] ?? Auth::user()->photo[0]['url'];
+        }
 
         $data_collection = [
             'full_name' => $gad->full_name ?? '',
@@ -72,33 +78,12 @@ class TransactionApiController extends Controller
             'birthday' => Carbon::parse($gad->birth_date)->format('d F Y') ?? '',
             'age' => Carbon::parse($gad->birth_date)->diff(Carbon::now())->format('%y years') ?? '',
             'birth_place' => $gad->political_province_registered->province_name ?? '',
-            'resident_status' => $this->residence_status(Carbon::parse($gad->barangay_residence_year)->format('Y')) ?? '',
-            'logo' => Auth::user()->photo[1]['url'] ?? Auth::user()->photo[0]['url'],
+            'resident_status' => $gad->barangay_resident_status_name ??  '',
+            'logo' => $images,
             'civil_status' => $gad->civil_status->civil_status_name ?? '',
             'barangay_residence_year' => Carbon::parse($gad->barangay_residence_year)->format('F d Y'),
-            'barangay' => Auth::user()->barangays,
+            'barangay' => $gad->barangay,
         ];
         return response()->json($data_collection);
-    }
-
-    public function residence_status($date)
-    {
-        $status = '';
-
-        if ($date) {
-            $now = Carbon::now()->format('Y-m-d');
-            if ($date > Carbon::now()->subMonth(6)->format('Y-m-d')) {
-                $status = "Immigrant";
-            } else if ($date < Carbon::now()->subYear(2)->addDay(1)->format('Y-m-d')) {
-                $status = "Native";
-            } else if (
-                $now > Carbon::now()->subYear(2)->format('Y-m-d') && Carbon::now()->subMonth(6)->addDay(1)
-                ->format('Y-m-d') < $now
-            ) {
-                $status = "Transient";
-            }
-        }
-
-        return $status;
     }
 }

@@ -21,7 +21,7 @@
 				<span class="navbar-toggler-icon icon-bar"></span>
 			</button>
 			<!-- Collapsable -->
-			<div class="col-md-12 mt-5 pull-right">
+			<div class="col-md-12 mt-3 pull-right" style="margin-right: -33%">
 				<autocomplete></autocomplete>
 			</div>
 		</div>

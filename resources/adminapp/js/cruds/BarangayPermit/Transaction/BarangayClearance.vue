@@ -29,7 +29,7 @@
 					</div>
 					<div class="col-md-2">
 						<img
-							:src="data.logo"
+							src="/transaction/transparent_logo.png"
 							class="pull-left"
 							style="width: 120px; margin-top: -50%; margin-left: 20px"
 						/>
@@ -89,12 +89,7 @@
 							</b>
 						</div>
 						<div class="col-md-9">
-							<img
-								class="barangay-watermark"
-								src="/transaction/bucal.png"
-								style="width: 574px"
-								alt=""
-							/>
+							<img class="barangay-watermark" :src="data.logo" style="width: 574px" alt="" />
 							<div class="barangay-content">
 								<!-- Props -->
 								<div class="barangay-body">

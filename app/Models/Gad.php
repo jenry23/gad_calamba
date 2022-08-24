@@ -46,7 +46,9 @@ class Gad extends Model implements HasMedia
         'sports_name',
         'ethinicity_name',
         'maintaining_medicine_name',
-        'organization_name'
+        'organization_name',
+        'calamba_resident_status_name',
+        'barangay_resident_status_name',
     ];
 
     protected $filterable = [
@@ -312,6 +314,7 @@ class Gad extends Model implements HasMedia
             return Medicine::whereIn('id', $medicine_id)->get()->pluck('medicine_name')->toArray();
         }
     }
+
     public function getOrganizationNameAttribute()
     {
         $organization_id = $this->gadDetails()->whereHasMorph('item', [Organization::class])->get()->pluck('item_id')->toArray();
@@ -320,6 +323,51 @@ class Gad extends Model implements HasMedia
             return Organization::whereIn('id', $organization_id)->get()->pluck('organization_name')->toArray();
         }
     }
+
+    public function getCalambaResidentStatusNameAttribute()
+    {
+        $calamba_residence_year = $this->calamba_residence_year;
+
+        $now = Carbon::now()->format('Y-m-d');
+
+        if ($calamba_residence_year > Carbon::now()->subMonth(6)->format('Y-m-d')) {
+            $status = "Immigrant";
+        } else if ($calamba_residence_year < Carbon::now()->subYear(2)->addDay(1)->format('Y-m-d')) {
+            $status = "Native";
+        } else if (
+            $now > Carbon::now()->subYear(2)->format('Y-m-d') && Carbon::now()->subMonth(6)->addDay(1)
+            ->format('Y-m-d') < $now
+        ) {
+            $status = "Transient";
+        } else {
+            $status = '';
+        }
+
+        return $status;
+    }
+
+    public function getBarangayResidentStatusNameAttribute()
+    {
+        $barangay_residence_year = $this->barangay_residence_year;
+
+        $now = Carbon::now()->format('Y-m-d');
+
+        if ($barangay_residence_year > Carbon::now()->subMonth(6)->format('Y-m-d')) {
+            $status = "Immigrant";
+        } else if ($barangay_residence_year < Carbon::now()->subYear(2)->addDay(1)->format('Y-m-d')) {
+            $status = "Native";
+        } else if (
+            $now > Carbon::now()->subYear(2)->format('Y-m-d') && Carbon::now()->subMonth(6)->addDay(1)
+            ->format('Y-m-d') < $now
+        ) {
+            $status = "Transient";
+        } else {
+            $status = '';
+        }
+
+        return $status;
+    }
+
     public function gadDetails(): HasMany
     {
         return $this->hasMany(GadItemDetails::class, 'gad_id', 'id');
