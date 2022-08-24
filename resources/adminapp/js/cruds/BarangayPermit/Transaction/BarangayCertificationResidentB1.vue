@@ -49,42 +49,12 @@
 							<br />
 							<b>
 								<center>
-									<p>HON. LEONARDO P. PIAMONTE <br />Barangay Chairman</p>
-									<br />
-									<p>SANGGUNIANG BARANGAY</p>
-									<br />
-									<p>
-										Rowena S, Naredo <br />
-										Barangay Councilor
-									</p>
-									<p>
-										Zosimo A. Piamonte<br />
-										Barangay Councilor
-									</p>
-									<p>
-										Leonisa G. Rimas<br />
-										Barangay Councilor
-									</p>
-									<p>
-										Oscar R. Limpiada Sr.<br />
-										Barangay Councilor
-									</p>
-									<p>
-										Jeffrey R. Manzano<br />
-										Barangay Councilor
-									</p>
-									<p>
-										Charles Andy R. Desepida<br />
-										SK Chairman
-									</p>
-									<p>
-										ROSENDO O. NAREDO<br />
-										Barangay Secretary
-									</p>
-									<p>
-										JENALYN C. SERGIO<br />
-										Barangay Treasurer
-									</p>
+									<div v-for="sanggunian in data.barangay_sanggunian" :key="sanggunian.id">
+										<p>
+											{{ sanggunian.barangay_name }} <br />
+											{{ sanggunian.barangay_category.category_name }}
+										</p>
+									</div>
 								</center>
 							</b>
 						</div>
@@ -347,7 +317,8 @@
 													<center>
 														<p>
 															_____________________________ <br />
-															DELFIN M. DE CLARO<br />Punong Barangay
+															{{ data.barangay_sanggunian[0].barangay_name
+															}}<br />Punong Barangay
 														</p>
 													</center>
 												</div>
@@ -366,7 +337,8 @@
 													<center>
 														<p>
 															_____________________________ <br />
-															DELFIN M. DE CLARO<br />Punong Barangay
+															{{ data.barangay_sanggunian[0].barangay_name
+															}}<br />Punong Barangay
 														</p>
 													</center>
 												</div>

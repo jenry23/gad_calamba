@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v1\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\BarangaySanggunian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Response;
@@ -71,6 +72,8 @@ class TransactionApiController extends Controller
             $images = Auth::user()->photo[1]['url'] ?? Auth::user()->photo[0]['url'];
         }
 
+        $barangay_sanggunian = BarangaySanggunian::with(['barangay_category'])->where('barangay_id', $gad->barangay_id)->orderBy('barangay_sanggunian_category_id', 'asc')->get();
+
         $data_collection = [
             'full_name' => $gad->full_name ?? '',
             'address' => $gad->purok->purok_name . ', Brgy ' . $gad->barangay->barangay_name . ' Calamba City' ?? '',
@@ -82,6 +85,7 @@ class TransactionApiController extends Controller
             'civil_status' => $gad->civil_status->civil_status_name ?? '',
             'barangay_residence_year' => Carbon::parse($gad->barangay_residence_year)->format('F d Y'),
             'barangay' => $gad->barangay,
+            'barangay_sanggunian' => $barangay_sanggunian
         ];
         return response()->json($data_collection);
     }

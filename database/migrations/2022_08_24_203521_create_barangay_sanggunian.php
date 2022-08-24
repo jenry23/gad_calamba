@@ -11,9 +11,10 @@ class CreateBarangaySanggunian extends Migration
         Schema::create('barangay_sanggunian', function (Blueprint $table) {
             $table->id();
             $table->foreignId('barangay_id')->nullable()->constrained('barangay');
-            $table->foreignId('barangay_sanggunian_category_id')->nullable()->constrained('barangay');
-            $table->string('name')->nullable();
+            $table->foreignId('barangay_sanggunian_category_id')->nullable()->constrained('barangay_sanggunian_category');
+            $table->string('barangay_name')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

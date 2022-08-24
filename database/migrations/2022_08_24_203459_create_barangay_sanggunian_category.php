@@ -10,9 +10,10 @@ class CreateBarangaySanggunianCategory extends Migration
     {
         Schema::create('barangay_sanggunian_category', function (Blueprint $table) {
             $table->id();
-            $table->string('category_name')();
-            $table->integer('order')();
+            $table->string('category_name');
+            $table->integer('order');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

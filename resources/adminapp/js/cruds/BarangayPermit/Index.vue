@@ -188,19 +188,6 @@
 					this.is_barangay = this.entry.transaction.id;
 					this.transaction_name = this.entry.transaction.transaction_type_name + '-' + this.entry.resident.full_name;
 				});
-				// this.storeData()
-				//     .then(() => {
-				//         // this.$router.push({ name: 'transaction.index' })
-				//         // this.$eventHub.$emit('create-success')
-				//     })
-				//     .catch(error => {
-				//         console.log(this.data);
-				//         this.status = 'failed'
-				//         _.delay(() => {
-				//             this.status = ''
-				//         }, 3000)
-				//     })
-				// this.is_barangay = 1;
 			},
 			focusField (name) {
 				this.activeField = name
