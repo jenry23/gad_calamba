@@ -53,7 +53,6 @@ class TransactionApiController extends Controller
         }
 
         // $gad = $gad->makeHidden(['photo', 'media']);
-
         return response([
             'meta' => [
                 'resident' => $gad,

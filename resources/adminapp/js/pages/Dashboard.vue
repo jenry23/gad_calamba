@@ -28,7 +28,7 @@
 							</div>
 							<div class="col-md-4" style="margin-top: -70px">
 								<div class="card">
-									<div class="table-responsive table-sales anyClass" v-if="data.barangays">
+									<div class="table-responsive table-sales anyClass" v-if="data.is_barangay === 0">
 										<center>
 											<h4 class="card-title">LIST OF BARANGAY</h4>
 										</center>

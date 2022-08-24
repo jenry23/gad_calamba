@@ -130,6 +130,7 @@ class DashboardApiController extends Controller
                 Gad::where('barangay_id', $user_with_barangay)->where('gender_id', 2)->whereDate('barangay_residence_year', '<', Carbon::now()->subYear(2)->addDay(1))->count();
             $total_male_migration_rate = Gad::where('barangay_id', $user_with_barangay)->whereNotNull('migration_rate_id')->where('gender_id', 1)->count();
             $total_female_migration_rate = Gad::where('barangay_id', $user_with_barangay)->whereNotNull('migration_rate_id')->where('gender_id', 2)->count();
+            $is_barangay = 1;
         } else {
             $total_people_count = Gad::all()->count();
             $total_male_count = Gad::where('gender_id', '1')->count();
@@ -216,8 +217,8 @@ class DashboardApiController extends Controller
                 Gad::where('gender_id', 2)->whereDate('calamba_residence_year', '<', Carbon::now()->subYear(2)->addDay(1))->count();
             $total_male_migration_rate = Gad::whereNotNull('migration_rate_id')->where('gender_id', 1)->count();
             $total_female_migration_rate = Gad::whereNotNull('migration_rate_id')->where('gender_id', 2)->count();
+            $is_barangay = 0;
         }
-
         return response([
             'data' => [
                 'total_people_count' => $total_people_count,
@@ -245,6 +246,7 @@ class DashboardApiController extends Controller
                 'total_female_migration_rate' => $total_female_migration_rate,
                 'sitios' => $sitios ? $sitios : [],
                 'puroks' => $puroks ? $puroks : [],
+                'is_barangay' => $is_barangay
             ]
         ]);
     }

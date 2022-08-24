@@ -329,8 +329,8 @@
 												</table>
 											</div>
 											<p>
-												Given this _____ day of _________ at Barangay Bucal, Calamba City
-												Laguna
+												Given this _____ day of _________ at Barangay
+												{{ data.barangay.barangay_name }}, Calamba City Laguna
 											</p>
 											<br />
 											<div class="pull-right" style="margin-right: 20%">Approved By:</div>

@@ -88,7 +88,7 @@
 			:enable-download="true"
 			:preview-modal="true"
 			:paginate-elements-by-height="2000"
-			filename="content"
+			:filename="transaction_name"
 			:pdf-quality="2"
 			:manual-pagination="false"
 			pdf-format="a3"
@@ -100,9 +100,14 @@
 			ref="html2Pdf"
 		>
 			<section slot="pdf-content">
-				<barangay-clearance ref="barangay_clearance" v-if="is_barangay === 1" :data="result" />
-				<barangay-certification ref="barangay_certification" v-if="is_barangay === 2" :data="result" />
-				<cohabitation ref="barangay_clearance" v-if="is_barangay === 3" :data="result" />
+				<barangay-clearance-resident-a1 v-if="is_barangay === 1" :data="result" />
+				<barangay-certification-resident-b1 v-if="is_barangay === 2" :data="result" />
+				<barangay-clearance-activity-a2 v-if="is_barangay === 3" :data="result" />
+				<barangay-certification-non-resident-b2 v-if="is_barangay === 4" :data="result" />
+				<barangay-certification-cohabitation-b3 v-if="is_barangay === 5" :data="result" />
+				<barangay-certification-indigency-b4 v-if="is_barangay === 6" :data="result" />
+				<barangay-certification-ra-b5 v-if="is_barangay === 7" :data="result" />
+				<barangay-certification-oath-b6 v-if="is_barangay === 8" :data="result" />
 			</section>
 		</vue-html2pdf>
 	</div>
@@ -121,16 +126,26 @@
 </style>
 <script>
 	import { mapGetters, mapActions } from 'vuex'
-	import BarangayClearance from './Transaction/BarangayClearance'
-	import BarangayCertification from './Transaction/BarangayCertification'
-	import Cohabitation from './Transaction/Cohabitation'
+	import BarangayCertificationCohabitationB3 from './Transaction/BarangayCertificationCohabitationB3'
+	import BarangayCertificationIndigencyB4 from './Transaction/BarangayCertificationIndigencyB4'
+	import BarangayCertificationNonResidentB2 from './Transaction/BarangayCertificationNonResidentB2'
+	import BarangayCertificationOathB6 from './Transaction/BarangayCertificationOathB6'
+	import BarangayCertificationRaB5 from './Transaction/BarangayCertificationRaB5'
+	import BarangayCertificationResidentB1 from './Transaction/BarangayCertificationResidentB1'
+	import BarangayClearanceActivityA2 from './Transaction/BarangayClearanceActivityA2'
+	import BarangayClearanceResidentA1 from './Transaction/BarangayClearanceResidentA1'
 	import VueHtml2pdf from 'vue-html2pdf'
 
 	export default {
 		components: {
-			BarangayClearance,
-			Cohabitation,
-			BarangayCertification,
+			BarangayCertificationCohabitationB3,
+			BarangayCertificationIndigencyB4,
+			BarangayCertificationNonResidentB2,
+			BarangayCertificationOathB6,
+			BarangayCertificationRaB5,
+			BarangayCertificationResidentB1,
+			BarangayClearanceActivityA2,
+			BarangayClearanceResidentA1,
 			VueHtml2pdf,
 		},
 		data () {
@@ -141,6 +156,7 @@
 				is_barangay: 0,
 				transaction_required: false,
 				resident_required: false,
+				transaction_name: null,
 				result: [],
 			}
 		},
@@ -170,6 +186,7 @@
 				axios.post('transaction', this.entry).then(response => {
 					this.result = response.data;
 					this.is_barangay = this.entry.transaction.id;
+					this.transaction_name = this.entry.transaction.transaction_type_name + '-' + this.entry.resident.full_name;
 				});
 				// this.storeData()
 				//     .then(() => {
