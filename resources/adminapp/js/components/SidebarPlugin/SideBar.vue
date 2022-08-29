@@ -1,8 +1,3 @@
-<style scoped>
-.sidebar {
-	overflow-y: auto;
-}
-</style>
 <template>
 	<div
 		class="sidebar"
@@ -18,19 +13,10 @@
 				<div v-else-if="roles.title === 'Barangay'" class="d-flex justify-content-center">
 					<img class="img-fluid" :src="user.photo[0].url" style="margin-top: -20px" />
 				</div>
-				<div v-else class="d-flex justify-content-center">
+				<div v-else>
 					<img class="img-fluid" src="/images/cpmo.png" style="margin-top: -20px" />
 				</div>
 			</a>
-			<center>
-				<b>
-					<div v-if="roles.title === 'Popcom'">
-						<h1 style="color: black">POPCOM</h1>
-					</div>
-					<div v-else-if="roles.title === 'Barangay'"></div>
-					<div v-else></div>
-				</b>
-			</center>
 		</div>
 		<div class="sidebar-wrapper">
 			<slot name="content"></slot>
@@ -146,5 +132,8 @@
 	.nav-mobile-menu {
 		display: none;
 	}
+}
+.sidebar .sidebar-wrapper {
+	height: calc(100vh - 306px) I !important;
 }
 </style>

@@ -15,7 +15,8 @@
 .vue-suggestion {
 	width: 50%;
 	max-width: 400px;
-	margin: 0 auto;
+	margin-top: 40px;
+	margin-left: 82%;
 }
 .vue-suggestion .vs__input-group .vs__input {
 	width: 100%;

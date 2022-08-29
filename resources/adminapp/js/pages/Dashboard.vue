@@ -1,4 +1,4 @@
-<style scoped>
+<style>
 .anyClass {
 	height: 400px;
 	overflow-y: scroll;
@@ -17,7 +17,7 @@
 				<div class="card imageBackground">
 					<div class="card-header card-header-info card-header-icon">
 						<div class="card-icon">
-							<img src="/images/calamba-logo.png" height="50px;" width="50px;" />
+							<img src="/images/calamba-logo.png" height="85px;" width="85px;" />
 						</div>
 						<h4 class="card-title">Calamba Map</h4>
 					</div>
@@ -150,6 +150,7 @@
 							Total Senior / Citizen
 							<h3 class="card-title" style="color: white">{{ data.total_senior_count }}</h3>
 						</div>
+						<br />
 						<div class="row">
 							<div class="col-md-6">
 								<h5>Male</h5>
@@ -272,7 +273,7 @@
 		</div>
 		<div class="row">
 			<div class="col-md-6">
-				<div class="card card-stats">
+				<div class="card card-stats h-80">
 					<div class="card-header card-header-success">
 						<h3 class="card-title">Utilities</h3>
 					</div>
