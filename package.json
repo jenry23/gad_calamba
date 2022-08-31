@@ -47,6 +47,7 @@
         "vue-json-excel": "^0.3.0",
         "vue-suggestion": "^1.1.0",
         "vue-the-mask": "^0.11.1",
+        "vue2-daterange-picker": "^0.6.8",
         "vuejs-datepicker": "^1.6.2"
     }
 }

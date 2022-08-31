@@ -57,6 +57,9 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     //Gender
     Route::resource('gender', 'GenderApiController');
 
+    // Barangay Records
+    Route::resource('barangay-records', 'BarangayRecordsApiController');
+
     //Gender Preference
     Route::resource('gender-preference', 'GenderPreferenceApiController');
 

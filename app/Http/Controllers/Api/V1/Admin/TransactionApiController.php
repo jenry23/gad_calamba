@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v1\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\BarangayRecord;
 use App\Models\BarangaySanggunian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -71,6 +72,14 @@ class TransactionApiController extends Controller
         } else {
             $images = Auth::user()->photo[1]['url'] ?? Auth::user()->photo[0]['url'];
         }
+
+        $attributes = [
+            'transaction_type_id' => $request->transaction['id'],
+            'gad_id'    => $gad_id,
+            'status'    => 1
+        ];
+
+        BarangayRecord::create($attributes);
 
         $barangay_sanggunian = BarangaySanggunian::with(['barangay_category'])->where('barangay_id', $gad->barangay_id)->orderBy('barangay_sanggunian_category_id', 'asc')->get();
 

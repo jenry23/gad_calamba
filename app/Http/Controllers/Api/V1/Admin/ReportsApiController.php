@@ -32,6 +32,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 
 class ReportsApiController extends Controller
 {
@@ -41,7 +42,12 @@ class ReportsApiController extends Controller
     }
     public function create(Request $request)
     {
-        $barangays = Barangay::all();
+        $user_with_barangay = Auth::user()->barangay;
+
+        $barangays = Barangay::when($user_with_barangay, function ($query) use ($user_with_barangay) {
+            $query->where('id', $user_with_barangay);
+        })->get();
+
         $sector = Sector::all();
         $gender = Gender::all();
         return response([

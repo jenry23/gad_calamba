@@ -30,6 +30,12 @@ const routes = [
             component: () => import('@cruds/Reports/Index.vue'),
             meta: { title: 'Generate Reports' }
           },
+          {
+            path: 'barangay-records',
+            name: 'barangay_records.index',
+            component: () => import('@cruds/BarangayRecords/Index.vue'),
+            meta: { title: 'Barangay Records' }
+          },
         ]
       },
 

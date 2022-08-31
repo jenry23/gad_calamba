@@ -60,6 +60,7 @@ import ResidentStatusSingle from './cruds/ResidentStatus/single'
 import DashboardIndex from './cruds/Dashboard'
 import ReportsSingle from './cruds/Reports/single'
 import BarangayPermitSingle from './cruds/BarangayPermit/single'
+import BarangayRecordsIndex from './cruds/BarangayRecords/index'
 
 Vue.use(Vuex)
 
@@ -126,6 +127,7 @@ export default new Vuex.Store({
     DashboardIndex,
     ReportsSingle,
     BarangayPermitSingle,
+    BarangayRecordsIndex,
   },
   strict: debug
 })

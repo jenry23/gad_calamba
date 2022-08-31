@@ -40,7 +40,6 @@ class UsersApiController extends Controller
             'roles' => $request->roles
         ];
         $user = User::create($data);
-
         if ($media = $request->input('photo', [])) {
             Media::whereIn('id', data_get($media, '*.id'))
                 ->where('model_id', 0)

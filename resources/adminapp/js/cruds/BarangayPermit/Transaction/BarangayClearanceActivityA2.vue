@@ -51,7 +51,7 @@
 								<center>
 									<div v-for="sanggunian in data.barangay_sanggunian" :key="sanggunian.id">
 										<p>
-											{{ sanggunian.barangay_name }} <br />
+											Hon. {{ sanggunian.barangay_name }} <br />
 											{{ sanggunian.barangay_category.category_name }}
 										</p>
 									</div>

@@ -62,6 +62,12 @@
 								path: { name: 'generate_reports.index' },
 								gate: 'generate_reports_access'
 							},
+							{
+								title: 'Barangay Records',
+								icon: 'perm_data_setting',
+								path: { name: 'barangay_records.index' },
+								gate: 'generate_reports_access'
+							},
 						]
 					},
 					{
