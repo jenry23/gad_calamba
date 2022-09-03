@@ -87,6 +87,12 @@
 						thComp: TranslatedHeader,
 						tdComp: DatatablesFields
 					},
+					{
+						title: 'Request Date',
+						field: 'created_at',
+						thComp: TranslatedHeader,
+						sortable: true,
+					},
 				],
 				query: { sort: 'id', order: 'asc', limit: 20, s: '' },
 				xprops: {

@@ -85,7 +85,7 @@
 						]
 					},
 					{
-						title: 'POPCOM',
+						title: 'Household Update',
 						icon: 'contacts',
 						path: { name: 'gad' },
 						gate: 'gad_access',

@@ -227,7 +227,7 @@ class ImportGads implements
                     $result = $class::where($fields, 'LIKE', '%' . $query . '%')->first();
                 }
             } else {
-                $result = $class::where('barangay_id', $barangay_id)->where($fields, 'LIKE', '%' . $query . '%')->first();
+                $result = $class::where('barangay_id', $barangay_id)->where($fields, $query)->first();
             }
             $id = isset($result) ? $result->id : null;
         }

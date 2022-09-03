@@ -273,22 +273,22 @@
 		</div>
 		<div class="row">
 			<div class="col-md-6">
-				<div class="card card-stats h-80">
-					<div class="card-header card-header-success">
-						<h3 class="card-title">Utilities</h3>
-					</div>
-					<div class="card-body">
-						<line-chart :chart-data="data_utilities"></line-chart>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
 				<div class="card card-stats">
 					<div class="card-header card-header-success">
 						<h3 class="card-title">House Ownership</h3>
 					</div>
 					<div class="card-body">
 						<line-chart :chart-data="data_houseownership"></line-chart>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="card card-stats h-80">
+					<div class="card-header card-header-success">
+						<h3 class="card-title">Utilities</h3>
+					</div>
+					<div class="card-body">
+						<line-chart :chart-data="data_utilities"></line-chart>
 					</div>
 				</div>
 			</div>
@@ -308,7 +308,7 @@
 			<div class="col-md-6">
 				<div class="card card-stats">
 					<div class="card-header card-header-success">
-						<h3 class="card-title">Economic Status Graph</h3>
+						<h3 class="card-title">Monthly Income</h3>
 					</div>
 					<div class="card-body">
 						<bar-chart :chart-data="data_income"></bar-chart>
@@ -456,7 +456,7 @@
 					var data_label = []
 					monthly_income.forEach(data => {
 						data_charts.push(data.count_income);
-						data_label.push(data.range_min + '-' + data.range_maxf);
+						data_label.push(data.range_min + '-' + data.range_max);
 					});
 					const labels = data_label;
 					this.data_income = {

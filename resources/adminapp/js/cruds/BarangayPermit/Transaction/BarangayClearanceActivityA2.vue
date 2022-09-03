@@ -81,7 +81,7 @@
 											</p>
 											<div>
 												<b style="margin-right: 67px">Individual/Office/ Company Name:</b>
-												<b style="margin-right: 23px">:</b><b>__________________________</b>
+												<b style="margin-right: 23px">:</b><b><input type="text" /></b>
 											</div>
 											<div>
 												<b style="margin-right: 231px">Address</b>

@@ -106,14 +106,13 @@ class DashboardApiController extends Controller
 
             $sitios = Sitio::where('barangay_id', $user_with_barangay)->get();
             foreach ($sitios as $sitio) {
-                $resident = Gad::where('barangay_id', $user_with_barangay)->where('sitio_id', $sitio->id)->get();
+                $resident = Gad::where('sitio_id', $sitio->id)->get();
                 $sitio->count_resident = $resident->count();
             }
 
             $puroks = Purok::where('barangay_id', $user_with_barangay)->get();
             foreach ($puroks as $purok) {
-                $resident = Gad::where('barangay_id', $user_with_barangay)->where('purok_id', $purok->id)->get();
-                $purok->count_resident = $resident->count();
+                $purok->count_resident = Gad::where('purok_id', $purok->id)->count();
             }
 
             $total_voters_count = Gad::where('barangay_id', $user_with_barangay)->where('political_brgy_registered', $user_with_barangay)->count();

@@ -312,6 +312,12 @@
 				excel_name: 'gad.xls',
 				columns: [
 					{
+						title: 'ID',
+						field: 'id',
+						thComp: TranslatedHeader,
+						sortable: true,
+					},
+					{
 						title: 'Member Name',
 						field: 'full_name',
 						thComp: TranslatedHeader,
