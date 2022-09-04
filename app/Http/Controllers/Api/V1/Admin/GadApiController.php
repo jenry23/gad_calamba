@@ -50,6 +50,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class GadApiController extends Controller
 {
@@ -366,6 +367,16 @@ class GadApiController extends Controller
             }
         }
         return true;
+    }
+
+    public function deleteData(Request $request)
+    {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        GadItemDetails::whereDate('created_date', $request->date)->truncate();
+        Gad::whereDate('created_date', $request->date)->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 
     public function edit($id)

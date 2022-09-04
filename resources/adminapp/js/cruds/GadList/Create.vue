@@ -13,6 +13,23 @@
 		<div class="contact-form-error alert alert-danger mt-4" v-if="errors">
 			<strong>Error!</strong> There was an error sending your request.
 		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<datetime-picker
+					class="form-control popcom-input"
+					type="text"
+					picker="date"
+					format="yyyy"
+					placeholder="Select Date"
+					style="background-color: white"
+					@input="updateDate"
+					:value="date"
+				></datetime-picker>
+			</div>
+			<div class="col-md-3">
+				<button @click="deleteButton" class="btn btn-sm btn-success">Delete</button>
+			</div>
+		</div>
 		<div class="card">
 			<form-wizard
 				@on-complete="onComplete"
@@ -106,6 +123,7 @@
 				loading: false,
 				success: false,
 				errors: false,
+				date: null,
 			};
 		},
 		computed: {
@@ -133,6 +151,30 @@
 				if (validated) {
 					this.finalModel = { ...this.finalModel, ...model };
 				}
+			},
+
+			updateDate (e) {
+				this.date = e.target.value;
+			},
+
+			deleteButton () {
+				this.loading = true;
+				axios.post('gad/delete-data', { date: this.date })
+					.then(response => {
+						this.$eventHub.$emit('create-success')
+					}).catch(error => {
+						this.$swal({
+							title: 'Error',
+							text: error.response.data.message,
+							type: 'warning',
+							showCancelButton: true,
+							focusCancel: true,
+							reverseButtons: true
+						})
+						this.errors = true;
+					}).finally(() => {
+						this.loading = false
+					});
 			},
 
 			importFile (event) {
