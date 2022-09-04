@@ -15,7 +15,7 @@
 					<div class="card-body">
 						<button
 							type="button"
-							class="btn btn-default"
+							class="btn btn-success"
 							@click="fetchIndexData"
 							:disabled="loading"
 							:class="{ disabled: loading }"

@@ -372,8 +372,8 @@ class GadApiController extends Controller
     public function deleteData(Request $request)
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        GadItemDetails::whereDate('created_date', $request->date)->truncate();
-        Gad::whereDate('created_date', $request->date)->truncate();
+        GadItemDetails::whereDate('created_at', Carbon::parse($request->date)->format('Y-m-d'))->forceDelete();
+        Gad::whereDate('created_at', Carbon::parse($request->date)->format('Y-m-d'))->forceDelete();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         return response(null, Response::HTTP_NO_CONTENT);

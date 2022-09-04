@@ -71,6 +71,7 @@
 												type="text"
 												class="form-control"
 												@input="updateFamilyCode"
+												:readonly="!isDisabled"
 												:value="entry.family_code"
 											/>
 										</div>
@@ -92,6 +93,7 @@
 												:value="entry.household"
 												:options="lists.household"
 												@input="updateHousehold"
+												:readonly="!isDisabled"
 												@focus="focusField('household')"
 												@blur="clearFocus"
 											/>
@@ -115,6 +117,7 @@
 												:value="entry.gender"
 												:options="lists.gender"
 												@input="updateGender"
+												:readonly="!isDisabled"
 												@focus="focusField('gender')"
 												@blur="clearFocus"
 											/>
@@ -136,6 +139,7 @@
 												:value="entry.civil_status"
 												:options="lists.civil_status"
 												@input="updateCivilStatus"
+												:readonly="!isDisabled"
 												@focus="focusField('civil_status')"
 												@blur="clearFocus"
 											/>
@@ -155,6 +159,7 @@
 												type="text"
 												class="form-control"
 												@change="inputSpouseName"
+												:readonly="!isDisabled"
 												:value="`${entry.spouse_first_name || ''} ${
 													entry.spouse_middle_name || ''
 												} ${entry.spouse_last_name || ''}`"
@@ -178,6 +183,7 @@
 												picker="date"
 												:value="entry.birth_date"
 												@input="updateBirthdate"
+												:readonly="!isDisabled"
 												@focus="focusField('birthdate')"
 												@blur="clearFocus"
 											>
@@ -200,6 +206,7 @@
 												:value="entry.gender_preference"
 												:options="lists.gender_preference"
 												@input="updateGenderPreference"
+												:readonly="!isDisabled"
 												@focus="focusField('gender_preference')"
 												@blur="clearFocus"
 											/>
@@ -216,6 +223,7 @@
 												:value="entry.valid_id"
 												:options="lists.valid_id"
 												@input="updateValidID"
+												:readonly="!isDisabled"
 												@focus="focusField('valid_id')"
 												@blur="clearFocus"
 											/>
@@ -223,6 +231,7 @@
 												type="text"
 												class="form-control"
 												@input="updateIDNumber"
+												:readonly="!isDisabled"
 												:value="entry.id_number"
 											/>
 										</div>
@@ -249,6 +258,7 @@
 												:value="entry.religion"
 												:options="lists.religion"
 												@input="updateReligion"
+												:readonly="!isDisabled"
 												@focus="focusField('religion')"
 												@blur="clearFocus"
 											/>
@@ -271,6 +281,7 @@
 												:options="lists.ethnicity"
 												multiple
 												@input="updateEthnicity"
+												:readonly="!isDisabled"
 												@focus="focusField('ethnicity')"
 												@blur="clearFocus"
 											/>
@@ -294,6 +305,7 @@
 												:options="lists.sector"
 												multiple
 												@input="updateSector"
+												:readonly="!isDisabled"
 												@focus="focusField('sector')"
 												@blur="clearFocus"
 											/>
@@ -313,6 +325,7 @@
 												type="text"
 												class="form-control"
 												@input="updateMobileNumber"
+												:readonly="!isDisabled"
 												:value="entry.mobile_no"
 											/>
 										</div>
@@ -329,6 +342,7 @@
 												type="text"
 												class="form-control"
 												@input="updateLandlineNumber"
+												:readonly="!isDisabled"
 												:value="entry.landline_number"
 											/>
 										</div>
@@ -345,6 +359,7 @@
 												type="text"
 												class="form-control"
 												@input="updateEmail"
+												:readonly="!isDisabled"
 												:value="entry.email"
 											/>
 										</div>
@@ -373,6 +388,7 @@
 												:value="entry.political_city_registered"
 												:options="lists.political_city_registered"
 												@input="updatePoliticalCityRegistered"
+												:readonly="!isDisabled"
 												@focus="focusField('political_city_registered')"
 												@blur="clearFocus"
 											/>
@@ -394,6 +410,7 @@
 												:value="entry.political_province_registered"
 												:options="lists.political_province_registered"
 												@input="updatePoliticalProvinceRegistered"
+												:readonly="!isDisabled"
 												@focus="focusField('political_province_registered')"
 												@blur="clearFocus"
 											/>
@@ -417,6 +434,7 @@
 												:value="entry.political_brgy_registered"
 												:options="lists.political_brgy_registered"
 												@input="updatePoliticalBarangay"
+												:readonly="!isDisabled"
 												@focus="focusField('political_brgy_registered')"
 												@blur="clearFocus"
 											/>
@@ -435,6 +453,7 @@
 												class="form-control"
 												:value="entry.political_precinct_no"
 												@input="updatePoliticalPrecintNumber"
+												:readonly="!isDisabled"
 											/>
 										</div>
 									</div>
@@ -463,6 +482,7 @@
 												type="text"
 												class="form-control"
 												@change="updateBuildingHouseUnit"
+												:readonly="!isDisabled"
 												:value="`BLDG ${entry.building_no || ''} UNIT ${
 													entry.house_unit || ''
 												}`"
@@ -481,6 +501,7 @@
 												type="text"
 												class="form-control"
 												@input="updateBlockNoStreet"
+												:readonly="!isDisabled"
 												:value="entry.block_lot_house_id"
 											/>
 										</div>
@@ -504,6 +525,7 @@
 												:value="entry.purok"
 												:options="lists.purok"
 												@input="updatePurok"
+												:readonly="!isDisabled"
 												@focus="focusField('purok')"
 												@blur="clearFocus"
 											/>
@@ -525,6 +547,7 @@
 												:value="entry.sitio"
 												:options="lists.sitio"
 												@input="updateSitio"
+												:readonly="!isDisabled"
 												@focus="focusField('sitio')"
 												@blur="clearFocus"
 											/>
@@ -548,6 +571,7 @@
 													type="text"
 													picker="date"
 													@input="updateYearsInCalamba"
+													:readonly="!isDisabled"
 													:value="entry.calamba_residence_year"
 												></datetime-picker>
 											</td>
@@ -563,6 +587,7 @@
 													type="text"
 													picker="date"
 													@input="updateYearsInBarangay"
+													:readonly="!isDisabled"
 													:value="entry.barangay_residence_year"
 												></datetime-picker>
 											</td>
@@ -583,6 +608,7 @@
 										class="form-control"
 										rows="5"
 										@change="updateRemarks"
+										:readonly="!isDisabled"
 										:value="entry.remarks"
 									></textarea>
 								</div>
@@ -614,6 +640,7 @@
 												:value="entry.educational_attaintment"
 												:options="lists.educational_attaintment"
 												@input="updateEducationalAttaintment"
+												:readonly="!isDisabled"
 												@focus="focusField('educational_attaintment')"
 												@blur="clearFocus"
 											/>
@@ -635,6 +662,7 @@
 												:value="entry.educational_status"
 												:options="lists.educational_status"
 												@input="updateEducationalStatus"
+												:readonly="!isDisabled"
 												@focus="focusField('educational_status')"
 												@blur="clearFocus"
 											/>
@@ -655,6 +683,7 @@
 												type="text"
 												class="form-control"
 												@input="updateLastSchoolAttended"
+												:readonly="!isDisabled"
 												:value="entry.last_school_attended"
 											/>
 										</div>
@@ -679,6 +708,7 @@
 												:options="lists.educational_assistance"
 												multiple
 												@input="updateGovernmentAssistance"
+												:readonly="!isDisabled"
 												@focus="focusField('educational_assistance')"
 												@blur="clearFocus"
 											/>
@@ -700,6 +730,7 @@
 												:value="entry.organization"
 												:options="lists.organization"
 												@input="updateOrganization"
+												:readonly="!isDisabled"
 												@focus="focusField('organization')"
 												@blur="clearFocus"
 											/>
@@ -726,6 +757,7 @@
 												:value="entry.occupation"
 												:options="lists.occupation"
 												@input="updateOccupation"
+												:readonly="!isDisabled"
 												@focus="focusField('occupation')"
 												@blur="clearFocus"
 											/>
@@ -744,6 +776,7 @@
 												type="text"
 												class="form-control"
 												@input="updateEmployer"
+												:readonly="!isDisabled"
 												:value="entry.employer"
 											/>
 										</div>
@@ -766,6 +799,7 @@
 												:value="entry.work_location_city"
 												:options="lists.work_location_city"
 												@input="updateWorkLocationCity"
+												:readonly="!isDisabled"
 												@focus="focusField('work_location_city')"
 												@blur="clearFocus"
 											/>
@@ -788,6 +822,7 @@
 												:value="entry.work_location_province"
 												:options="lists.work_location_province"
 												@input="updateWorkLocationProvince"
+												:readonly="!isDisabled"
 												@focus="focusField('work_location_province')"
 												@blur="clearFocus"
 											/>
@@ -810,6 +845,7 @@
 												:value="entry.monthly_income"
 												:options="lists.monthly_income"
 												@input="updateMonthlyIncome"
+												:readonly="!isDisabled"
 												@focus="focusField('monthly_income')"
 												@blur="clearFocus"
 											/>
@@ -870,6 +906,7 @@
 												:options="lists.health_condition"
 												multiple
 												@input="updateHealthCondition"
+												:readonly="!isDisabled"
 												@focus="focusField('health_condition')"
 												@blur="clearFocus"
 											/>
@@ -892,6 +929,7 @@
 												:options="lists.disability_condition"
 												multiple
 												@input="updateDisability"
+												:readonly="!isDisabled"
 												@focus="focusField('disability_condition')"
 												@blur="clearFocus"
 											/>
@@ -912,6 +950,7 @@
 												type="text"
 												class="form-control"
 												@input="updateFullImmunization"
+												:readonly="!isDisabled"
 												:value="entry.full_immunization"
 											/>
 										</div>
@@ -933,6 +972,7 @@
 												:options="lists.medicine"
 												multiple
 												@input="updateMedicine"
+												:readonly="!isDisabled"
 												@focus="focusField('medicine')"
 												@blur="clearFocus"
 											/>
@@ -950,6 +990,7 @@
 											type="text"
 											class="form-control"
 											@input="updatePregnancyAge"
+											:readonly="!isDisabled"
 											:value="entry.pregnancy_age"
 										/>
 									</div>
@@ -963,6 +1004,7 @@
 											type="text"
 											class="form-control"
 											@input="updatePrentalCheckup"
+											:readonly="!isDisabled"
 											:value="entry.prental_checkup"
 										/>
 									</div>
@@ -976,6 +1018,7 @@
 											type="text"
 											class="form-control"
 											@input="updatePostalCheckup"
+											:readonly="!isDisabled"
 											:value="entry.postnatal_checkup"
 										/>
 									</div>
@@ -998,6 +1041,7 @@
 													type="text"
 													class="form-control"
 													@input="updateBrand1"
+													:readonly="!isDisabled"
 													:value="entry.brand1"
 												/>
 											</td>
@@ -1007,6 +1051,7 @@
 													type="text"
 													picker="date"
 													@input="updateFirstDateVaccination"
+													:readonly="!isDisabled"
 													:value="entry.first_date_vaccination"
 												></datetime-picker>
 											</td>
@@ -1018,6 +1063,7 @@
 													type="text"
 													class="form-control"
 													@input="updateBrand2"
+													:readonly="!isDisabled"
 													:value="entry.brand2"
 												/>
 											</td>
@@ -1027,6 +1073,7 @@
 													type="text"
 													picker="date"
 													@input="updateSecondDateVaccination"
+													:readonly="!isDisabled"
 													:value="entry.second_date_vaccination"
 												></datetime-picker>
 											</td>
@@ -1038,6 +1085,7 @@
 													type="text"
 													class="form-control"
 													@input="updateBrand3"
+													:readonly="!isDisabled"
 													:value="entry.brand3"
 												/>
 											</td>
@@ -1047,6 +1095,7 @@
 													type="text"
 													picker="date"
 													@input="updateBoosterDateVaccination"
+													:readonly="!isDisabled"
 													:value="entry.booster_date_vaccination"
 												></datetime-picker>
 											</td>
@@ -1082,6 +1131,7 @@
 												:options="lists.soft_skill"
 												multiple
 												@input="updateSoftSkills"
+												:readonly="!isDisabled"
 												@focus="focusField('soft_skill')"
 												@blur="clearFocus"
 											/>
@@ -1104,6 +1154,7 @@
 												:options="lists.hard_skill"
 												multiple
 												@input="updateHardSkills"
+												:readonly="!isDisabled"
 												@focus="focusField('hard_skill')"
 												@blur="clearFocus"
 											/>
@@ -1128,6 +1179,7 @@
 												:options="lists.hobbies"
 												multiple
 												@input="updateHobbies"
+												:readonly="!isDisabled"
 												@focus="focusField('hobbies')"
 												@blur="clearFocus"
 											/>
@@ -1150,6 +1202,7 @@
 												:options="lists.sports"
 												multiple
 												@input="updateSports"
+												:readonly="!isDisabled"
 												@focus="focusField('sports')"
 												@blur="clearFocus"
 											/>
@@ -1184,6 +1237,7 @@
 												:value="entry.house_ownership"
 												:options="lists.house_ownership"
 												@input="updateHouseOwnership"
+												:readonly="!isDisabled"
 												@focus="focusField('house_ownership')"
 												@blur="clearFocus"
 											/>
@@ -1205,6 +1259,7 @@
 												:value="entry.house_type"
 												:options="lists.house_type"
 												@input="updateHouseType"
+												:readonly="!isDisabled"
 												@focus="focusField('house_type')"
 												@blur="clearFocus"
 											/>
@@ -1226,6 +1281,7 @@
 												:value="entry.house_make"
 												:options="lists.house_make"
 												@input="updateHouseMake"
+												:readonly="!isDisabled"
 												@focus="focusField('house_make')"
 												@blur="clearFocus"
 											/>
@@ -1246,6 +1302,7 @@
 												type="text"
 												class="form-control"
 												@input="updateNuclearFamilyHousehold"
+												:readonly="!isDisabled"
 												:value="entry.no_nuclear_family_household_id"
 											/>
 										</div>
@@ -1262,6 +1319,7 @@
 												type="text"
 												class="form-control"
 												@input="updateBedRooms"
+												:readonly="!isDisabled"
 												:value="entry.no_bedrooms_id"
 											/>
 										</div>
@@ -1278,6 +1336,7 @@
 												type="text"
 												class="form-control"
 												@input="updateCRID"
+												:readonly="!isDisabled"
 												:value="entry.no_cr_id"
 											/>
 										</div>
@@ -1303,6 +1362,7 @@
 												:options="lists.utilities"
 												multiple
 												@input="updateUtilities"
+												:readonly="!isDisabled"
 												@focus="focusField('utilities')"
 												@blur="clearFocus"
 											/>
@@ -1327,6 +1387,7 @@
 												:options="lists.appliance"
 												multiple
 												@input="updateAppliance"
+												:readonly="!isDisabled"
 												@focus="focusField('appliance')"
 												@blur="clearFocus"
 											/>
@@ -1351,6 +1412,7 @@
 												:options="lists.vehicle"
 												multiple
 												@input="updateVehicle"
+												:readonly="!isDisabled"
 												@focus="focusField('vehicle')"
 												@blur="clearFocus"
 											/>
@@ -1395,7 +1457,7 @@
 			</div>
 			<div class="col-md-3">
 				<div class="card card-profile">
-					<div>
+					<div v-if="isDisabled">
 						<attachment
 							:route="getRoute('gad')"
 							:collection-name="'resident_photo'"
@@ -1438,10 +1500,17 @@
 							ng Laguna, Pilipinas. Ito ay nasa layong 54 kilometro sa timog ng Maynila, at isang oras
 							ang layo kung sasakay ng bus
 						</p>
-						<button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
+						<button
+							v-if="isDisabled"
+							type="button"
+							class="btn btn-info"
+							data-toggle="modal"
+							data-target="#exampleModal"
+						>
 							Transfer Resident
 						</button>
 						<vue-button-spinner
+							v-if="isDisabled"
 							class="btn-primary"
 							:status="status"
 							:isLoading="loading"
@@ -1488,6 +1557,7 @@
 									:value="entry.barangay"
 									:options="lists.barangay"
 									@input="updateBarangay"
+									:readonly="!isDisabled"
 									@focus="focusField('barangay')"
 									@blur="clearFocus"
 								/>
@@ -1497,6 +1567,7 @@
 								type="text"
 								class="form-control"
 								@input="updateHouseholdNumber"
+								:readonly="!isDisabled"
 								:value="entry.household_no"
 							/>
 						</div>
@@ -1610,10 +1681,14 @@ hr {
 				}
 			},
 
+			isDisabled () {
+				return this.$can('gad_edit');
+			}
 		},
 		beforeDestroy () {
 			this.resetState();
 		},
+
 		watch: {
 			"$route.params.id": {
 				immediate: true,

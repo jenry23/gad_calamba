@@ -63,6 +63,20 @@ class TransactionApiController extends Controller
         ]);
     }
 
+    public function printData(Request $request)
+    {
+        $gad_id = $request->resident['id'];
+        $gad = Gad::find($gad_id);
+        $attributes = [
+            'transaction_type_id' => $request->transaction['id'],
+            'gad_id'    => $gad_id,
+            'status'    => 1
+        ];
+
+        $data = BarangayRecord::create($attributes);
+        return response()->json($data);
+    }
+
     public function store(Request $request)
     {
         $gad_id = $request->resident['id'];
@@ -72,14 +86,6 @@ class TransactionApiController extends Controller
         } else {
             $images = Auth::user()->photo[1]['url'] ?? Auth::user()->photo[0]['url'];
         }
-
-        $attributes = [
-            'transaction_type_id' => $request->transaction['id'],
-            'gad_id'    => $gad_id,
-            'status'    => 1
-        ];
-
-        BarangayRecord::create($attributes);
 
         $barangay_sanggunian = BarangaySanggunian::with(['barangay_category'])->where('barangay_id', $gad->barangay_id)->orderBy('barangay_sanggunian_category_id', 'asc')->get();
 

@@ -181,6 +181,9 @@
 			},
 			downloads () {
 				this.$refs.html2Pdf.generatePdf()
+				axios.post('transaction/print-data', this.entry).then(response => {
+
+				})
 			},
 			submitForm () {
 				axios.post('transaction', this.entry).then(response => {

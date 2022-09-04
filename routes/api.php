@@ -120,5 +120,6 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     Route::resource('survey', 'SurveyApiController');
 
     //Transaction
+    Route::post('transaction/print-data', 'TransactionApiController@printData');
     Route::resource('transaction', 'TransactionApiController');
 });
