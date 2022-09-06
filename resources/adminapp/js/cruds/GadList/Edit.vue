@@ -86,6 +86,7 @@
 										>
 											<label>Relation To Main Household</label>
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="household"
 												label="household_name"
@@ -110,6 +111,7 @@
 										>
 											<label>Sex</label>
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="gender"
 												label="gender_name"
@@ -132,6 +134,7 @@
 										>
 											<label>Civil Status</label>
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="civil_status"
 												label="civil_status_name"
@@ -199,6 +202,7 @@
 										>
 											<label>Gender Preference</label>
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="gender_preference"
 												label="gender_preference_name"
@@ -216,6 +220,7 @@
 										<label>Valid ID / ID Number</label>
 										<div class="input-group flex-nowrap mt-1">
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="valid_id"
 												label="name"
@@ -251,6 +256,7 @@
 											<label>Religion:</label>
 
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="religion"
 												label="religion_name"
@@ -273,6 +279,7 @@
 										>
 											<label>Ethnicity:</label>
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="ethnicity"
 												label="ethnicity_name"
@@ -297,6 +304,7 @@
 										>
 											<label>Sector Member</label>
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="sector"
 												label="sector_name"
@@ -381,6 +389,7 @@
 										>
 											<label>City/Municipality</label>
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="political_city_registered"
 												label="city_name"
@@ -403,6 +412,7 @@
 										>
 											<label> Province Register</label>
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="political_province_registered"
 												label="province_name"
@@ -427,6 +437,7 @@
 										>
 											<label>Barangay Polling Place</label>
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="political_brgy_registered"
 												label="barangay_name"
@@ -518,6 +529,7 @@
 										>
 											<label>Purok</label>
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="purok"
 												label="purok_name"
@@ -540,6 +552,7 @@
 										>
 											<label>Subdivsion / Sitio</label>
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="sitio"
 												label="sitio_name"
@@ -633,6 +646,7 @@
 										>
 											<label>Highest Educational Attaintment</label>
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="educational_attaintment"
 												label="educational_attaintment_name"
@@ -655,6 +669,7 @@
 										>
 											<label>Educational Status</label>
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="educational_status"
 												label="educational_status_name"
@@ -700,6 +715,7 @@
 										>
 											<label>Government Educational Assistance</label>
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="educational_assistance"
 												label="educational_assistance_name"
@@ -723,6 +739,7 @@
 										>
 											<label>Organizations</label>
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="organization"
 												label="organization_name"
@@ -750,6 +767,7 @@
 										>
 											<label>Occupation</label>
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="occupation"
 												label="occupation_name"
@@ -800,6 +818,7 @@
 												:options="lists.work_location_city"
 												@input="updateWorkLocationCity"
 												:readonly="!isDisabled"
+												:disabled="!isDisabled"
 												@focus="focusField('work_location_city')"
 												@blur="clearFocus"
 											/>
@@ -815,6 +834,7 @@
 										>
 											<label>Work Location Province</label>
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="work_location_province"
 												label="province_name"
@@ -838,6 +858,7 @@
 										>
 											<label>Monthly Income (Econimic Status)</label>
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="monthly_income"
 												label="monthly_income_name"
@@ -898,6 +919,7 @@
 										>
 											<label>Health Condition</label>
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="health_condition"
 												label="health_name"
@@ -921,6 +943,7 @@
 										>
 											<label>Disability</label>
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="disability_condition"
 												label="disability_name"
@@ -964,6 +987,7 @@
 										>
 											<label>Maintaining Medicine</label>
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="medicine"
 												label="medicine_name"
@@ -1123,6 +1147,7 @@
 										>
 											<label>Soft Skills</label>
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="soft_skill"
 												label="soft_skill_name"
@@ -1146,6 +1171,7 @@
 										>
 											<label>Hard Skills</label>
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="hard_skill"
 												label="hard_skill_name"
@@ -1171,6 +1197,7 @@
 										>
 											<label>Hobbies</label>
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="hobbies"
 												label="hobbies_name"
@@ -1194,6 +1221,7 @@
 										>
 											<label>Sports</label>
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="sports"
 												label="sports_name"
@@ -1230,6 +1258,7 @@
 										>
 											<label>House Ownership</label>
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="house_ownership"
 												label="house_ownership_name"
@@ -1252,6 +1281,7 @@
 										>
 											<label>House Type</label>
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="house_type"
 												label="house_type_name"
@@ -1274,6 +1304,7 @@
 										>
 											<label>House Make</label>
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="house_make"
 												label="house_make_name"
@@ -1354,6 +1385,7 @@
 										>
 											<label>Utilities</label>
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="utilities"
 												label="utilities_name"
@@ -1379,6 +1411,7 @@
 										>
 											<label>Appliances</label>
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="appliance"
 												label="appliance_name"
@@ -1404,6 +1437,7 @@
 										>
 											<label>Vehicle</label>
 											<v-select
+												:disabled="!isDisabled"
 												class="form-control popcom-input"
 												name="vehicle"
 												label="vehicles_name"
@@ -1550,6 +1584,7 @@
 							>
 								<label>Barangay</label>
 								<v-select
+									:disabled="!isDisabled"
 									class="form-control popcom-input"
 									name="barangay"
 									label="barangay_name"
@@ -1614,6 +1649,9 @@ hr {
 
 .vs__search {
 	width: 400px;
+}
+option:disabled {
+   color: #abcdef;
 }
 </style>
 <script>
