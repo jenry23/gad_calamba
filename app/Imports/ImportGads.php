@@ -186,10 +186,8 @@ class ImportGads implements
                         $this->addGadDetailsItem($gad_id, Sports::class, $this->convertStringToID(Sports::class, 'sports_name', $row["sports_1_not_required_dropdown_option"]), 'sports');
                         $this->addGadDetailsItem($gad_id, Sports::class, $this->convertStringToID(Sports::class, 'sports_name', $row["sports_2_not_required_dropdown_option"]), 'sports');
                         $this->addGadDetailsItem($gad_id, Ethnicity::class, $this->convertStringToID(Ethnicity::class, 'ethnicity_name', $row["ethnicity_no_01_not_required_dropdown_option"]), 'ethnicity');
-                        if ($row["sector_no_01_not_required_dropdown_option"] !== 'Senior Citizen') {
-                            $this->addGadDetailsItem($gad_id, Sector::class, $this->convertStringToID(Sector::class, 'sector_name', $row["sector_no_01_not_required_dropdown_option"]), 'sector');
-                            $this->addGadDetailsItem($gad_id, Sector::class, $this->convertStringToID(Sector::class, 'sector_name', $row["sector_no_02_not_required_dropdown_option"]), 'sector');
-                        }
+                        $this->addGadDetailsItem($gad_id, Sector::class, $this->convertStringToID(Sector::class, 'sector_name', $row["sector_no_01_not_required_dropdown_option"]), 'sector');
+                        $this->addGadDetailsItem($gad_id, Sector::class, $this->convertStringToID(Sector::class, 'sector_name', $row["sector_no_02_not_required_dropdown_option"]), 'sector');
                         $this->addGadDetailsItem($gad_id, Utilities::class, $this->convertStringToID(Utilities::class, 'utilities_name', $row["utilities_no_01_not_required_dropdown_option"]), 'utilities');
                         $this->addGadDetailsItem($gad_id, Utilities::class, $this->convertStringToID(Utilities::class, 'utilities_name', $row["utilities_no_02_not_required_dropdown_option"]), 'utilities');
                         $this->addGadDetailsItem($gad_id, Utilities::class, $this->convertStringToID(Utilities::class, 'utilities_name', $row["utilities_no_03_not_required_dropdown_option"]), 'utilities');
@@ -242,16 +240,6 @@ class ImportGads implements
     {
 
         if (!empty($item_id)) {
-            if ($class === Disability::class) {
-                $data = [
-                    'gad_id' => $gad_id,
-                    'item_type' => $class,
-                    'item_id' => 1,
-                    'item_name' => 'sector',
-                    'status' => 1
-                ];
-                GadItemDetails::create($data);
-            }
             $data = [
                 'gad_id' => $gad_id,
                 'item_type' => $class,
