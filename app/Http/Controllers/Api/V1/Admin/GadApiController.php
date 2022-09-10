@@ -48,6 +48,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -134,8 +135,12 @@ class GadApiController extends Controller
     }
     public function create(Request $request)
     {
+        $barangay = Barangay::all();
+
         return response([
-            'meta' => [],
+            'meta' => [
+                'barangay' => $barangay
+            ],
         ]);
     }
     public function firstData(Request $request)
@@ -371,10 +376,19 @@ class GadApiController extends Controller
 
     public function deleteData(Request $request)
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        GadItemDetails::whereDate('created_at', Carbon::parse($request->date)->format('Y-m-d'))->forceDelete();
-        Gad::whereDate('created_at', Carbon::parse($request->date)->format('Y-m-d'))->forceDelete();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        // DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::transaction(
+            function () use ($request) {
+                // TODO: select by created_at
+                Gad::where('barangay_id', $request['barangay_id'])
+                    ->get()
+                    ->map(function ($gad) {
+                        $gad->gadDetails->each->delete();
+                        $gad->forceDelete();
+                    });
+            }
+        );
+        // DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         return response(null, Response::HTTP_NO_CONTENT);
     }

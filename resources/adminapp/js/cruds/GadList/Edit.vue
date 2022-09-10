@@ -37,7 +37,7 @@
 				<div class="tab-content">
 					<div class="tab-pane active" id="personal">
 						<div class="card">
-							<div class="card-header card-header-primary">
+							<div class="card-header card-header-success">
 								<h4 class="card-title">Personal Information</h4>
 								<p class="card-category">Complete your profile</p>
 							</div>
@@ -475,7 +475,7 @@
 
 					<div class="tab-pane" id="address">
 						<div class="card">
-							<div class="card-header card-header-primary">
+							<div class="card-header card-header-success">
 								<h4 class="card-title">Residential Information</h4>
 								<p class="card-category">Complete your profile</p>
 							</div>
@@ -631,7 +631,7 @@
 
 					<div class="tab-pane" id="educational">
 						<div class="card">
-							<div class="card-header card-header-primary">
+							<div class="card-header card-header-success">
 								<h4 class="card-title">Educational Information / Educational Information</h4>
 								<p class="card-category">Complete your profile</p>
 							</div>
@@ -904,7 +904,7 @@
 
 					<div class="tab-pane" id="health">
 						<div class="card">
-							<div class="card-header card-header-primary">
+							<div class="card-header card-header-success">
 								<h4 class="card-title">Health Information</h4>
 								<p class="card-category">Complete your profile</p>
 							</div>
@@ -1132,7 +1132,7 @@
 
 					<div class="tab-pane" id="skills">
 						<div class="card">
-							<div class="card-header card-header-primary">
+							<div class="card-header card-header-success">
 								<h4 class="card-title">Skills Hobbies</h4>
 								<p class="card-category">Complete your profile</p>
 							</div>
@@ -1243,7 +1243,7 @@
 
 					<div class="tab-pane" id="housetype">
 						<div class="card">
-							<div class="card-header card-header-primary">
+							<div class="card-header card-header-success">
 								<h4 class="card-title">House Type and Components Information</h4>
 								<p class="card-category">Complete your profile</p>
 							</div>
@@ -1651,7 +1651,7 @@ hr {
 	width: 400px;
 }
 option:disabled {
-   color: #abcdef;
+	color: #abcdef;
 }
 </style>
 <script>

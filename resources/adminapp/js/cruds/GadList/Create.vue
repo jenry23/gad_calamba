@@ -15,18 +15,32 @@
 		</div>
 		<div class="row">
 			<div class="col-md-3">
+				<div class="form-group bmd-form-group">
+					<v-select
+						name="barangay_id"
+						label="barangay_name"
+						:key="'barangay_id-field'"
+						:value="barangay_id"
+						style="background-color: white"
+						placeholder="Select Barangay"
+						:options="lists.barangay"
+						@input="updateBarangayID"
+					/>
+				</div>
+			</div>
+			<!-- <div class="col-md-3 mt-2">
 				<datetime-picker
 					class="form-control popcom-input"
 					type="text"
 					picker="date"
 					format="yyyy"
-					placeholder="Select Date"
+					placeholder=" Select Date"
 					style="background-color: white"
 					@input="updateDate"
 					:value="date"
 				></datetime-picker>
-			</div>
-			<div class="col-md-3">
+			</div> -->
+			<div class="col-md-3 mt-2">
 				<button @click="deleteButton" class="btn btn-sm btn-success">Delete</button>
 			</div>
 		</div>
@@ -94,6 +108,7 @@
 }
 </style>
 <script>
+	import { mapGetters, mapActions } from 'vuex'
 	import DateRangePicker from 'vue2-daterange-picker'
 	import FirstStep from "@components/FormWizard/FirstStep.vue";
 	import SecondStep from "@components/FormWizard/SecondStep.vue";
@@ -123,15 +138,24 @@
 				loading: false,
 				success: false,
 				errors: false,
+				barangay_id: '',
 				date: null,
 			};
 		},
+
 		computed: {
+			...mapGetters('GadListSingle', ['lists']),
 			prettyJSON () {
 				return prettyJSON(this.finalModel);
 			}
 		},
+
+		mounted () {
+			this.fetchCreateData()
+		},
+
 		methods: {
+			...mapActions('GadListSingle', ['fetchCreateData']),
 			onComplete () {
 				axios.post('gad', this.finalModel)
 					.then(response => {
@@ -152,6 +176,9 @@
 					this.finalModel = { ...this.finalModel, ...model };
 				}
 			},
+			updateBarangayID (value) {
+				this.barangay_id = value;
+			},
 
 			updateDate (e) {
 				this.date = e.target.value;
@@ -159,9 +186,9 @@
 
 			deleteButton () {
 				this.loading = true;
-				axios.post('gad/delete-data', { date: this.date })
+				axios.post('gad/delete-data', { date: this.date, barangay_id: this.barangay_id.id })
 					.then(response => {
-						this.$eventHub.$emit('create-success')
+						this.$eventHub.$emit('delete-success')
 					}).catch(error => {
 						this.$swal({
 							title: 'Error',

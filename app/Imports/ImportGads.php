@@ -219,6 +219,7 @@ class ImportGads implements
     private function convertStringToID($class, $fields, $query, $barangay_id = null)
     {
         $id = null;
+        $query = ucfirst(trim($query));
         if (!empty($query) && $query !== " ") {
             if (is_null($barangay_id)) {
                 if ($fields === 'monthly_income_name') {
@@ -237,7 +238,18 @@ class ImportGads implements
 
     private function addGadDetailsItem(int $gad_id, $class, $item_id, $item_name)
     {
+
         if (!empty($item_id)) {
+            if ($class === Disability::class) {
+                $data = [
+                    'gad_id' => $gad_id,
+                    'item_type' => $class,
+                    'item_id' => 1,
+                    'item_name' => 'sector',
+                    'status' => 1
+                ];
+                GadItemDetails::create($data);
+            }
             $data = [
                 'gad_id' => $gad_id,
                 'item_type' => $class,

@@ -29,6 +29,8 @@ class DashboardApiController extends Controller
     {
         abort_if(Gate::denies('dashboard_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+        ini_set('memory_limit', '5G');
+
         $user_with_barangay = Auth::user()->barangay;
 
         if (isset($user_with_barangay)) {
