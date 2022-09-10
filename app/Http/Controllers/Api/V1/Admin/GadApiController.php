@@ -231,6 +231,7 @@ class GadApiController extends Controller
             'data' => [
                 'first_data' => $gads,
                 'second_data' => $gads1,
+                'user' => Auth::user()
             ]
         ]);
     }

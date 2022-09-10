@@ -60,22 +60,31 @@ td {
 								<div class="col-md-3">
 									<br />
 									<img src="/images/cap.jpg" height="128px" width="130px" />
-									<img src="/images/popcom.png" height="128px" width="130px" />
+									<img
+										v-if="lists.user && lists.user.photo[1].url"
+										:src="lists.user.photo[1].url"
+										height="108px"
+										width="110px"
+									/>
+									<img v-else src="/images/popcom.png" height="108px" width="110px" />
 									<b></b>
 								</div>
 								<div class="col-md-6">
 									<div class="pull-left">
 										<h3 style="color: black; font-family: Glacial Indifference">
-											<b
-												style="
-													text-transform: uppercase;
-													margin-right: 100px;
-													font-weight: 900;
-												"
+											<b style="text-transform: uppercase; margin-left: -17%; font-weight: 900"
 												>City Government of Calamba</b
 											><br />
-											<b style="text-transform: uppercase; font-weight: 900"
-												>City population management office</b
+											<b
+												v-if="lists.second_data && lists.second_data.barangay"
+												style="text-transform: uppercase; margin-left: -45%; font-weight: 900"
+												>BARANGAY {{ lists.second_data.barangay.barangay_name }}</b
+											>
+											<b
+												v-else
+												style="text-transform: uppercase; margin-left: -2%; font-weight: 900"
+											>
+												CITY POPULATION MANAGEMENT OFFICE </b
 											><br />
 											<b
 												style="
@@ -311,7 +320,7 @@ td {
 				}
 				return data;
 			},
-			...mapActions('GadListSingle', ['fetchShowData', 'resetState']),
+			...mapActions('GadListSingle', ['fetch', 'fetchShowData', 'resetState']),
 			downloads () {
 				this.$refs.html2Pdf.generatePdf()
 			}
