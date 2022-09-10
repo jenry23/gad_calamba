@@ -216,7 +216,7 @@ class Gad extends Model implements HasMedia
         $disability_id = $this->gadDetails()->whereHasMorph('item', [Disability::class])->get()->pluck('item_id')->toArray();
 
         if ($disability_id) {
-            return Disability::whereIn('id', $disability_id)->get()->pluck('health_name')->toArray();
+            return Disability::whereIn('id', $disability_id)->get()->pluck('disability_name')->toArray();
         }
     }
 
