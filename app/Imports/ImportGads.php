@@ -201,8 +201,8 @@ class ImportGads implements
                         $this->addGadDetailsItem($gad_id, Organization::class, $this->convertStringToID(Organization::class, 'organization_name', $row["organizations_involved_no_01_not_required"]), 'organization');
                         $this->addGadDetailsItem($gad_id, Organization::class, $this->convertStringToID(Organization::class, 'organization_name', $row["organizations_involved_no_02_not_required"]), 'organization');
                         $this->addGadDetailsItem($gad_id, Organization::class, $this->convertStringToID(Organization::class, 'organization_name', $row["organizations_involved_no_02_not_required"]), 'organization');
-                        $this->addGadDetailsItem($gad_id, Medical::class, $this->convertStringToID(Medical::class, 'health_name', $row["maintaining_medicine_no_01"]), 'medical');
-                        $this->addGadDetailsItem($gad_id, Medical::class, $this->convertStringToID(Medical::class, 'health_name', $row["maintaining_medicine_no_02"]), 'medical');
+                        $this->addGadDetailsItem($gad_id, Medicine::class, $this->convertStringToID(Medicine::class, 'medicine_name', $row["maintaining_medicine_no_01"]), 'medicine');
+                        $this->addGadDetailsItem($gad_id, Medicine::class, $this->convertStringToID(Medicine::class, 'medicine_name', $row["maintaining_medicine_no_02"]), 'medicine');
                     }
                 );
             }
