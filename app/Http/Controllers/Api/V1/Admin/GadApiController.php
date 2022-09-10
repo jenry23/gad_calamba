@@ -513,7 +513,7 @@ class GadApiController extends Controller
             })->first();
 
             $household_gad = $gads->filter(function ($spouse) {
-                return $spouse->household_id == 2;
+                return $spouse->household_id == 1;
             })->first();
 
             if (isset($spouse_gad)) {
