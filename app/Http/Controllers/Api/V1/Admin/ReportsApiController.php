@@ -54,7 +54,8 @@ class ReportsApiController extends Controller
             'meta' => [
                 'gender' => $gender,
                 'barangay' => $barangays,
-                'sector' => $sector
+                'sector' => $sector,
+                'user' => Auth::user()
             ]
         ]);
     }

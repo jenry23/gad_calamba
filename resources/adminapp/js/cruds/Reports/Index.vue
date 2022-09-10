@@ -1,254 +1,275 @@
 <template>
-    <div class="container-fluid">
-        <div class="loader" v-if="loader"></div>
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Advance Search</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-success">Save changes</button>
-                    </div>
-                    </div>
-                </div>
-                </div>
-                <vue-html2pdf
-                    :show-layout="false"
-                    :float-layout="false"
-                    :enable-download="true"
-                    :preview-modal="true"
-                    :paginate-elements-by-height="1000"
-                    filename="content"
-                    :pdf-quality="2"
-                    :manual-pagination="false"
-                    pdf-format="a4"
-                    pdf-orientation="landscape"
-                    pdf-content-width="1120px"
+	<div class="container-fluid">
+		<div class="loader" v-if="loader"></div>
+		<div
+			class="modal fade"
+			id="exampleModalCenter"
+			tabindex="-1"
+			role="dialog"
+			aria-labelledby="exampleModalCenterTitle"
+			aria-hidden="true"
+		>
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle">Advance Search</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">...</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-success">Save changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<vue-html2pdf
+			:show-layout="false"
+			:float-layout="false"
+			:enable-download="true"
+			:preview-modal="true"
+			:paginate-elements-by-height="1000"
+			filename="content"
+			:pdf-quality="2"
+			:manual-pagination="false"
+			pdf-format="a4"
+			pdf-orientation="landscape"
+			pdf-content-width="1120px"
+			@progress="onProgress($event)"
+			@hasStartedGeneration="hasStartedGeneration()"
+			@hasGenerated="hasGenerated($event)"
+			ref="html2Pdf"
+		>
+			<section slot="pdf-content">
+				<form @submit.prevent="submitForm">
+					<div class="row">
+						<div class="col-md-8">
+							<div class="card">
+								<div class="row">
+									<div class="col-md-4">
+										<br />
+										<img src="/images/cap.jpg" height="108px" width="110px" />
+										<img
+											v-if="lists.user && lists.user.photo[0].url"
+											:src="lists.user.photo[0].url"
+											height="108px"
+											width="110px"
+										/>
+										<img v-else src="/images/popcom.png" height="108px" width="110px" />
+									</div>
+									<div class="col-md-8">
+										<div>
+											<h3 style="color: black">
+												<b style="text-transform: uppercase">City Government of Calamba</b
+												><br />
+												<b
+													v-if="lists.barangay && lists.barangay[0]"
+													style="text-transform: uppercase"
+													>BARANGAY {{ lists.barangay[0].barangay_name }}</b
+												>
+												<b v-else style="text-transform: uppercase">
+													CITY POPULATION MANAGEMENT OFFICE
+												</b>
+												<br />
+												<b style="text-transform: uppercase; margin-right: 130px"
+													>Household Profile</b
+												>
+											</h3>
+										</div>
+									</div>
+								</div>
+								<pie-chart :chart-data="chartData" :options="options"></pie-chart>
+								<div class="row">
+									<div class="col-md-3"></div>
+									<div class="col-md-3">
+										<h3>Male : {{ male }}</h3>
+									</div>
+									<div class="col-md-3">
+										<h3>Female : {{ female }}</h3>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="card">
+								<div class="card-header card-header-success">
+									<h4 class="card-title">Generate Reports</h4>
+									<p class="crd-category">Advance Search</p>
+								</div>
+								<div class="card-body">
+									<br />
+									<div>
+										<label class="label">Barangay</label>
+										<v-select
+											name="barangay"
+											label="barangay_name"
+											:value="entry.barangay"
+											:options="lists.barangay"
+											@input="updateBarangay"
+											@focus="focusField('barangay')"
+											@blur="clearFocus"
+											required
+										/>
+									</div>
+									<div>
+										<label class="label">Purok</label>
+										<v-select
+											name="purok"
+											label="purok_name"
+											:value="entry.purok"
+											:options="others.purok"
+											@input="updatePurok"
+											@focus="focusField('purok')"
+											@blur="clearFocus"
+											:disabled="disabled_purok == 1"
+											required
+										/>
+									</div>
+									<div>
+										<label class="label">Sitio</label>
+										<v-select
+											name="sitio"
+											label="sitio_name"
+											:value="entry.sitio"
+											:options="others.sitio"
+											@input="updateSitio"
+											@focus="focusField('sitio')"
+											@blur="clearFocus"
+											:disabled="disabled_sitio == 1"
+											required
+										/>
+									</div>
+									<div>
+										<label class="label">Sector</label>
+										<v-select
+											name="sector"
+											label="sector_name"
+											:value="entry.sector"
+											:options="lists.sector"
+											@input="updateSector"
+											@focus="focusField('sector')"
+											@blur="clearFocus"
+											required
+										/>
+									</div>
+									<div>
+										<label class="label">Gender</label>
+										<v-select
+											name="gender"
+											label="gender_name"
+											:value="entry.gender"
+											:options="lists.gender"
+											@input="updateGender"
+											@focus="focusField('gender')"
+											@blur="clearFocus"
+											required
+										/>
+									</div>
+									<div>
+										<label class="label">Age</label>
+										<div class="row">
+											<div class="col-md-6">
+												<input
+													type="number"
+													placeholder="From"
+													@input="updateAgeFrom"
+													:value="entry.age_from"
+													class="form-control"
+													name="age_from"
+												/>
+											</div>
+											<div class="col-md-6">
+												<input
+													type="number"
+													placeholder="To"
+													:value="entry.age_to"
+													@input="updateAgeTo"
+													class="form-control"
+													name="age_to"
+												/>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="card-footer">
+									<vue-button-spinner
+										class="btn-info"
+										:status="status"
+										:isLoading="loading"
+										:disabled="loading"
+									>
+										Search
+									</vue-button-spinner>
+									<button
+										type="button"
+										class="btn btn-success"
+										data-toggle="modal"
+										data-target="#exampleModalCenter"
+									>
+										Advance Filter
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-header card-header-success card-header-icon">
+								<div class="card-icon">
+									<i class="material-icons">assignment</i>
+								</div>
+								<h4 class="card-title">
+									Table
+									<strong>Resident List</strong>
+								</h4>
+							</div>
 
-                    @progress="onProgress($event)"
-                    @hasStartedGeneration="hasStartedGeneration()"
-                    @hasGenerated="hasGenerated($event)"
-                    ref="html2Pdf"
-                >
-                <section slot="pdf-content">
-            <form @submit.prevent="submitForm">
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="card">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <br />
-                                    <img src="/images/cap.jpg" height="108px" width="110px" />
-                                    <img src="/images/popcom.png" height="108px" width="110px" />
-                                </div>
-                                <div class="col-md-8">
-                                    <div>
-                                        <h3 style="color: black">
-                                            <b style="text-transform: uppercase">City Government of Calamba</b><br />
-                                            <b style="text-transform: uppercase; "
-                                                >CITY POPULATION MANAGEMENT OFFICE</b
-                                            ><br />
-                                            <b style="text-transform: uppercase; margin-right: 130px"
-                                                >Household Profile</b
-                                            >
-                                        </h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <pie-chart :chart-data="chartData" :options="options"></pie-chart>
-                            <div class="row">
-                                <div class="col-md-3"></div>
-                                <div class="col-md-3">
-                                    <h3>Male : {{ male }}</h3>
-                                </div>
-                                <div class="col-md-3">
-                                    <h3>Female : {{ female }}</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-header card-header-success">
-                                <h4 class="card-title">Generate Reports</h4>
-                                <p class="crd-category">Advance Search</p>
-                            </div>
-                            <div class="card-body">
-                                <br />
-                                <div>
-                                    <label class="label">Barangay</label>
-                                    <v-select
-                                        name="barangay"
-                                        label="barangay_name"
-                                        :value="entry.barangay"
-                                        :options="lists.barangay"
-                                        @input="updateBarangay"
-                                        @focus="focusField('barangay')"
-                                        @blur="clearFocus"
-                                        required
-                                    />
-                                </div>
-                                <div>
-                                    <label class="label">Purok</label>
-                                    <v-select
-                                        name="purok"
-                                        label="purok_name"
-                                        :value="entry.purok"
-                                        :options="others.purok"
-                                        @input="updatePurok"
-                                        @focus="focusField('purok')"
-                                        @blur="clearFocus"
-                                        :disabled="disabled_purok == 1"
-                                        required
-                                    />
-                                </div>
-                                <div>
-                                    <label class="label">Sitio</label>
-                                    <v-select
-                                        name="sitio"
-                                        label="sitio_name"
-                                        :value="entry.sitio"
-                                        :options="others.sitio"
-                                        @input="updateSitio"
-                                        @focus="focusField('sitio')"
-                                        @blur="clearFocus"
-                                        :disabled="disabled_sitio == 1"
-                                        required
-                                    />
-                                </div>
-                                <div>
-                                    <label class="label">Sector</label>
-                                    <v-select
-                                        name="sector"
-                                        label="sector_name"
-                                        :value="entry.sector"
-                                        :options="lists.sector"
-                                        @input="updateSector"
-                                        @focus="focusField('sector')"
-                                        @blur="clearFocus"
-                                        required
-                                    />
-                                </div>
-                                <div>
-                                    <label class="label">Gender</label>
-                                    <v-select
-                                        name="gender"
-                                        label="gender_name"
-                                        :value="entry.gender"
-                                        :options="lists.gender"
-                                        @input="updateGender"
-                                        @focus="focusField('gender')"
-                                        @blur="clearFocus"
-                                        required
-                                    />
-                                </div>
-                                <div>
-                                    <label class="label">Age</label>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <input
-                                                type="number"
-                                                placeholder="From"
-                                                @input="updateAgeFrom"
-                                                :value="entry.age_from"
-                                                class="form-control"
-                                                name="age_from"
-                                            />
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input
-                                                type="number"
-                                                placeholder="To"
-                                                :value="entry.age_to"
-                                                @input="updateAgeTo"
-                                                class="form-control"
-                                                name="age_to"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <vue-button-spinner
-                                    class="btn-info"
-                                    :status="status"
-                                    :isLoading="loading"
-                                    :disabled="loading"
-                                >
-                                    Search
-                                </vue-button-spinner>
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">
-                                    Advance Filter
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header card-header-success card-header-icon">
-                                <div class="card-icon">
-                                    <i class="material-icons">assignment</i>
-                                </div>
-                                <h4 class="card-title">
-                                    Table
-                                    <strong>Resident List</strong>
-                                </h4>
-                            </div>
-
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="table-overlay" v-show="loading">
-                                            <div class="table-overlay-container">
-                                                <material-spinner></material-spinner>
-                                                <span>Loading...</span>
-                                            </div>
-                                        </div>
-                                        <download-excel
-                                            class="btn btn-success"
-                                            worksheet="Resident List"
-                                            :fields="json_fields"
-                                            :fetch="fetchData"
-                                            :before-generate="startDownload"
-                                            :name="this.excel_name"
-                                            :before-finish="finishDownload"
-                                        >
-                                            Print Excel
-                                        </download-excel>
-                                        <button class="btn btn-info" @click="downloads">Download PDF</button>
-                                        <datatable
-                                            :columns="columns"
-                                            :data="data"
-                                            :total="total"
-                                            :query="query"
-                                            :xprops="xprops"
-                                            :HeaderSettings="false"
-                                            :pageSizeOptions="[10, 25, 50, 100]"
-                                        >
-                                            <global-search :query="query" class="pull-left" />
-                                            <header-settings :columns="columns" class="pull-right" />
-                                        </datatable>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </section>
-        </vue-html2pdf>
-        </div>
-</div>
+							<div class="card-body">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="table-overlay" v-show="loading">
+											<div class="table-overlay-container">
+												<material-spinner></material-spinner>
+												<span>Loading...</span>
+											</div>
+										</div>
+										<download-excel
+											class="btn btn-success"
+											worksheet="Resident List"
+											:fields="json_fields"
+											:fetch="fetchData"
+											:before-generate="startDownload"
+											:name="this.excel_name"
+											:before-finish="finishDownload"
+										>
+											Print Excel
+										</download-excel>
+										<button class="btn btn-info" @click="downloads">Download PDF</button>
+										<datatable
+											:columns="columns"
+											:data="data"
+											:total="total"
+											:query="query"
+											:xprops="xprops"
+											:HeaderSettings="false"
+											:pageSizeOptions="[10, 25, 50, 100]"
+										>
+											<global-search :query="query" class="pull-left" />
+											<header-settings :columns="columns" class="pull-right" />
+										</datatable>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</vue-html2pdf>
+	</div>
 </template>
 <style scoped>
 .loader {
