@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <link rel="apple-touch-icon" sizes="76x76" href="{{ url('/md/img/calamba-logo.png') }}">
     <link rel="icon" type="image/png" href="{{ url('/md/img/calamba-logo.png') }}">
+    <link rel="manifest" href="{{ url('manifest.json') }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>
@@ -19,6 +20,14 @@
     <link rel="stylesheet" href="{{ url('/md/css/material-dashboard.css') }}">
 
     <link rel="stylesheet" href="{{ url('/css/custom.css') }}">
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js');
+            });
+        }
+    </script>
     <script src="{{ url('/md/js/core/jquery.min.js') }} "></script>
     <script src="{{ url('/md/js/core/popper.min.js') }} "></script>
     <script src="{{ url('/md/js/core/bootstrap-material-design.min.js') }} "></script>
@@ -34,10 +43,14 @@
 
 </html>
 <script>
-    function searchData(){
+    function searchData() {
         var id = $('#resident_id').val();
-        axios.get('/search',{params:{id:id}}).then(function(response){
-                $("div#details").html(response.data);
+        axios.get('/search', {
+            params: {
+                id: id
+            }
+        }).then(function(response) {
+            $("div#details").html(response.data);
         })
     }
 </script>

@@ -61,42 +61,32 @@ td {
 									<br />
 									<img src="/images/cap.jpg" height="128px" width="130px" />
 									<img
-										v-if="lists.user && lists.user.photo[1].url"
+										v-if="lists.user && lists.user.barangay"
 										:src="lists.user.photo[1].url"
-										height="108px"
-										width="110px"
+										height="128px"
+										width="130px"
 									/>
-									<img v-else src="/images/popcom.png" height="108px" width="110px" />
+									<img v-else src="/images/popcom.png" height="128px" width="130px" />
 									<b></b>
 								</div>
 								<div class="col-md-6">
-									<div class="pull-left">
+									<div class="text-left">
 										<h3 style="color: black; font-family: Glacial Indifference">
-											<b style="text-transform: uppercase; margin-left: -17%; font-weight: 900"
+											<b style="text-transform: uppercase; font-weight: 900"
 												>City Government of Calamba</b
 											><br />
 											<b
 												v-if="lists.second_data && lists.second_data.barangay"
-												style="text-transform: uppercase; margin-left: -45%; font-weight: 900"
+												style="text-transform: uppercase; font-weight: 900"
 												>BARANGAY {{ lists.second_data.barangay.barangay_name }}</b
 											>
-											<b
-												v-else
-												style="text-transform: uppercase; margin-left: -2%; font-weight: 900"
-											>
+											<b v-else style="text-transform: uppercase; font-weight: 900">
 												CITY POPULATION MANAGEMENT OFFICE </b
 											><br />
-											<b
-												style="
-													text-transform: uppercase;
-													margin-right: 240px;
-													font-weight: 900;
-												"
+											<b style="text-transform: uppercase; font-weight: 900"
 												>Household Profile</b
 											>
-											<p style="font-family: Lora; margin-right: 385px; font-style: italic">
-												e-Certificate
-											</p>
+											<p style="font-family: Lora; font-style: italic">e-Certificate</p>
 										</h3>
 									</div>
 								</div>
@@ -104,21 +94,21 @@ td {
 									<table class="table-bordered" style="background-color: #f0f8ff !important">
 										<tr>
 											<th><b>Barangay</b></th>
-											<td v-if="lists.second_data.barangay">
+											<td v-if="lists.second_data && lists.second_data.barangay">
 												{{ lists.second_data.barangay.barangay_name }}
 											</td>
 											<td v-else></td>
 										</tr>
 										<tr>
 											<th><b>Purok</b></th>
-											<td v-if="lists.second_data.purok">
+											<td v-if="lists.second_data && lists.second_data.purok">
 												{{ lists.second_data.purok.purok_name }}
 											</td>
 											<td v-else></td>
 										</tr>
 										<tr>
 											<th scope="col"><b>Subdivsion / Sitio</b></th>
-											<td v-if="lists.second_data.sitio">
+											<td v-if="lists.second_data && lists.second_data.sitio">
 												{{ lists.second_data.sitio.sitio_name }}
 											</td>
 											<td v-else></td>
@@ -217,7 +207,7 @@ td {
 						}"
 					>
 						<label>House Type</label>
-						<div v-if="lists.second_data.house_type">
+						<div v-if="lists.second_data && lists.second_data.house_type">
 							<input
 								type="text"
 								class="form-control"
@@ -232,7 +222,7 @@ td {
 						}"
 					>
 						<label>House Make</label>
-						<div v-if="lists.second_data.house_make">
+						<div v-if="lists.second_data && lists.second_data.house_make">
 							<input
 								type="text"
 								class="form-control"
@@ -247,7 +237,7 @@ td {
 						}"
 					>
 						<label>House Ownership</label>
-						<div v-if="lists.second_data.house_ownership">
+						<div v-if="lists.second_data && lists.second_data.house_ownership">
 							<input
 								type="text"
 								class="form-control"

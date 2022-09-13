@@ -45,7 +45,9 @@
 													<tbody>
 														<tr v-for="barangay in data.barangays" :key="barangay.id">
 															<td>{{ barangay.barangay_name }}</td>
-															<td>{{ barangay.count_resident }}</td>
+															<td>
+																{{ Number(barangay.count_resident).toLocaleString() }}
+															</td>
 															<td>{{ barangay.percent }}%</td>
 														</tr>
 													</tbody>
@@ -69,11 +71,11 @@
 													<tbody>
 														<tr v-for="sitio in data.sitios" :key="sitio.id">
 															<td>{{ sitio.sitio_name }}</td>
-															<td>{{ sitio.count_resident }}</td>
+															<td>{{ numberFormat(sitio.count_resident) }}</td>
 														</tr>
 														<tr v-for="purok in data.puroks" :key="purok.id">
 															<td>{{ purok.purok_name }}</td>
-															<td>{{ purok.count_resident }}</td>
+															<td>{{ numberFormat(purok.count_resident) }}</td>
 														</tr>
 													</tbody>
 												</table>
@@ -98,16 +100,18 @@
 						</div>
 						<div class="card-header">
 							Total Residents / Respondents
-							<h3 class="card-title" style="color: white">{{ data.total_people_count }}</h3>
+							<h3 class="card-title" style="color: white">
+								{{ numberFormat(data.total_people_count) }}
+							</h3>
 						</div>
 						<div class="row">
 							<div class="col-md-6">
 								<h5>Male</h5>
-								<h3 style="margin-top: -20px">{{ data.total_male_count }}</h3>
+								<h3 style="margin-top: -20px">{{ numberFormat(data.total_male_count) }}</h3>
 							</div>
 							<div class="col-md-6">
 								<h5>Female</h5>
-								<h3 style="margin-top: -20px">{{ data.total_female_count }}</h3>
+								<h3 style="margin-top: -20px">{{ numberFormat(data.total_female_count) }}</h3>
 							</div>
 						</div>
 					</center>
@@ -123,16 +127,20 @@
 						</div>
 						<div class="card-header">
 							Total Person W/ Disabilities
-							<h3 class="card-title" style="color: white">{{ data.total_person_disability_count }}</h3>
+							<h3 class="card-title" style="color: white">
+								{{ numberFormat(data.total_person_disability_count) }}
+							</h3>
 						</div>
 						<div class="row">
 							<div class="col-md-6">
 								<h5>Male</h5>
-								<h3 style="margin-top: -20px">{{ data.total_male_disablity_count }}</h3>
+								<h3 style="margin-top: -20px">{{ numberFormat(data.total_male_disablity_count) }}</h3>
 							</div>
 							<div class="col-md-6">
 								<h5>Female</h5>
-								<h3 style="margin-top: -20px">{{ data.total_female_disablity_count }}</h3>
+								<h3 style="margin-top: -20px">
+									{{ numberFormat(data.total_female_disablity_count) }}
+								</h3>
 							</div>
 						</div>
 					</center>
@@ -147,18 +155,20 @@
 							</div>
 						</div>
 						<div class="card-header">
-							Total Senior / Citizen
-							<h3 class="card-title" style="color: white">{{ data.total_senior_count }}</h3>
+							Total Senior Citizen
+							<h3 class="card-title" style="color: white">
+								{{ numberFormat(data.total_senior_count) }}
+							</h3>
 						</div>
 						<br />
 						<div class="row">
 							<div class="col-md-6">
 								<h5>Male</h5>
-								<h3 style="margin-top: -20px">{{ data.total_male_senior_count }}</h3>
+								<h3 style="margin-top: -20px">{{ numberFormat(data.total_male_senior_count) }}</h3>
 							</div>
 							<div class="col-md-6">
 								<h5>Female</h5>
-								<h3 style="margin-top: -20px">{{ data.total_female_senior_count }}</h3>
+								<h3 style="margin-top: -20px">{{ numberFormat(data.total_female_senior_count) }}</h3>
 							</div>
 						</div>
 					</center>
@@ -174,16 +184,18 @@
 						</div>
 						<div class="card-header">
 							Total Registered Voters in Calamba
-							<h3 class="card-title" style="color: white">{{ data.total_voters_count }}</h3>
+							<h3 class="card-title" style="color: white">
+								{{ numberFormat(data.total_voters_count) }}
+							</h3>
 						</div>
 						<div class="row">
 							<div class="col-md-6">
 								<h5>Male</h5>
-								<h3 style="margin-top: -20px">{{ data.total_voters_male_count }}</h3>
+								<h3 style="margin-top: -20px">{{ numberFormat(data.total_voters_male_count) }}</h3>
 							</div>
 							<div class="col-md-6">
 								<h5>Female</h5>
-								<h3 style="margin-top: -20px">{{ data.total_voters_female_count }}</h3>
+								<h3 style="margin-top: -20px">{{ numberFormat(data.total_voters_female_count) }}</h3>
 							</div>
 						</div>
 					</center>
@@ -200,11 +212,11 @@
 						<div class="row">
 							<div class="col-md-6">
 								<h5>Male</h5>
-								{{ data.total_male_migration_rate }}
+								{{ numberFormat(data.total_male_migration_rate) }}
 							</div>
 							<div class="col-md-6">
 								<h5>Female</h5>
-								{{ data.total_female_migration_rate }}
+								{{ numberFormat(data.total_female_migration_rate) }}
 							</div>
 						</div>
 					</div>
@@ -230,18 +242,18 @@
 							<tbody>
 								<tr>
 									<td>Transient</td>
-									<td>{{ data.transient_status_male }}</td>
-									<td>{{ data.transient_status_female }}</td>
+									<td>{{ numberFormat(data.transient_status_male) }}</td>
+									<td>{{ numberFormat(data.transient_status_female) }}</td>
 								</tr>
 								<tr>
 									<td>Immigrant</td>
-									<td>{{ data.immigrant_status_male }}</td>
-									<td>{{ data.immigrant_status_female }}</td>
+									<td>{{ numberFormat(data.immigrant_status_male) }}</td>
+									<td>{{ numberFormat(data.immigrant_status_female) }}</td>
 								</tr>
 								<tr>
 									<td>Native</td>
-									<td>{{ data.native_status_male }}</td>
-									<td>{{ data.native_status_female }}</td>
+									<td>{{ numberFormat(data.native_status_male) }}</td>
+									<td>{{ numberFormat(data.native_status_female) }}</td>
 								</tr>
 							</tbody>
 						</table>
@@ -257,11 +269,11 @@
 						<div class="row">
 							<div class="col-md-6">
 								<h5>Household</h5>
-								{{ data.total_household }}
+								{{ numberFormat(data.total_household) }}
 							</div>
 							<div class="col-md-6">
 								<h5>Families</h5>
-								{{ data.total_family }}
+								{{ numberFormat(data.total_family) }}
 							</div>
 						</div>
 					</div>
@@ -398,6 +410,10 @@
 						}]
 					};
 				})
+			},
+
+			numberFormat (value) {
+				return value ? Number(value).toLocaleString() : 0
 			},
 
 			utilitiesInformation () {

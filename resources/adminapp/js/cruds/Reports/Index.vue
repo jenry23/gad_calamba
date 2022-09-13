@@ -60,7 +60,7 @@
 										<img v-else src="/images/popcom.png" height="108px" width="110px" />
 									</div>
 									<div class="col-md-8">
-										<div>
+										<div class="text-left">
 											<h3 style="color: black">
 												<b style="text-transform: uppercase">City Government of Calamba</b
 												><br />
@@ -73,9 +73,7 @@
 													CITY POPULATION MANAGEMENT OFFICE
 												</b>
 												<br />
-												<b style="text-transform: uppercase; margin-right: 130px"
-													>Household Profile</b
-												>
+												<b style="text-transform: uppercase">Household Profile</b>
 											</h3>
 										</div>
 									</div>

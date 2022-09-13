@@ -91,7 +91,7 @@ class TransactionApiController extends Controller
 
         $data_collection = [
             'full_name' => $gad->full_name ?? '',
-            'address' => $gad->purok->purok_name . ', Brgy ' . $gad->barangay->barangay_name . ' Calamba City' ?? '',
+            'address' => 'BDLG ' . $gad->building_no  . ' UNIT ' . $gad->house_unit . $gad->purok_purok_name . $gad->block_lot_house_id,
             'birthday' => Carbon::parse($gad->birth_date)->format('d F Y') ?? '',
             'age' => Carbon::parse($gad->birth_date)->diff(Carbon::now())->format('%y years') ?? '',
             'birth_place' => $gad->political_province_registered->province_name ?? '',

@@ -92,7 +92,7 @@
 			return {
 				user: [],
 				roles: [],
-				backgroundColor: 'black',
+				backgroundColor: 'white',
 				itemColor: 'green',
 			}
 		},
