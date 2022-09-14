@@ -32,6 +32,7 @@ class BarangayRecord extends Model
     protected $fillable = [
         'gad_id',
         'transaction_type_id',
+        'barangay_id',
         'status',
         'created_at',
         'updated_at',

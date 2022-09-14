@@ -24,8 +24,6 @@ class TransactionApiController extends Controller
 
         $barangay_id = Auth::user()->barangay;
 
-        // Address
-        // $gad->purok->purok_name . ', Brgy ' . $gad->barangay->barangay_name . ' Calamba City' ?? '
         if (isset($barangay_id)) {
             $gad = Gad::with(['barangay', 'civil_status', 'purok', 'sitio'])->select(
                 "id",
@@ -70,7 +68,8 @@ class TransactionApiController extends Controller
         $attributes = [
             'transaction_type_id' => $request->transaction['id'],
             'gad_id'    => $gad_id,
-            'status'    => 1
+            'status'    => 1,
+            'barangay_id' => Auth::user()->barangay ?? 0
         ];
 
         $data = BarangayRecord::create($attributes);

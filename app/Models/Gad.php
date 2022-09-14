@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use \DateTimeInterface;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Gad extends Model implements HasMedia
@@ -371,6 +372,11 @@ class Gad extends Model implements HasMedia
     public function gadDetails(): HasMany
     {
         return $this->hasMany(GadItemDetails::class, 'gad_id', 'id');
+    }
+
+    public function barangay_permit(): BelongsTo
+    {
+        return $this->belongsTo(GadItemDetails::class, 'gad_id', 'id');
     }
 
     public function barangay()

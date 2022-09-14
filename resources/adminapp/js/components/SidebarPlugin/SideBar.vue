@@ -14,7 +14,7 @@
 					<img class="img-fluid" :src="user.photo[0].url" style="margin-top: -20px" />
 				</div>
 				<div v-else>
-					<img class="img-fluid" src="/images/cpmo.png" style="margin-top: -20px" />
+					<img class="img-fluid" src="/images/cpmo1.png" style="margin-top: -20px" />
 				</div>
 			</a>
 		</div>

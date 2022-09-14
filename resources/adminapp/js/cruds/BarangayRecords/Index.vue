@@ -76,7 +76,7 @@
 						sortable: true,
 					},
 					{
-						title: 'Resident',
+						title: 'Name Of Requestor',
 						field: 'gad.full_name',
 						thComp: TranslatedHeader,
 						tdComp: DatatablesFields
@@ -88,7 +88,7 @@
 						tdComp: DatatablesFields
 					},
 					{
-						title: 'Request Date',
+						title: 'Date and Time',
 						field: 'created_at',
 						thComp: TranslatedHeader,
 						sortable: true,

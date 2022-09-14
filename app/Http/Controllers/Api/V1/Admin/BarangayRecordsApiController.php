@@ -11,11 +11,12 @@ use App\Models\Gad;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class BarangayRecordsApiController extends Controller
 {
     public function index()
     {
-        return new BarangayResource(BarangayRecord::with(['gad', 'transaction_type'])->advancedFilter());
+        return new BarangayResource(BarangayRecord::with(['gad', 'transaction_type'])->where('barangay_id', Auth::user()->barangay)->advancedFilter());
     }
 }

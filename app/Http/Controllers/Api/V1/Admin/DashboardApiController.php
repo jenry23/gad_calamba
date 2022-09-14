@@ -121,13 +121,7 @@ class DashboardApiController extends Controller
             $total_male_count = Gad::where('gender_id', '1')->count();
             $total_female_count = Gad::where('gender_id', '2')->count();
 
-            $total_senior_count = GadItemDetails::whereHasMorph(
-                'item',
-                [Sector::class],
-                function ($query) {
-                    $query->where('item_id', 2);
-                }
-            )->count();
+            $total_senior_count = GadItemDetails::where('item_name', 'sector')->where('item_id', '2')->count();
 
             //Senior Male
             $total_male_senior_count = $total_male_senior_count = GadItemDetails::whereHas(
@@ -135,42 +129,31 @@ class DashboardApiController extends Controller
                 function ($query) {
                     $query->where('gender_id', 1);
                 }
-            )->whereHasMorph(
-                'item',
-                [Sector::class],
-                function ($query) {
-                    $query->where('item_id', 2);
-                }
-            )->count();;
+            )->where('item_name', 'sector')->where('item_id', '2')->count();
             //Senior Female
             $total_female_senior_count = $total_female_senior_count = GadItemDetails::whereHas(
                 'gad',
                 function ($query) {
                     $query->where('gender_id', 2);
                 }
-            )->whereHasMorph(
-                'item',
-                [Sector::class],
-                function ($query) {
-                    $query->where('item_id', 2);
-                }
-            )->count();
+            )->where('item_name', 'sector')->where('item_id', '2')->count();
             //Total Person With Disablitiy
-            $total_person_disability_count = GadItemDetails::where('item_name', 'disability')->count();
+            $total_person_disability_count = GadItemDetails::where('item_name', 'sector')->where('item_id', '1')->count();
             //Person With Disablitiy Male
             $total_male_disablity_count = GadItemDetails::whereHas(
                 'gad',
                 function ($query) {
                     $query->where('gender_id', 1);
                 }
-            )->where('item_name', 'disability')->count();
+            )->where('item_name', 'sector')->where('item_id', '1')->count();
             //Person With Disablitiy Female
             $total_female_disablity_count = GadItemDetails::whereHas(
                 'gad',
                 function ($query) {
                     $query->where('gender_id', 2);
                 }
-            )->where('item_name', 'disability')->count();
+            )->where('item_name', 'sector')->where('item_id', '1')->count();
+
             $total_household = Gad::where('household_id', 1)->where('family_code', 'A')->count();
             // Add Here Counting
             $total_family = Gad::where('household_id', 1)->count();
