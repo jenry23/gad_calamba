@@ -1,4 +1,8 @@
-# Handle Authorization Header
-RewriteCond %{HTTP:Authorization} .
-RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteEngine On
+
+RewriteCond %{THE_REQUEST} public/
+RewriteRule ^public/(.*) https://calambacmis.com/$1 [R=301,L]
+
+RewriteCond %{REQUEST_URI} !public/
+RewriteRule ^(.*)$ /public/$1 [L]
 php_value max_input_vars 2000
