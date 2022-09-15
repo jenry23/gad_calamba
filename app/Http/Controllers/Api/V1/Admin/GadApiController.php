@@ -384,7 +384,9 @@ class GadApiController extends Controller
                 Gad::where('barangay_id', $request['barangay_id'])
                     ->get()
                     ->map(function ($gad) {
-                        $gad->barangay_permit->forceDelete();
+                        if ($gad !== null) {
+                            $gad->barangay_permit->forceDelete();
+                        }
                         $gad->gadDetails->each->delete();
                         $gad->forceDelete();
                     });
