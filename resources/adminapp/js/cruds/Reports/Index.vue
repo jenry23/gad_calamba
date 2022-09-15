@@ -65,7 +65,7 @@
 												<b style="text-transform: uppercase">City Government of Calamba</b
 												><br />
 												<b
-													v-if="lists.barangay && lists.barangay[0]"
+													v-if="lists.user && lists.user.barangay"
 													style="text-transform: uppercase"
 													>BARANGAY {{ lists.barangay[0].barangay_name }}</b
 												>
