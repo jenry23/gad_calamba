@@ -52,7 +52,7 @@
 										<br />
 										<img src="/images/cap.jpg" height="108px" width="110px" />
 										<img
-											v-if="lists.user && lists.user.photo.length !== 0"
+											v-if="lists.user && lists.user.barangay"
 											:src="lists.user.photo[1].url"
 											height="108px"
 											width="110px"
