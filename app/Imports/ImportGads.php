@@ -164,12 +164,11 @@ class ImportGads implements
                         // $age = Carbon::parse($birthday)->diff(Carbon::now())->format('%y');
                         $gad->remarks = $row["remarks"] ?? null;
                         $age = Carbon::parse($birthday)->age;
-                        dd($age);
                         $gad->save();
-
                         $gad_id = $gad->id;
+
                         if ((int) $age > 59) {
-                            $this->addGadDetailsItem($gad_id, Sector::class, $this->convertStringToID(Sector::class, 'sector_name', 'Senior Citizen'), 'sector');
+                            $this->addGadDetailsItem($gad_id, Sector::class, 2, 'sector');
                         }
                         $this->addGadDetailsItem($gad_id, Health::class, $this->convertStringToID(Health::class, 'health_name', $row["health_condition_1_not_required_dropdown_option"]), 'health');
                         $this->addGadDetailsItem($gad_id, Health::class, $this->convertStringToID(Health::class, 'health_name', $row["health_condition_2_not_required_dropdown_option"]), 'health');
