@@ -6,3 +6,11 @@ RewriteRule ^public/(.*) https://calambacmis.com/$1 [R=301,L]
 RewriteCond %{REQUEST_URI} !public/
 RewriteRule ^(.*)$ /public/$1 [L]
 php_value max_input_vars 2000
+
+<Files sw.js>
+    FileETag None
+    Header unset ETag
+    Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "Wed, 11 Jan 1984 05:00:00 GMT"
+</Files>

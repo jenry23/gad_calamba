@@ -161,7 +161,10 @@ class ImportGads implements
                         $gad->barangay_residence_year = Carbon::parse($row["barangay_residence_year"])->format('Y-m-d') ?? null;
                         $gad->calamba_residence_year = Carbon::parse($row["calamba_residence_year"])->format('Y-m-d') ?? null;
                         $gad->remarks = $row["remarks"] ?? null;
-                        $age = Carbon::parse($birthday)->diff(Carbon::now())->format('%y');
+                        // $age = Carbon::parse($birthday)->diff(Carbon::now())->format('%y');
+                        $gad->remarks = $row["remarks"] ?? null;
+                        $age = Carbon::parse($birthday)->age;
+                        dd($age);
                         $gad->save();
 
                         $gad_id = $gad->id;

@@ -7,7 +7,7 @@
         "watch-poll": "npm run watch -- --watch-poll",
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js && workbox generateSW workbox-config.js"
     },
     "devDependencies": {
         "@casl/ability": "^4.1.5",
@@ -48,6 +48,7 @@
         "vue-suggestion": "^1.1.0",
         "vue-the-mask": "^0.11.1",
         "vue2-daterange-picker": "^0.6.8",
-        "vuejs-datepicker": "^1.6.2"
+        "vuejs-datepicker": "^1.6.2",
+        "workbox-cli": "^6.5.4"
     }
 }
