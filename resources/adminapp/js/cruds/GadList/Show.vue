@@ -20,7 +20,7 @@ td {
 <template>
 	<div class="row">
 		<div class="col-md-12">
-			<button class="btn btn-info" @click="downloads">Download PDF</button>
+			<!-- <button class="btn btn-info" @click="downloads">Download PDF</button> -->
 			<vue-html2pdf
 				:show-layout="false"
 				:float-layout="false"
@@ -86,7 +86,7 @@ td {
 											<b style="text-transform: uppercase; font-weight: 900"
 												>Household Profile</b
 											>
-											<p style="font-family: Lora; font-style: italic">e-Certificate</p>
+											<!-- <p style="font-family: Lora; font-style: italic">e-Certificate</p> -->
 										</h3>
 									</div>
 								</div>
@@ -159,7 +159,7 @@ td {
 								</div>
 							</div>
 						</div>
-						<div style="font-family: Abula Light; font-weigh: 500">
+						<!-- <div style="font-family: Abula Light; font-weigh: 500">
 							<div class="d-flex justify-content-center">
 								<h4 style="font-weight: 500">
 									This is to certify that the aforementioned household member/s is/are bonafide
@@ -172,13 +172,13 @@ td {
 									DATABASE POWERED BY MO-GENDER AND DEVELOPMENT OFFICE
 								</small>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</section>
 			</vue-html2pdf>
 			<div>
 				<a
-					class="btn btn-primary"
+					class="btn btn-success"
 					data-toggle="collapse"
 					href="#collapseExample"
 					role="button"
@@ -188,7 +188,7 @@ td {
 					House Details
 				</a>
 				<a
-					class="btn btn-primary"
+					class="btn btn-success"
 					data-toggle="collapse"
 					href="#collapseExample1"
 					role="button"

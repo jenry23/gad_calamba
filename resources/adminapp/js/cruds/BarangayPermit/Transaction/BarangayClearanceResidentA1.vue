@@ -4,16 +4,17 @@
 			<div class="barangay-header">
 				<img src="/transaction/header.png" width="100%" height="20%" />
 				<div class="row barangay-header-logo">
+					<div class="col-md-3"></div>
+					<div class="col-md-1"><div class="vl"></div></div>
 					<div class="col-md-3">
 						<img
 							:src="data.logo"
 							class="pull-right"
-							style="width: 165px; margin-top: -25%; margin-right: 18px"
+							style="width: 120px; margin-top: -27%; margin-right: 18px"
 						/>
 						<br />
 					</div>
-					<div class="col-md-2"><div class="vl"></div></div>
-					<div class="col-md-4">
+					<div class="col-md-3">
 						<div class="text-center" style="margin-top: -19%">
 							<p style="font-weight: 700">
 								<b>REPUBLIC OF THE PHILIPPINES</b>
@@ -23,7 +24,7 @@
 								<b>CITY OF CALAMBA</b>
 								<br />
 								<!-- DATA -->
-								<b>BARANGAY {{ data.barangay.barangay_name }}</b>
+								<b style="font-weight:900">BARANGAY {{ data.barangay.barangay_name }}</b>
 							</p>
 						</div>
 					</div>
@@ -34,12 +35,6 @@
 							style="width: 120px; margin-top: -50%; margin-left: 20px"
 						/>
 					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col"></div>
-				<div class="col-md-8">
-					<hr class="barangay-header-line" />
 				</div>
 			</div>
 			<div class="card-body" style="height: 1020px">

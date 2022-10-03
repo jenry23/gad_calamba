@@ -235,7 +235,7 @@
 												<span>Loading...</span>
 											</div>
 										</div>
-										<download-excel
+										<!-- <download-excel
 											class="btn btn-success"
 											worksheet="Resident List"
 											:fields="json_fields"
@@ -245,7 +245,7 @@
 											:before-finish="finishDownload"
 										>
 											Print Excel
-										</download-excel>
+										</download-excel> -->
 										<button class="btn btn-info" @click="downloads">Download PDF</button>
 										<datatable
 											:columns="columns"
