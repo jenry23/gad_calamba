@@ -1,25 +1,23 @@
 <template>
   <div class="dt-action-container">
+    <!-- v-if="$can(xprops.permission_prefix + 'show')" -->
     <router-link
-      v-if="$can(xprops.permission_prefix + 'show')"
       :to="{ name: xprops.route + '.show', params: { id: row.id } }"
       class="btn btn-just-icon btn-round btn-link text-azure"
     >
       <i class="material-icons">remove_red_eye</i>
     </router-link>
-
+    <!-- v-if="$can(xprops.permission_prefix + 'edit')" -->
     <router-link
       class="btn btn-just-icon btn-round btn-link text-success"
-      v-if="$can(xprops.permission_prefix + 'edit')"
       :to="{ name: xprops.route + '.edit', params: { id: row.id } }"
     >
       <i class="material-icons">edit</i>
     </router-link>
-
+    <!-- v-if="$can(xprops.permission_prefix + 'delete')" -->
     <a
       href="#"
       class="btn btn-just-icon btn-round btn-link text-rose"
-      v-if="$can(xprops.permission_prefix + 'delete')"
       @click.prevent="destroyData(row.id)"
       type="button"
     >

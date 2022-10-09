@@ -57,7 +57,7 @@
 											height="108px"
 											width="110px"
 										/>
-										<img v-else src="/images/popcom.png" height="108px" width="110px" />
+										<!-- <img v-else src="/images/popcom.png" height="108px" width="110px" /> -->
 									</div>
 									<div class="col-md-8">
 										<div class="text-left">
@@ -69,9 +69,9 @@
 													style="text-transform: uppercase"
 													>BARANGAY {{ lists.barangay[0].barangay_name }}</b
 												>
-												<b v-else style="text-transform: uppercase">
+												<!-- <b v-else style="text-transform: uppercase">
 													CITY POPULATION MANAGEMENT OFFICE
-												</b>
+												</b> -->
 												<br />
 												<b style="text-transform: uppercase">Household Profile</b>
 											</h3>

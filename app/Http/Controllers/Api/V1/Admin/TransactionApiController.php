@@ -63,10 +63,12 @@ class TransactionApiController extends Controller
 
     public function printData(Request $request)
     {
-        $gad_id = $request->resident['id'];
+        $gad_id = 82004;
+        $request->resident['id'];
         $gad = Gad::find($gad_id);
         $attributes = [
-            'transaction_type_id' => $request->transaction['id'],
+            'transaction_type_id' => 1,
+            // $request->transaction['id'],
             'gad_id'    => $gad_id,
             'status'    => 1,
             'barangay_id' => Auth::user()->barangay ?? 0
@@ -78,7 +80,8 @@ class TransactionApiController extends Controller
 
     public function store(Request $request)
     {
-        $gad_id = $request->resident['id'];
+        $gad_id = 82004;
+        // $request->resident['id'];
         $gad = Gad::find($gad_id);
         if (Auth::user()->photo->isEmpty()) {
             $images = asset('images/cpmo.png');
@@ -86,7 +89,7 @@ class TransactionApiController extends Controller
             $images = Auth::user()->photo[1]['url'] ?? Auth::user()->photo[0]['url'];
         }
 
-        $barangay_sanggunian = BarangaySanggunian::with(['barangay_category'])->where('barangay_id', $gad->barangay_id)->orderBy('barangay_sanggunian_category_id', 'asc')->get();
+        $barangay_sanggunian = BarangaySanggunian::with(['barangay_sanggunian_category'])->where('barangay_id', $gad->barangay_id)->orderBy('barangay_sanggunian_category_id', 'asc')->get();
 
         $data_collection = [
             'full_name' => $gad->full_name ?? '',

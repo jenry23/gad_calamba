@@ -166,6 +166,31 @@ const routes = [
             component: () => import('@cruds/Purok/Edit.vue'),
             meta: { title: 'Purok' }
           },
+          // Barangay Sangugnian
+          {
+            path: 'barangay-sanggunian',
+            name: 'barangay_sanggunian.index',
+            component: () => import('@cruds/BarangaySanggunian/Index.vue'),
+            meta: { title: 'BarangaySanggunian' }
+          },
+          {
+            path: 'barangay-sanggunian/create',
+            name: 'barangay_sanggunian.create',
+            component: () => import('@cruds/BarangaySanggunian/Create.vue'),
+            meta: { title: 'BarangaySanggunian' }
+          },
+          {
+            path: 'barangay-sanggunian/:id',
+            name: 'barangay_sanggunian.show',
+            component: () => import('@cruds/BarangaySanggunian/Show.vue'),
+            meta: { title: 'BarangaySanggunian' }
+          },
+          {
+            path: 'barangay-sanggunian/:id/edit',
+            name: 'barangay_sanggunian.edit',
+            component: () => import('@cruds/BarangaySanggunian/Edit.vue'),
+            meta: { title: 'BarangaySanggunian' }
+          },
 
           {
             path: 'sitio',

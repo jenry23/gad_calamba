@@ -117,6 +117,12 @@
 								gate: 'barangay_access',
 							},
 							{
+								title: 'Barangay Sanggunian',
+								icon: 'barangay',
+								path: { name: 'barangay_sanggunian.index' },
+								// gate: 'barangay_access',
+							},
+							{
 								title: 'Household',
 								icon: 'users',
 								path: { name: 'household.index' },

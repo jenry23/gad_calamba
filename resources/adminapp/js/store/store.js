@@ -11,6 +11,8 @@ import UsersIndex from './cruds/Users'
 import UsersSingle from './cruds/Users/single'
 import GadListIndex from './cruds/GadList'
 import GadListSingle from './cruds/GadList/single'
+import BarangaySanggunianIndex from './cruds/BarangaySanggunian'
+import BarangaySanggunianSingle from './cruds/BarangaySanggunian/single'
 import BarangayIndex from './cruds/Barangay'
 import BarangaySingle from './cruds/Barangay/single'
 import HouseholdIndex from './cruds/Household'
@@ -128,6 +130,8 @@ export default new Vuex.Store({
     ReportsSingle,
     BarangayPermitSingle,
     BarangayRecordsIndex,
+    BarangaySanggunianIndex,
+    BarangaySanggunianSingle,
   },
   strict: debug
 })

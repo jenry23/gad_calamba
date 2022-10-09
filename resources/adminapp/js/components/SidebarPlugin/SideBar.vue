@@ -7,14 +7,11 @@
 	>
 		<div class="logo">
 			<a href="/" class="logo-normal">
-				<div v-if="roles.title === 'Popcom'" class="d-flex justify-content-center">
-					<img class="img-fluid" src="/images/popcom.png" style="margin-top: -20px" />
+				<div v-if="roles.title !== 'Barangay'" class="d-flex justify-content-center">
+					<img class="img-fluid" src="/images/cpmo1.png" style="margin-top: -20px" />
 				</div>
 				<div v-else-if="roles.title === 'Barangay'" class="d-flex justify-content-center">
 					<img class="img-fluid" :src="user.photo[0].url" style="margin-top: -20px" />
-				</div>
-				<div v-else>
-					<img class="img-fluid" src="/images/cpmo1.png" style="margin-top: -20px" />
 				</div>
 			</a>
 		</div>

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', 'middleware' => ['auth:sanctum']], function () {
     // Abilities
@@ -33,6 +34,9 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
     //Barangay
     Route::resource('barangay', 'BarangayApiController');
+
+    //Barangay Sanggunian
+    Route::resource('barangay-sanggunian', 'BarangaySanggunianApiController');
 
     //Household
     Route::resource('household', 'HouseholdApiController');

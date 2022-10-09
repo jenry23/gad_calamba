@@ -30,6 +30,7 @@ class BarangaySanggunian extends Model
     ];
 
     protected $fillable = [
+        'barangay_name',
         'barangay_id',
         'barangay_sanggunian_category_id',
         'created_at',
@@ -45,7 +46,7 @@ class BarangaySanggunian extends Model
     {
         return $this->belongsTo(Barangay::class, 'barangay_id');
     }
-    public function barangay_category()
+    public function barangay_sanggunian_category()
     {
         return $this->belongsTo(BarangaySanggunianCategory::class, 'barangay_sanggunian_category_id');
     }
