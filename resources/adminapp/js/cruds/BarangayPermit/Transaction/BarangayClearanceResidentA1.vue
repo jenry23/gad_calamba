@@ -41,20 +41,19 @@
                 <div class="barangay-wrap">
                     <div class="row">
                         <div class="col-md-3">
-                            <center>
+                            <!-- <center>
                                 <b>
                                     <p style="margin-top: -30%; font-weight: 600">
-                                        SANGGUNIANG BARANGAY<br />
-                                        Barangay {{ data.barangay.barangay_name }}
+                                        <b style="text-transform: uppercase;">Hon.{{ data.barangay_sanggunian[0].barangay_name }}</b>
+                                        {{ data.barangay_sanggunian[0].barangay_sanggunian_category.category_name }}
                                     </p>
                                 </b>
-                            </center>
-                            <br />
+                            </center> -->
                             <b>
                                 <center>
                                     <div v-for="sanggunian in data.barangay_sanggunian" :key="sanggunian.id">
                                         <p>
-                                            <b>Hon.{{ sanggunian.barangay_name }}</b> <br />
+                                            <b style="text-transform: uppercase;">Hon.{{ sanggunian.barangay_name }}</b> <br />
                                             {{ sanggunian.barangay_sanggunian_category.category_name }}
                                         </p>
                                     </div>
@@ -90,10 +89,10 @@
                                                 </p>
                                             </center>
                                             <div class="row">
-                                                <div class="col-md-8">
+                                                <div class="col-md-9">
                                                     <div>
                                                         <b style="margin-right: 67px">Name of Resident</b>
-                                                        <b style="margin-right: 0px">:</b><b>{{ data.full_name }} </b>
+                                                        <b style="margin-right: 0px">:</b><b> {{ data.full_name }} </b>
                                                     </div>
                                                     <div>
                                                         <b style="margin-right: 155px">Age</b>
@@ -109,9 +108,13 @@
                                                         <b style="margin-right: 0px">:</b><b> {{ data.address }}</b>
                                                     </div>
                                                     <div>
+                                                        <b style="margin-right: 183px"></b>
+                                                        <b style="margin-right: 0px">:</b><b> {{ data.address1 }}</b>
+                                                    </div>
+                                                    <div>
                                                         <b style="margin-right: 69px">Residence Status</b>
                                                         <b style="margin-right: 0px">:</b
-                                                        ><b>{{ data.resident_status }} </b>
+                                                        ><b> {{ data.resident_status }} </b>
                                                     </div>
                                                     <div>
                                                         <b style="margin-right: 50px">Brgy Residence Date</b>
@@ -119,7 +122,7 @@
                                                         ><b> {{ data.barangay_residence_year }}</b>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-3">
 													<v-easy-camera v-model="picture" :startOnMounted="startCamera" ref="camera">
                                                     </v-easy-camera>
 														<button class="btn btn-primary" @click="startPicture"> Photo </button>
@@ -130,7 +133,7 @@
                                                 This certification is being issued upon his/ her request for the following purpose/s:
                                             </p>
                                             <div>
-                                                <table class="table table-responsive">
+                                                <table>
                                                     <tbody>
                                                         <tr>
                                                             <td>
@@ -319,30 +322,47 @@
                                                 </table>
                                             </div>
                                             <p>
-                                                Given this _____ day of _________ at Barangay
+                                                Given this {{ this.date.toLocaleString('en-us', { month:'long'}) }}  {{this.date.getDate()}}. {{this.date.getFullYear()}} at Barangay
                                                 {{ data.barangay.barangay_name }}, Calamba City Laguna
                                             </p>
                                             <br />
-                                            <div class="pull-right" style="margin-right: 20%">Approved By:</div>
-                                            <br />
-                                            <br />
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <p>
-                                                        __________________________________________ <br />(Signature
-                                                        over Printed Name of Resident)
-                                                    </p>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <center>
-                                                        <p>
-                                                            _____________________________ <br />
-                                                            {{ data.barangay_sanggunian.barangay_name }}<br />Punong
-                                                            Barangay
-                                                        </p>
-                                                    </center>
-                                                </div>
-                                            </div>
+                                           	<div class="pull-left">
+												<p>Affirmation of the requesting party:</p>
+											</div>
+											<br />
+											<br />
+											<div class="row">
+												<div class="col-md-6">
+													<p>
+														__________________________________________ <br />(Signature
+														over Printer Name / Date)
+													</p>
+												</div>
+												<div class="col-md-6"></div>
+											</div>
+											<br />
+											<div class="row">
+												<div class="col-md-6">
+													<div class="pull-left">Issued by:</div>
+													<br />
+													<br />
+													<p>
+                                                        <u> <b style="text-transform: uppercase">Mr/Ms. {{data.barangay_sanggunian[data.barangay_sanggunian.length - 2].barangay_name}} </b></u>
+                                                        <br>
+														Barangay Secretary
+													</p>
+												</div>
+												<div class="col-md-6">
+													<div class="pull-left">Approved by:</div>
+													<br />
+													<br />
+													<p>
+														<b style="text-transform: uppercase"><u>HON. {{data.barangay_sanggunian[0].barangay_name}}</u>
+                                                        </b><br />
+														Barangay Chairman
+													</p>
+												</div>
+											</div>
                                             <br />
                                             <div class="row">
                                                 <div class="col-md-6">
@@ -357,13 +377,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                                                                                                    <p>NOT VALID WITHOUT SEAL
-THIS CLEARANCE IS VALID ONLY FOR SIX (6) MONTHS FROM THE DATE OF ISSUANCE.
-</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    <p style="margin-left: 4%;">NOT VALID WITHOUT SEAL <br>
+THIS CLEARANCE IS VALID ONLY FOR SIX (6) MONTHS FROM THE DATE OF ISSUANCE.
+</p>
+
                     </div>
                 </div>
             </div>
@@ -428,6 +449,7 @@ export default ({
         return {
             picture: '',
             startCamera: true,
+            date: new Date()
         }
     },
     methods: {

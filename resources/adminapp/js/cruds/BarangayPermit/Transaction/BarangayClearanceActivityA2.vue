@@ -114,7 +114,7 @@
 												ordinances, and rules and regulations being enforced in this barangay.
 											</p>
 											<div class="pull-left">
-												<h4><b>Affirmation of the requesting party:</b></h4>
+												<p><b>Affirmation of the requesting party:</b></p>
 											</div>
 											<br />
 											<br />
