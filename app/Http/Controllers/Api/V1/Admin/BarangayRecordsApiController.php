@@ -6,11 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Admin\BarangayResource;
 use App\Models\BarangayRecord;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Builder;
 
 class BarangayRecordsApiController extends Controller
 {
     public function index()
     {
-        return new BarangayResource(BarangayRecord::with(['gad', 'transaction_type'])->where('barangay_id', Auth::user()->barangay)->advancedFilter());
+        return new BarangayResource(BarangayRecord::with(['gad', 'transaction_type'])
+            ->when(
+                Auth::user()->barangay,
+                function (Builder $query) {
+                    $query->where('barangay_id', Auth::user()->barangay);
+                }
+            )->advancedFilter());
     }
 }

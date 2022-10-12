@@ -381,10 +381,9 @@
                                 </div>
                             </div>
                         </div>
-                    <p style="margin-left: 4%;">NOT VALID WITHOUT SEAL <br>
-THIS CLEARANCE IS VALID ONLY FOR SIX (6) MONTHS FROM THE DATE OF ISSUANCE.
-</p>
-
+                        <p style="margin-left: 4%;">NOT VALID WITHOUT SEAL <br>
+                            THIS CLEARANCE IS VALID ONLY FOR SIX (6) MONTHS FROM THE DATE OF ISSUANCE.
+                        </p>
                     </div>
                 </div>
             </div>

@@ -41,20 +41,11 @@
 				<div class="barangay-wrap">
 					<div class="row">
 						 <div class="col-md-3">
-                            <center>
-                                <b>
-                                    <p style="margin-top: -30%; font-weight: 600">
-                                        SANGGUNIANG BARANGAY<br />
-                                        Barangay {{ data.barangay.barangay_name }}
-                                    </p>
-                                </b>
-                            </center>
-                            <br />
                             <b>
                                 <center>
                                     <div v-for="sanggunian in data.barangay_sanggunian" :key="sanggunian.id">
                                         <p>
-                                            <b>Hon.{{ sanggunian.barangay_name }}</b> <br />
+                                            <b style="text-transform: uppercase;">Hon.{{ sanggunian.barangay_name }}</b> <br />
                                             {{ sanggunian.barangay_sanggunian_category.category_name }}
                                         </p>
                                     </div>
@@ -116,7 +107,8 @@
 													<br />
 													<br />
 													<p>
-														_____________________________ <br />
+                                                        <u> <b style="text-transform: uppercase">Mr/Ms. {{data.barangay_sanggunian[data.barangay_sanggunian.length - 2].barangay_name}} </b></u>
+                                                        <br>
 														Barangay Secretary
 													</p>
 												</div>
@@ -125,7 +117,8 @@
 													<br />
 													<br />
 													<p>
-														_____________________________ <br />
+														<b style="text-transform: uppercase"><u>HON. {{data.barangay_sanggunian[0].barangay_name}}</u>
+                                                        </b><br />
 														Barangay Chairman
 													</p>
 												</div>
@@ -137,6 +130,9 @@
 						</div>
 					</div>
 				</div>
+				<p style="margin-left: 4%;">NOT VALID WITHOUT SEAL <br>
+                            THIS CLEARANCE IS VALID ONLY FOR SIX (6) MONTHS FROM THE DATE OF ISSUANCE.
+                        </p>
 			</div>
 			<div class="footer">
 				<img src="/transaction/footer.png" width="100%" height="20%" />

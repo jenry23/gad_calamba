@@ -85,7 +85,7 @@
 											<div>
 												<b style="margin-right: 67px"></b>
 												<b style="margin-right: 23px">:</b
-												><b>______(to be encoded)__________________________ </b>
+												><b><input type="text" /></b>
 											</div>
 											<div>
 												<b style="margin-right: 68px"></b>
@@ -137,7 +137,8 @@
 													<br />
 													<br />
 													<p>
-														_____________________________ <br />
+                                                        <u> <b style="text-transform: uppercase">Mr/Ms. {{data.barangay_sanggunian[data.barangay_sanggunian.length - 2].barangay_name}} </b></u>
+                                                        <br>
 														Barangay Secretary
 													</p>
 												</div>
@@ -146,7 +147,8 @@
 													<br />
 													<br />
 													<p>
-														_____________________________ <br />
+														<b style="text-transform: uppercase"><u>HON. {{data.barangay_sanggunian[0].barangay_name}}</u>
+                                                        </b><br />
 														Barangay Chairman
 													</p>
 												</div>
