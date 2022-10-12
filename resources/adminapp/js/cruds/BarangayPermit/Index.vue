@@ -1,4 +1,3 @@
-
 <template>
 	<div class="container-fluid">
 		<form @submit.prevent="submitForm">
@@ -100,7 +99,7 @@
 			ref="html2Pdf"
 		>
 			<section slot="pdf-content">
-				<barangay-clearance-resident-a1 :data="result" />
+				<barangay-clearance-resident-a1 v-if="is_barangay === 1" :data="result" />
 				<barangay-certification-resident-b1 v-if="is_barangay === 2" :data="result" />
 				<barangay-clearance-activity-a2 v-if="is_barangay === 3" :data="result" />
 				<barangay-certification-non-resident-b2 v-if="is_barangay === 4" :data="result" />

@@ -121,9 +121,8 @@
                                                 </div>
                                                 <div class="col-md-4">
 													<v-easy-camera v-model="picture" :startOnMounted="startCamera" ref="camera">
-														<div slot="start" name="start"> start </div>
-													</v-easy-camera>
-														<button @click="startPicture"> Photo </button>
+                                                    </v-easy-camera>
+														<button class="btn btn-primary" @click="startPicture"> Photo </button>
                                                 </div>
                                             </div>
                                             <br />
@@ -345,9 +344,6 @@
                                                 </div>
                                             </div>
                                             <br />
-                                            <div class="pull-right" style="margin-right: 20%">Issued By:</div>
-                                            <br />
-                                            <br />
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     C.T.C. No.: _________________ <br />Date Issued:
@@ -356,11 +352,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <center>
-                                                        <p>
-                                                            _____________________________ <br />
-                                                            {{ data.barangay_sanggunian.barangay_name }}<br />Punong
-                                                            Barangay
-                                                        </p>
+                                                        <img src="/transaction/finger_print.png" width="70%" height="100%" />
                                                     </center>
                                                 </div>
                                             </div>
@@ -381,41 +373,41 @@ THIS CLEARANCE IS VALID ONLY FOR SIX (6) MONTHS FROM THE DATE OF ISSUANCE.
         </div>
     </div>
 </template>
-<style>
+<style scoped>
 .vl {
-    border-left: 3px solid black;
-    height: 1420%;
-    margin-top: -70%;
+  border-left: 3px solid black;
+  height: 1420%;
+  margin-top: -70%;
 }
 .barangay-header-logo {
-    margin-top: -96px;
+  margin-top: -96px;
 }
 .barangay-header-line {
-    height: 6px;
-    border-width: 0;
-    color: gray;
-    background-color: gray;
-    margin-top: -40px;
+  height: 6px;
+  border-width: 0;
+  color: gray;
+  background-color: gray;
+  margin-top: -40px;
 }
 .barangay-wrap {
-    position: relative;
+  position: relative;
 }
 .barangay-watermark {
-    margin-top: 25%;
-    opacity: 0.2;
-    position: absolute;
-    margin-left: 10%;
+  margin-top: 25%;
+  opacity: 0.2;
+  position: absolute;
+  margin-left: 10%;
 }
 .barangay-content {
-    position: relative;
+  position: relative;
 }
 .barangay-finger-print {
-    margin-right: 10%;
-    margin-top: 2%;
+  margin-right: 10%;
+  margin-top: 2%;
 }
 .barangay-body-paragraph {
-    margin-top: 11%;
-    font-weight: 500;
+  margin-top: 11%;
+  font-weight: 500;
 }
 </style>
 <script>
@@ -440,7 +432,7 @@ export default ({
     },
     methods: {
         startPicture () {
-            this.startCamera = true;
+            this.$refs.camera.snap();
         }
     }
 });
