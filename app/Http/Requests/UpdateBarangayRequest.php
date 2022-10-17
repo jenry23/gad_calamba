@@ -19,7 +19,15 @@ class UpdateBarangayRequest extends FormRequest
         return [
             'barangay_name' => [
                 'string',
-                'required',
+                'sometimes',
+            ],
+            'address' => [
+                'string',
+                'nullable',
+            ],
+            'hotline_no' => [
+                'string',
+                'nullable',
             ],
         ];
     }

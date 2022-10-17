@@ -82,6 +82,12 @@
 						tdComp: DatatablesFields
 					},
 					{
+						title: 'Barangay',
+						field: 'barangay.barangay_name',
+						thComp: TranslatedHeader,
+						tdComp: DatatablesFields
+					},
+					{
 						title: 'Transaction Type',
 						field: 'transaction_type.transaction_type_name',
 						thComp: TranslatedHeader,

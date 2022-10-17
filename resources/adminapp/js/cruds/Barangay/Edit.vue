@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="card">
-            <div class="card-header card-header-primary card-header-icon">
+            <div class="card-header card-header-success card-header-icon">
               <div class="card-icon">
                 <i class="material-icons">edit</i>
               </div>
@@ -38,12 +38,48 @@
                       required
                     />
                   </div>
+                     <div
+                    class="form-group bmd-form-group"
+                    :class="{
+                      'has-items': entry.address,
+                      'is-focused': activeField == 'address'
+                    }"
+                  >
+                    <label class="bmd-label-floating required">Address</label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      :value="entry.address"
+                      @input="updateAddress"
+                      @focus="focusField('address')"
+                      @blur="clearFocus"
+                      required
+                    />
+                  </div>
+                  <div
+                    class="form-group bmd-form-group"
+                    :class="{
+                      'has-items': entry.hotline_no,
+                      'is-focused': activeField == 'hotline_no'
+                    }"
+                  >
+                    <label class="bmd-label-floating required">Hotline No</label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      :value="entry.hotline_no"
+                      @input="updateHotlineNo"
+                      @focus="focusField('hotline_no')"
+                      @blur="clearFocus"
+                      required
+                    />
+                  </div>
                 </div>
               </div>
             </div>
             <div class="card-footer">
               <vue-button-spinner
-                class="btn-primary"
+                class="btn-success"
                 :status="status"
                 :isLoading="loading"
                 :disabled="loading"
@@ -88,10 +124,18 @@ export default {
       'fetchEditData',
       'updateData',
       'resetState',
-      'setBarangayName'
+      'setBarangayName',
+      'setAddress',
+      'setHotlineNo'
     ]),
     updateBarangayName(e) {
       this.setBarangayName(e.target.value)
+    },
+    updateAddress(e) {
+      this.setAddress(e.target.value)
+    },
+    updateHotlineNo(e) {
+      this.setHotlineNo(e.target.value)
     },
     submitForm() {
       this.updateData()

@@ -81,7 +81,7 @@
                         </div>
                         <div class="card-footer">
                             <vue-button-spinner
-                                class="btn-primary"
+                                class="btn-success"
                                 :status="status"
                                 :isLoading="loading"
                                 :disabled="loading"

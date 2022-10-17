@@ -51,4 +51,8 @@ class BarangayRecord extends Model
     {
         return $this->belongsTo(TransactionType::class, 'transaction_type_id');
     }
+    public function barangay()
+    {
+        return $this->belongsTo(Barangay::class, 'barangay_id');
+    }
 }

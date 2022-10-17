@@ -17,7 +17,7 @@
       <div class="row" id="details"></div>
     </div>
       <div class="modal-footer">
-        <button type="button"  onclick="searchData()" class="btn btn-primary">Search</button>
+        <button type="button"  onclick="searchData()" class="btn btn-success">Search</button>
       </div>
     </div>
   </div>

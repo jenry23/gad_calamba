@@ -40,24 +40,22 @@
 			<div class="card-body" style="height: 1020px">
 				<div class="barangay-wrap">
 					<div class="row">
-						<div class="col-md-3">
-                            <center>
-                                <b>
-                                    <p style="margin-top: -30%; font-weight: 600">
-                                        SANGGUNIANG BARANGAY<br />
-                                        Barangay {{ data.barangay.barangay_name }}
-                                    </p>
-                                </b>
-                            </center>
-                            <br />
+				<div class="col-md-3">
                             <b>
                                 <center>
                                     <div v-for="sanggunian in data.barangay_sanggunian" :key="sanggunian.id">
                                         <p>
-                                            <b>Hon.{{ sanggunian.barangay_name }}</b> <br />
+                                            <b style="text-transform: uppercase;">Hon.{{ sanggunian.barangay_name }}</b> <br />
                                             {{ sanggunian.barangay_sanggunian_category.category_name }}
                                         </p>
                                     </div>
+								<br>
+								<div>
+								<b>Address: </b><br>
+                                <p>{{ data.barangay.address}}</p>
+                                <b>Hotline No:</b><br>
+                                <p>{{ data.barangay.hotline_no}}</p>
+								</div>
                                 </center>
                             </b>
                         </div>
@@ -113,7 +111,7 @@
                                                 <div class="col-md-4">
 													<v-easy-camera v-model="picture" :startOnMounted="startCamera" ref="camera">
                                                     </v-easy-camera>
-														<button class="btn btn-primary" @click="startPicture"> Photo </button>
+														<button class="btn btn-success" @click="startPicture"> Photo </button>
                                                 </div>
                                             </div>
 											<br />
@@ -311,48 +309,68 @@
 												</table>
 											</div>
 											<p>
-												Given this _____ day of _________ at Barangay
-												{{ data.barangay.barangay_name }}, Calamba City Laguna
-											</p>
-											<br />
-											<div class="pull-right" style="margin-right: 20%">Approved By:</div>
+                                                Given this {{ this.date.toLocaleString('en-us', { month:'long'}) }}  {{this.date.getDate()}}. {{this.date.getFullYear()}} at Barangay
+                                                {{ data.barangay.barangay_name }}, Calamba City Laguna
+                                            </p>
+                                            <br />
+                                           	<div class="pull-left">
+												<p>Affirmation of the requesting party:</p>
+											</div>
 											<br />
 											<br />
 											<div class="row">
 												<div class="col-md-6">
 													<p>
 														__________________________________________ <br />(Signature
-														over Printed Name of Resident)
+														over Printer Name / Date)
 													</p>
 												</div>
-												<div class="col-md-6">
-													<center>
-														<p>
-															_____________________________ <br />
-															{{ data.barangay_sanggunian[0].barangay_name
-															}}<br />Punong Barangay
-														</p>
-													</center>
-												</div>
+												<div class="col-md-6"></div>
 											</div>
 											<br />
 											<div class="row">
 												<div class="col-md-6">
-													C.T.C. No.: _________________ <br />Date Issued:
-													_________________<br />
-													Place Issued: _________________
+													<div class="pull-left">Issued by:</div>
+													<br />
+													<br />
+													<p>
+                                                        <u> <b style="text-transform: uppercase">Mr/Ms. {{data.barangay_sanggunian[data.barangay_sanggunian.length - 2].barangay_name}} </b></u>
+                                                        <br>
+														Barangay Secretary
+													</p>
 												</div>
 												<div class="col-md-6">
-													<center>
-                                                        <img src="/transaction/finger_print.png" width="70%" height="100%" />
-                                                    </center>
+													<div class="pull-left">Approved by:</div>
+													<br />
+													<br />
+													<p>
+														<b style="text-transform: uppercase"><u>HON. {{data.barangay_sanggunian[0].barangay_name}}</u>
+                                                        </b><br />
+														Barangay Chairman
+													</p>
 												</div>
 											</div>
+                                            <br />
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    C.T.C. No.: _________________ <br />Date Issued:
+                                                    _________________<br />
+                                                    Place Issued: _________________
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <center>
+                                                        <img src="/transaction/finger_print.png" width="70%" height="100%" />
+                                                    </center>
+                                                </div>
+                                            </div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+						<p style="margin-left: 4%;">NOT VALID WITHOUT SEAL <br>
+                            THIS CLEARANCE IS VALID ONLY FOR SIX (6) MONTHS FROM THE DATE OF ISSUANCE.
+                        </p>
 					</div>
 				</div>
 			</div>
@@ -364,49 +382,66 @@
 </template>
 <style scoped>
 .vl {
-  border-left: 3px solid black;
-  height: 1420%;
-  margin-top: -70%;
+    border-left: 3px solid black;
+    height: 1420%;
+    margin-top: -70%;
 }
 .barangay-header-logo {
-  margin-top: -96px;
+    margin-top: -96px;
 }
 .barangay-header-line {
-  height: 6px;
-  border-width: 0;
-  color: gray;
-  background-color: gray;
-  margin-top: -40px;
+    height: 6px;
+    border-width: 0;
+    color: gray;
+    background-color: gray;
+    margin-top: -40px;
 }
 .barangay-wrap {
-  position: relative;
+    position: relative;
 }
 .barangay-watermark {
-  margin-top: 25%;
-  opacity: 0.2;
-  position: absolute;
-  margin-left: 10%;
+    margin-top: 25%;
+    opacity: 0.2;
+    position: absolute;
+    margin-left: 10%;
 }
 .barangay-content {
-  position: relative;
+    position: relative;
 }
 .barangay-finger-print {
-  margin-right: 10%;
-  margin-top: 2%;
+    margin-right: 10%;
+    margin-top: 2%;
 }
 .barangay-body-paragraph {
-  margin-top: 11%;
-  font-weight: 500;
+    margin-top: 11%;
+    font-weight: 500;
 }
 </style>
 <script>
-	export default {
-		props: {
-			data: {
-				type: Object,
-				required: true,
-			},
-		},
-	}
+import EasyCamera from 'easy-vue-camera';
+
+export default {
+    components: {
+        'v-easy-camera': EasyCamera
+    },
+    props: {
+        data: {
+            type: Object,
+            required: true,
+        },
+    },
+    data () {
+        return {
+            picture: '',
+            startCamera: true,
+            date: new Date()
+        }
+    },
+    methods: {
+        startPicture () {
+            this.$refs.camera.snap();
+        }
+    }
+}
 
 </script>

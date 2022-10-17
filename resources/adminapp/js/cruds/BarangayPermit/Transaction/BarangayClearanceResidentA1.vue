@@ -40,15 +40,7 @@
             <div class="card-body" style="height: 1020px">
                 <div class="barangay-wrap">
                     <div class="row">
-                        <div class="col-md-3">
-                            <!-- <center>
-                                <b>
-                                    <p style="margin-top: -30%; font-weight: 600">
-                                        <b style="text-transform: uppercase;">Hon.{{ data.barangay_sanggunian[0].barangay_name }}</b>
-                                        {{ data.barangay_sanggunian[0].barangay_sanggunian_category.category_name }}
-                                    </p>
-                                </b>
-                            </center> -->
+                    	<div class="col-md-3">
                             <b>
                                 <center>
                                     <div v-for="sanggunian in data.barangay_sanggunian" :key="sanggunian.id">
@@ -57,6 +49,13 @@
                                             {{ sanggunian.barangay_sanggunian_category.category_name }}
                                         </p>
                                     </div>
+								<br>
+								<div>
+								<b>Address: </b><br>
+                                <p>{{ data.barangay.address}}</p>
+                                <b>Hotline No:</b><br>
+                                <p>{{ data.barangay.hotline_no}}</p>
+								</div>
                                 </center>
                             </b>
                         </div>
@@ -81,11 +80,6 @@
                                                     This is to certify that person, whose personal details appears
                                                     below, is a bonafide resident of Barangay
                                                     {{ data.barangay.barangay_name }} Calamba City, Laguna.
-                                                    <!-- This is to certify that {{ data.full_name }}, {{ data.age }},
-												{{ data.civil_status }}, is a bonafide and
-												{{ data.resident_status }} resident of {{ data.address }} Barangay
-												{{ data.barangay.barangay_name }} Calamba City, Laguna since
-												{{ data.barangay_residence_year }}. -->
                                                 </p>
                                             </center>
                                             <div class="row">

@@ -40,7 +40,7 @@
 			<div class="card-body" style="height: 1020px">
 				<div class="barangay-wrap">
 					<div class="row">
-						 <div class="col-md-3">
+					<div class="col-md-3">
                             <b>
                                 <center>
                                     <div v-for="sanggunian in data.barangay_sanggunian" :key="sanggunian.id">
@@ -49,6 +49,13 @@
                                             {{ sanggunian.barangay_sanggunian_category.category_name }}
                                         </p>
                                     </div>
+								<br>
+								<div>
+								<b>Address: </b><br>
+                                <p>{{ data.barangay.address}}</p>
+                                <b>Hotline No:</b><br>
+                                <p>{{ data.barangay.hotline_no}}</p>
+								</div>
                                 </center>
                             </b>
                         </div>
@@ -96,7 +103,7 @@
 												applicable laws, rules and regulation.
 											</p>
 											<p class="text-justify">
-												Given this _____ day of _________ at Barangay
+												Given this {{ this.date.toLocaleString('en-us', { month:'long'}) }}  {{this.date.getDate()}}. {{this.date.getFullYear()}} at Barangay
 												{{ data.barangay.barangay_name }}, Calamba City Laguna
 											</p>
 											<br />
@@ -184,7 +191,12 @@
 				type: Object,
 				required: true,
 			},
-		},
+	},
+		    data () {
+        return {
+            date: new Date()
+        }
+    },
 	}
 
 </script>

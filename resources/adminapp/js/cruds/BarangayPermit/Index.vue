@@ -4,7 +4,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="card">
-						<div class="card-header card-header-primary card-header-icon">
+						<div class="card-header card-header-success card-header-icon">
 							<div class="card-icon">
 								<i class="material-icons">assignment</i>
 							</div>
@@ -112,16 +112,7 @@
 	</div>
 </template>
 
-
 <style scoped>
-.responsive-iframe {
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-	width: 100%;
-	height: 100vh;
-}
 </style>
 <script>
 	import { mapGetters, mapActions } from 'vuex'

@@ -14,7 +14,7 @@
 					</div>
 					<div class="card-body">
 						<router-link
-							class="btn btn-primary"
+							class="btn btn-success"
 							v-if="$can(xprops.permission_prefix + 'create')"
 							:to="{ name: xprops.route + '.create' }"
 						>

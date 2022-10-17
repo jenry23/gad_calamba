@@ -7,11 +7,8 @@
 	>
 		<div class="logo">
 			<a href="/" class="logo-normal">
-				<div v-if="roles.title === 'Barangay'" class="d-flex justify-content-center">
-					<img class="img-fluid" :src="user.photo[0].url" style="margin-top: -20px" />
-				</div>
-				<div v-else-if="roles.title !== 'Barangay'" class="d-flex justify-content-center">
-					<img class="img-fluid" src="/images/cpmo1.png" style="margin-top: -20px" />
+				<div class="d-flex justify-content-center">
+					<img class="img-fluid" :src="backgroundBarangay" style="margin-top: -20px" />
 				</div>
 			</a>
 		</div>
@@ -98,6 +95,15 @@
 				return {
 					backgroundImage: `url(${this.backgroundImage})`
 				}
+			},
+			backgroundBarangay () {
+				let url = '';
+				if (this.roles.title !== 'Barangay') {
+					url = '/images/cpmo.png';
+				} else {
+					url = this.user.photo[0].url;
+				}
+				return url
 			}
 		},
 		mounted () {

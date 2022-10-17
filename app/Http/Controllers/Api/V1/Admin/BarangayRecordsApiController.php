@@ -12,7 +12,7 @@ class BarangayRecordsApiController extends Controller
 {
     public function index()
     {
-        return new BarangayResource(BarangayRecord::with(['gad', 'transaction_type'])
+        return new BarangayResource(BarangayRecord::with(['gad', 'transaction_type', 'barangay'])
             ->when(
                 Auth::user()->barangay,
                 function (Builder $query) {

@@ -21,6 +21,14 @@ class StoreBarangayRequest extends FormRequest
                 'string',
                 'required',
             ],
+            'address' => [
+                'string',
+                'nullable',
+            ],
+            'hotline_no' => [
+                'string',
+                'nullable',
+            ],
         ];
     }
 }

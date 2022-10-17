@@ -30,6 +30,8 @@ class Barangay extends Model
 
     protected $fillable = [
         'barangay_name',
+        'address',
+        'hotline_no',
         'created_at',
         'updated_at',
         'deleted_at'

@@ -40,24 +40,22 @@
 			<div class="card-body" style="height: 1020px">
 				<div class="barangay-wrap">
 					<div class="row">
-						 <div class="col-md-3">
-                            <center>
-                                <b>
-                                    <p style="margin-top: -30%; font-weight: 600">
-                                        SANGGUNIANG BARANGAY<br />
-                                        Barangay {{ data.barangay.barangay_name }}
-                                    </p>
-                                </b>
-                            </center>
-                            <br />
+						<div class="col-md-3">
                             <b>
                                 <center>
                                     <div v-for="sanggunian in data.barangay_sanggunian" :key="sanggunian.id">
                                         <p>
-                                            <b>Hon.{{ sanggunian.barangay_name }}</b> <br />
+                                            <b style="text-transform: uppercase;">Hon.{{ sanggunian.barangay_name }}</b> <br />
                                             {{ sanggunian.barangay_sanggunian_category.category_name }}
                                         </p>
                                     </div>
+								<br>
+								<div>
+								<b>Address: </b><br>
+                                <p>{{ data.barangay.address}}</p>
+                                <b>Hotline No:</b><br>
+                                <p>{{ data.barangay.hotline_no}}</p>
+								</div>
                                 </center>
                             </b>
                         </div>
@@ -79,7 +77,7 @@
 										<div class="barangay-body-paragraph">
 											<p class="text-justify">
 												This is to certify that upon verification, the below listed
-												individual/s is/are not residents of Barangay ___________, Calamba
+												individual/s is/are not residents of Barangay {{ data.barangay.barangay_name }}, Calamba
 												City, Laguna
 											</p>
 											<div>
@@ -90,22 +88,22 @@
 											<div>
 												<b style="margin-right: 68px"></b>
 												<b style="margin-right: 24px">:</b
-												><b>_______________________________________________ </b>
+												><b><input type="text" /> </b>
 											</div>
 											<div>
 												<b style="margin-right: 68px"></b>
 												<b style="margin-right: 24px">:</b
-												><b>_______________________________________________ </b>
+												><b><input type="text" /> </b>
 											</div>
 											<div>
 												<b style="margin-right: 68px"></b>
 												<b style="margin-right: 24px">:</b
-												><b>_______________________________________________ </b>
+												><b><input type="text" /> </b>
 											</div>
 											<div>
 												<b style="margin-right: 68px"></b>
 												<b style="margin-right: 24px">:</b
-												><b>_______________________________________________ </b>
+												><b><input type="text" /> </b>
 											</div>
 											<br />
 											<p class="text-justify">
@@ -113,7 +111,7 @@
 												may best serve.
 											</p>
 											<p class="text-justify">
-												Given this _____ day of _________ at Barangay
+												Given this {{ this.date.toLocaleString('en-us', { month:'long'}) }}  {{this.date.getDate()}}. {{this.date.getFullYear()}} at Barangay
 												{{ data.barangay.barangay_name }}, Calamba City Laguna
 											</p>
 											<div class="pull-left">
@@ -169,49 +167,54 @@
 </template>
 <style scoped>
 .vl {
-  border-left: 3px solid black;
-  height: 1420%;
-  margin-top: -70%;
+    border-left: 3px solid black;
+    height: 1420%;
+    margin-top: -70%;
 }
 .barangay-header-logo {
-  margin-top: -96px;
+    margin-top: -96px;
 }
 .barangay-header-line {
-  height: 6px;
-  border-width: 0;
-  color: gray;
-  background-color: gray;
-  margin-top: -40px;
+    height: 6px;
+    border-width: 0;
+    color: gray;
+    background-color: gray;
+    margin-top: -40px;
 }
 .barangay-wrap {
-  position: relative;
+    position: relative;
 }
 .barangay-watermark {
-  margin-top: 25%;
-  opacity: 0.2;
-  position: absolute;
-  margin-left: 10%;
+    margin-top: 25%;
+    opacity: 0.2;
+    position: absolute;
+    margin-left: 10%;
 }
 .barangay-content {
-  position: relative;
+    position: relative;
 }
 .barangay-finger-print {
-  margin-right: 10%;
-  margin-top: 2%;
+    margin-right: 10%;
+    margin-top: 2%;
 }
 .barangay-body-paragraph {
-  margin-top: 11%;
-  font-weight: 500;
+    margin-top: 11%;
+    font-weight: 500;
 }
 </style>
 <script>
-	export default {
-		props: {
-			data: {
-				type: Object,
-				required: true,
-			},
-		},
-	}
+export default {
+    props: {
+        data: {
+            type: Object,
+            required: true,
+        },
+    },
+    data () {
+        return {
+            date: new Date()
+        }
+    },
+}
 
 </script>

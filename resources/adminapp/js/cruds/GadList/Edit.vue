@@ -1545,7 +1545,7 @@
 						</button>
 						<vue-button-spinner
 							v-if="isDisabled"
-							class="btn-primary"
+							class="btn-success"
 							:status="status"
 							:isLoading="loading"
 							:disabled="loading"
@@ -1608,7 +1608,7 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							<button type="submit" class="btn btn-primary">Save changes</button>
+							<button type="submit" class="btn btn-success">Save changes</button>
 						</div>
 					</div>
 				</div>

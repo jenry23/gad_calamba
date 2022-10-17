@@ -40,24 +40,22 @@
 			<div class="card-body" style="height: 1020px">
 				<div class="barangay-wrap">
 					<div class="row">
-					 <div class="col-md-3">
-						<center>
-                                <b>
-                                    <p style="margin-top: -30%; font-weight: 600">
-                                        SANGGUNIANG BARANGAY<br />
-                                        Barangay {{ data.barangay.barangay_name }}
-                                    </p>
-                                </b>
-                            </center>
-                            <br />
+					<div class="col-md-3">
                             <b>
                                 <center>
                                     <div v-for="sanggunian in data.barangay_sanggunian" :key="sanggunian.id">
                                         <p>
-                                            <b>Hon.{{ sanggunian.barangay_name }}</b> <br />
+                                            <b style="text-transform: uppercase;">Hon.{{ sanggunian.barangay_name }}</b> <br />
                                             {{ sanggunian.barangay_sanggunian_category.category_name }}
                                         </p>
                                     </div>
+								<br>
+								<div>
+								<b>Address: </b><br>
+                                <p>{{ data.barangay.address}}</p>
+                                <b>Hotline No:</b><br>
+                                <p>{{ data.barangay.hotline_no}}</p>
+								</div>
                                 </center>
                             </b>
                         </div>
@@ -88,24 +86,24 @@
 											</div>
 											<div>
 												<b style="margin-right: 231px">Address</b>
-												<b style="margin-right: 24px">:</b><b>__________________________</b>
+												<b style="margin-right: 24px">:</b><b><input type="text" /></b>
 											</div>
 											<div>
 												<b style="margin-right: 213px">Contact No</b>
-												<b style="margin-right: 25px">:</b><b>__________________________</b>
+												<b style="margin-right: 25px">:</b><b><input type="text" /></b>
 											</div>
 											<div>
 												<b style="margin-right: 179px">Name of Activity</b>
-												<b style="margin-right: 25px">:</b><b>__________________________</b>
+												<b style="margin-right: 25px">:</b><b><input type="text" /></b>
 											</div>
 
 											<div>
 												<b style="margin-right: 163px">Purpose of Activity</b>
-												<b style="margin-right: 26px">:</b><b>__________________________</b>
+												<b style="margin-right: 26px">:</b><b><input type="text" /></b>
 											</div>
 											<div>
 												<b style="margin-right: 194px">Inclusive Date</b>
-												<b style="margin-right: 27px">:</b><b>__________________________</b>
+												<b style="margin-right: 27px">:</b><b><input type="text" /></b>
 											</div>
 											<br />
 											<p class="text-justify">
@@ -134,7 +132,8 @@
 													<br />
 													<br />
 													<p>
-														_____________________________ <br />
+                                                        <u> <b style="text-transform: uppercase">Mr/Ms. {{data.barangay_sanggunian[data.barangay_sanggunian.length - 2].barangay_name}} </b></u>
+                                                        <br>
 														Barangay Secretary
 													</p>
 												</div>
@@ -143,7 +142,8 @@
 													<br />
 													<br />
 													<p>
-														_____________________________ <br />
+														<b style="text-transform: uppercase"><u>HON. {{data.barangay_sanggunian[0].barangay_name}}</u>
+                                                        </b><br />
 														Barangay Chairman
 													</p>
 												</div>
@@ -206,7 +206,12 @@
 				type: Object,
 				required: true,
 			},
-		},
+	},
+		    data () {
+        return {
+            date: new Date()
+        }
+    },
 	}
 
 </script>

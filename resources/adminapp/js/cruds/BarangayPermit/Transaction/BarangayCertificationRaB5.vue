@@ -40,24 +40,22 @@
 			<div class="card-body" style="height: 1020px">
 				<div class="barangay-wrap">
 					<div class="row">
-						 <div class="col-md-3">
-                            <center>
-                                <b>
-                                    <p style="margin-top: -30%; font-weight: 600">
-                                        SANGGUNIANG BARANGAY<br />
-                                        Barangay {{ data.barangay.barangay_name }}
-                                    </p>
-                                </b>
-                            </center>
-                            <br />
+						<div class="col-md-3">
                             <b>
                                 <center>
                                     <div v-for="sanggunian in data.barangay_sanggunian" :key="sanggunian.id">
                                         <p>
-                                            <b>Hon.{{ sanggunian.barangay_name }}</b> <br />
+                                            <b style="text-transform: uppercase;">Hon.{{ sanggunian.barangay_name }}</b> <br />
                                             {{ sanggunian.barangay_sanggunian_category.category_name }}
                                         </p>
                                     </div>
+								<br>
+								<div>
+								<b>Address: </b><br>
+                                <p>{{ data.barangay.address}}</p>
+                                <b>Hotline No:</b><br>
+                                <p>{{ data.barangay.hotline_no}}</p>
+								</div>
                                 </center>
                             </b>
                         </div>
@@ -113,7 +111,7 @@
 												<div class="col-md-4">
 													<v-easy-camera v-model="picture" :startOnMounted="startCamera" ref="camera">
                                                     </v-easy-camera>
-														<button class="btn btn-primary" @click="startPicture"> Photo </button>
+														<button class="btn btn-success" @click="startPicture"> Photo </button>
                                                 </div>
 											</div>
 											<br />
@@ -130,7 +128,7 @@
 												issuance.
 											</p>
 											<p>
-												Given this _____ day of _________ at Barangay
+												Given this {{ this.date.toLocaleString('en-us', { month:'long'}) }}  {{this.date.getDate()}}. {{this.date.getFullYear()}} at Barangay
 												{{ data.barangay.barangay_name }}, Calamba City Laguna
 											</p>
 											<br />

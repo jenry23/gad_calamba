@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header card-header-primary card-header-icon">
+          <div class="card-header card-header-success card-header-icon">
             <div class="card-icon">
               <i class="material-icons">assignment</i>
             </div>
@@ -14,7 +14,7 @@
           </div>
           <div class="card-body">
             <router-link
-              class="btn btn-primary"
+              class="btn btn-success"
               :to="{ name: xprops.route + '.create' }"
             >
               <i class="material-icons">
