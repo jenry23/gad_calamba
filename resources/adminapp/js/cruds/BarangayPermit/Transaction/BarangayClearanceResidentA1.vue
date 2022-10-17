@@ -119,7 +119,7 @@
                                                 <div class="col-md-3">
 													<v-easy-camera v-model="picture" :startOnMounted="startCamera" ref="camera">
                                                     </v-easy-camera>
-														<button class="btn btn-primary" @click="startPicture"> Photo </button>
+														<button class="btn btn-success" @click="startPicture"> Photo </button>
                                                 </div>
                                             </div>
                                             <br />
@@ -375,7 +375,7 @@
                                 </div>
                             </div>
                         </div>
-                        <p style="margin-left: 4%;">NOT VALID WITHOUT SEAL <br>
+                        <p style="margin-left: 4%;margin-top: 56px;">NOT VALID WITHOUT SEAL <br>
                             THIS CLEARANCE IS VALID ONLY FOR SIX (6) MONTHS FROM THE DATE OF ISSUANCE.
                         </p>
                     </div>
@@ -422,6 +422,9 @@
 .barangay-body-paragraph {
   margin-top: 11%;
   font-weight: 500;
+}
+.form-check .form-check-label span {
+    margin-top: -5px;
 }
 </style>
 <script>

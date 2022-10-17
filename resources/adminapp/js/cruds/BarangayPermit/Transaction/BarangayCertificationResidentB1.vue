@@ -120,193 +120,193 @@
 												purpose/s.
 											</p>
 											<div>
-												<table class="table table-responsive">
-													<tbody>
-														<tr>
-															<td>
-																<div class="form-check">
-																	<label class="form-check-label">
-																		<input
-																			class="form-check-input"
-																			type="checkbox"
-																			value=""
-																		/>
-																		<span class="form-check-sign">
-																			<span class="check"></span>
-																		</span>
-																	</label>
-																</div>
-															</td>
-															<td style="width: 50%">Employment Purposes</td>
-															<td>
-																<div class="form-check">
-																	<label class="form-check-label">
-																		<input
-																			class="form-check-input"
-																			type="checkbox"
-																			value=""
-																		/>
-																		<span class="form-check-sign">
-																			<span class="check"></span>
-																		</span>
-																	</label>
-																</div>
-															</td>
-															<td>School / SSS / GSIS Reference</td>
-														</tr>
-														<tr>
-															<td>
-																<div class="form-check">
-																	<label class="form-check-label">
-																		<input
-																			class="form-check-input"
-																			type="checkbox"
-																			value=""
-																		/>
-																		<span class="form-check-sign">
-																			<span class="check"></span>
-																		</span>
-																	</label>
-																</div>
-															</td>
-															<td>Business Requirement</td>
-															<td>
-																<div class="form-check">
-																	<label class="form-check-label">
-																		<input
-																			class="form-check-input"
-																			type="checkbox"
-																			value=""
-																		/>
-																		<span class="form-check-sign">
-																			<span class="check"></span>
-																		</span>
-																	</label>
-																</div>
-															</td>
-															<td>Fire Arms / Drivers License</td>
-														</tr>
+												<table>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="form-check">
+                                                                    <label class="form-check-label">
+                                                                        <input
+                                                                            class="form-check-input"
+                                                                            type="checkbox"
+                                                                            value=""
+                                                                        />
+                                                                        <span class="form-check-sign">
+                                                                            <span class="check"></span>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                            </td>
+                                                            <td style="width: 50%">Employment Purposes</td>
+                                                            <td>
+                                                                <div class="form-check">
+                                                                    <label class="form-check-label">
+                                                                        <input
+                                                                            class="form-check-input"
+                                                                            type="checkbox"
+                                                                            value=""
+                                                                        />
+                                                                        <span class="form-check-sign">
+                                                                            <span class="check"></span>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                            </td>
+                                                            <td>School / SSS / GSIS Reference</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="form-check">
+                                                                    <label class="form-check-label">
+                                                                        <input
+                                                                            class="form-check-input"
+                                                                            type="checkbox"
+                                                                            value=""
+                                                                        />
+                                                                        <span class="form-check-sign">
+                                                                            <span class="check"></span>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                            </td>
+                                                            <td>Business Requirement</td>
+                                                            <td>
+                                                                <div class="form-check">
+                                                                    <label class="form-check-label">
+                                                                        <input
+                                                                            class="form-check-input"
+                                                                            type="checkbox"
+                                                                            value=""
+                                                                        />
+                                                                        <span class="form-check-sign">
+                                                                            <span class="check"></span>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                            </td>
+                                                            <td>Fire Arms / Drivers License</td>
+                                                        </tr>
 
-														<tr>
-															<td>
-																<div class="form-check">
-																	<label class="form-check-label">
-																		<input
-																			class="form-check-input"
-																			type="checkbox"
-																			value=""
-																		/>
-																		<span class="form-check-sign">
-																			<span class="check"></span>
-																		</span>
-																	</label>
-																</div>
-															</td>
-															<td>Bank Requirement</td>
-															<td>
-																<div class="form-check">
-																	<label class="form-check-label">
-																		<input
-																			class="form-check-input"
-																			type="checkbox"
-																			value=""
-																		/>
-																		<span class="form-check-sign">
-																			<span class="check"></span>
-																		</span>
-																	</label>
-																</div>
-															</td>
-															<td>Electric / Water Connection</td>
-														</tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="form-check">
+                                                                    <label class="form-check-label">
+                                                                        <input
+                                                                            class="form-check-input"
+                                                                            type="checkbox"
+                                                                            value=""
+                                                                        />
+                                                                        <span class="form-check-sign">
+                                                                            <span class="check"></span>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                            </td>
+                                                            <td>Bank Requirement</td>
+                                                            <td>
+                                                                <div class="form-check">
+                                                                    <label class="form-check-label">
+                                                                        <input
+                                                                            class="form-check-input"
+                                                                            type="checkbox"
+                                                                            value=""
+                                                                        />
+                                                                        <span class="form-check-sign">
+                                                                            <span class="check"></span>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                            </td>
+                                                            <td>Electric / Water Connection</td>
+                                                        </tr>
 
-														<tr>
-															<td>
-																<div class="form-check">
-																	<label class="form-check-label">
-																		<input
-																			class="form-check-input"
-																			type="checkbox"
-																			value=""
-																		/>
-																		<span class="form-check-sign">
-																			<span class="check"></span>
-																		</span>
-																	</label>
-																</div>
-															</td>
-															<td>NBI Requirement</td>
-															<td>
-																<div class="form-check">
-																	<label class="form-check-label">
-																		<input
-																			class="form-check-input"
-																			type="checkbox"
-																			value=""
-																		/>
-																		<span class="form-check-sign">
-																			<span class="check"></span>
-																		</span>
-																	</label>
-																</div>
-															</td>
-															<td>Senior Citizens Requirement</td>
-														</tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="form-check">
+                                                                    <label class="form-check-label">
+                                                                        <input
+                                                                            class="form-check-input"
+                                                                            type="checkbox"
+                                                                            value=""
+                                                                        />
+                                                                        <span class="form-check-sign">
+                                                                            <span class="check"></span>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                            </td>
+                                                            <td>NBI Requirement</td>
+                                                            <td>
+                                                                <div class="form-check">
+                                                                    <label class="form-check-label">
+                                                                        <input
+                                                                            class="form-check-input"
+                                                                            type="checkbox"
+                                                                            value=""
+                                                                        />
+                                                                        <span class="form-check-sign">
+                                                                            <span class="check"></span>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                            </td>
+                                                            <td>Senior Citizens Requirement</td>
+                                                        </tr>
 
-														<tr>
-															<td>
-																<div class="form-check">
-																	<label class="form-check-label">
-																		<input
-																			class="form-check-input"
-																			type="checkbox"
-																			value=""
-																		/>
-																		<span class="form-check-sign">
-																			<span class="check"></span>
-																		</span>
-																	</label>
-																</div>
-															</td>
-															<td>Medical Aid Requirement</td>
-															<td>
-																<div class="form-check">
-																	<label class="form-check-label">
-																		<input
-																			class="form-check-input"
-																			type="checkbox"
-																			value=""
-																		/>
-																		<span class="form-check-sign">
-																			<span class="check"></span>
-																		</span>
-																	</label>
-																</div>
-															</td>
-															<td>Overseas / Travel Requirement</td>
-														</tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="form-check">
+                                                                    <label class="form-check-label">
+                                                                        <input
+                                                                            class="form-check-input"
+                                                                            type="checkbox"
+                                                                            value=""
+                                                                        />
+                                                                        <span class="form-check-sign">
+                                                                            <span class="check"></span>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                            </td>
+                                                            <td>Medical Aid Requirement</td>
+                                                            <td>
+                                                                <div class="form-check">
+                                                                    <label class="form-check-label">
+                                                                        <input
+                                                                            class="form-check-input"
+                                                                            type="checkbox"
+                                                                            value=""
+                                                                        />
+                                                                        <span class="form-check-sign">
+                                                                            <span class="check"></span>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                            </td>
+                                                            <td>Overseas / Travel Requirement</td>
+                                                        </tr>
 
-														<tr>
-															<td>
-																<div class="form-check">
-																	<label class="form-check-label">
-																		<input
-																			class="form-check-input"
-																			type="checkbox"
-																			value=""
-																		/>
-																		<span class="form-check-sign">
-																			<span class="check"></span>
-																		</span>
-																	</label>
-																</div>
-															</td>
-															<td>Other Requirements (Specify):</td>
-															<td></td>
-															<td>__________________________</td>
-														</tr>
-													</tbody>
-												</table>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="form-check">
+                                                                    <label class="form-check-label">
+                                                                        <input
+                                                                            class="form-check-input"
+                                                                            type="checkbox"
+                                                                            value=""
+                                                                        />
+                                                                        <span class="form-check-sign">
+                                                                            <span class="check"></span>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                            </td>
+                                                            <td>Other Requirements (Specify):</td>
+                                                            <td></td>
+                                                            <td>__________________________</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
 											</div>
 											<p>
                                                 Given this {{ this.date.toLocaleString('en-us', { month:'long'}) }}  {{this.date.getDate()}}. {{this.date.getFullYear()}} at Barangay
@@ -368,7 +368,7 @@
 								</div>
 							</div>
 						</div>
-						<p style="margin-left: 4%;">NOT VALID WITHOUT SEAL <br>
+                        <p style="margin-left: 4%;margin-top: 56px;">NOT VALID WITHOUT SEAL <br>
                             THIS CLEARANCE IS VALID ONLY FOR SIX (6) MONTHS FROM THE DATE OF ISSUANCE.
                         </p>
 					</div>
@@ -415,6 +415,9 @@
 .barangay-body-paragraph {
     margin-top: 11%;
     font-weight: 500;
+}
+.form-check .form-check-label span {
+    margin-top: -5px;
 }
 </style>
 <script>

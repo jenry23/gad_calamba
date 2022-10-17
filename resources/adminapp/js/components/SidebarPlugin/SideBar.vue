@@ -98,11 +98,12 @@
 			},
 			backgroundBarangay () {
 				let url = '';
-				if (this.roles.title !== 'Barangay') {
-					url = '/images/cpmo.png';
-				} else {
+				if (this.roles.title === 'Barangay') {
 					url = this.user.photo[0].url;
+				} else if (this.roles.title === 'Admin') {
+					url = '/images/cpmo.png';
 				}
+				console.log(this.roles.title)
 				return url
 			}
 		},
