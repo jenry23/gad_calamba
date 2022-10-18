@@ -49,7 +49,7 @@
                                             {{ sanggunian.barangay_sanggunian_category.category_name }}
                                         </p>
                                     </div>
-								<br>
+								<br><br><br>
 								<div>
 								<b>Address: </b><br>
                                 <p>{{ data.barangay.address}}</p>
@@ -84,7 +84,7 @@
 												<div class="col-md-8">
 													<div>
 														<b style="margin-right: 67px">Name of Resident</b>
-														<b style="margin-right: 0px">:</b><b>{{ data.full_name }} </b>
+														<b style="margin-right: 0px">:</b><b> {{ data.full_name }} </b>
 													</div>
 													<div>
 														<b style="margin-right: 155px">Age</b>
@@ -99,8 +99,12 @@
 														<b style="margin-right: 0px">:</b><b> {{ data.address }}</b>
 													</div>
 													<div>
+                                                        <b style="margin-right: 183px"></b>
+                                                        <b style="margin-right: 0px">:</b><b> {{ data.address1 }}</b>
+                                                    </div>
+													<div>
 														<b style="margin-right: 69px">Residence Status</b>
-														<b style="margin-right: 0px">:</b><b>{{ data.resident_status }} </b>
+														<b style="margin-right: 0px">:</b><b> {{ data.resident_status }} </b>
 													</div>
 													<div>
 														<b style="margin-right: 50px">Brgy Residence Date</b>
@@ -132,50 +136,61 @@
 												{{ data.barangay.barangay_name }}, Calamba City Laguna
 											</p>
 											<br />
-											<div class="pull-right" style="margin-right: 20%">Approved By:</div>
+                                           	<div class="pull-left">
+												<p>Affirmation of the requesting party:</p>
+											</div>
 											<br />
 											<br />
 											<div class="row">
 												<div class="col-md-6">
 													<p>
 														__________________________________________ <br />(Signature
-														over Printed Name of Resident)
+														over Printer Name / Date)
 													</p>
 												</div>
-												<div class="col-md-6">
-													<center>
-														<p>
-															_____________________________ <br />
-															{{ data.barangay_sanggunian[0].barangay_name
-															}}<br />Punong Barangay
-														</p>
-													</center>
-												</div>
+												<div class="col-md-6"></div>
 											</div>
-											<br />
-											<div class="pull-right" style="margin-right: 20%">Issued By:</div>
-											<br />
 											<br />
 											<div class="row">
 												<div class="col-md-6">
-													C.T.C. No.: _________________ <br />Date Issued:
-													_________________<br />
-													Place Issued: _________________
+													<div class="pull-left">Issued by:</div>
+													<br />
+													<br />
+													<p>
+                                                        <u> <b style="text-transform: uppercase">Mr/Ms. {{data.barangay_sanggunian[data.barangay_sanggunian.length - 2].barangay_name}} </b></u>
+                                                        <br>
+														Barangay Secretary
+													</p>
 												</div>
 												<div class="col-md-6">
-													<center>
-														<img src="/transaction/finger_print.png" width="70%" height="100%" />
-													</center>
+													<div class="pull-left">Approved by:</div>
+													<br />
+													<br />
+													<p>
+														<b style="text-transform: uppercase"><u>HON. {{data.barangay_sanggunian[0].barangay_name}}</u>
+                                                        </b><br />
+														Barangay Chairman
+													</p>
 												</div>
 											</div>
+                                            <br />
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    C.T.C. No.: _________________ <br />Date Issued:
+                                                    _________________<br />
+                                                    Place Issued: _________________
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <center>
+                                                        <img src="/transaction/finger_print.png" width="70%" height="100%" />
+                                                    </center>
+                                                </div>
+                                            </div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<p style="margin-left: 4%;margin-top: 56px;">NOT VALID WITHOUT SEAL <br>
-                            THIS CLEARANCE IS VALID ONLY FOR SIX (6) MONTHS FROM THE DATE OF ISSUANCE.
-                        </p>
 					</div>
 				</div>
 			</div>
@@ -238,7 +253,8 @@ export default {
     data () {
         return {
             picture: '',
-            startCamera: true,
+			startCamera: true,
+			date: new Date(),
         }
     },
     methods: {

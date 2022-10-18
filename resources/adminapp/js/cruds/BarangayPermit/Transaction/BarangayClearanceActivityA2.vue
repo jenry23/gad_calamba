@@ -49,7 +49,7 @@
                                             {{ sanggunian.barangay_sanggunian_category.category_name }}
                                         </p>
                                     </div>
-								<br>
+								<br><br><br>
 								<div>
 								<b>Address: </b><br>
                                 <p>{{ data.barangay.address}}</p>
@@ -82,7 +82,7 @@
 											</p>
 											<div>
 												<b style="margin-right: 67px">Individual/Office/ Company Name:</b>
-												<b style="margin-right: 23px">:</b><b><input type="text" /></b>
+												<b style="margin-right: 24px">:</b><b><input type="text" /></b>
 											</div>
 											<div>
 												<b style="margin-right: 231px">Address</b>
@@ -153,9 +153,6 @@
 								</div>
 							</div>
 						</div>
-						<p style="margin-left: 4%;margin-top: 56px;">NOT VALID WITHOUT SEAL <br>
-                            THIS CLEARANCE IS VALID ONLY FOR SIX (6) MONTHS FROM THE DATE OF ISSUANCE.
-                        </p>
 					</div>
 				</div>
 			</div>

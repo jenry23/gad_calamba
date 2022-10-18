@@ -82,7 +82,7 @@
 											</p>
 											<div>
 												<b style="margin-right: 67px"></b>
-												<b style="margin-right: 23px">:</b
+												<b style="margin-right: 24px">:</b
 												><b><input type="text" /></b>
 											</div>
 											<div>
@@ -156,9 +156,6 @@
 								</div>
 							</div>
 						</div>
-						<p style="margin-left: 4%;margin-top: 56px;">NOT VALID WITHOUT SEAL <br>
-                            THIS CLEARANCE IS VALID ONLY FOR SIX (6) MONTHS FROM THE DATE OF ISSUANCE.
-                        </p>
 					</div>
 				</div>
 			</div>

@@ -49,7 +49,7 @@
                                             {{ sanggunian.barangay_sanggunian_category.category_name }}
                                         </p>
                                     </div>
-								<br>
+								<br><br><br>
 								<div>
 								<b>Address: </b><br>
                                 <p>{{ data.barangay.address}}</p>
@@ -73,7 +73,7 @@
 									<div class="container" style="margin-top: -7%">
 										<div class="barangay-body-paragraph">
 											<p class="text-justify">
-												I, {{ data.full_name }}, {{ data.age }} years of age, resident of
+												I, {{ data.full_name }}, {{ data.age }} of age, resident of
 												{{ data.address }}, availing the benefits of REPUBLIC ACT 11261,
 												otherwise known as the FIRST TIME JOBSEEKERS Act of 2019, do hereby
 												declare, agree and undertake to abide be bound by the following:
@@ -134,15 +134,9 @@
 									</div>
 								</div>
 							</div>
-							<p style="margin-left: 4%;margin-top: 56px;">NOT VALID WITHOUT SEAL <br>
-                            THIS CLEARANCE IS VALID ONLY FOR SIX (6) MONTHS FROM THE DATE OF ISSUANCE.
-                        </p>
 						</div>
 					</div>
 				</div>
-				<p style="margin-left: 4%;">NOT VALID WITHOUT SEAL <br>
-                            THIS CLEARANCE IS VALID ONLY FOR SIX (6) MONTHS FROM THE DATE OF ISSUANCE.
-                        </p>
 			</div>
 			<div class="footer">
 				<img src="/transaction/footer.png" width="100%" height="20%" />

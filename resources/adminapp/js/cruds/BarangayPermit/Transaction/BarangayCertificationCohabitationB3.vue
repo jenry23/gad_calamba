@@ -49,7 +49,7 @@
                                             {{ sanggunian.barangay_sanggunian_category.category_name }}
                                         </p>
                                     </div>
-								<br>
+								<br><br><br>
 								<div>
 								<b>Address: </b><br>
                                 <p>{{ data.barangay.address}}</p>
@@ -76,16 +76,16 @@
 									<div class="container" style="margin-top: -7%">
 										<div class="barangay-body-paragraph">
 											<p class="text-justify">
-												This is to certify that ______________________________, of legal age,
-												is a bonafide and _____(residence status) ___ resident of this
-												barangay. He is residing at ____(purok/ subdivision/ block lot) _ ,
-												Barangay __________, Calamba City, Laguna.
+												This is to certify that {{ data.full_name }}, of legal age,
+												is a bonafide and {{data.resident_status}} resident of this
+												barangay. He is residing at {{data.address}},
+												Barangay {{data.barangay.barangay_name}}, Calamba City, Laguna.
 											</p>
 											<br />
 											<p class="text-justify">
 												This is to certify further that the aforementioned person is the
-												live-in partner of _____(to be encoded) ___. They are living together
-												since _____(to be encoded) ___.
+												live-in partner of ________. They are living together
+												since ________.
 											</p>
 											<p class="text-justify">
 												his certification is being issued for whatever legal purposes this may
@@ -115,8 +115,9 @@
 													<div class="pull-left">Issued By:</div>
 													<br />
 													<br />
-													<p>
-														_____________________________ <br />
+														<p>
+                                                        <u> <b style="text-transform: uppercase">Mr/Ms. {{data.barangay_sanggunian[data.barangay_sanggunian.length - 2].barangay_name}} </b></u>
+                                                        <br>
 														Barangay Secretary
 													</p>
 												</div>
@@ -125,7 +126,8 @@
 													<br />
 													<br />
 													<p>
-														_____________________________ <br />
+														<b style="text-transform: uppercase"><u>HON. {{data.barangay_sanggunian[0].barangay_name}}</u>
+                                                        </b><br />
 														Barangay Chairman
 													</p>
 												</div>
@@ -135,9 +137,6 @@
 								</div>
 							</div>
 						</div>
-						<p style="margin-left: 4%;margin-top: 56px;">NOT VALID WITHOUT SEAL <br>
-                            THIS CLEARANCE IS VALID ONLY FOR SIX (6) MONTHS FROM THE DATE OF ISSUANCE.
-                        </p>
 					</div>
 				</div>
 			</div>
