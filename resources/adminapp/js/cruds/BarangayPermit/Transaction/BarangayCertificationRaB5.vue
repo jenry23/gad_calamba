@@ -40,7 +40,7 @@
 			<div class="card-body" style="height: 1020px">
 				<div class="barangay-wrap">
 					<div class="row">
-						<div class="col-md-3">
+						<div class="col-md-3 mt-5">
                             <b>
                                 <center>
                                     <div v-for="sanggunian in data.barangay_sanggunian" :key="sanggunian.id">
@@ -127,13 +127,13 @@
 												Undertaking he/she has signed and executed in the presence of our
 												Barangay Official.
 											</p>
-											<p class="text-justify">
+											<!-- <p class="text-justify">
 												This certification is valid for one (1) year from the date of
 												issuance.
-											</p>
+											</p> -->
 											<p>
 												Given this {{ this.date.toLocaleString('en-us', { month:'long'}) }}  {{this.date.getDate()}}. {{this.date.getFullYear()}} at Barangay
-												{{ data.barangay.barangay_name }}, Calamba City Laguna
+												{{ data.barangay.barangay_name }}, Calamba City Laguna.
 											</p>
 											<br />
                                            	<div class="pull-left">

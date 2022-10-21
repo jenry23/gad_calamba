@@ -98,7 +98,7 @@ class TransactionApiController extends Controller
             'resident_status' => $gad->barangay_resident_status_name ??  '',
             'logo' => $images,
             'civil_status' => $gad->civil_status->civil_status_name ?? '',
-            'barangay_residence_year' => Carbon::parse($gad->barangay_residence_year)->format('F d Y'),
+            'barangay_residence_year' => Carbon::parse($gad->barangay_residence_year)->format('F d, Y'),
             'barangay' => $gad->barangay,
             'barangay_sanggunian' => $barangay_sanggunian
         ];

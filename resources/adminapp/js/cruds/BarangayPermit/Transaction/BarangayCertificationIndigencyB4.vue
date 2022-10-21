@@ -40,7 +40,7 @@
 			<div class="card-body" style="height: 1020px">
 				<div class="barangay-wrap">
 					<div class="row">
-					<div class="col-md-3">
+					<div class="col-md-3 mt-5">
                             <b>
                                 <center>
                                     <div v-for="sanggunian in data.barangay_sanggunian" :key="sanggunian.id">
@@ -66,7 +66,7 @@
 								<div class="barangay-body">
 									<div class="text-center">
 										<h3 style="font-weight: 600; font-size: 1.5rem">
-											B A R A N G A Y I N D I G E N C Y<br />
+											BARANGAY INDIGENCY<br />
 											(B.4 Indigency)
 										</h3>
 									</div>
@@ -163,9 +163,9 @@
 													</tbody>
 												</table>
 											</div>
-											<p class="text-justify">
+											<p class="text-justify mt-3">
 												Given this {{ this.date.toLocaleString('en-us', { month:'long'}) }}  {{this.date.getDate()}}. {{this.date.getFullYear()}} at Barangay
-												{{ data.barangay.barangay_name }}, Calamba City Laguna
+												{{ data.barangay.barangay_name }}, Calamba City Laguna.
 											</p>
 											<div class="pull-left">
 												<h4><b>Affirmation of the requesting party:</b></h4>

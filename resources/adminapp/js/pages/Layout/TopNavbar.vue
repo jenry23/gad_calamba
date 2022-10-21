@@ -1,6 +1,5 @@
 <template>
 	<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top">
-		<div class="row">
 			<div class="col-md-3">
 				<img src="/images/topbar.png" />
 			</div>
@@ -21,10 +20,9 @@
 				<span class="navbar-toggler-icon icon-bar"></span>
 			</button>
 			<!-- Collapsable -->
-			<div class="col-md-7 pull-right" style="margin-right: -33%">
+			<div class="col-md-7 pull-right">
 				<autocomplete></autocomplete>
 			</div>
-		</div>
 	</nav>
 </template>
 <style>
