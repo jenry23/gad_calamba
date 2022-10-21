@@ -221,7 +221,7 @@
 				</div>
 			</div>
 			<div class="footer">
-				<img src="/transaction/foote_sealr.png" width="100%" height="20%" />
+				<img src="/transaction/foote_seal.png" width="100%" height="20%" />
 			</div>
 		</div>
 	</div>
