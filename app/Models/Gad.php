@@ -145,7 +145,7 @@ class Gad extends Model implements HasMedia
 
     public function getFullNameAttribute()
     {
-        return ucfirst($this->last_name) . ' , ' . ucfirst($this->first_name) . ' ' . ucfirst($this->middle_name);
+        return ucfirst($this->last_name) . ', ' . ucfirst($this->first_name) . ' ' . ucfirst($this->middle_name);
     }
 
     public function scopeWithoutAppends($query)

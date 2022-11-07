@@ -48,19 +48,18 @@
 										:key="'resident_id-field'"
 										:value="entry.resident"
 										:options="lists.resident"
-										required
 										@input="updateResident"
 										@focus="focusField('resident')"
 										@blur="clearFocus"
 									>
-										<template #search="{ attributes, events }">
+										<!-- <template #search="{ attributes, events }">
 											<input
 												class="vs__search"
 												:required="!resident_required"
 												v-bind="attributes"
 												v-on="events"
 											/>
-										</template>
+										</template> -->
 									</v-select>
 								</div>
 

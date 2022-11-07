@@ -75,61 +75,56 @@
 									</div> -->
 									<div class="container" style="margin-top: -7%">
 										<div class="barangay-body-paragraph">
-											<p class="text-justify">
-												This is to certify that {{ data.full_name }}, of legal age,
+											<h4><b>
+												This is to certify that {{ data.full_name }} of legal age,
 												is a bonafide and {{data.resident_status}} resident of this
-												barangay. He is residing at {{data.address}},
+												barangay. He/She is residing at {{data.address}},
 												Barangay {{data.barangay.barangay_name}}, Calamba City, Laguna.
-											</p>
+											</b></h4>
 											<br />
-											<p class="text-justify">
+											<h4><b>
 												This is to certify further that the aforementioned person is the
-												live-in partner of ________. They are living together
-												since ________.
-											</p>
-											<p class="text-justify">
+												live-in partner of <input type="text" style="width: 29%;"/>. They are living together
+												since <input type="text" style="width: 20%;"/>.
+											</b></h4>
+											<h4><b>
 												This certification is being issued for whatever legal purposes this may
 												best serve.
-											</p>
-											<p class="text-justify mt-3">
-												Given this {{ this.date.toLocaleString('en-us', { month:'long'}) }}  {{this.date.getDate()}}. {{this.date.getFullYear()}} at Barangay
+											</b></h4>
+											<h4 class="text-justify mt-5"><b>
+												Given this {{ this.date.toLocaleString('en-us', { month:'long'}) }}  {{this.date.getDate()}}, {{this.date.getFullYear()}} at Barangay
 												{{ data.barangay.barangay_name }}, Calamba City Laguna.
-											</p>
-											<div class="pull-left">
+											</b></h4>
+											<div class="pull-left mt-2">
 												<h4><b>Affirmation of the requesting party:</b></h4>
 											</div>
 											<br />
 											<br />
 											<div class="row">
-												<div class="col-md-6">
-													<p>
-														__________________________________________ <br />(Signature
-														over Printer Name / Date)
-													</p>
+												<div class="col-md-6 mt-4">
+														__________________________________________ <br /><h4><b>(Signature
+														over Printer Name and Date)</b></h4>
 												</div>
 												<div class="col-md-6"></div>
 											</div>
 											<br />
 											<div class="row">
 												<div class="col-md-6">
-													<div class="pull-left">Issued By:</div>
+													<div class="pull-left"><h4><b>Issued By: </b></h4></div>
 													<br />
 													<br />
-														<p>
-                                                        <u> <b style="text-transform: uppercase">Mr/Ms. {{data.barangay_sanggunian[data.barangay_sanggunian.length - 2].barangay_name}} </b></u>
-                                                        <br>
+														<p class="mt-5">
+                                                        <u> <h4><b style="text-transform: uppercase">Mr/Ms. {{data.barangay_sanggunian[data.barangay_sanggunian.length - 2].barangay_name}} </b></h4></u>
 														Barangay Secretary
 													</p>
 												</div>
 												<div class="col-md-6">
-													<div class="pull-left">Approved By:</div>
+													<div class="pull-left"><h4><b>Approved By: </b></h4></div>
 													<br />
 													<br />
-													<p>
-														<b style="text-transform: uppercase"><u>HON. {{data.barangay_sanggunian[0].barangay_name}}</u>
-                                                        </b><br />
+														<h4 class="mt-5"><b style="text-transform: uppercase"><u>HON. {{data.barangay_sanggunian[0].barangay_name}}</u>
+                                                        </b></h4>
 														Barangay Chairman
-													</p>
 												</div>
 											</div>
 										</div>

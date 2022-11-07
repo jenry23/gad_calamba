@@ -76,10 +76,10 @@
 									<div class="container" style="margin-top: -7%">
 										<div class="barangay-body-paragraph">
 											<p class="text-justify">
-												This is to certify that {{ data.full_name }}, of legal age,
+												This is to certify that {{ data.full_name }} of legal age,
 												is a bonafide and {{data.resident_status}} resident of this
-												barangay. He is residing at {{data.address}} ,
-												Barangay {{data.barangay.barangay_name}}, Calamba City, Launa.
+												barangay. He/She is residing at {{data.address}} ,
+												Barangay {{data.barangay.barangay_name}}, Calamba City Laguna.
 											</p>
 											<br />
 											<p class="text-justify">
@@ -158,17 +158,17 @@
 																	</label>
 																</div>
 															</td>
-															<td>Other/s: _______________________________</td>
+															<td>Other/s: <input type="text" style="width: 50%;"/></td>
 														</tr>
 													</tbody>
 												</table>
 											</div>
 											<p class="text-justify mt-3">
-												Given this {{ this.date.toLocaleString('en-us', { month:'long'}) }}  {{this.date.getDate()}}. {{this.date.getFullYear()}} at Barangay
+												Given this {{ this.date.toLocaleString('en-us', { month:'long'}) }}  {{this.date.getDate()}}, {{this.date.getFullYear()}} at Barangay
 												{{ data.barangay.barangay_name }}, Calamba City Laguna.
 											</p>
 											<div class="pull-left">
-												<h4><b>Affirmation of the requesting party:</b></h4>
+												<b>Affirmation of the requesting party:</b>
 											</div>
 											<br />
 											<br />
@@ -176,7 +176,7 @@
 												<div class="col-md-6">
 													<p>
 														__________________________________________ <br />(Signature
-														over Printer Name / Date)
+														over Printer Name and Date)
 													</p>
 												</div>
 												<div class="col-md-6"></div>
@@ -207,9 +207,9 @@
 											<br>
 										   	 <div class="row">
                                                 <div class="col-md-6">
-                                                    C.T.C. No.: _________________ <br />Date Issued:
-                                                    _________________<br />
-                                                    Place Issued: _________________
+                                                    C.T.C. No.<span style="margin-left:24px;"></span>: _________________ <br />Date Issued <span style="margin-left:9px;"></span>
+                                                    : _________________<br />
+                                                    Place Issued <span style="margin-left:4px;"></span> : _________________
                                                 </div>
                                             </div>
 										</div>

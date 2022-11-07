@@ -66,7 +66,7 @@
 								<div class="barangay-body">
 									<div class="text-center">
 										<h3 style="font-weight: 600; font-size: 1.5rem">
-											B A R A N G A Y C E R T I F I C A T I O N<br />
+											BARANGAY CERTIFICATION<br />
 											(B.2 for Non-Resident Individual/s)
 										</h3>
 									</div>
@@ -82,28 +82,28 @@
 											</p>
 											<div>
 												<b style="margin-right: 67px"></b>
-												<b style="margin-right: 24px">:</b
-												><b><input type="text" /></b>
+												<b style="margin-right: 24px">1.</b
+												><b><input type="text"  style="width: 60%;"/></b>
 											</div>
 											<div>
 												<b style="margin-right: 68px"></b>
-												<b style="margin-right: 24px">:</b
-												><b><input type="text" /> </b>
+												<b style="margin-right: 24px">2.</b
+												><b><input type="text"  style="width: 60%;"/> </b>
 											</div>
 											<div>
 												<b style="margin-right: 68px"></b>
-												<b style="margin-right: 24px">:</b
-												><b><input type="text" /> </b>
+												<b style="margin-right: 24px">3.</b
+												><b><input type="text" style="width: 60%;"/> </b>
 											</div>
 											<div>
 												<b style="margin-right: 68px"></b>
-												<b style="margin-right: 24px">:</b
-												><b><input type="text" /> </b>
+												<b style="margin-right: 24px">4.</b
+												><b><input type="text"  style="width: 60%;"/> </b>
 											</div>
 											<div>
 												<b style="margin-right: 68px"></b>
-												<b style="margin-right: 24px">:</b
-												><b><input type="text" /> </b>
+												<b style="margin-right: 24px">5.</b
+												><b><input type="text"  style="width: 60%;"/> </b>
 											</div>
 											<br />
 											<p class="text-justify">
@@ -111,7 +111,7 @@
 												may best serve.
 											</p>
 											<p class="text-justify">
-												Given this {{ this.date.toLocaleString('en-us', { month:'long'}) }}  {{this.date.getDate()}}. {{this.date.getFullYear()}} at Barangay
+												Given this {{ this.date.toLocaleString('en-us', { month:'long'}) }}  {{this.date.getDate()}}, {{this.date.getFullYear()}} at Barangay
 												{{ data.barangay.barangay_name }}, Calamba City Laguna
 											</p>
 											<div class="pull-left">
@@ -123,7 +123,7 @@
 												<div class="col-md-6">
 													<p>
 														__________________________________________ <br />(Signature
-														over Printer Name / Date)
+														over Printer Name and Date)
 													</p>
 												</div>
 												<div class="col-md-6"></div>
@@ -200,6 +200,10 @@
 .barangay-body-paragraph {
     margin-top: 11%;
     font-weight: 500;
+}
+input {
+  outline: 0;
+  border-width: 0 0 2px;
 }
 </style>
 <script>

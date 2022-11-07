@@ -310,13 +310,13 @@
                                                             </td>
                                                             <td>Other Requirements (Specify):</td>
                                                             <td></td>
-                                                            <td>__________________________</td>
+                                                            <td><input type="text" style="padding-right: 26px;"/></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
                                             <p>
-                                                Given this {{ this.date.toLocaleString('en-us', { month:'long'}) }}  {{this.date.getDate()}}. {{this.date.getFullYear()}} at Barangay
+                                                Given this {{ this.date.toLocaleString('en-us', { month:'long'}) }}  {{this.date.getDate()}}, {{this.date.getFullYear()}} at Barangay
                                                 {{ data.barangay.barangay_name }}, Calamba City Laguna.
                                             </p>
                                             <br />
@@ -329,7 +329,7 @@
 												<div class="col-md-6">
 													<p>
 														__________________________________________ <br />(Signature
-														over Printer Name / Date)
+														over Printer Name and Date)
 													</p>
 												</div>
 												<div class="col-md-6"></div>

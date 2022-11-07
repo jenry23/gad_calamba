@@ -66,7 +66,7 @@
 								<div class="barangay-body">
 									<div class="text-center">
 										<h3 style="font-weight: 600; font-size: 1.5rem">
-											B A R A N G A Y C L E A R A N C E <br />
+											BARANGAY CLEARANCE<br />
 											(A.2 for Individual/Private/ Gov’t Office to Conduct an Activity)
 										</h3>
 									</div>
@@ -78,7 +78,7 @@
 											<p class="text-justify">
 												Pursuant to the existing ordinance of this barangay, this CLEARANCE is
 												to certify that the person/office/company, with details appears below,
-												is/ are permitted to conduct their activity in our barangay.
+												is/are permitted to conduct their activity in our barangay.
 											</p>
 											<div>
 												<b style="margin-right: 67px">Individual/Office/ Company Name:</b>
@@ -112,7 +112,7 @@
 												ordinances, and rules and regulations being enforced in this barangay.
 											</p>
 											<div class="pull-left">
-												<p><b>Affirmation of the requesting party:</b></p>
+												<p>Affirmation of the requesting party:</p>
 											</div>
 											<br />
 											<br />
@@ -120,7 +120,7 @@
 												<div class="col-md-6">
 													<p>
 														__________________________________________ <br />(Signature
-														over Printer Name / Date)
+														over Printer Name and Date)
 													</p>
 												</div>
 												<div class="col-md-6"></div>

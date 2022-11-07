@@ -80,30 +80,29 @@
 											</p>
 											<br />
 											<p class="text-justify">
-												1. That this first time that I will actively look for a job, and
+												1.That this first time that I will actively look for a job, and
 												therefore requesting that a Barangay Certification be issued in my
-												favor to avail the benefits of the law; <br />2. That I am aware that
+												favor to avail the benefits of the law; <br />2.That I am aware that
 												the benefits and privilege/s under the said law shall be valid only
 												one (1) year from the date that the Barangay Certification is issued;
-												<br />3. That I can avail the benefits o the law only once; <br />4.
-												That I understand that my personal information shall be included in
+												<br />3.That I can avail the benefits o the law only once; <br />4.That I understand that my personal information shall be included in
 												the Roster/List of First Time Jobseekers and will not be used for any
-												unlawful purpose; <br />5. That I will inform and/or report to
+												unlawful purpose; <br />5.That I will inform and/or report to
 												Barangay personality, though text other means, of through my
-												family/relatives once I get employed; and <br />6. That I am not
+												family/relatives once I get employed; and <br />6.That I am not
 												beneficiary of the Job Start Program under R.A No. 10969 and other
 												laws that give similar exemptions for the documents or transactions
-												exempted under R.A No. 11261 <br />7. That I issued the requested
+												exempted under R.A No. 11261 <br />7.That I issued the requested
 												certification, I will not use the same in any fraud, neither falsify
 												nor help and/or assist in the fabrication of the said certification
-												<br />8. That this undertaking is made solely for purpose of obtaining
+												<br />8.That this undertaking is made solely for purpose of obtaining
 												a Barangay Certification consistent with the objective of R.A No.
-												11261 and not for any purpose <br />9. That I consent to the use of my
+												11261 and not for any purpose <br />9.That I consent to the use of my
 												personal information pursuant to the Data Privacy Act and other
 												applicable laws, rules and regulation.
 											</p>
 											<p class="text-justify">
-												Given this {{ this.date.toLocaleString('en-us', { month:'long'}) }}  {{this.date.getDate()}}. {{this.date.getFullYear()}} at Barangay
+												Given this {{ this.date.toLocaleString('en-us', { month:'long'}) }}  {{this.date.getDate()}}, {{this.date.getFullYear()}} at Barangay
 												{{ data.barangay.barangay_name }}, Calamba City Laguna
 											</p>
 											<br />

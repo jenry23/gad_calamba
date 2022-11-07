@@ -66,7 +66,7 @@
 								<div class="barangay-body">
 									<div class="text-center">
 										<h3 style="font-weight: 600; font-size: 1.5rem">
-											B A R A N G A Y C E R T I F I C A T I O N <br />
+											BARANGAY CERTIFICATION<br />
 											(B.5 RA 11261 or First Time Jobseekers Act of 2019)
 										</h3>
 									</div>
@@ -122,7 +122,7 @@
 											<p class="text-justify">
 												This is to certify further that the aforementioned person is a
 												qualified availee of RA 11261 or the First Time Jobseekers Act of
-												2019; and he/ she was informed of his/her rights, including the duties
+												2019; and he/she was informed of his/her rights, including the duties
 												and responsibilities accorded by RA 11261 through the Oath of
 												Undertaking he/she has signed and executed in the presence of our
 												Barangay Official.
@@ -132,7 +132,7 @@
 												issuance.
 											</p> -->
 											<p>
-												Given this {{ this.date.toLocaleString('en-us', { month:'long'}) }}  {{this.date.getDate()}}. {{this.date.getFullYear()}} at Barangay
+												Given this {{ this.date.toLocaleString('en-us', { month:'long'}) }}  {{this.date.getDate()}}, {{this.date.getFullYear()}} at Barangay
 												{{ data.barangay.barangay_name }}, Calamba City Laguna.
 											</p>
 											<br />
@@ -145,7 +145,7 @@
 												<div class="col-md-6">
 													<p>
 														__________________________________________ <br />(Signature
-														over Printer Name / Date)
+														over Printer Name and Date)
 													</p>
 												</div>
 												<div class="col-md-6"></div>
@@ -176,9 +176,9 @@
                                             <br />
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    C.T.C. No.: _________________ <br />Date Issued:
-                                                    _________________<br />
-                                                    Place Issued: _________________
+                                                    C.T.C. No.<span style="margin-left:24px;"></span>: _________________ <br />Date Issued <span style="margin-left:9px;"></span>
+                                                    : _________________<br />
+                                                    Place Issued <span style="margin-left:4px;"></span> : _________________
                                                 </div>
                                                 <div class="col-md-6">
                                                     <center>
