@@ -57,23 +57,25 @@
 											height="108px"
 											width="110px"
 										/>
-										<!-- <img v-else src="/images/popcom.png" height="108px" width="110px" /> -->
+										<img v-else src="/images/admin-logo.png" height="110px" width="110px" />
 									</div>
 									<div class="col-md-8">
 										<div class="text-left">
 											<h3 style="color: black">
 												<b style="text-transform: uppercase">City Government of Calamba</b
 												><br />
+												<div v-if="lists.user && lists.user.barangay">
 												<b
-													v-if="lists.user && lists.user.barangay"
 													style="text-transform: uppercase"
 													>BARANGAY {{ lists.barangay[0].barangay_name }}</b
 												>
-												<!-- <b v-else style="text-transform: uppercase">
-													CITY POPULATION MANAGEMENT OFFICE
-												</b> -->
-												<br />
 												<b style="text-transform: uppercase">Household Profile</b>
+												</div>
+												<div v-else style="text-transform: uppercase">
+													<b style="text-transform: uppercase">Household Profile</b>
+												</div>
+												<br />
+
 											</h3>
 										</div>
 									</div>
@@ -200,14 +202,14 @@
 									>
 										Search
 									</vue-button-spinner>
-									<button
+									<!-- <button
 										type="button"
 										class="btn btn-success"
 										data-toggle="modal"
 										data-target="#exampleModalCenter"
 									>
 										Advance Filter
-									</button>
+									</button> -->
 								</div>
 							</div>
 						</div>
@@ -571,6 +573,7 @@
 						},
 					],
 				],
+				print_data : false,
 			}
 		},
 		computed: {
@@ -612,7 +615,13 @@
 			},
 
 			downloads () {
-				this.$refs.html2Pdf.generatePdf()
+				var baseUrl = window.location.origin
+
+				let url =
+					baseUrl +
+					`/api/v1/reports/generate-pdf/${JSON.stringify(this.entry)}`;
+
+				window.open(url, '_blank');
 			},
 
 			startDownload () {

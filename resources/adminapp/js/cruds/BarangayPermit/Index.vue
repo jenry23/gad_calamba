@@ -154,7 +154,6 @@
 		},
 		mounted () {
 			this.fetchCreateData()
-			this.submitForm();
 		},
 		beforeDestroy () {
 			this.resetState()
@@ -180,6 +179,19 @@
 					this.result = response.data;
 					this.is_barangay = this.entry.transaction.id;
 					this.transaction_name = this.entry.transaction.transaction_type_name + '-' + this.entry.resident.full_name;
+				}).catch(error => {
+					console.log(error.response.data)
+					this.$swal({
+						title: 'Error',
+						text: 'Resident Name is Required',
+						type: 'warning',
+						showCancelButton: true,
+						focusCancel: true,
+						reverseButtons: true
+					})
+					this.errors = true;
+				}).finally(() => {
+					this.loading = false
 				});
 			},
 			focusField (name) {

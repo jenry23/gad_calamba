@@ -72,19 +72,18 @@
 				<tab-content
 					title="Health Info"
 					icon="fa fa-address-card"
-					:before-change="() => validate('thirdStep')"
+					:before-change="() => validate('fourthStep')"
 				>
 					<fourth-step ref="fourthStep" @on-validate="onStepValidate"></fourth-step>
 				</tab-content>
-				<tab-content title="Survey Questions" icon="fa fa-address-card">
+				<tab-content title="Survey Questions" icon="fa fa-address-card" :before-change="() => validate('fifthStep')">
 					<fifth-step ref="fifthStep" @on-validate="onStepValidate"></fifth-step>
 				</tab-content>
-				<tab-content title="Hobbies" icon="fa fa-futbol-o">
-					<sixth-step ref="fifthStep" @on-validate="onStepValidate"></sixth-step>
+				<tab-content title="Hobbies" icon="fa fa-futbol-o" :before-change="() => validate('sixthStep')">
+					<sixth-step ref="sixthStep" @on-validate="onStepValidate"></sixth-step>
 				</tab-content>
-				<tab-content title="Last step" icon="fa fa-check">
-					Your data
-					<pre v-html="prettyJSON"></pre>
+				<tab-content title="House Type Components" icon="fa fa-home" :before-change="() => validate('lastStep')">
+					<last-step ref="lastStep" @on-validate="onStepValidate"></last-step>
 				</tab-content>
 			</form-wizard>
 		</div>
@@ -116,7 +115,7 @@
 	import FourthStep from "@components/FormWizard/FourthStep.vue";
 	import FifthStep from "@components/FormWizard/FifthStep.vue";
 	import SixthStep from "@components/FormWizard/SixthStep.vue";
-	import prettyJSON from "@components/FormWizard/prettyJson.js";
+	import LastStep from "@components/FormWizard/LastStep.vue";
 	import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 	import 'vue2-daterange-picker/dist/vue2-daterange-picker.css'
 
@@ -128,6 +127,7 @@
 			FourthStep,
 			FifthStep,
 			SixthStep,
+			LastStep,
 			DateRangePicker
 		},
 		data () {
@@ -145,9 +145,6 @@
 
 		computed: {
 			...mapGetters('GadListSingle', ['lists']),
-			prettyJSON () {
-				return prettyJSON(this.finalModel);
-			}
 		},
 
 		mounted () {
@@ -159,8 +156,9 @@
 			onComplete () {
 				axios.post('gad', this.finalModel)
 					.then(response => {
-						// this.$router.push({ name: 'gad_list.index' })
 						this.$eventHub.$emit('create-success')
+						// this.$router.push({ name: 'gad_list.index' })
+						window.location.reload();
 					}).catch(error => {
 						console.log(error);
 					})

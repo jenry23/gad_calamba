@@ -312,7 +312,7 @@
                                                     </tbody>
                                                 </table>
 											</div>
-											<p>
+											<p class="mt-3">
                                                 Given this {{ this.date.toLocaleString('en-us', { month:'long'}) }}  {{this.date.getDate()}}, {{this.date.getFullYear()}} at Barangay
                                                 {{ data.barangay.barangay_name }}, Calamba City Laguna.
                                             </p>
@@ -419,6 +419,11 @@
 }
 .form-check .form-check-label span {
     margin-top: -5px;
+}
+input {
+  outline: 0;
+  border-width: 0 0 2px;
+  opacity: 0.4;
 }
 </style>
 <script>

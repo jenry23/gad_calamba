@@ -1,7 +1,7 @@
 <template>
     <form :model="model" :rules="rules" ref="form">
         <div class="card">
-            <div class="card-header card-header-primary">
+            <div class="card-header card-header-success">
                 <h4 class="card-title">Residential Information</h4>
                 <p class="card-category">Complete your profile</p>
             </div>
@@ -51,16 +51,17 @@
                             }"
                         >
                             <label>Barangay</label>
-                             <v-select
-                                    class="form-control popcom-input"
-                                    name="barangay_id"
-                                    label="barangay_name"
-                                    :key="'barangay_id-field'"
-                                    v-model="model.barangay_id"
-                                    :options="lists.barangay"
-                                    @focus="focusField('barangay_id')"
-                                    @blur="clearFocus"
-                                />
+                            <v-select
+                                class="form-control popcom-input"
+                                name="barangay_id"
+                                label="barangay_name"
+                                :key="'barangay_id-field'"
+                                v-model="model.barangay_id"
+                                :options="lists.barangay"
+                                @input="updateBarangay"
+                                @focus="focusField('barangay_id')"
+                                @blur="clearFocus"
+                            />
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -71,16 +72,17 @@
                             }"
                         >
                             <label>Purok</label>
-                                <v-select
-                                    class="form-control popcom-input"
-                                    name="purok_id"
-                                    label="purok_name"
-                                    :key="'purok_id_id-field'"
-                                    v-model="model.purok_id"
-                                    :options="lists.purok"
-                                    @focus="focusField('purok_id')"
-                                    @blur="clearFocus"
-                                />
+                            <v-select
+                                class="form-control popcom-input"
+                                name="purok_id"
+                                label="purok_name"
+                                :key="'purok_id_id-field'"
+                                v-model="model.purok_id"
+                                :options="lists.purok"
+                                @input="updatePurok"
+                                @focus="focusField('purok_id')"
+                                @blur="clearFocus"
+                            />
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -91,21 +93,22 @@
                             }"
                         >
                             <label>Sitio / Subdivsion Name</label>
-                             <v-select
-                                    class="form-control popcom-input"
-                                    name="sitio_id"
-                                    label="sitio_name"
-                                    :key="'sitio_id_id-field'"
-                                    v-model="model.sitio_id"
-                                    :options="lists.sitio"
-                                    @focus="focusField('sitio_id')"
-                                    @blur="clearFocus"
-                                />
+                            <v-select
+                                class="form-control popcom-input"
+                                name="sitio_id"
+                                label="sitio_name"
+                                :key="'sitio_id_id-field'"
+                                v-model="model.sitio_id"
+                                :options="lists.sitio"
+                                @input="updateSitio"
+                                @focus="focusField('sitio_id')"
+                                @blur="clearFocus"
+                            />
                         </div>
                     </div>
                 </div>
                 <table class="table table-bordered">
-                    <thead class="black text-white" style="background-color: #462066">
+                    <thead class="black text-white" style="background-color: #66bb6a">
                         <tr>
                             <th scope="col">Reidency</th>
                             <th scope="col">Date</th>
@@ -122,7 +125,7 @@
                                     picker="date"
                                     format="yyyy"
                                     @input="changeDate"
-                                    v-bind:v-model="model.no_of_years_in_calamba"
+                                    v-bind:v-model="model.calamba_residence_year"
                                 ></datetime-picker>
                             </td>
                             <td>
@@ -138,8 +141,8 @@
                                     picker="date"
                                     format="yyyy"
                                     @input="changeDate1"
-                                    v-bind:v-model="model.barangay_residence_year"
                                 ></datetime-picker>
+                                <input type='hidden' v-model="model.barangay_residence_year">
                             </td>
                             <td>
                                 {{ this.barangay_residence }}
@@ -177,7 +180,9 @@ label {
 </style>
 <script>
 import { mapGetters, mapActions } from "vuex";
+import Index from '../../cruds/Barangay/Index.vue';
 export default {
+    components: { Index },
     data () {
         return {
             calamba_residence: "",
@@ -186,31 +191,39 @@ export default {
                 building_no: '',
                 house_unit: '',
                 block_lot_house_id: '',
-                sitio_names: '',
+                sitio_id: '',
                 purok_id: '',
                 barangay_id: '',
-                no_of_years_in_calamba: '',
+                calamba_residence_year: '',
                 barangay_residence_year: '',
                 remarks: '',
             },
-            rules:{}
+            rules: {}
         };
     },
     computed: {
         ...mapGetters("GadListSingle", ["entry", "loading", "lists"]),
     },
     methods: {
+        ...mapActions("GadListSingle", [
+            'setYearsInCalamba',
+            'setYearsInBarangay',
+            'setBarangay',
+            'setPurok',
+            'setSitio',
+        ]),
+
         validate () {
             return new Promise((resolve, reject) => {
                 const valid = true;
                 this.$emit("on-validate", valid, this.model);
                 resolve(valid);
-            });a
+            });
         },
         changeDate (e) {
+            this.model.calamba_residence_year = e.target.value
             var date = e.target.value;
             var current_date = date.substr(date.length - 4);
-            console.log(date);
             if (current_date > new Date().getFullYear() - 1) {
                 this.calamba_residence = "Immigrant";
             } else if (current_date < new Date().getFullYear() - 2) {
@@ -220,10 +233,9 @@ export default {
             }
         },
         changeDate1 (e) {
+            this.model.barangay_residence_year = e.target.value;
             var date = e.target.value;
             var current_date = date.substr(date.length - 4);
-            console.log(current_date);
-            console.log(new Date().getFullYear() + 1);
             if (current_date == new Date().getFullYear() - 1) {
                 this.barangay_residence = "Immigrant";
             } else if (current_date == new Date().getFullYear() - 2) {
@@ -231,6 +243,15 @@ export default {
             } else {
                 this.barangay_residence = "Transient";
             }
+        },
+        updateBarangay (e) {
+            this.setBarangay(e);
+        },
+        updatePurok (e) {
+            this.setPurok(e);
+        },
+        updateSitio (e) {
+            this.setSitio(e)
         },
         focusField (name) {
             this.activeField = name;

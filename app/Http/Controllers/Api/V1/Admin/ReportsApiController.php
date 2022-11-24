@@ -4,38 +4,32 @@ namespace App\Http\Controllers\Api\V1\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Admin\ReportsResource;
-use App\Models\Appliances;
 use App\Models\Barangay;
-use App\Models\City;
-use App\Models\CivilStatus;
-use App\Models\EducationalAttaintment;
-use App\Models\EducationalStatus;
-use App\Models\Ethnicity;
 use App\Models\Gad;
 use App\Models\Gender;
-use App\Models\GenderPreference;
-use App\Models\GovernmentAssistance;
-use App\Models\Household;
-use App\Models\MonthlyIncome;
-use App\Models\Occupation;
-use App\Models\Organization;
-use App\Models\Province;
 use App\Models\Purok;
-use App\Models\Religion;
 use App\Models\Sector;
 use App\Models\Sitio;
-use App\Models\Utilities;
-use App\Models\ValidID;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Collection;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
-
+use App\Utils\PDFUtil;
+use Illuminate\Support\Facades\DB;
 class ReportsApiController extends Controller
 {
+    private const PDF_CONFIG = [
+        'margin_left' => 15,
+        'margin_right' => 15,
+        'margin_bottom' => 18,
+        'margin_header' => 15,
+        'margin_footer' => 15,
+        'setAutoTopMargin' => 'stretch',
+        'setAutoBottomMargin' => 'stretch',
+    ];
+
     public function index(Request $request)
     {
         abort_if(Gate::denies('reports_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -375,6 +369,102 @@ class ReportsApiController extends Controller
                 'Male' => $male,
             ]
         ]);
+    }
+
+    public function generatePDF(Request $request)
+    {
+        ini_set('memory_limit', '1500000M');
+        ini_set("pcre.backtrack_limit", "3000000");
+
+        $json_data = json_decode($request->slug);
+
+        $barangay_id = $json_data->barangay->id ?? '';
+        $purok = $json_data->purok->id ?? '';
+        $sitio = $json_data->sitio->id ?? '';
+        $sector = $json_data->sector->id ?? '';
+        $gender = $json_data->gender->id ?? '';
+        $age_from = !empty($json_data->age_from) ? Carbon::now()->subYears($json_data->age_from)->format('Y-m-d') : '';
+        $age_to = !empty($json_data->age_to) ? Carbon::now()->subYears($json_data->age_to)->format('Y-m-d') : '';
+
+
+        $file_name = sprintf(
+            'Generate-PDF ' . $json_data->barangay->barangay_name,
+        );
+
+        $gads = Gad::select(
+                "id",
+                "first_name",
+                "last_name",
+                "birth_date",
+                "barangay_id",
+                "gender_id",
+                "civil_status_id",
+                "purok_id",
+                "sitio_id",
+                "barangay_residence_year",
+                DB::raw("CONCAT(first_name,' ',last_name) as full_name")
+            )->with([
+            'gender:id,gender_name',
+            'barangay:id,barangay_name',
+            'civil_status:id,civil_status_name',
+            'gender_preference:id,gender_preference_name',
+            'occupation:id,occupation_name',
+            'educational_attaintment:id,educational_attaintment_name',
+            'educational_status:id,educational_status_name',
+            'religion:id,religion_name',
+            'house_ownership:id,house_ownership_name',
+            'house_type:id,house_type_name',
+            'house_make:id,house_make_name',
+            'resident_status:id,resident_status_name',
+        ])
+            ->where('barangay_id', $barangay_id)
+            ->when(
+                $sitio,
+                function (Builder $query) use ($sitio) {
+                    $query->where('sitio_id', $sitio);
+                }
+            )
+            ->when(
+                $purok,
+                function (Builder $query) use ($purok) {
+                    $query->where('purok_id', $purok);
+                }
+            )
+            ->when(
+                $sector,
+                function ($query) use ($sector) {
+                    $query->whereHas(
+                        'gadDetails',
+                        function (Builder $query) use ($sector) {
+                            $query->where('item_id', $sector)->where('item_type', Sector::class);
+                        }
+                    );
+                }
+            )
+            ->when(
+                $gender,
+                function (Builder $query) use ($gender) {
+                    $query->where('gender_id', $gender);
+                }
+            )
+            ->when(
+                $age_to,
+                function (Builder $query) use ($age_from, $age_to) {
+                    $query->whereBetween('birth_date', [$age_to, $age_from]);
+                }
+            )
+            ->withoutAppends()
+            ->orderBy('id', 'ASC')
+            ->get();
+
+        $data = [
+            'gads' => collect($gads),
+            'file_name' => $file_name,
+            'barangay' => $json_data->barangay->barangay_name,
+            'logo' => Auth::user()->photo[1]['url'] ?? Auth::user()->photo[0]['url']
+        ];
+
+        PDFUtil::loadView('pdf.report.body', $data, $file_name, self::PDF_CONFIG);
     }
 
     public function getSitioPurok($id)

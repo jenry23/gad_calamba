@@ -1,112 +1,167 @@
 <template>
     <div class="card">
-        <div class="card-header card-header-primary">
+        <div class="card-header card-header-success">
             <h4 class="card-title">Hobbies</h4>
             <p class="card-category">Complete your profile</p>
         </div>
         <div class="card-body">
-            <!-- <form>
-                <div v-for="datas in data" :key="datas.id">
-                <p class="flow-text">
-                    Question {{ $key + 1 }} - {{ $question->title }}
-                </p>
-                @if($question->question_type === 'text')
-                <div class="input-field col s12">
-                    <input
-                        id="answer"
-                        type="text"
-                        name="{{ $question->id }}[answer]"
-                    />
-                    <label for="answer">Answer</label>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div
+                            class="form-group bmd-form-group"
+                            :class="{
+                                'is-focused': true
+                            }"
+                        >
+                            <label>Soft Skills</label>
+                            <v-select
+                                class="form-control popcom-input"
+                                name="soft_skill"
+                                label="soft_skill_name"
+                                :key="'soft_skill_id-field'"
+                                :v-model="model.soft_skill"
+                                :options="lists.soft_skill"
+                                multiple
+                                @input="updateSoftSkills"
+                                @focus="focusField('soft_skill')"
+                                @blur="clearFocus"
+                            />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div
+                            class="form-group bmd-form-group"
+                            :class="{
+                                'is-focused': true
+                            }"
+                        >
+                            <label>Hard Skills</label>
+                            <v-select
+                                class="form-control popcom-input"
+                                name="hard_skill"
+                                label="hard_skill_name"
+                                :key="'hard_skill_id-field'"
+                                :v-model="model.hard_skill"
+                                :options="lists.hard_skill"
+                                multiple
+                                @input="updateHardSkills"
+                                @focus="focusField('hard_skill')"
+                                @blur="clearFocus"
+                            />
+                        </div>
+                    </div>
                 </div>
-                @elseif($question->question_type === 'textarea')
-                <div class="input-field col s12">
-                    <textarea
-                        id="textarea1"
-                        class="materialize-textarea"
-                        name="{{ $question->id }}[answer]"
-                    ></textarea>
-                    <label for="textarea1">Textarea</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div
+                            class="form-group bmd-form-group"
+                            :class="{
+                                'is-focused': true
+                            }"
+                        >
+                            <label>Hobbies</label>
+                            <v-select
+                                class="form-control popcom-input"
+                                name="hobbies"
+                                label="hobbies_name"
+                                :key="'hobbies_id-field'"
+                                :v-model="model.hobbies"
+                                :options="lists.hobbies"
+                                multiple
+                                @input="updateHobbies"
+                                @focus="focusField('hobbies')"
+                                @blur="clearFocus"
+                            />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div
+                            class="form-group bmd-form-group"
+                            :class="{
+                                'is-focused': true
+                            }"
+                        >
+                            <label>Sports</label>
+                            <v-select
+                                class="form-control popcom-input"
+                                name="sports"
+                                label="sports_name"
+                                :key="'sports_id-field'"
+                                :v-model="model.sports"
+                                :options="lists.sports"
+                                multiple
+                                @input="updateHobbies"
+                                @focus="focusField('sports')"
+                                @blur="clearFocus"
+                            />
+                        </div>
+                    </div>
                 </div>
-                @elseif($question->question_type === 'radio')
-                @foreach($question->option_name as $key=>$value)
-                <p style="margin: 0px; padding: 0px">
-                    <input
-                        name="{{ $question->id }}[answer]"
-                        type="radio"
-                        id="{{ $key }}"
-                    />
-                    <label for="{{ $key }}">{{ $value }}</label>
-                </p>
-                @endforeach @elseif($question->question_type === 'checkbox')
-                @foreach($question->option_name as $key=>$value)
-                <p style="margin: 0px; padding: 0px">
-                    <input
-                        type="checkbox"
-                        id="something{{ $key }}"
-                        name="{{ $question->id }}[answer]"
-                    />
-                    <label for="something{{$key}}">{{ $value }}</label>
-                </p>
-                @endforeach @endif
-                <div class="divider" style="margin: 10px 10px"></div>
-                @empty
-                <span class="flow-text center-align">Nothing to show</span>
-            </form> -->
+            </div>
         </div>
     </div>
 </template>
+<style scoped>
+.popcom-input {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: -40px;
+    display: inline-block;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+label {
+    color: black;
+}
+</style>
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
-    data() {
+    data () {
         return {
-            survey : [],
+            survey: [],
             model: {
-                language: "",
-                website: "",
+                soft_skill: [],
+                hard_skill: [],
+                hobbies: [],
+                sports: [],
             },
             rules: {
-                language: [
-                    {
-                        required: true,
-                        message: "Language name is required",
-                        trigger: "change",
-                    },
-                ],
-                website: [
-                    {
-                        required: true,
-                        message: "Website is required",
-                        trigger: "blur",
-                    },
-                    {
-                        type: "url",
-                        message: "Invalid url",
-                        trigger: "change",
-                    },
-                ],
             },
         };
     },
-    mounted() {
-        // axios.get('survey').then(response => {
-        //     // console.log(response.data);
-        // })
+
+    computed: {
+        ...mapGetters("GadListSingle", ["loading", "lists"]),
     },
+
     methods: {
-        validate() {
+        validate () {
             return new Promise((resolve, reject) => {
-                this.$refs.form.validate((valid) => {
-                    this.$emit("on-validate", valid, this.model);
-                    resolve(valid);
-                });
+                const valid = true;
+                this.$emit("on-validate", valid, this.model);
+                resolve(valid);
             });
         },
-        focusField(name) {
+        updateSoftSkills (e) {
+            this.model.soft_skill = e;
+        },
+        updateHardSkills (e) {
+            this.model.hard_skill = e;
+        },
+        updateHobbies (e) {
+            this.model.hobbies = e;
+        },
+        updateSports (e) {
+            this.model.sports = e;
+        },
+        focusField (name) {
             this.activeField = name;
         },
-        clearFocus() {
+        clearFocus () {
             this.activeField = "";
         },
     },

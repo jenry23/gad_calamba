@@ -75,19 +75,19 @@
 									</div> -->
 									<div class="container" style="margin-top: -7%">
 										<div class="barangay-body-paragraph">
-											<h4><b>
+											<h4 class="text-justify"><b>
 												This is to certify that {{ data.full_name }} of legal age,
 												is a bonafide and {{data.resident_status}} resident of this
 												barangay. He/She is residing at {{data.address}},
 												Barangay {{data.barangay.barangay_name}}, Calamba City, Laguna.
 											</b></h4>
 											<br />
-											<h4><b>
+											<h4 class="text-justify"><b>
 												This is to certify further that the aforementioned person is the
 												live-in partner of <input type="text" style="width: 29%;"/>. They are living together
 												since <input type="text" style="width: 20%;"/>.
 											</b></h4>
-											<h4><b>
+											<h4 class="text-justify mt-4"><b>
 												This certification is being issued for whatever legal purposes this may
 												best serve.
 											</b></h4>
@@ -108,7 +108,7 @@
 												<div class="col-md-6"></div>
 											</div>
 											<br />
-											<div class="row">
+											<div class="row mt-4">
 												<div class="col-md-6">
 													<div class="pull-left"><h4><b>Issued By: </b></h4></div>
 													<br />
@@ -176,6 +176,11 @@
 .barangay-body-paragraph {
   margin-top: 11%;
   font-weight: 500;
+}
+input {
+  outline: 0;
+  border-width: 0 0 2px;
+  opacity: 0.4;
 }
 </style>
 <script>

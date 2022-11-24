@@ -236,6 +236,11 @@
   margin-top: 11%;
   font-weight: 500;
 }
+input {
+  outline: 0;
+  border-width: 0 0 2px;
+  opacity: 0.4;
+}
 </style>
 <script>
 import EasyCamera from 'easy-vue-camera';

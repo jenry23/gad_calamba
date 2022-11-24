@@ -315,7 +315,7 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <p>
+                                            <p class="mt-3">
                                                 Given this {{ this.date.toLocaleString('en-us', { month:'long'}) }}  {{this.date.getDate()}}, {{this.date.getFullYear()}} at Barangay
                                                 {{ data.barangay.barangay_name }}, Calamba City Laguna.
                                             </p>
@@ -359,10 +359,10 @@
 											</div>
                                             <br />
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    C.T.C. No.: _________________ <br />Date Issued:
-                                                    _________________<br />
-                                                    Place Issued: _________________
+                                                  <div class="col-md-6">
+                                                    C.T.C. No.<span style="margin-left:24px;"></span>: _________________ <br />Date Issued <span style="margin-left:9px;"></span>
+                                                    : _________________<br />
+                                                    Place Issued <span style="margin-left:4px;"></span> : _________________
                                                 </div>
                                                 <div class="col-md-6">
                                                     <center>
@@ -422,6 +422,11 @@
 }
 .form-check .form-check-label span {
     margin-top: -5px;
+}
+input {
+  outline: 0;
+  border-width: 0 0 2px;
+  opacity: 0.4;
 }
 </style>
 <script>

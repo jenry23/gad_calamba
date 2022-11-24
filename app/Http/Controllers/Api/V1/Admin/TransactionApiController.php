@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v1\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Barangay;
 use App\Models\BarangayRecord;
 use App\Models\BarangaySanggunian;
 use Illuminate\Http\Request;
@@ -78,30 +79,49 @@ class TransactionApiController extends Controller
 
     public function store(Request $request)
     {
-        $gad_id = $request->resident['id'];
-        $gad = Gad::find($gad_id);
         if (Auth::user()->photo->isEmpty()) {
             $images = asset('images/cpmo.png');
         } else {
             $images = Auth::user()->photo[1]['url'] ?? Auth::user()->photo[0]['url'];
         }
 
-        $barangay_sanggunian = BarangaySanggunian::with(['barangay_sanggunian_category'])->where('barangay_id', $gad->barangay_id)->orderBy('barangay_sanggunian_category_id', 'asc')->get();
+        if (in_array($request->transaction['id'], ['3', '4'])) {
+            $barangay = Barangay::find(auth()->user()->barangay);
 
-        $data_collection = [
-            'full_name' => $gad->full_name ?? '',
-            'address' => $gad->block_lot_house_id . ' ' . $gad->purok->purok_name,
-            'address1' => 'Barangay ' . $gad->barangay->barangay_name . ', Calamba City',
-            'birthday' => Carbon::parse($gad->birth_date)->format('d F Y') ?? '',
-            'age' => Carbon::parse($gad->birth_date)->diff(Carbon::now())->format('%y years') ?? '',
-            'birth_place' => $gad->political_province_registered->province_name ?? '',
-            'resident_status' => $gad->barangay_resident_status_name ??  '',
-            'logo' => $images,
-            'civil_status' => $gad->civil_status->civil_status_name ?? '',
-            'barangay_residence_year' => Carbon::parse($gad->barangay_residence_year)->format('F d, Y'),
-            'barangay' => $gad->barangay,
-            'barangay_sanggunian' => $barangay_sanggunian
-        ];
+            $barangay_sanggunian = BarangaySanggunian::with(['barangay_sanggunian_category'])
+                ->where('barangay_id', auth()->user()->barangay)->orderBy('barangay_sanggunian_category_id', 'asc')->get();
+
+            $data_collection = [
+                'logo' => $images,
+                'barangay' => $barangay,
+                'barangay_sanggunian' => $barangay_sanggunian
+            ];
+        } else {
+            $this->validate($request, [
+                'resident' => 'required',
+            ]);
+
+            $gad = Gad::findOrFail($request->resident['id']);
+
+            $barangay_sanggunian = BarangaySanggunian::with(['barangay_sanggunian_category'])
+                ->where('barangay_id', $gad->barangay_id)->orderBy('barangay_sanggunian_category_id', 'asc')->get();
+
+            $data_collection = [
+                'full_name' => $gad->full_name ?? '',
+                'address' => $gad->block_lot_house_id . ' ' . $gad->purok->purok_name,
+                'address1' => 'Barangay ' . $gad->barangay->barangay_name . ', Calamba City',
+                'birthday' => Carbon::parse($gad->birth_date)->format('d F Y') ?? '',
+                'age' => Carbon::parse($gad->birth_date)->diff(Carbon::now())->format('%y years') ?? '',
+                'birth_place' => $gad->political_province_registered->province_name ?? '',
+                'resident_status' => $gad->barangay_resident_status_name ??  '',
+                'logo' => $images,
+                'civil_status' => $gad->civil_status->civil_status_name ?? '',
+                'barangay_residence_year' => Carbon::parse($gad->barangay_residence_year)->format('F d, Y'),
+                'barangay' => $gad->barangay,
+                'barangay_sanggunian' => $barangay_sanggunian
+            ];
+        }
+
         return response()->json($data_collection);
     }
 }

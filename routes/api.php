@@ -116,6 +116,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
     //Generate Reports
     Route::get('reports/print-excel', 'ReportsApiController@printExcelData')->name('reports.printExcelData');
+    Route::get('reports/generate-pdf/{slug}', 'ReportsApiController@generatePDF');
     Route::get('reports/get-data', 'ReportsApiController@getData')->name('reports.getData');
     Route::get('reports/get-sitpurok/{id}', 'ReportsApiController@getSitioPurok')->name('reports.getSitioPurok');
     Route::resource('reports', 'ReportsApiController');

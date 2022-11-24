@@ -110,12 +110,12 @@
 												This certification is being issued for whatever legal purposes this
 												may best serve.
 											</p>
-											<p class="text-justify">
+											<p class="text-justify mt-3">
 												Given this {{ this.date.toLocaleString('en-us', { month:'long'}) }}  {{this.date.getDate()}}, {{this.date.getFullYear()}} at Barangay
 												{{ data.barangay.barangay_name }}, Calamba City Laguna
 											</p>
 											<div class="pull-left">
-												<h4><b>Affirmation of the requesting party:</b></h4>
+												Affirmation of the requesting party:
 											</div>
 											<br />
 											<br />
@@ -204,6 +204,7 @@
 input {
   outline: 0;
   border-width: 0 0 2px;
+  opacity: 0.4;
 }
 </style>
 <script>

@@ -53,7 +53,6 @@ export default {
           this.$store
             .dispatch(this.xprops.module + '/destroyData', id)
             .then(result => {
-              console.log('test');
               this.$eventHub.$emit('archived-success')
             })
         }

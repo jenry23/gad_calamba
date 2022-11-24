@@ -15,6 +15,7 @@ use App\Models\EducationalAttaintment;
 use App\Models\EducationalStatus;
 use App\Models\Ethnicity;
 use App\Models\Gad;
+use App\Models\Vaccanation;
 use App\Models\GadItemDetails;
 use App\Models\Gender;
 use App\Models\GenderPreference;
@@ -44,6 +45,7 @@ use App\Models\Vehicles;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Gate;
+use App\Models\EducationalAssistance;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -65,46 +67,78 @@ class GadApiController extends Controller
     public function store(Request $request)
     {
         $data = array(
-            "first_name" => $request->first_name,
-            "last_name" => $request->last_name,
-            "middle_name" => $request->middle_name,
-            "extension_name" => $request->extension_name,
-            "household_no" => $request->household_no,
-            "family_code" => $request->family_code,
-            "household_id" => $request->household_id ? $request->household_id['id'] : '',
-            "gender_id" => $request->gender_id ? $request->gender_id['id'] : '',
-            "civil_status_id" => $request->civil_status_id ? $request->civil_status_id['id'] : '',
+            "first_name" => $request->first_name ?? null,
+            "last_name" => $request->last_name ?? null,
+            "middle_name" => $request-> middle_name ?? null,
+            "extension_name" => $request->extension_name ?? null,
+            "household_no" => $request->household_no ?? null,
+            "family_code" => $request->family_code ?? null,
+            "household_id" => $request->household_id ? $request->household_id['id'] : null,
+            "gender_id" => $request->gender_id ? $request->gender_id['id'] : null,
+            "civil_status_id" => $request->civil_status_id ? $request->civil_status_id['id'] : null,
             "spouse_first_name" => $request->spouse_first_name,
-            "birthdate" => $request->birthdate ? $request->birthdate : null,
-            "gender_preference_id" => $request->gender_preference_id ? $request->gender_preference_id['id'] : '',
-            "valid_id" => $request->valid_id,
-            "sector_id" => $request->sector_id ? $request->sector_id['id'] : '',
-            "ethnicity_id" => $request->ethnicity_id ? $request->ethnicity_id['id'] : '',
-            "religion" => $request->religion ? $request->religion['id'] : '',
-            "mobile_no" => $request->mobile_no,
-            "landline_number" => $request->landline_number,
-            "email" => $request->email,
-            "political_city_registered_id" => $request->political_city_registered_id ? $request->political_city_registered_id['id'] : '',
-            "political_province_registered_id" => $request->political_province_registered_id ? $request->political_province_registered_id['id'] : '',
-            "building_no" => $request->building_no,
-            "house_unit" => $request->house_unit,
-            "block_lot_house_id" => $request->block_lot_house_id,
-            "sitio_id" => $request->sitio_names ? $request->sitio_names['id'] : '',
-            "purok_id" => $request->purok_id ? $request->purok_id['id'] : '',
-            "subdivision_name" => $request->subdivision_name,
-            "no_of_years_in_calamba" => $request->no_of_years_in_calamba,
-            "barangay_residence_year" => $request->barangay_residence_year,
-            "remarks" => $request->remarks,
-            "educational_attaintment_id" => $request->educational_attaintment_name ? $request->educational_attaintment_name['id'] : '',
-            "educational_status_id" => $request->educational_status_name ? $request->educational_status_name['id'] : '',
-            "government_educational_assistance_id" => $request->government_educational_assistance_id ? $request->government_educational_assistance_id['id'] : '',
-            "organization_id" => $request->organization_id ? $request->organization_id['id'] : '',
-            "occupation_id" => $request->occupation_id ? $request->occupation_id['id'] : '',
-            "work_location_city_id" => $request->work_location_city_id ? $request->work_location_city_id['id'] : '',
+            "spouse_middle_name" => $request->spouse_middle_name,
+            "spouse_last_name" => $request->spouse_last_name,
+            "birthdate" => $request->birthdate ? Carbon::parse($request->birthdate)->format('Y-m-d') : null,
+            "gender_preference_id" => $request->gender_preference_id ? $request->gender_preference_id['id'] : null,
+            "valid_id" => $request->valid_id ? $request->valid_id['id'] : null,
+            "sector_id" => $request->sector_id ? $request->sector_id['id'] : null,
+            "ethnicity_id" => $request->ethnicity_id ? $request->ethnicity_id['id'] : null,
+            "religion" => $request->religion ? $request->religion['id'] : null,
+            "mobile_no" => $request->mobile_no ?? null,
+            "landline_number" => $request->landline_number ?? null,
+            "email" => $request->email ?? null,
+            "political_city_registered_id" => $request->political_city_registered_id ? $request->political_city_registered_id['id'] : null,
+            "political_province_registered_id" => $request->political_province_registered_id ? $request->political_province_registered_id['id'] : null,
+            "political_brgy_registered" => $request->political_brgy_registered ? $request->political_brgy_registered['id'] : null,
+            "political_precinct_no" => $request->precinct_no ?? null,
+            "building_no" => $request->building_no ?? null,
+            "house_unit" => $request->house_unit ?? null,
+            "block_lot_house_id" => $request->block_lot_house_id ?? null,
+            "sitio_id" => $request->sitio_names ? $request->sitio_id['id'] : null,
+            "purok_id" => $request->purok_id ? $request->purok_id['id'] : null,
+            "barangay_id" => $request->barangay_id ? $request->barangay_id['id'] : null,
+            "calamba_residence_year" => $request->calamba_residence_year ?? null,
+            "barangay_residence_year" => $request->barangay_residence_year ?? null,
+            "remarks" => $request->remarks ?? null,
+            "educational_attaintment_id" => $request->educational_attaintment_id ? $request->educational_attaintment_id['id'] : null,
+            "educational_status_id" => $request->educational_status_id ? $request->educational_status_id['id'] : null,
+            "organization_id" => $request->organization_id ? $request->organization_id['id'] : null,
+            "occupation_id" => $request->occupation_id ? $request->occupation_id['id'] : null,
+            "work_location_city_id" => $request->work_location_city_id ? $request->work_location_city_id['id'] : null,
+            'full_immunization' => $request->full_immunization ?? null,
+            'covid_19_test' => $request->covid_19_test ?? null,
+            'first_date_vaccination' => !empty($request->first_date_vaccination) ? Carbon::parse($request->first_date_vaccination)->format('Y-m-d') : null,
+            'brand1' => $request->brand1 ? $request->brand1['vaccination_name'] : null,
+            'second_date_vaccination' => !empty($request->second_date_vaccination) ? Carbon::parse()->format('Y-m-d') : null,
+            'brand2' =>
+            $request->brand2 ? $request->brand1['vaccination_name'] : null,
+            'booster_date_vaccination' => !empty($request->booster_date_vaccination) ? Carbon::parse($request->booster_date_vaccination)->format('Y-m-d') : null,
+            'brand3' =>
+            $request->brand3 ? $request->brand1['vaccination_name'] : null,
+            'pregnancy_age' => $request->pregnancy_age ?? null,
+            'prental_checkup' => $request->prental_checkup ?? null,
+            'postnatal_checkup' => $request->postnatal_checkup ?? null,
         );
-        $Gad = Gad::create($data);
+dd($request->all());
 
-        return (new GadResource($Gad))
+        $gad = Gad::create($data);
+
+        $this->itemDetails($gad, Ethnicity::class, 'ethnicity', $request->input('ethnicity.*.id', []));
+        $this->itemDetails($gad, GovernmentAssistance::class, 'government_assistance', $request->input('government_assistance.*.id', []));
+        $this->itemDetails($gad, Medicine::class, 'medicine', $request->input('medicine.*.id', []));
+        $this->itemDetails($gad, SoftSkill::class, 'soft_skill', $request->input('soft_skill.*.id', []));
+        $this->itemDetails($gad, HardSkill::class, 'hard_skill', $request->input('hard_skill.*.id', []));
+        $this->itemDetails($gad, Hobbies::class, 'hobbies', $request->input('hobbies.*.id', []));
+        $this->itemDetails($gad, Sports::class, 'sports', $request->input('sports.*.id', []));
+        $this->itemDetails($gad, Utilities::class, 'utilities', $request->input('utilities.*.id', []));
+        $this->itemDetails($gad, Appliances::class, 'appliances', $request->input('appliances.*.id', []));
+        $this->itemDetails($gad, Vehicles::class, 'vehicle', $request->input('vehicle.*.id', []));
+        $this->itemDetails($gad, Health::class, 'health', $request->input('health_condition.*.id', []));
+        $this->itemDetails($gad, Disability::class, 'disability', $request->input('disability_condition.*.id', []));
+
+        // Government Assistance
+        return (new GadResource($gad))
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
     }
@@ -159,12 +193,31 @@ class GadApiController extends Controller
         $sitio = Sitio::all();
         $educational_attaintment = EducationalAttaintment::all();
         $educational_status = EducationalStatus::all();
+        $government_educational_assistance = EducationalAssistance::all();
         $government_assistance = GovernmentAssistance::all();
         $organization = Organization::all();
         $work_location_city = City::all();
         $work_location_province = Province::all();
         $occupation = Occupation::all();
         $barangay = Barangay::all();
+        $medicine = Medicine::all();
+        $health_condition = Health::all();
+        $disability_condition = Disability::all();
+        $questions = Question::with(['answers'])->get();
+        $monthly_income = MonthlyIncome::all();
+        $soft_skill = SoftSkill::all();
+        $hard_skill = HardSkill::all();
+        $hobbies = Hobbies::all();
+        $sports = Sports::all();
+        $vaccanation = Vaccanation::all();
+        $appliance = Appliances::all();
+        $house_ownership = HouseOwnership::all();
+        $house_type = HouseType::all();
+        $house_make = HouseMake::all();
+        $utilities = Utilities::all();
+        $appliance = Appliances::all();
+        $vehicle = Vehicles::all();
+
         return response([
             'meta' => [
                 'relation_household' => $relation_household,
@@ -186,7 +239,26 @@ class GadApiController extends Controller
                 'occupation' => $occupation,
                 'sitio' => $sitio,
                 'purok' => $purok,
-                'barangay' => $barangay
+                'barangay' => $barangay,
+                'political_brgy_registered' => $barangay,
+                'government_educational_assistance' => $government_educational_assistance,
+                'medicine' => $medicine,
+                'health_condition' => $health_condition,
+                'disability_condition' => $disability_condition,
+                'questions' => $questions,
+                'monthly_income' => $monthly_income,
+                'soft_skill' => $soft_skill,
+                'hard_skill' => $hard_skill,
+                'hobbies' => $hobbies,
+                'sports' => $sports,
+                'vaccanation' => $vaccanation,
+                'appliance' =>  $appliance,
+                'house_ownership' => $house_ownership,
+                'house_type' => $house_type,
+                'house_make' => $house_make,
+                'utilities' => $utilities,
+                'appliance' => $appliance,
+                'vehicle' =>  $vehicle,
             ],
         ]);
     }

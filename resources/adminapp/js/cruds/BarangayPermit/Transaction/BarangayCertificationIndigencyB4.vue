@@ -168,7 +168,7 @@
 												{{ data.barangay.barangay_name }}, Calamba City Laguna.
 											</p>
 											<div class="pull-left">
-												<b>Affirmation of the requesting party:</b>
+												Affirmation of the requesting party:
 											</div>
 											<br />
 											<br />
@@ -264,6 +264,11 @@
 }
 .form-check .form-check-label span {
     margin-top: -5px;
+}
+input {
+  outline: 0;
+  border-width: 0 0 2px;
+  opacity: 0.4;
 }
 </style>
 <script>
