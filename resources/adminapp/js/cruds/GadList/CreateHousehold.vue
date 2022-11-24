@@ -1,49 +1,6 @@
 <template>
 	<div id="row">
 		<div class="loader" v-if="loading"></div>
-		<div class="float-right">
-			<input type="file" @change="importFile($event)" class="form-control" />
-		</div>
-		<div class="float-left" style="background-color: green"></div>
-		<br />
-		<div class="contact-form-success alert alert-success mt-4" v-if="success">
-			<strong>Success!</strong> Your post is created.
-		</div>
-
-		<div class="contact-form-error alert alert-danger mt-4" v-if="errors">
-			<strong>Error!</strong> There was an error sending your request.
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<div class="form-group bmd-form-group">
-					<v-select
-						name="barangay_id"
-						label="barangay_name"
-						:key="'barangay_id-field'"
-						:value="barangay_id"
-						style="background-color: white"
-						placeholder="Select Barangay"
-						:options="lists.barangay"
-						@input="updateBarangayID"
-					/>
-				</div>
-			</div>
-			<!-- <div class="col-md-3 mt-2">
-				<datetime-picker
-					class="form-control popcom-input"
-					type="text"
-					picker="date"
-					format="yyyy"
-					placeholder=" Select Date"
-					style="background-color: white"
-					@input="updateDate"
-					:value="date"
-				></datetime-picker>
-			</div> -->
-			<div class="col-md-3 mt-2">
-				<button @click="deleteButton" class="btn btn-sm btn-success">Delete</button>
-			</div>
-		</div>
 		<div class="card">
 			<form-wizard
 				@on-complete="onComplete"
@@ -52,8 +9,8 @@
 				:start-index.sync="activeTabIndex"
 				shape="circle"
 				color="#20a0ff"
-				subtitle="New Household"
-				title="New Household"
+				subtitle=""
+				title="Family Members"
 				error-color="#ff4949"
 			>
 				<tab-content title="Personal details" icon="fa fa-user" :before-change="() => validate('firstStep')">
@@ -81,9 +38,6 @@
 				</tab-content>
 				<tab-content title="Hobbies" icon="fa fa-futbol-o" :before-change="() => validate('sixthStep')">
 					<sixth-step ref="sixthStep" @on-validate="onStepValidate"></sixth-step>
-				</tab-content>
-				<tab-content title="House Type Components" icon="fa fa-home" :before-change="() => validate('lastStep')">
-					<last-step ref="lastStep" @on-validate="onStepValidate"></last-step>
 				</tab-content>
 			</form-wizard>
 		</div>
@@ -157,10 +111,8 @@
 				axios.post('gad', this.finalModel)
 					.then(response => {
 						this.$eventHub.$emit('create-success')
-						console.log(response.data.data)
-						this.$router.push({
-							name: 'gad_list.household', params: { id : response.data.data.household_no}
-						});
+						// this.$router.push({ name: 'gad_list.index' })
+						window.location.reload();
 					}).catch(error => {
 						console.log(error);
 					})
@@ -203,29 +155,6 @@
 						this.loading = false
 					});
 			},
-
-			importFile (event) {
-				this.loading = true;
-				let file = event.target.files
-				const formData = new FormData()
-				formData.append('import_file', file[0])
-				axios.post('gad/import-excel', formData)
-					.then(response => {
-						this.$eventHub.$emit('create-success')
-					}).catch(error => {
-						this.$swal({
-							title: 'Error',
-							text: error.response.data.message,
-							type: 'warning',
-							showCancelButton: true,
-							focusCancel: true,
-							reverseButtons: true
-						})
-						this.errors = true;
-					}).finally(() => {
-						this.loading = false
-					});
-			}
 		}
 	};
 </script>

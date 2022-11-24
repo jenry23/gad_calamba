@@ -255,11 +255,11 @@
 											:total="total"
 											:query="query"
 											:xprops="xprops"
-											:HeaderSettings="false"
+											:HeaderSettings="true"
 											:pageSizeOptions="[10, 25, 50, 100]"
 										>
 											<global-search :query="query" class="pull-left" />
-											<header-settings :columns="columns" class="pull-right" />
+											<!-- <header-settings :columns="columns" class="pull-right" /> -->
 										</datatable>
 									</div>
 								</div>
@@ -333,8 +333,8 @@
 				excel_name: 'gad.xls',
 				columns: [
 					{
-						title: 'ID',
-						field: 'id',
+						title: 'Gad ID',
+						field: 'gad_id',
 						thComp: TranslatedHeader,
 						sortable: true,
 					},

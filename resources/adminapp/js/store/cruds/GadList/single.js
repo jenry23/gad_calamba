@@ -461,6 +461,11 @@ const actions = {
       commit('setLists', response.data.meta)
     })
   },
+  fetchHouseholdData ({ commit }, id) {
+    axios.get(`${route}/household/${id}`).then(response => {
+      commit('setLists', response.data.meta)
+    })
+  },
   fetchThirdData ({ commit }) {
     axios.get(`${route}/third-data`).then(response => {
       commit('setLists', response.data.meta)

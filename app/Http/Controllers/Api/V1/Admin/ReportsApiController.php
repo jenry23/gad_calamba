@@ -17,6 +17,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use App\Utils\PDFUtil;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 class ReportsApiController extends Controller
 {
@@ -386,7 +387,6 @@ class ReportsApiController extends Controller
         $age_from = !empty($json_data->age_from) ? Carbon::now()->subYears($json_data->age_from)->format('Y-m-d') : '';
         $age_to = !empty($json_data->age_to) ? Carbon::now()->subYears($json_data->age_to)->format('Y-m-d') : '';
 
-
         $file_name = sprintf(
             'Generate-PDF ' . $json_data->barangay->barangay_name,
         );
@@ -457,13 +457,19 @@ class ReportsApiController extends Controller
             ->orderBy('id', 'ASC')
             ->get();
 
+        if(Auth::user()->photo->isEmpty()){
+            $user = User::where('barangay', $json_data->barangay->id)->first();
+            $logo = $user->photo[1]['url'];
+        }else {
+            $logo = Auth::user()->photo[1]['url'] ;
+        }
+
         $data = [
             'gads' => collect($gads),
             'file_name' => $file_name,
             'barangay' => $json_data->barangay->barangay_name,
-            'logo' => Auth::user()->photo[1]['url'] ?? Auth::user()->photo[0]['url']
+            'logo' => $logo
         ];
-
         PDFUtil::loadView('pdf.report.body', $data, $file_name, self::PDF_CONFIG);
     }
 

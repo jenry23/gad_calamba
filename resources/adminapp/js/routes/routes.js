@@ -79,6 +79,12 @@ const routes = [
             meta: { title: 'Gad' }
           },
           {
+            path: 'gad-list/:id/household',
+            name: 'gad_list.household',
+            component: () => import('@cruds/GadList/CreateHousehold.vue'),
+            meta: { title: 'Gad' }
+          },
+          {
             path: 'gad-list/:id/:barangay_id',
             name: 'gad_list.show',
             component: () => import('@cruds/GadList/Show.vue'),

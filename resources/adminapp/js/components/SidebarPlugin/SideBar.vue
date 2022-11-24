@@ -101,9 +101,8 @@
 				if (this.roles.title === 'Barangay') {
 					url = this.user.photo[0].url;
 				} else if (this.roles.title === 'Admin') {
-					url = '/images/cpmo.png';
+					url = '/images/gad-logo.png';
 				}
-				console.log(this.roles.title)
 				return url
 			}
 		},

@@ -5,12 +5,13 @@
 @section('content')
 <table>
     <tr>
+        <th></th>
+        <th style="text-align: right">
+            @if($logo)
+            <img src={{$logo}} style="width:100px;">
+            @endif
+        </th>
         <th style="text-align: center">
-        </th>
-        <th style="text-align: left">
-            <img src={{$logo}} style="width:100px;" class="pull-left">
-        </th>
-        <th style="text-align: left">
             <p style=" font-weight: 700;">
                 <b>REPUBLIC OF THE PHILIPPINES</b>
                 <br />
@@ -21,7 +22,7 @@
             <p style="font-weight: 900;text-transform: uppercase;margin-top: -8%;margin-left: 8px;">BARANGAY {{ $barangay }}</p>
             </p>
         </th>
-        <th style="text-align: right">
+        <th style="text-align: left">
             <img src="/transaction/transparent_logo.png" class="pull-left" style="width:100px;" />
         </th>
     </tr>
@@ -37,10 +38,10 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($gads as $gad)
+        @foreach ($gads as $key => $gad)
         <tr>
-            <td style=" text-align: center">{{ $gad['id'] ?? '' }}</td>
-            <td style=" text-align: center">{{ $gad['full_name'] ?? '' }}</td>
+            <td style=" text-align: center">{{ $key ?? '' }}</td>
+            <td style=" text-align: left">{{ $gad['full_name'] ?? '' }}</td>
             <td style=" text-align: center">{{ $gad['gender']['gender_name'] ?? '' }}</td>
             <td style=" text-align: center">{{ $gad['barangay']['barangay_name'] ?? '' }}</td>
             <td style=" text-align: center">{{ $gad['age'] ?? '' }}</td>

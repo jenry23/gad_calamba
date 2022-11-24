@@ -6,7 +6,7 @@
                 <p class="card-category">Complete your profile</p>
             </div>
             <div class="card-body">
-                <div class="row">
+                <div class="row" v-if="!lists.is_member">
                     <div class="col-md-3">
                         <div
                             class="form-group bmd-form-group"
@@ -42,7 +42,7 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row" v-if="!lists.is_member">
                     <div class="col-md-3">
                         <div
                             class="form-group bmd-form-group"
@@ -78,7 +78,7 @@
                                 label="purok_name"
                                 :key="'purok_id_id-field'"
                                 v-model="model.purok_id"
-                                :options="lists.purok"
+                                :options="puroks"
                                 @input="updatePurok"
                                 @focus="focusField('purok_id')"
                                 @blur="clearFocus"
@@ -99,7 +99,7 @@
                                 label="sitio_name"
                                 :key="'sitio_id_id-field'"
                                 v-model="model.sitio_id"
-                                :options="lists.sitio"
+                                :options="sitios"
                                 @input="updateSitio"
                                 @focus="focusField('sitio_id')"
                                 @blur="clearFocus"
@@ -198,7 +198,9 @@ export default {
                 barangay_residence_year: '',
                 remarks: '',
             },
-            rules: {}
+            rules: {},
+            puroks: [],
+            sitios: []
         };
     },
     computed: {
@@ -246,6 +248,11 @@ export default {
         },
         updateBarangay (e) {
             this.setBarangay(e);
+            axios.get('gad/barangay', {params: {id: e.id}
+            }).then(response => {
+                    this.puroks = response.data['purok'];
+                    this.sitios = response.data['sitio'];
+            })
         },
         updatePurok (e) {
             this.setPurok(e);

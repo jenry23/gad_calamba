@@ -27,7 +27,9 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     Route::get('gad/get-name', 'GadApiController@getName')->name('gad.getName');
     Route::get('gad/first-data', 'GadApiController@firstData')->name('gad.firstData');
     Route::get('gad/third-data', 'GadApiController@thirdData')->name('gad.thirdData');
+    Route::get('gad/household/{household_id}', 'GadApiController@householdData')->name('gad.householdData');
     Route::get('gad/show-data/{id}/{barangay_id}', 'GadApiController@showData')->name('gad.showData');
+    Route::get('gad/barangay', 'GadApiController@showBarangay')->name('gad.showBarangay');
     Route::post('gad/import-excel', 'GadApiController@importExcel');
     Route::post('gad/delete-data', 'GadApiController@deleteData');
     Route::resource('gad', 'GadApiController');

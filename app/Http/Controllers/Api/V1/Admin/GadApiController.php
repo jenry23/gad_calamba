@@ -54,7 +54,6 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
 class GadApiController extends Controller
 {
     public function index()
@@ -66,12 +65,27 @@ class GadApiController extends Controller
 
     public function store(Request $request)
     {
+        // Sustained if data is family members
+        // Household No House Type Resident And Barangay
+        $household_head = Gad::where('household_no', $request->household_no)->first();
+        $barangay_id = $household_head ? $household_head->barangay_id : $request->barangay_id['id'];
+        $building_no = $household_head ? $household_head->building_no : $request->building_no;
+        $house_unit = $household_head ? $household_head->house_unit : $request->house_unit;
+        $block_lot_house_id = $household_head ? $household_head->block_lot_house_id : $request->block_lot_house_id;
+        $sitio_id = $household_head ? $household_head->sitio_id : $request->sitio['id'];
+        $purok_id = $household_head ? $household_head->purok_id : $request->purok_id['id'];
+        $birthday = $request->birthdate ? Carbon::parse($request->birthdate)->format('Y-m-d') : null;
+        $full_name = substr(trim($request->first_name), 0, 1) . substr(trim($request->middle_name), 0, 1) . substr(trim($request->last_name), 0, 1);
+
+        $gad_unique_id = 'LAG-CAL' . $barangay_id . '-' . $request->household_no . $full_name
+        . substr($birthday, -2) . '-00-0000';
+
         $data = array(
+            "gad_id" => $gad_unique_id ?? null,
             "first_name" => $request->first_name ?? null,
             "last_name" => $request->last_name ?? null,
             "middle_name" => $request-> middle_name ?? null,
             "extension_name" => $request->extension_name ?? null,
-            "household_no" => $request->household_no ?? null,
             "family_code" => $request->family_code ?? null,
             "household_id" => $request->household_id ? $request->household_id['id'] : null,
             "gender_id" => $request->gender_id ? $request->gender_id['id'] : null,
@@ -79,7 +93,7 @@ class GadApiController extends Controller
             "spouse_first_name" => $request->spouse_first_name,
             "spouse_middle_name" => $request->spouse_middle_name,
             "spouse_last_name" => $request->spouse_last_name,
-            "birthdate" => $request->birthdate ? Carbon::parse($request->birthdate)->format('Y-m-d') : null,
+            "birthdate" => $birthday,
             "gender_preference_id" => $request->gender_preference_id ? $request->gender_preference_id['id'] : null,
             "valid_id" => $request->valid_id ? $request->valid_id['id'] : null,
             "sector_id" => $request->sector_id ? $request->sector_id['id'] : null,
@@ -92,14 +106,14 @@ class GadApiController extends Controller
             "political_province_registered_id" => $request->political_province_registered_id ? $request->political_province_registered_id['id'] : null,
             "political_brgy_registered" => $request->political_brgy_registered ? $request->political_brgy_registered['id'] : null,
             "political_precinct_no" => $request->precinct_no ?? null,
-            "building_no" => $request->building_no ?? null,
-            "house_unit" => $request->house_unit ?? null,
-            "block_lot_house_id" => $request->block_lot_house_id ?? null,
-            "sitio_id" => $request->sitio_names ? $request->sitio_id['id'] : null,
-            "purok_id" => $request->purok_id ? $request->purok_id['id'] : null,
-            "barangay_id" => $request->barangay_id ? $request->barangay_id['id'] : null,
-            "calamba_residence_year" => $request->calamba_residence_year ?? null,
-            "barangay_residence_year" => $request->barangay_residence_year ?? null,
+            "building_no" => $building_no,
+            "house_unit" => $house_unit,
+            "block_lot_house_id" => $block_lot_house_id,
+            "sitio_id" => $sitio_id,
+            "purok_id" => $purok_id,
+            "barangay_id" => $barangay_id,
+            "calamba_residence_year" => !empty($request->calamba_residence_year) ? Carbon::parse($request->calamba_residence_year)->format('Y-m-d') : null,
+            "barangay_residence_year" => !empty($request->barangay_residence_year) ? Carbon::parse($request->barangay_residence_year)->format('Y-m-d') : null,
             "remarks" => $request->remarks ?? null,
             "educational_attaintment_id" => $request->educational_attaintment_id ? $request->educational_attaintment_id['id'] : null,
             "educational_status_id" => $request->educational_status_id ? $request->educational_status_id['id'] : null,
@@ -110,7 +124,7 @@ class GadApiController extends Controller
             'covid_19_test' => $request->covid_19_test ?? null,
             'first_date_vaccination' => !empty($request->first_date_vaccination) ? Carbon::parse($request->first_date_vaccination)->format('Y-m-d') : null,
             'brand1' => $request->brand1 ? $request->brand1['vaccination_name'] : null,
-            'second_date_vaccination' => !empty($request->second_date_vaccination) ? Carbon::parse()->format('Y-m-d') : null,
+            'second_date_vaccination' => !empty($request->second_date_vaccination) ? Carbon::parse($request->second_date_vaccination)->format('Y-m-d') : null,
             'brand2' =>
             $request->brand2 ? $request->brand1['vaccination_name'] : null,
             'booster_date_vaccination' => !empty($request->booster_date_vaccination) ? Carbon::parse($request->booster_date_vaccination)->format('Y-m-d') : null,
@@ -119,8 +133,10 @@ class GadApiController extends Controller
             'pregnancy_age' => $request->pregnancy_age ?? null,
             'prental_checkup' => $request->prental_checkup ?? null,
             'postnatal_checkup' => $request->postnatal_checkup ?? null,
+            'household_no' => $request->household_no
         );
-dd($request->all());
+
+
 
         $gad = Gad::create($data);
 
@@ -164,9 +180,6 @@ dd($request->all());
         return response()->json($gad_search);
     }
 
-    public function getData($id)
-    {
-    }
     public function create(Request $request)
     {
         $barangay = Barangay::all();
@@ -217,9 +230,118 @@ dd($request->all());
         $utilities = Utilities::all();
         $appliance = Appliances::all();
         $vehicle = Vehicles::all();
+        $latest_number = Gad::latest('id')->first();
+        $household_no = !empty($latest_number) ? $latest_number->household_no + 1 : 1;
 
         return response([
             'meta' => [
+                'household_no' => $household_no,
+                'relation_household' => $relation_household,
+                'gender' => $sex,
+                'civil_status' => $civil_status,
+                'religion' => $religion,
+                'gender_preference' => $gender_preference,
+                'valid_id' => $valid_id,
+                'sector' => $sector,
+                'ethnicity' => $ethnicity,
+                'province_register' => $province,
+                'city_register' => $city,
+                'educational_attaintment' => $educational_attaintment,
+                'educational_status' => $educational_status,
+                'government_assistance' => $government_assistance,
+                'organization' => $organization,
+                'work_location_city' => $work_location_city,
+                'work_location_province' => $work_location_province,
+                'occupation' => $occupation,
+                'sitio' => $sitio,
+                'purok' => $purok,
+                'barangay' => $barangay,
+                'political_brgy_registered' => $barangay,
+                'government_educational_assistance' => $government_educational_assistance,
+                'medicine' => $medicine,
+                'health_condition' => $health_condition,
+                'disability_condition' => $disability_condition,
+                'questions' => $questions,
+                'monthly_income' => $monthly_income,
+                'soft_skill' => $soft_skill,
+                'hard_skill' => $hard_skill,
+                'hobbies' => $hobbies,
+                'sports' => $sports,
+                'vaccanation' => $vaccanation,
+                'appliance' =>  $appliance,
+                'house_ownership' => $house_ownership,
+                'house_type' => $house_type,
+                'house_make' => $house_make,
+                'utilities' => $utilities,
+                'appliance' => $appliance,
+                'vehicle' =>  $vehicle,
+            ],
+        ]);
+    }
+
+    public function showBarangay(Request $request)
+    {
+        $purok = Purok::where('barangay_id', $request->id)->get();
+        $sitio = Sitio::where('barangay_id', $request->id)->get();
+
+        return response([
+            'purok' => $purok,
+            'sitio' => $sitio
+        ]);
+    }
+
+    public function householdData(int $household_id)
+    {
+        $household_gad = Gad::where('household_no', $household_id)->where('household_id', 2)->first();
+        $relation_household = Household::when(
+            $household_gad,
+                function (EloquentBuilder $query) {
+                    $query->where('id','!=', 2);
+                }
+            )->where('id', '!=', 1)->get();
+        $sex = Gender::all();
+        $civil_status = CivilStatus::all();
+        $religion = Religion::all();
+        $gender_preference = GenderPreference::all();
+        $valid_id = ValidID::all();
+        $sector = Sector::all();
+        $ethnicity = Ethnicity::all();
+        $province = Province::all();
+        $city = City::all();
+        $purok = Purok::all();
+        $sitio = Sitio::all();
+        $educational_attaintment = EducationalAttaintment::all();
+        $educational_status = EducationalStatus::all();
+        $government_educational_assistance = EducationalAssistance::all();
+        $government_assistance = GovernmentAssistance::all();
+        $organization = Organization::all();
+        $work_location_city = City::all();
+        $work_location_province = Province::all();
+        $occupation = Occupation::all();
+        $barangay = Barangay::all();
+        $medicine = Medicine::all();
+        $health_condition = Health::all();
+        $disability_condition = Disability::all();
+        $questions = Question::with(['answers'])->get();
+        $monthly_income = MonthlyIncome::all();
+        $soft_skill = SoftSkill::all();
+        $hard_skill = HardSkill::all();
+        $hobbies = Hobbies::all();
+        $sports = Sports::all();
+        $vaccanation = Vaccanation::all();
+        $appliance = Appliances::all();
+        $house_ownership = HouseOwnership::all();
+        $house_type = HouseType::all();
+        $house_make = HouseMake::all();
+        $utilities = Utilities::all();
+        $appliance = Appliances::all();
+        $vehicle = Vehicles::all();
+        $is_member = true;
+
+        return response([
+            'meta' => [
+                'household_no' => $household_id,
+                'is_member' => $is_member,
                 'relation_household' => $relation_household,
                 'gender' => $sex,
                 'civil_status' => $civil_status,

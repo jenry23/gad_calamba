@@ -91,7 +91,7 @@
 			:manual-pagination="false"
 			pdf-format="a3"
 			pdf-orientation="portrait"
-			pdf-content-width="1200px"
+			pdf-content-width="1000px"
 			@progress="onProgress($event)"
 			@hasStartedGeneration="hasStartedGeneration()"
 			@hasGenerated="hasGenerated($event)"

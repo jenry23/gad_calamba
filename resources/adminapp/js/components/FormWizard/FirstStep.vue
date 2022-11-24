@@ -65,7 +65,18 @@
                                 }"
                             >
                                 <label>Household Entry No:</label>
-                                <input type="text" class="form-control popcom-input" v-model="model.household_no" />
+                                <input
+                                    type="text"
+                                    class="form-control popcom-input"
+                                    readonly
+                                    :value="lists.household_no"
+                                />
+                                <input
+                                    type="hidden"
+                                    class="form-control popcom-input"
+                                    readonly
+                                    v-model="model.household_no"
+                                />
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -119,7 +130,7 @@
                                     :key="'gender_id-field'"
                                     :options="lists.gender"
                                     v-model="model.gender_id"
-									@input="updateGender"
+                                    @input="updateGender"
                                     @focus="focusField('gender')"
                                     @blur="clearFocus"
                                 />
@@ -140,13 +151,13 @@
                                     :key="'civil_status_id-field'"
                                     v-model="model.civil_status_id"
                                     :options="lists.civil_status"
-									@input="updateCivilStatus"
+                                    @input="updateCivilStatus"
                                     @focus="focusField('civil_status')"
                                     @blur="clearFocus"
                                 />
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" v-if="!lists.is_member">
                             <div
                                 class="form-group bmd-form-group"
                                 :class="{
@@ -203,7 +214,7 @@
                                     :key="'sector_id-field'"
                                     v-model="model.valid_id"
                                     :options="lists.valid_id"
-									@input="updateValidID"
+                                    @input="updateValidID"
                                     @focus="focusField('valid_id')"
                                     @blur="clearFocus"
                                 />
@@ -279,7 +290,7 @@
                                     :key="'sector_id-field'"
                                     v-model="model.sector_id"
                                     :options="lists.sector"
-									@input="updateSector"
+                                    @input="updateSector"
                                     @focus="focusField('sector')"
                                     @blur="clearFocus"
                                 />
@@ -300,7 +311,7 @@
                                     :key="'ethnicity_id-field'"
                                     v-model="model.ethnicity_id"
                                     :options="lists.ethnicity"
-									@input="updateEthnicity"
+                                    @input="updateEthnicity"
                                     @focus="focusField('ethnicity')"
                                     @blur="clearFocus"
                                 />
@@ -321,7 +332,7 @@
                                     :key="'gender_preference_id-field'"
                                     :options="lists.gender_preference"
                                     v-model="model.gender_preference_id"
-									@input="updateGenderPreference"
+                                    @input="updateGenderPreference"
                                     @focus="focusField('gender_preference')"
                                     @blur="clearFocus"
                                 />
@@ -343,7 +354,7 @@
                                     :key="'religion_id-field'"
                                     v-model="model.religion"
                                     :options="lists.religion"
-									@input="updateReligion"
+                                    @input="updateReligion"
                                     @focus="focusField('religion')"
                                     @blur="clearFocus"
                                 />
@@ -373,7 +384,7 @@
                                     :key="'city_register_id-field'"
                                     v-model="model.political_city_registered_id"
                                     :options="lists.city_register"
-									@input="updatePoliticalCityRegistered"
+                                    @input="updatePoliticalCityRegistered"
                                     @focus="focusField('city_register')"
                                     @blur="clearFocus"
                                 />
@@ -394,7 +405,7 @@
                                     :key="'province_register_id-field'"
                                     v-model="model.political_province_registered_id"
                                     :options="lists.province_register"
-									@input="updatePoliticalProvinceRegistered"
+                                    @input="updatePoliticalProvinceRegistered"
                                     @focus="focusField('province_register')"
                                     @blur="clearFocus"
                                 />
@@ -417,7 +428,7 @@
                                     :key="'political_brgy_registered_id-field'"
                                     v-model="model.political_brgy_registered"
                                     :options="lists.political_brgy_registered"
-									@input="updatePoliticalBarangay"
+                                    @input="updatePoliticalBarangay"
                                     @focus="focusField('political_brgy_registered')"
                                     @blur="clearFocus"
                                 />
@@ -493,7 +504,11 @@ export default {
         };
     },
     mounted () {
-        this.fetchFirstData()
+        if (this.$route.params.id) {
+            this.fetchHouseholdData(this.$route.params.id);
+        } else {
+            this.fetchFirstData()
+        }
     },
     computed: {
         ...mapGetters("GadListSingle", ["loading", "lists"]),
@@ -501,6 +516,7 @@ export default {
     methods: {
         ...mapActions("GadListSingle", [
             "fetchFirstData",
+            "fetchHouseholdData",
             "setHousehold",
             "setGender",
             "setCivilStatus",
@@ -516,6 +532,8 @@ export default {
         ]),
         validate () {
             return new Promise((resolve, reject) => {
+                this.model.household_no = this.lists.household_no
+                console.log(this.model.household_no)
                 const valid = true;
                 this.$emit("on-validate", valid, this.model);
                 resolve(valid);
