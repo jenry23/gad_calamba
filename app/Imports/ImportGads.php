@@ -85,6 +85,7 @@ class ImportGads implements
     public function collection(Collection $rows)
     {
         ini_set('memory_limit', '5G');
+        ini_set('default_charset', 'utf-8');
 
         $rows->groupBy('household_number')->map(function ($data_row) {
             $latest_number = Gad::latest('id')->first();
@@ -94,9 +95,9 @@ class ImportGads implements
                     function () use ($row, $household_number) {
                         $barangay_id = $this->convertStringToID(Barangay::class, 'barangay_name', $row['barangay_dropdown_option']);
                         $birthday = Carbon::parse($row["concatenated_format_mmddyyyy_auto_generated"])->format('Y-m-d');
-                        $full_name = substr(trim($row['first_name']), 0, 1) . substr(trim($row['middle_name']), 0, 1) . substr(trim($row['last_name']), 0, 1);
+                        $full_name = mb_substr(trim($row['first_name']), 0, 1) . mb_substr(trim($row['middle_name']), 0, 1) . mb_substr(trim($row['last_name']), 0, 1);
                         $gad_unique_id = 'LAG-CAL' . $barangay_id . '-' . $row['household_number'] . $full_name
-                            . substr($birthday, -2) . '-00-0000';
+                            . mb_substr($birthday, -2) . '-00-0000';
                         $gad = new Gad();
                         $gad->gad_id = $gad_unique_id ?? null;
                         $gad->building_no = $row['building_no'] ?? null;
