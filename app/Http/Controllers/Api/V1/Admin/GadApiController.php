@@ -54,6 +54,8 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Collection;
+
 class GadApiController extends Controller
 {
     public function index()
@@ -78,13 +80,13 @@ class GadApiController extends Controller
         $full_name = substr(trim($request->first_name), 0, 1) . substr(trim($request->middle_name), 0, 1) . substr(trim($request->last_name), 0, 1);
 
         $gad_unique_id = 'LAG-CAL' . $barangay_id . '-' . $request->household_no . $full_name
-        . substr($birthday, -2) . '-00-0000';
+            . substr($birthday, -2) . '-00-0000';
 
         $data = array(
             "gad_id" => $gad_unique_id ?? null,
             "first_name" => $request->first_name ?? null,
             "last_name" => $request->last_name ?? null,
-            "middle_name" => $request-> middle_name ?? null,
+            "middle_name" => $request->middle_name ?? null,
             "extension_name" => $request->extension_name ?? null,
             "family_code" => $request->family_code ?? null,
             "household_id" => $request->household_id ? $request->household_id['id'] : null,
@@ -295,10 +297,10 @@ class GadApiController extends Controller
         $household_gad = Gad::where('household_no', $household_id)->where('household_id', 2)->first();
         $relation_household = Household::when(
             $household_gad,
-                function (EloquentBuilder $query) {
-                    $query->where('id','!=', 2);
-                }
-            )->where('id', '!=', 1)->get();
+            function (EloquentBuilder $query) {
+                $query->where('id', '!=', 2);
+            }
+        )->where('id', '!=', 1)->get();
         $sex = Gender::all();
         $civil_status = CivilStatus::all();
         $religion = Religion::all();
@@ -571,22 +573,15 @@ class GadApiController extends Controller
 
     public function deleteData(Request $request)
     {
-        // DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        DB::transaction(
-            function () use ($request) {
-                // TODO: select by created_at
-                Gad::where('barangay_id', $request['barangay_id'])
-                    ->get()
-                    ->map(function ($gad) {
-                        if (isset($gad->barangay_permit)) {
-                            $gad->barangay_permit->forceDelete();
-                        }
-                        $gad->gadDetails->each->delete();
-                        $gad->forceDelete();
-                    });
-            }
-        );
-        // DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        do {
+            $deleted = Gad::where('barangay_id', $request['barangay_id'])->limit(20000)->get()->map(function ($gad) {
+                if (isset($gad->barangay_permit)) {
+                    $gad->barangay_permit->forceDelete();
+                }
+                $gad->gadDetails->each->delete();
+                $gad->forceDelete();
+            });
+        } while ($deleted->count() > 0);
 
         return response(null, Response::HTTP_NO_CONTENT);
     }
