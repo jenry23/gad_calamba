@@ -327,6 +327,7 @@ class ReportsApiController extends Controller
             ->orderBy('id', 'ASC')
             ->paginate();
 
+
         if ($gender_id) {
             if ($gender_id == 1) {
                 $male = Gad::where('barangay_id', $barangay_id)
@@ -753,6 +754,7 @@ class ReportsApiController extends Controller
             "id",
             "first_name",
             "last_name",
+            "middle_name",
             "birth_date",
             "barangay_id",
             "gender_id",
@@ -760,7 +762,7 @@ class ReportsApiController extends Controller
             "purok_id",
             "sitio_id",
             "barangay_residence_year",
-            DB::raw("CONCAT(first_name,' ',last_name) as full_name")
+            DB::raw("CONCAT(last_name,',',first_name,' ',middle_name) as full_name")
         )->with([
             'gender:id,gender_name',
             'barangay:id,barangay_name',

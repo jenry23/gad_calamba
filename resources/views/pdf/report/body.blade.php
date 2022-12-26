@@ -40,7 +40,7 @@
     <tbody>
         @foreach ($gads as $key => $gad)
         <tr>
-            <td style=" text-align: center">{{ $key ?? '' }}</td>
+            <td style=" text-align: center">{{ $key+1 ?? '' }}</td>
             <td style=" text-align: left">{{ $gad['full_name'] ?? '' }}</td>
             <td style=" text-align: center">{{ $gad['gender']['gender_name'] ?? '' }}</td>
             <td style=" text-align: center">{{ $gad['barangay']['barangay_name'] ?? '' }}</td>

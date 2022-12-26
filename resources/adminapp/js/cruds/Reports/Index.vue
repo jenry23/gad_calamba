@@ -402,6 +402,7 @@ import { each } from 'lodash'
 import { mapGetters, mapActions } from 'vuex'
 import PieChart from "@components/Charts/Pie";
 import DatatablesFields from '@components/Datatables/DatatablesFields'
+import DatatablesFieldsId from '@components/Datatables/DatatablesFieldsId'
 import DatatablesFieldsMultiple from '@components/Datatables/DatatablesFieldsMultiple'
 import TranslatedHeader from '@components/Datatables/TranslatedHeader'
 import TranslatedMultitpleHeader from '@components/Datatables/TranslatedMultitpleHeader'
@@ -415,6 +416,7 @@ export default {
         PieChart,
         GlobalSearch,
         DatatablesFields,
+        DatatablesFieldsId,
         HeaderSettings,
         VueHtml2pdf,
         TranslatedMultitpleHeader,
