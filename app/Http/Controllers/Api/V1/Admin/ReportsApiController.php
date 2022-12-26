@@ -211,7 +211,7 @@ class ReportsApiController extends Controller
         $religion = !empty($request->religion) ? json_decode($request->religion) : '';
         $occupation = !empty($request->occupation) ? json_decode($request->occupation) : '';
         $house_ownership = !empty($request->house_ownership) ? json_decode($request->house_ownership) : '';
-        $vaccination = !empty($request->vaccination) ? json_decode($request->vaccination) : '';
+        $vaccination = !empty($request->vaccination) ? $request->vaccination : '';
         $medicine = !empty($request->medicine) ? json_decode($request->medicine) : '';
 
         $gads = Gad::with([
@@ -321,8 +321,6 @@ class ReportsApiController extends Controller
                 $vaccination,
                 function (Builder $query) use ($vaccination) {
                     $query->where('brand1', $vaccination);
-                    $query->orWhere('brand2', $vaccination);
-                    $query->orWhere('brand3', $vaccination);
                 }
             )
             ->when(
@@ -429,8 +427,6 @@ class ReportsApiController extends Controller
                         $vaccination,
                         function (Builder $query) use ($vaccination) {
                             $query->where('brand1', $vaccination);
-                            $query->orWhere('brand2', $vaccination);
-                            $query->orWhere('brand3', $vaccination);
                         }
                     )
                     ->when(
@@ -536,8 +532,6 @@ class ReportsApiController extends Controller
                         $vaccination,
                         function (Builder $query) use ($vaccination) {
                             $query->where('brand1', $vaccination);
-                            $query->orWhere('brand2', $vaccination);
-                            $query->orWhere('brand3', $vaccination);
                         }
                     )
                     ->when(
@@ -645,8 +639,6 @@ class ReportsApiController extends Controller
                     $vaccination,
                     function (Builder $query) use ($vaccination) {
                         $query->where('brand1', $vaccination);
-                        $query->orWhere('brand2', $vaccination);
-                        $query->orWhere('brand3', $vaccination);
                     }
                 )
                 ->when(
@@ -750,8 +742,6 @@ class ReportsApiController extends Controller
                     $vaccination,
                     function (Builder $query) use ($vaccination) {
                         $query->where('brand1', $vaccination);
-                        $query->orWhere('brand2', $vaccination);
-                        $query->orWhere('brand3', $vaccination);
                     }
                 )
                 ->when(
@@ -927,8 +917,6 @@ class ReportsApiController extends Controller
                 $vaccination,
                 function (Builder $query) use ($vaccination) {
                     $query->where('brand1', $vaccination);
-                    $query->orWhere('brand2', $vaccination);
-                    $query->orWhere('brand3', $vaccination);
                 }
             )
             ->when(

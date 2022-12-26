@@ -79,8 +79,12 @@ function initialState() {
         let data1 = state.entry
         let final_data = []
         each(data1, (value, key) => {
-          if (value) {
+          if (['vaccination'].includes(key)) {
+            final_data[key] = value.vaccination_name
+          } else if (value && value.id) {
             final_data[key] = value.id
+          } else if (value) {
+            final_data[key] = value
           }
         })
         let merged = { ...query1, ...final_data };
