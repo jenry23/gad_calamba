@@ -239,7 +239,7 @@
 input {
   outline: 0;
   border-width: 0 0 2px;
-  opacity: 0.4;
+  opacity: 1;
 }
 </style>
 <script>

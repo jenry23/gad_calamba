@@ -3,8 +3,13 @@
         <b>
             <center>
                 <div v-for="sanggunian in data.barangay_sanggunian" :key="sanggunian.id">
-                    <p>
+                  {{sanggunian.barangay_sanggunian_category.id}}
+                    <p v-if="sanggunian.barangay_sanggunian_category.id !== 6 || sanggunian.barangay_sanggunian_category.id !== 5">
                         <b style="text-transform: uppercase;">Hon.{{ sanggunian.barangay_name }}</b> <br />
+                        {{ sanggunian.barangay_sanggunian_category.category_name }}
+                    </p>
+                    <p v-else>
+                        <b style="text-transform: uppercase;">{{ sanggunian.barangay_name }}</b> <br />
                         {{ sanggunian.barangay_sanggunian_category.category_name }}
                     </p>
                 </div>

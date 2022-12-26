@@ -298,6 +298,7 @@
 				<div class="card card-stats h-80">
 					<div class="card-header card-header-success">
 						<h3 class="card-title">Utilities</h3>
+						<br />
 					</div>
 					<div class="card-body">
 						<line-chart :chart-data="data_utilities"></line-chart>
@@ -321,6 +322,7 @@
 				<div class="card card-stats">
 					<div class="card-header card-header-success">
 						<h3 class="card-title">Monthly Income</h3>
+						<small>Range Ref: PIDS NO 2018-18 (December 2018)</small>
 					</div>
 					<div class="card-body">
 						<bar-chart :chart-data="data_income"></bar-chart>

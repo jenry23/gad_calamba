@@ -89,9 +89,30 @@
 			:filename="transaction_name"
 			:pdf-quality="2"
 			:manual-pagination="false"
-			pdf-format="a3"
+			pdf-format="a4"
+			:html-to-pdf-options="{
+				margin: 2,
+				image: {
+				type: 'jpeg',
+				quality: 1
+				},
+				pagebreak: {
+				mode: ['css', 'legacy'],
+				avoid: '.page-breaker'
+				},
+				html2canvas: {
+				scrollX: 0,
+				scrollY: 0,
+				allowTaint: true,
+				useCORS: true
+				},
+				jsPDF: {
+				format: 'letter',
+				orientation: 'portrait'
+				}
+			}"
 			pdf-orientation="portrait"
-			pdf-content-width="1000px"
+			pdf-content-width="800px"
 			@progress="onProgress($event)"
 			@hasStartedGeneration="hasStartedGeneration()"
 			@hasGenerated="hasGenerated($event)"

@@ -307,7 +307,7 @@
                                                             </td>
                                                             <td>Other Requirements (Specify):</td>
                                                             <td></td>
-                                                            <td><input type="text" style="padding-right: 26px;"/></td>
+                                                            <td><input type="text" style="padding-right: 74px;opacity: 1;"/></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -423,7 +423,7 @@
 input {
   outline: 0;
   border-width: 0 0 2px;
-  opacity: 0.4;
+  opacity: 1;
 }
 </style>
 <script>
