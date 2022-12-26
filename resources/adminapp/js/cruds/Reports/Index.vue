@@ -398,6 +398,7 @@
 }
 </style>
 <script>
+import { each } from 'lodash'
 import { mapGetters, mapActions } from 'vuex'
 import PieChart from "@components/Charts/Pie";
 import DatatablesFields from '@components/Datatables/DatatablesFields'
@@ -736,9 +737,17 @@ export default {
         downloads () {
             var baseUrl = window.location.origin
 
+			let data1 = this.entry
+			let final_data = {}
+				each(data1, (value, key) => {
+				if (value) {
+					final_data[key] = value.id
+				}
+			})
+
             let url =
                 baseUrl +
-                `/api/v1/reports/generate-pdf/${JSON.stringify(this.entry)}`;
+                `/api/v1/reports/generate-pdf/${JSON.stringify(final_data)}`;
 
             window.open(url, '_blank');
         },

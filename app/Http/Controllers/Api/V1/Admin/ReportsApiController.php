@@ -196,22 +196,22 @@ class ReportsApiController extends Controller
 
     public function getData(Request $request)
     {
-        $barangay_id = !empty($request->barangay) ? json_decode($request->barangay)->id : '';
-        $purok_id = !empty($request->purok) ? json_decode($request->purok)->id : '';
-        $sitio_id = !empty($request->sitio) ? json_decode($request->sitio)->id : '';
-        $sector_id = !empty($request->sector) ? json_decode($request->sector)->id : '';
-        $gender_id =  !empty($request->gender) ? json_decode($request->gender)->id : '';
+        $barangay_id = !empty($request->barangay) ? json_decode($request->barangay) : '';
+        $purok_id = !empty($request->purok) ? json_decode($request->purok) : '';
+        $sitio_id = !empty($request->sitio) ? json_decode($request->sitio) : '';
+        $sector_id = !empty($request->sector) ? json_decode($request->sector) : '';
+        $gender_id =  !empty($request->gender) ? json_decode($request->gender) : '';
         $age_from = !empty($request->age_from) ? Carbon::now()->subYears($request->age_from)->format('Y-m-d') : '';
         $age_to = !empty($request->age_to) ? Carbon::now()->subYears($request->age_to)->format('Y-m-d') : '';
-        $household_id = !empty($request->household) ? json_decode($request->household)->id : '';
-        $gender_preference = !empty($request->gender_preference) ? json_decode($request->gender_preference)->id : '';
-        $civil_status = !empty($request->civil_status) ? json_decode($request->civil_status)->id : '';
-        $educational_attaintment = !empty($request->educational_attaintment) ? json_decode($request->educational_attaintment)->id : '';
-        $ethnicity = !empty($request->ethnicity) ? json_decode($request->ethnicity)->id : '';
-        $religion = !empty($request->religion) ? json_decode($request->religion)->id : '';
-        $occupation = !empty($request->occupation) ? json_decode($request->occupation)->id : '';
-        $house_ownership = !empty($request->house_ownership) ? json_decode($request->house_ownership)->id : '';
-        $vaccination = !empty($request->vaccination) ? json_decode($request->vaccination)->id : '';
+        $household_id = !empty($request->household) ? json_decode($request->household) : '';
+        $gender_preference = !empty($request->gender_preference) ? json_decode($request->gender_preference) : '';
+        $civil_status = !empty($request->civil_status) ? json_decode($request->civil_status) : '';
+        $educational_attaintment = !empty($request->educational_attaintment) ? json_decode($request->educational_attaintment) : '';
+        $ethnicity = !empty($request->ethnicity) ? json_decode($request->ethnicity) : '';
+        $religion = !empty($request->religion) ? json_decode($request->religion) : '';
+        $occupation = !empty($request->occupation) ? json_decode($request->occupation) : '';
+        $house_ownership = !empty($request->house_ownership) ? json_decode($request->house_ownership) : '';
+        $vaccination = !empty($request->vaccination) ? json_decode($request->vaccination) : '';
 
         $gads = Gad::with([
             'gender:id,gender_name',
@@ -722,21 +722,31 @@ class ReportsApiController extends Controller
 
     public function generatePDF(Request $request)
     {
-        ini_set('memory_limit', '1500000M');
-        ini_set("pcre.backtrack_limit", "3000000");
+        ini_set('memory_limit', '900000M');
+        ini_set("pcre.backtrack_limit", "5000000");
 
         $json_data = json_decode($request->slug);
-
-        $barangay_id = $json_data->barangay->id ?? '';
-        $purok = $json_data->purok->id ?? '';
-        $sitio = $json_data->sitio->id ?? '';
-        $sector = $json_data->sector->id ?? '';
-        $gender = $json_data->gender->id ?? '';
+        $barangay_id = $json_data->barangay ?? '';
+        $purok = $json_data->purok ?? '';
+        $sitio = $json_data->sitio ?? '';
+        $sector = $json_data->sector ?? '';
+        $gender = $json_data->gender ?? '';
         $age_from = !empty($json_data->age_from) ? Carbon::now()->subYears($json_data->age_from)->format('Y-m-d') : '';
         $age_to = !empty($json_data->age_to) ? Carbon::now()->subYears($json_data->age_to)->format('Y-m-d') : '';
+        $household_id =  $json_data->household ?? '';
+        $gender_preference =  $json_data->gender_preference ?? '';
+        $civil_status =  $json_data->civil_status ?? '';
+        $educational_attaintment =  $json_data->educational_attaintment ?? '';
+        $ethnicity =  $json_data->ethnicity ?? '';
+        $religion =  $json_data->religion ?? '';
+        $occupation =  $json_data->occupation ?? '';
+        $house_ownership =  $json_data->house_ownership ?? '';
+        $vaccination =  $json_data->vaccination ?? '';
+
+        $barangay = Barangay::find($barangay_id);
 
         $file_name = sprintf(
-            'Generate-PDF ' . $json_data->barangay->barangay_name,
+            'Generate-PDF ' . $barangay->barangay_name,
         );
 
         $gads = Gad::select(
@@ -801,12 +811,73 @@ class ReportsApiController extends Controller
                     $query->whereBetween('birth_date', [$age_to, $age_from]);
                 }
             )
+            ->when(
+                $household_id,
+                function (Builder $query) use ($household_id) {
+                    $query->where('household_id', $household_id);
+                }
+            )
+            ->when(
+                $gender_preference,
+                function (Builder $query) use ($gender_preference) {
+                    $query->where('gender_preference_id', $gender_preference);
+                }
+            )
+            ->when(
+                $civil_status,
+                function (Builder $query) use ($civil_status) {
+                    $query->where('civil_status_id', $civil_status);
+                }
+            )
+            ->when(
+                $educational_attaintment,
+                function (Builder $query) use ($educational_attaintment) {
+                    $query->where('educational_atta$educational_attaintment_id', $educational_attaintment);
+                }
+            )
+            ->when(
+                $ethnicity,
+                function ($query) use ($ethnicity) {
+                    $query->whereHas(
+                        'gadDetails',
+                        function (Builder $query) use ($ethnicity) {
+                            $query->where('item_id', $ethnicity)->where('item_type', Ethnicity::class);
+                        }
+                    );
+                }
+            )
+            ->when(
+                $religion,
+                function (Builder $query) use ($religion) {
+                    $query->where('religion_id', $religion);
+                }
+            )
+            ->when(
+                $occupation,
+                function (Builder $query) use ($occupation) {
+                    $query->where('occupation_id', $occupation);
+                }
+            )
+            ->when(
+                $house_ownership,
+                function (Builder $query) use ($house_ownership) {
+                    $query->where('house_ownership_id', $house_ownership);
+                }
+            )
+            ->when(
+                $vaccination,
+                function (Builder $query) use ($vaccination) {
+                    $query->where('brand1', $vaccination);
+                    $query->orWhere('brand2', $vaccination);
+                    $query->orWhere('brand3', $vaccination);
+                }
+            )
             ->withoutAppends()
             ->orderBy('id', 'ASC')
             ->get();
 
         if (Auth::user()->photo->isEmpty()) {
-            $user = User::where('barangay', $json_data->barangay->id)->first();
+            $user = User::where('barangay', $barangay_id)->first();
             $logo = $user->photo[1]['url'];
         } else {
             $logo = Auth::user()->photo[1]['url'];
@@ -815,9 +886,10 @@ class ReportsApiController extends Controller
         $data = [
             'gads' => collect($gads),
             'file_name' => $file_name,
-            'barangay' => $json_data->barangay->barangay_name,
+            'barangay' => $barangay->barangay_name,
             'logo' => $logo
         ];
+
         PDFUtil::loadView('pdf.report.body', $data, $file_name, self::PDF_CONFIG);
     }
 

@@ -1,3 +1,5 @@
+import { each } from 'lodash'
+
 const set = key => (state, val) => {
   state[key] = val
 }
@@ -73,9 +75,15 @@ function initialState() {
           indices: true,
           booleansAsIntegers: true
         })
-        var query1 = state.query
-        var data1 = state.entry
-        let merged = {...query1, ...data1};
+        let query1 = state.query
+        let data1 = state.entry
+        let final_data = []
+        each(data1, (value, key) => {
+          if (value) {
+            final_data[key] = value.id
+          }
+        })
+        let merged = { ...query1, ...final_data };
 
         axios
           .get(`reports/get-data`, {
