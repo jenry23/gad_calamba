@@ -82,28 +82,28 @@
 											</p>
 											<div>
 												<b style="margin-right: 67px">Individual/Office/ Company Name:</b>
-												<b style="margin-right: 24px">:</b><b><input type="text" /></b>
+												<b style="margin-right: 24px">:</b><b><input type="text" style="width: 40%;" /></b>
 											</div>
 											<div>
 												<b style="margin-right: 231px">Address</b>
-												<b style="margin-right: 24px">:</b><b><input type="text" /></b>
+												<b style="margin-right: 24px">:</b><b><input type="text" style="width: 40%;" /></b>
 											</div>
 											<div>
 												<b style="margin-right: 213px">Contact No</b>
-												<b style="margin-right: 25px">:</b><b><input type="text" /></b>
+												<b style="margin-right: 25px">:</b><b><input type="text" style="width: 40%;" /></b>
 											</div>
 											<div>
 												<b style="margin-right: 179px">Name of Activity</b>
-												<b style="margin-right: 25px">:</b><b><input type="text" /></b>
+												<b style="margin-right: 25px">:</b><b><input type="text" style="width: 40%;" /></b>
 											</div>
 
 											<div>
 												<b style="margin-right: 163px">Purpose of Activity</b>
-												<b style="margin-right: 26px">:</b><b><input type="text" /></b>
+												<b style="margin-right: 26px">:</b><b><input type="text" style="width: 40%;" /></b>
 											</div>
 											<div>
 												<b style="margin-right: 194px">Inclusive Date</b>
-												<b style="margin-right: 27px">:</b><b><input type="text" /></b>
+												<b style="margin-right: 27px">:</b><b><input type="text" style="width: 40%;" /></b>
 											</div>
 											<br />
 											<p class="text-justify">

@@ -316,6 +316,7 @@
 						<bar-chart :chart-data="chartData"></bar-chart>
 						<!-- <pie-chart :chart-data="chartData" :options="options"></pie-chart> -->
 					</div>
+					<br>
 				</div>
 			</div>
 			<div class="col-md-6">
