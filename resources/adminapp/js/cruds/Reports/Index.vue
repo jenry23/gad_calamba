@@ -30,8 +30,10 @@
                     >
                         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                             <div class="modal-content">
-                                <div class="modal-header" style="background-color: #47a44b;margin-left: -0.6px;">
-                                    <h4 class="modal-title" id="exampleModalLongTitle" style="color: white;">Advance Search</h4>
+                                <div class="modal-header" style="background-color: #47a44b; margin-left: -0.6px">
+                                    <h4 class="modal-title" id="exampleModalLongTitle" style="color: white">
+                                        Advance Search
+                                    </h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -181,8 +183,8 @@
                                     <div class="col-md-8">
                                         <div class="text-left">
                                             <h3 style="color: black">
-                                                <b style="text-transform: uppercase">City Government</b
-                                                ><br />
+                                                <b style="text-transform: uppercase">City Government</b>
+                                                <br />
                                                 <div v-if="lists.user && lists.user.barangay">
                                                     <b style="text-transform: uppercase"
                                                         >BARANGAY {{ lists.barangay[0].barangay_name }}</b
@@ -366,7 +368,7 @@
                                             :pageSizeOptions="[10, 25, 50, 100]"
                                         >
                                             <global-search :query="query" class="pull-left" />
-											<header-settings :columns="columns" class="pull-right" />
+                                            <header-settings :columns="columns" class="pull-right" />
                                         </datatable>
                                     </div>
                                 </div>
@@ -714,16 +716,16 @@ export default {
             'setAgeTo',
             'setGender',
             'setAgeFrom',
-			'setHousehold',
-			'setGenderPreference',
-			'setCivilStatus',
-			'setEducationalAttaintment',
-			'setEthnicity',
-			'setReligion',
-			'setOccupation',
-			'setHouseOwnership',
-			'setVaccination',
-			'setMedicine',
+            'setHousehold',
+            'setGenderPreference',
+            'setCivilStatus',
+            'setEducationalAttaintment',
+            'setEthnicity',
+            'setReligion',
+            'setOccupation',
+            'setHouseOwnership',
+            'setVaccination',
+            'setMedicine',
         ]),
 
         async fetchData () {
@@ -777,36 +779,36 @@ export default {
         updateSector (value) {
             this.setSector(value)
         },
-		updateHousehold (value) {
-			this.setHousehold(value)
-		},
-		updateGenderPreference (value) {
-			this.setGenderPreference(value)
-		},
-		updateCivilStatus (value) {
-			this.setCivilStatus(value)
-		},
-		updateEducationalAttaintment (value) {
-			this.setEducationalAttaintment(value)
-		},
-		updateEthnicity (value) {
-			this.setEthnicity(value)
-		},
-		updateReligion (value) {
-			this.setReligion(value)
-		},
-		updateOccupation (value) {
-			this.setOccupation(value)
-		},
-		updateHouseOwnership (value) {
-			this.setHouseOwnership(value)
-		},
-		updateVaccination (value) {
-			this.setVaccination(value)
-		},
-		updateMedicine (value) {
-			this.setMedicine (value)
-		},
+        updateHousehold (value) {
+            this.setHousehold(value)
+        },
+        updateGenderPreference (value) {
+            this.setGenderPreference(value)
+        },
+        updateCivilStatus (value) {
+            this.setCivilStatus(value)
+        },
+        updateEducationalAttaintment (value) {
+            this.setEducationalAttaintment(value)
+        },
+        updateEthnicity (value) {
+            this.setEthnicity(value)
+        },
+        updateReligion (value) {
+            this.setReligion(value)
+        },
+        updateOccupation (value) {
+            this.setOccupation(value)
+        },
+        updateHouseOwnership (value) {
+            this.setHouseOwnership(value)
+        },
+        updateVaccination (value) {
+            this.setVaccination(value)
+        },
+        updateMedicine (value) {
+            this.setMedicine(value)
+        },
         updateAgeTo (e) {
             this.setAgeTo(e.target.value)
         },
