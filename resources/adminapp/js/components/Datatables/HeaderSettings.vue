@@ -8,7 +8,7 @@
       <i class="fa fa-cog"></i>
       <span class="caret"></span>
     </button>
-    <div class="dropdown-menu p-2 mr-5">
+    <div class="dropdown-menu dropdown-menu-position p-2 mr-5">
       <h5 class="ml-2 mb-1">
         {{ $t('global.datatables.colvis') }}
       </h5>
@@ -55,5 +55,9 @@ export default {
   background-color: #f4f4f4;
   color: #000;
   cursor: pointer !important;
+}
+.dropdown-menu-position {
+  position: relative;
+  top: 0px !important;
 }
 </style>

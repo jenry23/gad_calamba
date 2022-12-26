@@ -5,8 +5,12 @@ namespace App\Http\Controllers\Api\V1\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Admin\ReportsResource;
 use App\Models\Barangay;
+use App\Models\CivilStatus;
+use App\Models\EducationalAttaintment;
+use App\Models\Ethnicity;
 use App\Models\Gad;
 use App\Models\Gender;
+use App\Models\GenderPreference;
 use App\Models\Purok;
 use App\Models\Sector;
 use App\Models\Sitio;
@@ -17,8 +21,16 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use App\Utils\PDFUtil;
+use App\Models\Household;
+use App\Models\HouseOwnership;
+use App\Models\Medical;
+use App\Models\Occupation;
+use App\Models\Religion;
 use App\Models\User;
+use App\Models\Vaccanation;
 use Illuminate\Support\Facades\DB;
+use App\Models\Medicine;
+
 class ReportsApiController extends Controller
 {
     private const PDF_CONFIG = [
@@ -45,11 +57,33 @@ class ReportsApiController extends Controller
 
         $sector = Sector::all();
         $gender = Gender::all();
+        // none
+        $household = Household::all();
+        $gender_preference = GenderPreference::all();
+        $civil_status = CivilStatus::all();
+        $educational_attaintment = EducationalAttaintment::all();
+        $ethnicity = Ethnicity::all();
+        $religion = Religion::all();
+        $occupation = Occupation::all();
+        $house_ownership = HouseOwnership::all();
+        $vaccinated = Vaccanation::all();
+        $medicine = Medicine::all();
+
         return response([
             'meta' => [
                 'gender' => $gender,
                 'barangay' => $barangays,
                 'sector' => $sector,
+                'household' => $household,
+                'gender_preference' => $gender_preference,
+                'civil_status' => $civil_status,
+                'educational_attaintment' => $educational_attaintment,
+                'ethnicity' => $ethnicity,
+                'religion' => $religion,
+                'occupation' => $occupation,
+                'house_ownership' => $house_ownership,
+                'vaccinated' => $vaccinated,
+                'medicince' => $medicine,
                 'user' => Auth::user()
             ]
         ]);
@@ -169,6 +203,15 @@ class ReportsApiController extends Controller
         $gender_id =  !empty($request->gender) ? json_decode($request->gender)->id : '';
         $age_from = !empty($request->age_from) ? Carbon::now()->subYears($request->age_from)->format('Y-m-d') : '';
         $age_to = !empty($request->age_to) ? Carbon::now()->subYears($request->age_to)->format('Y-m-d') : '';
+        $household_id = !empty($request->household) ? json_decode($request->household)->id : '';
+        $gender_preference = !empty($request->gender_preference) ? json_decode($request->gender_preference)->id : '';
+        $civil_status = !empty($request->civil_status) ? json_decode($request->civil_status)->id : '';
+        $educational_attaintment = !empty($request->educational_attaintment) ? json_decode($request->educational_attaintment)->id : '';
+        $ethnicity = !empty($request->ethnicity) ? json_decode($request->ethnicity)->id : '';
+        $religion = !empty($request->religion) ? json_decode($request->religion)->id : '';
+        $occupation = !empty($request->occupation) ? json_decode($request->occupation)->id : '';
+        $house_ownership = !empty($request->house_ownership) ? json_decode($request->house_ownership)->id : '';
+        $vaccination = !empty($request->vaccination) ? json_decode($request->vaccination)->id : '';
 
         $gads = Gad::with([
             'gender:id,gender_name',
@@ -220,6 +263,67 @@ class ReportsApiController extends Controller
                     $query->whereBetween('birth_date', [$age_to, $age_from]);
                 }
             )
+            ->when(
+                $household_id,
+                function (Builder $query) use ($household_id) {
+                    $query->where('household_id', $household_id);
+                }
+            )
+            ->when(
+                $gender_preference,
+                function (Builder $query) use ($gender_preference) {
+                    $query->where('gender_preference_id', $gender_preference);
+                }
+            )
+            ->when(
+                $civil_status,
+                function (Builder $query) use ($civil_status) {
+                    $query->where('civil_status_id', $civil_status);
+                }
+            )
+            ->when(
+                $educational_attaintment,
+                function (Builder $query) use ($educational_attaintment) {
+                    $query->where('educational_atta$educational_attaintment_id', $educational_attaintment);
+                }
+            )
+            ->when(
+                $ethnicity,
+                function ($query) use ($ethnicity) {
+                    $query->whereHas(
+                        'gadDetails',
+                        function (Builder $query) use ($ethnicity) {
+                            $query->where('item_id', $ethnicity)->where('item_type', Ethnicity::class);
+                        }
+                );
+                }
+            )
+            ->when(
+                $religion,
+                function (Builder $query) use ($religion) {
+                    $query->where('religion_id', $religion);
+                }
+            )
+            ->when(
+                $occupation,
+                function (Builder $query) use ($occupation) {
+                    $query->where('occupation_id', $occupation);
+                }
+            )
+            ->when(
+                $house_ownership,
+                function (Builder $query) use ($house_ownership) {
+                    $query->where('house_ownership_id', $house_ownership);
+                }
+            )
+            ->when(
+                $vaccination,
+                function (Builder $query) use ($vaccination) {
+                    $query->where('brand1', $vaccination);
+                    $query->orWhere('brand2', $vaccination);
+                    $query->orWhere('brand3', $vaccination);
+                }
+            )
             ->orderBy('id', 'ASC')
             ->paginate();
 
@@ -255,6 +359,67 @@ class ReportsApiController extends Controller
                             $query->whereBetween('birth_date', [$age_to, $age_from]);
                         }
                     )
+                    ->when(
+                        $household_id,
+                        function (Builder $query) use ($household_id) {
+                            $query->where('household_id', $household_id);
+                        }
+                    )
+                    ->when(
+                        $gender_preference,
+                        function (Builder $query) use ($gender_preference) {
+                            $query->where('gender_preference_id', $gender_preference);
+                        }
+                    )
+                    ->when(
+                        $civil_status,
+                        function (Builder $query) use ($civil_status) {
+                            $query->where('civil_status_id', $civil_status);
+                        }
+                    )
+                    ->when(
+                        $educational_attaintment,
+                        function (Builder $query) use ($educational_attaintment) {
+                            $query->where('educational_atta$educational_attaintment_id', $educational_attaintment);
+                        }
+                    )
+                    ->when(
+                        $ethnicity,
+                        function ($query) use ($ethnicity) {
+                            $query->whereHas(
+                                'gadDetails',
+                                function (Builder $query) use ($ethnicity) {
+                                    $query->where('item_id', $ethnicity)->where('item_type', Ethnicity::class);
+                                }
+                            );
+                        }
+                    )
+                    ->when(
+                        $religion,
+                        function (Builder $query) use ($religion) {
+                            $query->where('religion_id', $religion);
+                        }
+                    )
+                    ->when(
+                        $occupation,
+                        function (Builder $query) use ($occupation) {
+                            $query->where('occupation_id', $occupation);
+                        }
+                    )
+                    ->when(
+                        $house_ownership,
+                        function (Builder $query) use ($house_ownership) {
+                            $query->where('house_ownership_id', $house_ownership);
+                        }
+                    )
+                    ->when(
+                        $vaccination,
+                        function (Builder $query) use ($vaccination) {
+                            $query->where('brand1', $vaccination);
+                            $query->orWhere('brand2', $vaccination);
+                            $query->orWhere('brand3', $vaccination);
+                        }
+                    )
                     ->where('gender_id', $gender_id)
                     ->count();
 
@@ -288,6 +453,67 @@ class ReportsApiController extends Controller
                         $age_to,
                         function (Builder $query) use ($age_from, $age_to) {
                             $query->whereBetween('birth_date', [$age_to, $age_from]);
+                        }
+                    )
+                    ->when(
+                        $household_id,
+                        function (Builder $query) use ($household_id) {
+                            $query->where('household_id', $household_id);
+                        }
+                    )
+                    ->when(
+                        $gender_preference,
+                        function (Builder $query) use ($gender_preference) {
+                            $query->where('gender_preference_id', $gender_preference);
+                        }
+                    )
+                    ->when(
+                        $civil_status,
+                        function (Builder $query) use ($civil_status) {
+                            $query->where('civil_status_id', $civil_status);
+                        }
+                    )
+                    ->when(
+                        $educational_attaintment,
+                        function (Builder $query) use ($educational_attaintment) {
+                            $query->where('educational_atta$educational_attaintment_id', $educational_attaintment);
+                        }
+                    )
+                    ->when(
+                        $ethnicity,
+                        function ($query) use ($ethnicity) {
+                            $query->whereHas(
+                                'gadDetails',
+                                function (Builder $query) use ($ethnicity) {
+                                    $query->where('item_id', $ethnicity)->where('item_type', Ethnicity::class);
+                                }
+                            );
+                        }
+                    )
+                    ->when(
+                        $religion,
+                        function (Builder $query) use ($religion) {
+                            $query->where('religion_id', $religion);
+                        }
+                    )
+                    ->when(
+                        $occupation,
+                        function (Builder $query) use ($occupation) {
+                            $query->where('occupation_id', $occupation);
+                        }
+                    )
+                    ->when(
+                        $house_ownership,
+                        function (Builder $query) use ($house_ownership) {
+                            $query->where('house_ownership_id', $house_ownership);
+                        }
+                    )
+                    ->when(
+                        $vaccination,
+                        function (Builder $query) use ($vaccination) {
+                            $query->where('brand1', $vaccination);
+                            $query->orWhere('brand2', $vaccination);
+                            $query->orWhere('brand3', $vaccination);
                         }
                     )
                     ->where('gender_id', $gender_id)
@@ -327,6 +553,67 @@ class ReportsApiController extends Controller
                         $query->whereBetween('birth_date', [$age_to, $age_from]);
                     }
                 )
+                ->when(
+                    $household_id,
+                    function (Builder $query) use ($household_id) {
+                        $query->where('household_id', $household_id);
+                    }
+                )
+                ->when(
+                    $gender_preference,
+                    function (Builder $query) use ($gender_preference) {
+                        $query->where('gender_preference_id', $gender_preference);
+                    }
+                )
+                ->when(
+                    $civil_status,
+                    function (Builder $query) use ($civil_status) {
+                        $query->where('civil_status_id', $civil_status);
+                    }
+                )
+                ->when(
+                    $educational_attaintment,
+                    function (Builder $query) use ($educational_attaintment) {
+                        $query->where('educational_atta$educational_attaintment_id', $educational_attaintment);
+                    }
+                )
+                ->when(
+                    $ethnicity,
+                    function ($query) use ($ethnicity) {
+                        $query->whereHas(
+                            'gadDetails',
+                            function (Builder $query) use ($ethnicity) {
+                                $query->where('item_id', $ethnicity)->where('item_type', Ethnicity::class);
+                            }
+                        );
+                    }
+                )
+                ->when(
+                    $religion,
+                    function (Builder $query) use ($religion) {
+                        $query->where('religion_id', $religion);
+                    }
+                )
+                ->when(
+                    $occupation,
+                    function (Builder $query) use ($occupation) {
+                        $query->where('occupation_id', $occupation);
+                    }
+                )
+                ->when(
+                    $house_ownership,
+                    function (Builder $query) use ($house_ownership) {
+                        $query->where('house_ownership_id', $house_ownership);
+                    }
+                )
+                ->when(
+                    $vaccination,
+                    function (Builder $query) use ($vaccination) {
+                        $query->where('brand1', $vaccination);
+                        $query->orWhere('brand2', $vaccination);
+                        $query->orWhere('brand3', $vaccination);
+                    }
+                )
                 ->count();
 
             $female = Gad::where('barangay_id', $barangay_id)
@@ -358,6 +645,67 @@ class ReportsApiController extends Controller
                     $age_to,
                     function (Builder $query) use ($age_from, $age_to) {
                         $query->whereBetween('birth_date', [$age_to, $age_from]);
+                    }
+                )
+                ->when(
+                    $household_id,
+                    function (Builder $query) use ($household_id) {
+                        $query->where('household_id', $household_id);
+                    }
+                )
+                ->when(
+                    $gender_preference,
+                    function (Builder $query) use ($gender_preference) {
+                        $query->where('gender_preference_id', $gender_preference);
+                    }
+                )
+                ->when(
+                    $civil_status,
+                    function (Builder $query) use ($civil_status) {
+                        $query->where('civil_status_id', $civil_status);
+                    }
+                )
+                ->when(
+                    $educational_attaintment,
+                    function (Builder $query) use ($educational_attaintment) {
+                        $query->where('educational_atta$educational_attaintment_id', $educational_attaintment);
+                    }
+                )
+                ->when(
+                    $ethnicity,
+                    function ($query) use ($ethnicity) {
+                        $query->whereHas(
+                            'gadDetails',
+                            function (Builder $query) use ($ethnicity) {
+                                $query->where('item_id', $ethnicity)->where('item_type', Ethnicity::class);
+                            }
+                        );
+                    }
+                )
+                ->when(
+                    $religion,
+                    function (Builder $query) use ($religion) {
+                        $query->where('religion_id', $religion);
+                    }
+                )
+                ->when(
+                    $occupation,
+                    function (Builder $query) use ($occupation) {
+                        $query->where('occupation_id', $occupation);
+                    }
+                )
+                ->when(
+                    $house_ownership,
+                    function (Builder $query) use ($house_ownership) {
+                        $query->where('house_ownership_id', $house_ownership);
+                    }
+                )
+                ->when(
+                    $vaccination,
+                    function (Builder $query) use ($vaccination) {
+                        $query->where('brand1', $vaccination);
+                        $query->orWhere('brand2', $vaccination);
+                        $query->orWhere('brand3', $vaccination);
                     }
                 )
                 ->count();
@@ -392,18 +740,18 @@ class ReportsApiController extends Controller
         );
 
         $gads = Gad::select(
-                "id",
-                "first_name",
-                "last_name",
-                "birth_date",
-                "barangay_id",
-                "gender_id",
-                "civil_status_id",
-                "purok_id",
-                "sitio_id",
-                "barangay_residence_year",
-                DB::raw("CONCAT(first_name,' ',last_name) as full_name")
-            )->with([
+            "id",
+            "first_name",
+            "last_name",
+            "birth_date",
+            "barangay_id",
+            "gender_id",
+            "civil_status_id",
+            "purok_id",
+            "sitio_id",
+            "barangay_residence_year",
+            DB::raw("CONCAT(first_name,' ',last_name) as full_name")
+        )->with([
             'gender:id,gender_name',
             'barangay:id,barangay_name',
             'civil_status:id,civil_status_name',
@@ -457,11 +805,11 @@ class ReportsApiController extends Controller
             ->orderBy('id', 'ASC')
             ->get();
 
-        if(Auth::user()->photo->isEmpty()){
+        if (Auth::user()->photo->isEmpty()) {
             $user = User::where('barangay', $json_data->barangay->id)->first();
             $logo = $user->photo[1]['url'];
-        }else {
-            $logo = Auth::user()->photo[1]['url'] ;
+        } else {
+            $logo = Auth::user()->photo[1]['url'];
         }
 
         $data = [

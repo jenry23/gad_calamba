@@ -11,15 +11,35 @@ function initialState() {
         sitio:'',
         sector: '',
         age_from:'',
-        age_to:'',
-        gender:'',
-        other_info:'',
+        age_to: '',
+        other_info: '',
+        gender: '',
+        household: '',
+        gender_preference: '',
+        Civil_status: '',
+        educational_attaintment: '',
+        ethnicity: '',
+        religion: '',
+        occupation: '',
+        house_ownership: '',
+        vaccination: '',
+        medicine: '',
       },
       lists: {
         barangay: [],
         gender:[],
-        sector:[],
-        other_info:[]
+        sector: [],
+        household: [],
+        gender_preference: [],
+        Civil_status: [],
+        educational_attaintment: [],
+        ethnicity: [],
+        religion: [],
+        occupation: [],
+        house_ownership: [],
+        vaccination: [],
+        other_info: [],
+        medicine: [],
       },
       others:{
         purok:[],
@@ -139,6 +159,36 @@ function initialState() {
     setSector({ commit }, value) {
       commit('setSector', value)
     },
+    setHousehold ({ commit }, value) {
+      commit('setHousehold', value)
+    },
+    setGenderPreference ({ commit }, value) {
+      commit('setGenderPreference', value)
+    },
+    setCivilStatus ({ commit }, value) {
+      commit('setCivilStatus', value)
+    },
+    setEducationalAttaintment ({ commit }, value) {
+      commit('setEducationalAttaintment', value)
+    },
+    setEthnicity ({ commit }, value) {
+      commit('setEthnicity', value)
+    },
+    setReligion ({ commit }, value) {
+      commit('setReligion', value)
+    },
+    setOccupation ({ commit }, value) {
+      commit('setOccupation', value)
+    },
+    setHouseOwnership ({ commit }, value) {
+      commit('setHouseOwnership', value)
+    },
+    setVaccination ({ commit }, value) {
+      commit('setVaccination', value)
+    },
+    setMedicine ({ commit }, value) {
+      commit('setMedicine', value)
+    },
     setDescription({ commit }, value) {
       commit('setDescription', value)
     },
@@ -211,6 +261,36 @@ function initialState() {
     },
     setSector(state, value) {
       state.entry.sector = value
+    },
+    setHousehold (state, value) {
+      state.entry.household = value
+    },
+    setGenderPreference (state, value) {
+      state.entry.gender_preference = value
+    },
+    setCivilStatus (state, value) {
+      state.entry.civil_status = value
+    },
+    setEducationalAttaintment (state, value) {
+      state.entry.educational_attaintment = value
+    },
+    setEthnicity (state, value) {
+      state.entry.ethnicity = value
+    },
+    setReligion (state, value) {
+      state.entry.religion = value
+    },
+    setOccupation (state, value) {
+      state.entry.occupation = value
+    },
+    setHouseOwnership (state, value) {
+      state.entry.house_ownership = value
+    },
+    setVaccination (state, value) {
+      state.entry.vaccation = value
+    },
+    setMedicine (state, value) {
+      state.entry.medicine = value
     },
     setCreatedAt(state, value) {
       state.entry.created_at = value
