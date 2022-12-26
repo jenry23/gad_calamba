@@ -27,7 +27,7 @@ use App\Models\Medical;
 use App\Models\Occupation;
 use App\Models\Religion;
 use App\Models\User;
-use App\Models\Vaccanation;
+use App\Models\Vaccination;
 use Illuminate\Support\Facades\DB;
 use App\Models\Medicine;
 
@@ -66,7 +66,7 @@ class ReportsApiController extends Controller
         $religion = Religion::all();
         $occupation = Occupation::all();
         $house_ownership = HouseOwnership::all();
-        $vaccinated = Vaccanation::all();
+        $vaccination = Vaccination::all();
         $medicine = Medicine::all();
 
         return response([
@@ -82,8 +82,8 @@ class ReportsApiController extends Controller
                 'religion' => $religion,
                 'occupation' => $occupation,
                 'house_ownership' => $house_ownership,
-                'vaccinated' => $vaccinated,
-                'medicince' => $medicine,
+                'vaccination' => $vaccination,
+                'medicine' => $medicine,
                 'user' => Auth::user()
             ]
         ]);
@@ -212,6 +212,7 @@ class ReportsApiController extends Controller
         $occupation = !empty($request->occupation) ? json_decode($request->occupation) : '';
         $house_ownership = !empty($request->house_ownership) ? json_decode($request->house_ownership) : '';
         $vaccination = !empty($request->vaccination) ? json_decode($request->vaccination) : '';
+        $medicine = !empty($request->medicine) ? json_decode($request->medicine) : '';
 
         $gads = Gad::with([
             'gender:id,gender_name',
@@ -324,6 +325,17 @@ class ReportsApiController extends Controller
                     $query->orWhere('brand3', $vaccination);
                 }
             )
+            ->when(
+                $medicine,
+                function ($query) use ($medicine) {
+                    $query->whereHas(
+                        'gadDetails',
+                        function (Builder $query) use ($medicine) {
+                            $query->where('item_id', $medicine)->where('item_type', Medicine::class);
+                        }
+                    );
+                }
+            )
             ->orderBy('id', 'ASC')
             ->paginate();
 
@@ -421,6 +433,17 @@ class ReportsApiController extends Controller
                             $query->orWhere('brand3', $vaccination);
                         }
                     )
+                    ->when(
+                        $medicine,
+                        function ($query) use ($medicine) {
+                            $query->whereHas(
+                                'gadDetails',
+                                function (Builder $query) use ($medicine) {
+                                    $query->where('item_id', $medicine)->where('item_type', Medicine::class);
+                                }
+                            );
+                        }
+                    )
                     ->where('gender_id', $gender_id)
                     ->count();
 
@@ -515,6 +538,17 @@ class ReportsApiController extends Controller
                             $query->where('brand1', $vaccination);
                             $query->orWhere('brand2', $vaccination);
                             $query->orWhere('brand3', $vaccination);
+                        }
+                    )
+                    ->when(
+                        $medicine,
+                        function ($query) use ($medicine) {
+                            $query->whereHas(
+                                'gadDetails',
+                                function (Builder $query) use ($medicine) {
+                                    $query->where('item_id', $medicine)->where('item_type', Medicine::class);
+                                }
+                            );
                         }
                     )
                     ->where('gender_id', $gender_id)
@@ -615,6 +649,17 @@ class ReportsApiController extends Controller
                         $query->orWhere('brand3', $vaccination);
                     }
                 )
+                ->when(
+                    $medicine,
+                    function ($query) use ($medicine) {
+                        $query->whereHas(
+                            'gadDetails',
+                            function (Builder $query) use ($medicine) {
+                                $query->where('item_id', $medicine)->where('item_type', Medicine::class);
+                            }
+                        );
+                    }
+                )
                 ->count();
 
             $female = Gad::where('barangay_id', $barangay_id)
@@ -709,6 +754,17 @@ class ReportsApiController extends Controller
                         $query->orWhere('brand3', $vaccination);
                     }
                 )
+                ->when(
+                    $medicine,
+                    function ($query) use ($medicine) {
+                        $query->whereHas(
+                            'gadDetails',
+                            function (Builder $query) use ($medicine) {
+                                $query->where('item_id', $medicine)->where('item_type', Medicine::class);
+                            }
+                        );
+                    }
+                )
                 ->count();
         }
 
@@ -743,6 +799,7 @@ class ReportsApiController extends Controller
         $occupation =  $json_data->occupation ?? '';
         $house_ownership =  $json_data->house_ownership ?? '';
         $vaccination =  $json_data->vaccination ?? '';
+        $medicine =  $json_data->medicine ?? '';
 
         $barangay = Barangay::find($barangay_id);
 
@@ -872,6 +929,17 @@ class ReportsApiController extends Controller
                     $query->where('brand1', $vaccination);
                     $query->orWhere('brand2', $vaccination);
                     $query->orWhere('brand3', $vaccination);
+                }
+            )
+            ->when(
+                $medicine,
+                function ($query) use ($medicine) {
+                    $query->whereHas(
+                        'gadDetails',
+                        function (Builder $query) use ($medicine) {
+                            $query->where('item_id', $medicine)->where('item_type', Medicine::class);
+                        }
+                    );
                 }
             )
             ->withoutAppends()

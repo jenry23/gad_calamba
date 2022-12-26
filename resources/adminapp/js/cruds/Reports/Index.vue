@@ -133,12 +133,12 @@
                                             />
                                             <label class="label">Vaccination</label>
                                             <v-select
-                                                name="vaccation"
-                                                label="vaccation_name"
-                                                :value="entry.vaccation"
-                                                :options="lists.vaccation"
+                                                name="vaccination"
+                                                label="vaccination_name"
+                                                :value="entry.vaccination"
+                                                :options="lists.vaccination"
                                                 @input="updateVaccination"
-                                                @focus="focusField('vaccation')"
+                                                @focus="focusField('vaccination')"
                                                 @blur="clearFocus"
                                                 required
                                             />
@@ -149,7 +149,7 @@
                                                 :value="entry.medicine"
                                                 :options="lists.medicine"
                                                 @input="updateMedicine"
-                                                @focus="focusField('medicine e')"
+                                                @focus="focusField('medicinee')"
                                                 @blur="clearFocus"
                                                 required
                                             />

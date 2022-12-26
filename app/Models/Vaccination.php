@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use \DateTimeInterface;
 
-class Vaccanation extends Model
+class Vaccination extends Model
 {
     use HasAdvancedFilter, SoftDeletes, HasFactory;
 

@@ -295,7 +295,7 @@ function initialState() {
       state.entry.house_ownership = value
     },
     setVaccination (state, value) {
-      state.entry.vaccation = value
+      state.entry.vaccination = value
     },
     setMedicine (state, value) {
       state.entry.medicine = value
