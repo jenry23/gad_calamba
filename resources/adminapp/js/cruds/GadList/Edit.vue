@@ -1530,9 +1530,8 @@
 						</div>
 						<br />
 						<p class="card-description">
-							Ang Lungsod ng Calamba o sa simpleng, Calamba ay isang unang klaseng lungsod sa lalawigan
-							ng Laguna, Pilipinas. Ito ay nasa layong 54 kilometro sa timog ng Maynila, at isang oras
-							ang layo kung sasakay ng bus
+							Calamba, officially the City of Calamba, is a 1st class component city in the province of Laguna, Philippines. Calamba is the regional center of the Calabarzon region. It is situated 50 kilometres south of Manila and 37 kilometres west of Santa Cruz.
+							#BayanNgMgaBayani
 						</p>
 						<button
 							v-if="isDisabled"
