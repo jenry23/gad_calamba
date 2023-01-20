@@ -105,11 +105,12 @@ class TransactionApiController extends Controller
 
             $barangay_sanggunian = BarangaySanggunian::with(['barangay_sanggunian_category'])
                 ->where('barangay_id', $gad->barangay_id)->orderBy('barangay_sanggunian_category_id', 'asc')->get();
-            $address = $gad->purok ? $gad->purok->purok_name : $gad->sitio->sitio_name;
+            $purok = $gad->purok ? $gad->purok->purok_name : '';
+            $sitio = $gad->sitio ? $gad->sitio->sitio_name : '';
 
             $data_collection = [
                 'full_name' => $gad->full_name ?? '',
-                'address' => $gad->block_lot_house_id . ' ' . $address ?? '',
+                'address' => $gad->block_lot_house_id . ' ' . $purok ?? $sitio,
                 'address1' => 'Barangay ' . $gad->barangay->barangay_name . ', Calamba City',
                 'birthday' => Carbon::parse($gad->birth_date)->format('d F Y') ?? '',
                 'age' => Carbon::parse($gad->birth_date)->diff(Carbon::now())->format('%y years') ?? '',

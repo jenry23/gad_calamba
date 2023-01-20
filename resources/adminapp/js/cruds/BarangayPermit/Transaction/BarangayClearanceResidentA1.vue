@@ -49,7 +49,10 @@
                                             {{ sanggunian.barangay_sanggunian_category.category_name }}
                                         </p>
                                         <p v-else>
-                                            <b style="text-transform: uppercase;">Hon.{{ sanggunian.barangay_name }}</b> <br />
+                                            <b style="text-transform: uppercase;">Hon.{{ sanggunian.barangay_name }}</b>
+                                            <br>
+                                            {{ sanggunian.barangay_sanggunian_category.category_name }}
+                                            <br />
                                         </p>
                                     </div>
 								<br><br><br>

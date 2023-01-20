@@ -43,10 +43,16 @@
 					<div class="col-md-3 mt-5">
                             <b>
                                 <center>
-                                    <div v-for="sanggunian in data.barangay_sanggunian" :key="sanggunian.id">
-                                        <p>
-                                            <b style="text-transform: uppercase;">Hon.{{ sanggunian.barangay_name }}</b> <br />
+									<div v-for="sanggunian in data.barangay_sanggunian" :key="sanggunian.id">
+                                    <p v-if="sanggunian.barangay_sanggunian_category.id === 6 || sanggunian.barangay_sanggunian_category.id === 5">
+                                            <b style="text-transform: uppercase;">{{ sanggunian.barangay_name }}</b><br />
                                             {{ sanggunian.barangay_sanggunian_category.category_name }}
+                                        </p>
+                                        <p v-else>
+                                            <b style="text-transform: uppercase;">Hon.{{ sanggunian.barangay_name }}</b>
+											<br>
+                                            {{ sanggunian.barangay_sanggunian_category.category_name }}
+                                            <br />
                                         </p>
                                     </div>
 								<br><br><br>
@@ -164,62 +170,62 @@
 </template>
 <style scoped>
 .vl {
-  border-left: 3px solid black;
-  height: 1420%;
-  margin-top: -70%;
+    border-left: 3px solid black;
+    height: 1420%;
+    margin-top: -70%;
 }
 .barangay-header-logo {
-  margin-top: -96px;
+    margin-top: -96px;
 }
 .barangay-header-line {
-  height: 6px;
-  border-width: 0;
-  color: gray;
-  background-color: gray;
-  margin-top: -40px;
+    height: 6px;
+    border-width: 0;
+    color: gray;
+    background-color: gray;
+    margin-top: -40px;
 }
 .barangay-wrap {
-  position: relative;
+    position: relative;
 }
 .barangay-watermark {
-  margin-top: 25%;
-  opacity: 0.2;
-  position: absolute;
-  margin-left: 10%;
+    margin-top: 25%;
+    opacity: 0.2;
+    position: absolute;
+    margin-left: 10%;
 }
 .barangay-content {
-  position: relative;
+    position: relative;
 }
 .barangay-finger-print {
-  margin-right: 10%;
-  margin-top: 2%;
+    margin-right: 10%;
+    margin-top: 2%;
 }
 .barangay-body-paragraph {
-  margin-top: 11%;
-  font-weight: 500;
+    margin-top: 11%;
+    font-weight: 500;
 }
 .form-check .form-check-label span {
     margin-top: -5px;
 }
 input {
-  outline: 0;
-  border-width: 0 0 2px;
-  opacity: 1;
+    outline: 0;
+    border-width: 0 0 2px;
+    opacity: 1;
 }
 </style>
 <script>
-	export default {
-		props: {
-			data: {
-				type: Object,
-				required: true,
-			},
-	},
-		    data () {
+export default {
+    props: {
+        data: {
+            type: Object,
+            required: true,
+        },
+    },
+    data () {
         return {
             date: new Date()
         }
     },
-	}
+}
 
 </script>
