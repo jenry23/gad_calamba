@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<div class="card" style="width: 63rem">
+		<div class="card" style="width: 52rem">
 		<div class="barangay-header">
                 <img src="/transaction/header.png" width="100%" height="50%" />
                 <div class="row barangay-header-logo">

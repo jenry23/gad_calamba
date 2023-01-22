@@ -1,46 +1,10 @@
 <template>
-    <div class="container">
-        <div class="card" style="width: 63rem">
-            <div class="barangay-header">
-                <img src="/transaction/header.png" width="100%" height="50%" />
-                <div class="row barangay-header-logo">
-                    <div class="col-md-3"></div>
-                    <div class="col-md-1"><div class="vl"></div></div>
-                    <div class="col-md-2">
-                        <img
-                            :src="data.logo"
-                            class="pull-left"
-                            style="width: 120px; margin-top: -27%; margin-right: 18px"
-                        />
-                        <br />
-                    </div>
-                    <div class="col-md-3">
-                        <div class="text-center" style="margin-top: -10%">
-                            <p style="font-weight: 700">
-                                <b>REPUBLIC OF THE PHILIPPINES</b>
-                                <br />
-                                <b>PROVINCE OF LAGUNA</b>
-                                <br />
-                                <b>CITY OF CALAMBA</b>
-                                <br />
-                                <!-- DATA -->
-                                <p style="font-weight: 900;text-transform: uppercase;margin-top: -8%;margin-left: 8px;">BARANGAY {{ data.barangay.barangay_name }}</p>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <img
-                            src="/transaction/transparent_logo.png"
-                            class="pull-left"
-                            style="width: 120px; margin-top: -28%; margin-left: 20px"
-                        />
-                    </div>
-                </div>
-            </div>
-            <div class="card-body" style="height: 1020px">
+    <section class="pdf-item">
+        <div class="card" style="width: 49rem">
+            <div class="card-body" style="height: 1060px">
                 <div class="barangay-wrap">
                     <div class="row">
-                    	<div class="col-md-3 mt-5">
+                    	<div class="col-md-3" style="border-right: 3px solid black;">
                             <b>
                                 <center>
                                     <div v-for="sanggunian in data.barangay_sanggunian" :key="sanggunian.id">
@@ -55,7 +19,6 @@
                                             <br />
                                         </p>
                                     </div>
-								<br><br><br>
 								<div>
 								<b>Address: </b><br>
                                 <p>{{ data.barangay.address}}</p>
@@ -68,17 +31,38 @@
                         <div class="col-md-9">
                             <img class="barangay-watermark" :src="data.logo" style="width: 574px" alt="" />
                             <div class="barangay-content">
-                                <!-- Props -->
-                                <div class="barangay-body">
+                                     <div class="row">
+                                        <div class="col-md-3">
+                                                <img
+                                                    :src="data.logo"
+                                                    class="pull-left"
+                                                    style="width: 96px; margin-right: 18px"
+                                                />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="text-center">
+                                                    <p style="font-weight: 700">
+                                                        <b>REPUBLIC OF THE PHILIPPINES</b>
+                                                        <b>PROVINCE OF LAGUNA</b>
+                                                        <b>CITY OF CALAMBA</b>
+                                                        <p style="font-weight: 900;text-transform: uppercase;margin-top: -8%;margin-left: 8px;">BARANGAY {{ data.barangay.barangay_name }}</p>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <img
+                                                    src="/transaction/transparent_logo.png"
+                                                    class="pull-left"
+                                                    style="width: 100px;margin-left: 20px"
+                                                />
+                                            </div>
+                                    </div>
                                     <div class="text-center">
                                         <h3 style="font-weight: 600; font-size: 1.5rem">
                                             BARANGAY CLEARANCE<br />
                                             (A.1 for Residency)
                                         </h3>
                                     </div>
-                                    <!-- <div class="barangay-finger-print">
-										<img src="/transaction/finger_print.png" class="pull-right" />
-									</div> -->
                                     <div class="container" style="margin-top: -7%">
                                         <div class="barangay-body-paragraph">
                                             <center>
@@ -325,26 +309,16 @@
                                                 Given this {{ this.date.toLocaleString('en-us', { month:'long'}) }}  {{this.date.getDate()}}, {{this.date.getFullYear()}} at Barangay
                                                 {{ data.barangay.barangay_name }}, Calamba City Laguna.
                                             </p>
-                                            <br />
-                                           	<div class="pull-left">
+                                           	<div>
 												<p>Affirmation of the requesting party:</p>
+                                                <p>
+                                                    _____________________________________ <br />(Signature
+                                                    over Printer Name and Date)
+                                                </p>
 											</div>
-											<br />
-											<br />
-											<div class="row">
-												<div class="col-md-6">
-													<p>
-														__________________________________________ <br />(Signature
-														over Printer Name and Date)
-													</p>
-												</div>
-												<div class="col-md-6"></div>
-											</div>
-											<br />
 											<div class="row">
 												<div class="col-md-6">
 													<div class="pull-left">Issued by:</div>
-													<br />
 													<br />
 													<p>
                                                         <u> <b style="text-transform: uppercase">{{data.barangay_sanggunian[data.barangay_sanggunian.length - 2].barangay_name}} </b></u>
@@ -355,7 +329,6 @@
 												<div class="col-md-6">
 													<div class="pull-left">Approved by:</div>
 													<br />
-													<br />
 													<p>
 														<b style="text-transform: uppercase"><u>HON. {{data.barangay_sanggunian[0].barangay_name}}</u>
                                                         </b><br />
@@ -363,7 +336,6 @@
 													</p>
 												</div>
 											</div>
-                                            <br />
                                             <div class="row">
                                                   <div class="col-md-6">
                                                     C.T.C. No.<span style="margin-left:24px;"></span>: _________________ <br />Date Issued <span style="margin-left:9px;"></span>
@@ -372,32 +344,28 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <center>
-                                                        <img src="/transaction/finger_print.png" width="70%" height="100%" />
+                                                        <img src="/transaction/finger_print.png"
+                                                        style="height: 77px;width: 240px;"/>
                                                     </center>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="footer">
-                <img src="/transaction/footer_seal.png" width="100%" height="20%" />
-            </div>
         </div>
-    </div>
+    </section>
 </template>
 <style scoped>
+.pdf.item {
+    margin-top: -20px;
+}
 .vl {
     border-left: 3px solid black;
-    height: 1420%;
-    margin-top: -70%;
-}
-.barangay-header-logo {
-    margin-top: -96px;
+    height: 780%;
 }
 .barangay-header-line {
     height: 6px;
@@ -406,17 +374,10 @@
     background-color: gray;
     margin-top: -40px;
 }
-.barangay-wrap {
-    position: relative;
-}
 .barangay-watermark {
     margin-top: 25%;
     opacity: 0.2;
     position: absolute;
-    margin-left: 10%;
-}
-.barangay-content {
-    position: relative;
 }
 .barangay-finger-print {
     margin-right: 10%;
