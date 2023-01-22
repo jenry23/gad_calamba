@@ -163,7 +163,7 @@
 													<br />
 													<br />
 													<p>
-                                                        <u> <b style="text-transform: uppercase">Mr/Ms. {{data.barangay_sanggunian[data.barangay_sanggunian.length - 2].barangay_name}} </b></u>
+                                                        <u> <b style="text-transform: uppercase">{{data.barangay_sanggunian[data.barangay_sanggunian.length - 2].barangay_name}} </b></u>
                                                         <br>
 														Barangay Secretary
 													</p>

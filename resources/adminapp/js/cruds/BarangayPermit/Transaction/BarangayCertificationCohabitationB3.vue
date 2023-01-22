@@ -120,7 +120,7 @@
 													<br />
 													<br />
 														<p class="mt-5">
-                                                        <u> <h4><b style="text-transform: uppercase">Mr/Ms. {{data.barangay_sanggunian[data.barangay_sanggunian.length - 2].barangay_name}} </b></h4></u>
+                                                        <u> <h4><b style="text-transform: uppercase">{{data.barangay_sanggunian[data.barangay_sanggunian.length - 2].barangay_name}} </b></h4></u>
 														Barangay Secretary
 													</p>
 												</div>

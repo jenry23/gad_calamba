@@ -1,1 +1,461 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[47],{"1Hfw":function(a,t,e){"use strict";e.r(t);var n=e("L2JU");function r(a,t){var e=Object.keys(a);if(Object.getOwnPropertySymbols){var n=Object.getOwnPropertySymbols(a);t&&(n=n.filter((function(t){return Object.getOwnPropertyDescriptor(a,t).enumerable}))),e.push.apply(e,n)}return e}function s(a){for(var t=1;t<arguments.length;t++){var e=null!=arguments[t]?arguments[t]:{};t%2?r(Object(e),!0).forEach((function(t){i(a,t,e[t])})):Object.getOwnPropertyDescriptors?Object.defineProperties(a,Object.getOwnPropertyDescriptors(e)):r(Object(e)).forEach((function(t){Object.defineProperty(a,t,Object.getOwnPropertyDescriptor(e,t))}))}return a}function i(a,t,e){return t in a?Object.defineProperty(a,t,{value:e,enumerable:!0,configurable:!0,writable:!0}):a[t]=e,a}var c={data:function(){return{status:"",activeField:""}},computed:s({},Object(n.c)("BarangaySanggunianSingle",["entry","loading","lists"])),watch:{"$route.params.id":{immediate:!0,handler:function(){this.resetState(),this.fetchEditData(this.$route.params.id)}}},beforeDestroy:function(){this.resetState()},methods:s(s({},Object(n.b)("BarangaySanggunianSingle",["updateData","fetchEditData","resetState","setBarangayName","setBarangayID","setBarangayCategoryID"])),{},{updateBarangayName:function(a){this.setBarangayName(a.target.value)},updateBarangayID:function(a){this.setBarangayID(a)},updateBarangayCategoryID:function(a){this.setBarangayCategoryID(a)},submitForm:function(){var a=this;this.updateData().then((function(){a.$router.push({name:"barangay_sanggunian.index"}),a.$eventHub.$emit("create-success")})).catch((function(t){a.status="failed",_.delay((function(){a.status=""}),3e3)}))},focusField:function(a){this.activeField=a},clearFocus:function(){this.activeField=""}})},o=e("KHd+"),u=Object(o.a)(c,(function(){var a=this,t=a.$createElement,e=a._self._c||t;return e("div",{staticClass:"container-fluid"},[e("form",{on:{submit:function(t){return t.preventDefault(),a.submitForm.apply(null,arguments)}}},[e("div",{staticClass:"row"},[e("div",{staticClass:"col-md-12"},[e("div",{staticClass:"card"},[a._m(0),a._v(" "),e("div",{staticClass:"card-body"},[e("back-button")],1),a._v(" "),e("div",{staticClass:"card-body"},[e("bootstrap-alert"),a._v(" "),e("div",{staticClass:"row"},[e("div",{staticClass:"col-md-12"},[e("div",{staticClass:"form-group bmd-form-group",class:{"has-items":a.entry.barangay_name,"is-focused":"barangay_name"==a.activeField}},[e("label",{staticClass:"bmd-label-floating required"},[a._v("Name")]),a._v(" "),e("input",{staticClass:"form-control",attrs:{type:"text",required:""},domProps:{value:a.entry.barangay_name},on:{input:a.updateBarangayName,focus:function(t){return a.focusField("barangay_name")},blur:a.clearFocus}})]),a._v(" "),e("div",{staticClass:"form-group bmd-form-group",class:{"has-items":a.entry.barangay,"is-focused":"barangay"==a.activeField}},[e("label",{staticClass:"bmd-label-floating required"},[a._v("Barangay Name")]),a._v(" "),e("v-select",{key:"barangay-field",attrs:{name:"barangay",label:"barangay_name",value:a.entry.barangay,options:a.lists.barangay},on:{input:a.updateBarangayID,focus:function(t){return a.focusField("barangay")},blur:a.clearFocus}})],1),a._v(" "),e("div",{staticClass:"form-group bmd-form-group",class:{"has-items":a.entry.barangay_sanggunian_category,"is-focused":"barangay_sanggunian_category"==a.activeField}},[e("label",{staticClass:"bmd-label-floating required"},[a._v("Barangay Sanggunian Category")]),a._v(" "),e("v-select",{key:"barangay_sanggunian_category-field",attrs:{name:"barangay_sanggunian_category",label:"category_name",value:a.entry.barangay_sanggunian_category,options:a.lists.barangay_sanggunian_category},on:{input:a.updateBarangayCategoryID,focus:function(t){return a.focusField("barangay_sanggunian_category")},blur:a.clearFocus}})],1)])])],1),a._v(" "),e("div",{staticClass:"card-footer"},[e("vue-button-spinner",{staticClass:"btn-success",attrs:{status:a.status,isLoading:a.loading,disabled:a.loading}},[a._v("\n                            "+a._s(a.$t("global.save"))+"\n                        ")])],1)])])])])])}),[function(){var a=this.$createElement,t=this._self._c||a;return t("div",{staticClass:"card-header card-header-success card-header-icon"},[t("div",{staticClass:"card-icon"},[t("i",{staticClass:"material-icons"},[this._v("add")])]),this._v(" "),t("h4",{staticClass:"card-title"},[this._v("\n                            Create\n                            "),t("strong",[this._v("Purok")])])])}],!1,null,null,null);t.default=u.exports}}]);
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[47],{
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/adminapp/js/cruds/BarangaySanggunian/Edit.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/adminapp/js/cruds/BarangaySanggunian/Edit.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      status: '',
+      activeField: ''
+    };
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('BarangaySanggunianSingle', ['entry', 'loading', 'lists'])),
+  watch: {
+    '$route.params.id': {
+      immediate: true,
+      handler: function handler() {
+        this.resetState();
+        this.fetchEditData(this.$route.params.id);
+      }
+    }
+  },
+  beforeDestroy: function beforeDestroy() {
+    this.resetState();
+  },
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('BarangaySanggunianSingle', ['updateData', 'fetchEditData', 'resetState', 'setBarangayName', 'setBarangayID', 'setBarangayCategoryID'])), {}, {
+    updateBarangayName: function updateBarangayName(e) {
+      this.setBarangayName(e.target.value);
+    },
+    updateBarangayID: function updateBarangayID(value) {
+      this.setBarangayID(value);
+    },
+    updateBarangayCategoryID: function updateBarangayCategoryID(value) {
+      this.setBarangayCategoryID(value);
+    },
+    submitForm: function submitForm() {
+      var _this = this;
+
+      this.updateData().then(function () {
+        _this.$router.push({
+          name: 'barangay_sanggunian.index'
+        });
+
+        _this.$eventHub.$emit('create-success');
+      })["catch"](function (error) {
+        _this.status = 'failed';
+
+        _.delay(function () {
+          _this.status = '';
+        }, 3000);
+      });
+    },
+    focusField: function focusField(name) {
+      this.activeField = name;
+    },
+    clearFocus: function clearFocus() {
+      this.activeField = '';
+    }
+  })
+});
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/adminapp/js/cruds/BarangaySanggunian/Edit.vue?vue&type=template&id=5420fe32&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/adminapp/js/cruds/BarangaySanggunian/Edit.vue?vue&type=template&id=5420fe32& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container-fluid" }, [
+    _c(
+      "form",
+      {
+        on: {
+          submit: function ($event) {
+            $event.preventDefault()
+            return _vm.submitForm.apply(null, arguments)
+          },
+        },
+      },
+      [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "card" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [_c("back-button")], 1),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "card-body" },
+                [
+                  _c("bootstrap-alert"),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-md-12" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "form-group bmd-form-group",
+                          class: {
+                            "has-items": _vm.entry.barangay_name,
+                            "is-focused": _vm.activeField == "barangay_name",
+                          },
+                        },
+                        [
+                          _c(
+                            "label",
+                            { staticClass: "bmd-label-floating required" },
+                            [_vm._v("Name")]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            staticClass: "form-control",
+                            attrs: { type: "text", required: "" },
+                            domProps: { value: _vm.entry.barangay_name },
+                            on: {
+                              input: _vm.updateBarangayName,
+                              focus: function ($event) {
+                                return _vm.focusField("barangay_name")
+                              },
+                              blur: _vm.clearFocus,
+                            },
+                          }),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "form-group bmd-form-group",
+                          class: {
+                            "has-items": _vm.entry.barangay,
+                            "is-focused": _vm.activeField == "barangay",
+                          },
+                        },
+                        [
+                          _c(
+                            "label",
+                            { staticClass: "bmd-label-floating required" },
+                            [_vm._v("Barangay Name")]
+                          ),
+                          _vm._v(" "),
+                          _c("v-select", {
+                            key: "barangay-field",
+                            attrs: {
+                              name: "barangay",
+                              label: "barangay_name",
+                              value: _vm.entry.barangay,
+                              options: _vm.lists.barangay,
+                            },
+                            on: {
+                              input: _vm.updateBarangayID,
+                              focus: function ($event) {
+                                return _vm.focusField("barangay")
+                              },
+                              blur: _vm.clearFocus,
+                            },
+                          }),
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "form-group bmd-form-group",
+                          class: {
+                            "has-items": _vm.entry.barangay_sanggunian_category,
+                            "is-focused":
+                              _vm.activeField == "barangay_sanggunian_category",
+                          },
+                        },
+                        [
+                          _c(
+                            "label",
+                            { staticClass: "bmd-label-floating required" },
+                            [_vm._v("Barangay Sanggunian Category")]
+                          ),
+                          _vm._v(" "),
+                          _c("v-select", {
+                            key: "barangay_sanggunian_category-field",
+                            attrs: {
+                              name: "barangay_sanggunian_category",
+                              label: "category_name",
+                              value: _vm.entry.barangay_sanggunian_category,
+                              options: _vm.lists.barangay_sanggunian_category,
+                            },
+                            on: {
+                              input: _vm.updateBarangayCategoryID,
+                              focus: function ($event) {
+                                return _vm.focusField(
+                                  "barangay_sanggunian_category"
+                                )
+                              },
+                              blur: _vm.clearFocus,
+                            },
+                          }),
+                        ],
+                        1
+                      ),
+                    ]),
+                  ]),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "card-footer" },
+                [
+                  _c(
+                    "vue-button-spinner",
+                    {
+                      staticClass: "btn-success",
+                      attrs: {
+                        status: _vm.status,
+                        isLoading: _vm.loading,
+                        disabled: _vm.loading,
+                      },
+                    },
+                    [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(_vm.$t("global.save")) +
+                          "\n                        "
+                      ),
+                    ]
+                  ),
+                ],
+                1
+              ),
+            ]),
+          ]),
+        ]),
+      ]
+    ),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "card-header card-header-success card-header-icon" },
+      [
+        _c("div", { staticClass: "card-icon" }, [
+          _c("i", { staticClass: "material-icons" }, [_vm._v("add")]),
+        ]),
+        _vm._v(" "),
+        _c("h4", { staticClass: "card-title" }, [
+          _vm._v(
+            "\n                            Create\n                            "
+          ),
+          _c("strong", [_vm._v("Purok")]),
+        ]),
+      ]
+    )
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./resources/adminapp/js/cruds/BarangaySanggunian/Edit.vue":
+/*!*****************************************************************!*\
+  !*** ./resources/adminapp/js/cruds/BarangaySanggunian/Edit.vue ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Edit_vue_vue_type_template_id_5420fe32___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Edit.vue?vue&type=template&id=5420fe32& */ "./resources/adminapp/js/cruds/BarangaySanggunian/Edit.vue?vue&type=template&id=5420fe32&");
+/* harmony import */ var _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Edit.vue?vue&type=script&lang=js& */ "./resources/adminapp/js/cruds/BarangaySanggunian/Edit.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Edit_vue_vue_type_template_id_5420fe32___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Edit_vue_vue_type_template_id_5420fe32___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/adminapp/js/cruds/BarangaySanggunian/Edit.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/adminapp/js/cruds/BarangaySanggunian/Edit.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************!*\
+  !*** ./resources/adminapp/js/cruds/BarangaySanggunian/Edit.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/adminapp/js/cruds/BarangaySanggunian/Edit.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/adminapp/js/cruds/BarangaySanggunian/Edit.vue?vue&type=template&id=5420fe32&":
+/*!************************************************************************************************!*\
+  !*** ./resources/adminapp/js/cruds/BarangaySanggunian/Edit.vue?vue&type=template&id=5420fe32& ***!
+  \************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_5420fe32___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=template&id=5420fe32& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/adminapp/js/cruds/BarangaySanggunian/Edit.vue?vue&type=template&id=5420fe32&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_5420fe32___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_5420fe32___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ })
+
+}]);
