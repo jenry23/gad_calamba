@@ -10,7 +10,6 @@
 		props: ['field', 'row'],
 		computed: {
 			entry () {
-				console.log(this.row)
 				return this.row[this.field].join();
 			}
 		}

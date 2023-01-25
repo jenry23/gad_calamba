@@ -196,12 +196,13 @@ class ReportsApiController extends Controller
 
     public function getData(Request $request)
     {
+        $request_age = $request->age_from == 0 ? 1 : $request->age_from;
         $barangay_id = !empty($request->barangay) ? json_decode($request->barangay) : '';
         $purok_id = !empty($request->purok) ? json_decode($request->purok) : '';
         $sitio_id = !empty($request->sitio) ? json_decode($request->sitio) : '';
         $sector_id = !empty($request->sector) ? json_decode($request->sector) : '';
         $gender_id =  !empty($request->gender) ? json_decode($request->gender) : '';
-        $age_from = !empty($request->age_from) ? Carbon::now()->subYears($request->age_from)->format('Y-m-d') : '';
+        $age_from = !empty($request->age_from) ? Carbon::now()->subYears($request_age)->format('Y-m-d') : '';
         $age_to = !empty($request->age_to) ? Carbon::now()->subYears($request->age_to)->format('Y-m-d') : '';
         $household_id = !empty($request->household) ? json_decode($request->household) : '';
         $gender_preference = !empty($request->gender_preference) ? json_decode($request->gender_preference) : '';
@@ -211,7 +212,9 @@ class ReportsApiController extends Controller
         $religion = !empty($request->religion) ? json_decode($request->religion) : '';
         $occupation = !empty($request->occupation) ? json_decode($request->occupation) : '';
         $house_ownership = !empty($request->house_ownership) ? json_decode($request->house_ownership) : '';
-        $vaccination = !empty($request->vaccination) ? $request->vaccination : '';
+        $first_vaccination = !empty($request->first_vaccination) ? $request->first_vaccination : '';
+        $second_vaccination = !empty($request->second_vaccination) ? $request->second_vaccination : '';
+        $booster_vaccination = !empty($request->booster_vaccination) ? $request->booster_vaccination : '';
         $medicine = !empty($request->medicine) ? json_decode($request->medicine) : '';
 
         $gads = Gad::with([
@@ -285,7 +288,7 @@ class ReportsApiController extends Controller
             ->when(
                 $educational_attaintment,
                 function (Builder $query) use ($educational_attaintment) {
-                    $query->where('educational_atta$educational_attaintment_id', $educational_attaintment);
+                    $query->where('educational_attaintment_id', $educational_attaintment);
                 }
             )
             ->when(
@@ -318,9 +321,21 @@ class ReportsApiController extends Controller
                 }
             )
             ->when(
-                $vaccination,
-                function (Builder $query) use ($vaccination) {
-                    $query->where('brand1', $vaccination);
+                $first_vaccination,
+                function (Builder $query) use ($first_vaccination) {
+                    $query->where('brand1', $first_vaccination);
+                }
+            )
+            ->when(
+                $second_vaccination,
+                function (Builder $query) use ($second_vaccination) {
+                    $query->where('brand2', $second_vaccination);
+                }
+            )
+            ->when(
+                $booster_vaccination,
+                function (Builder $query) use ($booster_vaccination) {
+                    $query->where('brand3', $booster_vaccination);
                 }
             )
             ->when(
@@ -337,6 +352,10 @@ class ReportsApiController extends Controller
             ->orderBy('id', 'ASC')
             ->paginate();
 
+        $items = $gads->firstItem();
+        $gads->map(function ($gads, int $key) use ($items){
+            $gads['local_id'] = $items + $key;
+        });
 
         if ($gender_id) {
             if ($gender_id == 1) {
@@ -391,7 +410,7 @@ class ReportsApiController extends Controller
                     ->when(
                         $educational_attaintment,
                         function (Builder $query) use ($educational_attaintment) {
-                            $query->where('educational_atta$educational_attaintment_id', $educational_attaintment);
+                            $query->where('educational_attaintment_id', $educational_attaintment);
                         }
                     )
                     ->when(
@@ -424,9 +443,21 @@ class ReportsApiController extends Controller
                         }
                     )
                     ->when(
-                        $vaccination,
-                        function (Builder $query) use ($vaccination) {
-                            $query->where('brand1', $vaccination);
+                        $first_vaccination,
+                        function (Builder $query) use ($first_vaccination) {
+                            $query->where('brand1', $first_vaccination);
+                        }
+                    )
+                    ->when(
+                        $second_vaccination,
+                        function (Builder $query) use ($second_vaccination) {
+                            $query->where('brand2', $second_vaccination);
+                        }
+                    )
+                    ->when(
+                        $booster_vaccination,
+                        function (Builder $query) use ($booster_vaccination) {
+                            $query->where('brand3', $booster_vaccination);
                         }
                     )
                     ->when(
@@ -496,7 +527,7 @@ class ReportsApiController extends Controller
                     ->when(
                         $educational_attaintment,
                         function (Builder $query) use ($educational_attaintment) {
-                            $query->where('educational_atta$educational_attaintment_id', $educational_attaintment);
+                            $query->where('educational_attaintment_id', $educational_attaintment);
                         }
                     )
                     ->when(
@@ -529,9 +560,21 @@ class ReportsApiController extends Controller
                         }
                     )
                     ->when(
-                        $vaccination,
-                        function (Builder $query) use ($vaccination) {
-                            $query->where('brand1', $vaccination);
+                        $first_vaccination,
+                        function (Builder $query) use ($first_vaccination) {
+                            $query->where('brand1', $first_vaccination);
+                        }
+                    )
+                    ->when(
+                        $second_vaccination,
+                        function (Builder $query) use ($second_vaccination) {
+                            $query->where('brand2', $second_vaccination);
+                        }
+                    )
+                    ->when(
+                        $booster_vaccination,
+                        function (Builder $query) use ($booster_vaccination) {
+                            $query->where('brand3', $booster_vaccination);
                         }
                     )
                     ->when(
@@ -603,7 +646,7 @@ class ReportsApiController extends Controller
                 ->when(
                     $educational_attaintment,
                     function (Builder $query) use ($educational_attaintment) {
-                        $query->where('educational_atta$educational_attaintment_id', $educational_attaintment);
+                        $query->where('educational_attaintment_id', $educational_attaintment);
                     }
                 )
                 ->when(
@@ -636,9 +679,21 @@ class ReportsApiController extends Controller
                     }
                 )
                 ->when(
-                    $vaccination,
-                    function (Builder $query) use ($vaccination) {
-                        $query->where('brand1', $vaccination);
+                    $first_vaccination,
+                    function (Builder $query) use ($first_vaccination) {
+                        $query->where('brand1', $first_vaccination);
+                    }
+                )
+                ->when(
+                    $second_vaccination,
+                    function (Builder $query) use ($second_vaccination) {
+                        $query->where('brand2', $second_vaccination);
+                    }
+                )
+                ->when(
+                    $booster_vaccination,
+                    function (Builder $query) use ($booster_vaccination) {
+                        $query->where('brand3', $booster_vaccination);
                     }
                 )
                 ->when(
@@ -706,7 +761,7 @@ class ReportsApiController extends Controller
                 ->when(
                     $educational_attaintment,
                     function (Builder $query) use ($educational_attaintment) {
-                        $query->where('educational_atta$educational_attaintment_id', $educational_attaintment);
+                        $query->where('educational_attaintment_id', $educational_attaintment);
                     }
                 )
                 ->when(
@@ -739,9 +794,21 @@ class ReportsApiController extends Controller
                     }
                 )
                 ->when(
-                    $vaccination,
-                    function (Builder $query) use ($vaccination) {
-                        $query->where('brand1', $vaccination);
+                    $first_vaccination,
+                    function (Builder $query) use ($first_vaccination) {
+                        $query->where('brand1', $first_vaccination);
+                    }
+                )
+                ->when(
+                    $second_vaccination,
+                    function (Builder $query) use ($second_vaccination) {
+                        $query->where('brand2', $second_vaccination);
+                    }
+                )
+                ->when(
+                    $booster_vaccination,
+                    function (Builder $query) use ($booster_vaccination) {
+                        $query->where('brand3', $booster_vaccination);
                     }
                 )
                 ->when(
@@ -881,7 +948,7 @@ class ReportsApiController extends Controller
             ->when(
                 $educational_attaintment,
                 function (Builder $query) use ($educational_attaintment) {
-                    $query->where('educational_atta$educational_attaintment_id', $educational_attaintment);
+                    $query->where('educational_attaintment_id', $educational_attaintment);
                 }
             )
             ->when(

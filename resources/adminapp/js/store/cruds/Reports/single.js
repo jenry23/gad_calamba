@@ -24,7 +24,10 @@ function initialState() {
         religion: '',
         occupation: '',
         house_ownership: '',
-        vaccination: '',
+        first_vaccination: '',
+        second_vaccination: '',
+        booster_vaccination: '',
+        pregnancy_age: '',
         medicine: '',
       },
       lists: {
@@ -39,7 +42,9 @@ function initialState() {
         religion: [],
         occupation: [],
         house_ownership: [],
-        vaccination: [],
+        first_vaccination: [],
+        second_vaccination: [],
+        booster_vaccination: [],
         other_info: [],
         medicine: [],
       },
@@ -79,7 +84,7 @@ function initialState() {
         let data1 = state.entry
         let final_data = []
         each(data1, (value, key) => {
-          if (['vaccination'].includes(key)) {
+          if (['first_vaccination', 'second_vaccination', 'booster_vaccination'].includes(key)) {
             final_data[key] = value.vaccination_name
           } else if (value && value.id) {
             final_data[key] = value.id
@@ -162,6 +167,9 @@ function initialState() {
     setAgeFrom({ commit }, value) {
       commit('setAgeFrom', value)
     },
+    setPregnancyAge ({ commit }, value) {
+      commit('setPregnancyAge', value)
+    },
     setPurok({ commit }, value) {
       commit('setPurok', value)
     },
@@ -195,8 +203,14 @@ function initialState() {
     setHouseOwnership ({ commit }, value) {
       commit('setHouseOwnership', value)
     },
-    setVaccination ({ commit }, value) {
-      commit('setVaccination', value)
+    setFirstVaccination ({ commit }, value) {
+      commit('setFirstVaccination', value)
+    },
+    setSecondVaccination ({ commit }, value) {
+      commit('setSecondVaccination', value)
+    },
+    setBoosterVaccination ({ commit }, value) {
+      commit('setBoosterVaccination', value)
     },
     setMedicine ({ commit }, value) {
       commit('setMedicine', value)
@@ -259,6 +273,9 @@ function initialState() {
     setAgeTo(state, value){
       state.entry.age_to = value
     },
+    setPregnancyAge (state, value) {
+      state.entry.pregnancy_age = value
+    },
     setGender(state,value){
       state.entry.gender = value
     },
@@ -298,8 +315,14 @@ function initialState() {
     setHouseOwnership (state, value) {
       state.entry.house_ownership = value
     },
-    setVaccination (state, value) {
-      state.entry.vaccination = value
+    setFirstVaccination (state, value) {
+      state.entry.first_vaccination = value
+    },
+    setSecondVaccination (state, value) {
+      state.entry.second_vaccination = value
+    },
+    setBoosterVaccination (state, value) {
+      state.entry.booster_vaccination = value
     },
     setMedicine (state, value) {
       state.entry.medicine = value

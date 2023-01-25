@@ -85,6 +85,17 @@
                                                 @blur="clearFocus"
                                                 required
                                             />
+                                            <label class="label">Second Vaccination</label>
+                                            <v-select
+                                                name="second_vaccination"
+                                                label="vaccination_name"
+                                                :value="entry.second_vaccination"
+                                                :options="lists.vaccination"
+                                                @input="updateSecondVaccination"
+                                                @focus="focusField('second_vaccination')"
+                                                @blur="clearFocus"
+                                                required
+                                            />
                                             <label class="label">Ethnicity</label>
                                             <v-select
                                                 name="ethnicity"
@@ -95,6 +106,14 @@
                                                 @focus="focusField('ethnicity')"
                                                 @blur="clearFocus"
                                                 required
+                                            />
+                                            <label class="label">Pregnancy Age</label>
+                                                <input
+                                                type="number"
+                                                @input="updatePregnancyAge"
+                                                :value="entry.pregnancy_age"
+                                                class="form-control"
+                                                name="age_from"
                                             />
                                         </div>
                                         <div class="col-md-6">
@@ -131,14 +150,25 @@
                                                 @blur="clearFocus"
                                                 required
                                             />
-                                            <label class="label">Vaccination</label>
+                                            <label class="label">First Vaccination</label>
                                             <v-select
-                                                name="vaccination"
+                                                name="first_vaccination"
                                                 label="vaccination_name"
-                                                :value="entry.vaccination"
+                                                :value="entry.first_vaccination"
                                                 :options="lists.vaccination"
-                                                @input="updateVaccination"
-                                                @focus="focusField('vaccination')"
+                                                @input="updateFirstVaccination"
+                                                @focus="focusField('first_vaccination')"
+                                                @blur="clearFocus"
+                                                required
+                                            />
+                                            <label class="label">Booster</label>
+                                            <v-select
+                                                name="booster_vaccination"
+                                                label="vaccination_name"
+                                                :value="entry.booster_vaccination"
+                                                :options="lists.vaccination"
+                                                @input="updateBoosterVaccination"
+                                                @focus="focusField('booster_vaccination')"
                                                 @blur="clearFocus"
                                                 required
                                             />
@@ -445,8 +475,8 @@ export default {
             excel_name: 'gad.xls',
             columns: [
                 {
-                    title: 'Gad ID',
-                    field: 'gad_id',
+                    title: 'Local ID Number',
+                    field: 'local_id',
                     thComp: TranslatedHeader,
                     sortable: true,
                 },
@@ -568,7 +598,43 @@ export default {
                     field: 'barangay_resident_status_name',
                     thComp: TranslatedMultitpleHeader,
                     visible: false,
-                }
+                },
+                {
+                    title: 'First Vaccination Date',
+                    field: 'first_date_vaccination',
+                    thComp: TranslatedMultitpleHeader,
+                    visible: false,
+                },
+                {
+                    title: 'First Vaccination Name',
+                    field: 'brand1',
+                    thComp: TranslatedMultitpleHeader,
+                    visible: false,
+                },
+                {
+                    title: 'Second Vaccination Date',
+                    field: 'second_date_vaccination',
+                    thComp: TranslatedMultitpleHeader,
+                    visible: false,
+                },
+                {
+                    title: 'Second Vaccination Name',
+                    field: 'brand2',
+                    thComp: TranslatedMultitpleHeader,
+                    visible: false,
+                },
+                {
+                    title: 'Booster Vaccination Date',
+                    field: 'booster_date_vaccination',
+                    thComp: TranslatedMultitpleHeader,
+                    visible: false,
+                },
+                {
+                    title: 'Booster Vaccination Name',
+                    field: 'brand3',
+                    thComp: TranslatedMultitpleHeader,
+                    visible: false,
+                },
             ],
             query: { sort: 'id', order: 'asc', limit: 20, s: '' },
             xprops: {
@@ -727,8 +793,11 @@ export default {
             'setReligion',
             'setOccupation',
             'setHouseOwnership',
-            'setVaccination',
+            'setFirstVaccination',
+            'setSecondVaccination',
+            'setBoosterVaccination',
             'setMedicine',
+            'setPregnancyAge',
         ]),
 
         async fetchData () {
@@ -817,14 +886,23 @@ export default {
         updateHouseOwnership (value) {
             this.setHouseOwnership(value)
         },
-        updateVaccination (value) {
-            this.setVaccination(value)
+        updateFirstVaccination (value) {
+            this.setFirstVaccination(value)
+        },
+        updateSecondVaccination (value) {
+            this.setSecondVaccination(value)
+        },
+        updateBoosterVaccination (value) {
+            this.setBoosterVaccination(value)
         },
         updateMedicine (value) {
             this.setMedicine(value)
         },
         updateAgeTo (e) {
             this.setAgeTo(e.target.value)
+        },
+        updatePregnancyAge (e) {
+            this.setPregnancyAge(e.target.value)
         },
         updateAgeFrom (e) {
             this.setAgeFrom(e.target.value)

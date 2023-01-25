@@ -131,6 +131,7 @@
 								{{ numberFormat(data.total_person_disability_count) }}
 							</h3>
 						</div>
+						<br>
 						<div class="row">
 							<div class="col-md-6">
 								<h5>Male</h5>
@@ -149,8 +150,8 @@
 			<div class="col-lg-3 col-md-6 col-sm-6">
 				<div class="card card-stats" style="background-color: #462066 !important; color: white">
 					<center>
-						<div class="card-header card-header-success card-header-icon">
-							<div class="card-icon">
+						<div class="card-header card-header card-header-icon">
+							<div class="card-icon" style="background-color:#7b2cbf;">
 								<i class="material-icons">contacts</i>
 							</div>
 						</div>

@@ -2,6 +2,7 @@
     <section class="pdf-item">
         <div class="card" style="width: 49rem">
             <div class="card-body" style="height: 1060px">
+                <img src="/transaction/header.png" class="header-image" />
                 <div class="barangay-wrap">
                     <div class="row">
                     	<div class="col-md-3" style="border-right: 3px solid black;">
@@ -355,13 +356,30 @@
                         </div>
                     </div>
                 </div>
+                <div class="footer">
+				<img src="/transaction/footer_seal.png" class="bottom-image"/>
+			</div>
             </div>
         </div>
     </section>
 </template>
 <style scoped>
-.pdf.item {
-    margin-top: -20px;
+.pdf-item {
+    line-height: 1.2 !important;
+    margin-top: -32px;
+}
+.bottom-image {
+    margin-top: -10%;
+    height: 20%;
+    width: 105.5%;
+    margin-left: -20px;
+}
+.header-image {
+    height: 100px;
+    width: 100%;
+    position: absolute;
+    margin-top: -1.9%;
+    margin-left: -20px;
 }
 .vl {
     border-left: 3px solid black;
@@ -373,6 +391,9 @@
     color: gray;
     background-color: gray;
     margin-top: -40px;
+}
+.barangay-wrap {
+    margin-top: 70px;
 }
 .barangay-watermark {
     margin-top: 25%;

@@ -54,6 +54,7 @@ export default {
   box-shadow: none;
   background-color: #f4f4f4;
   color: #000;
+  overflow-y: scroll;
   cursor: pointer !important;
 }
 .dropdown-menu-position {
