@@ -877,7 +877,7 @@ class ReportsApiController extends Controller
         $sitio = $json_data->sitio ?? '';
         $sector = $json_data->sector ?? '';
         $gender = $json_data->gender ?? '';
-        if($json_data->age_from) {
+        if(!empty($json_data->age_from)) {
             $request_age = $json_data->age_from == 0 ? 1 : $json_data->age_from;
         }
         $age_from = !empty($request_age) ? Carbon::now()->subYears($request_age)->format('Y-m-d') : '';
