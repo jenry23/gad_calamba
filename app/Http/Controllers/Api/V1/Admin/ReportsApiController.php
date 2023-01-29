@@ -216,6 +216,7 @@ class ReportsApiController extends Controller
         $second_vaccination = !empty($request->second_vaccination) ? $request->second_vaccination : '';
         $booster_vaccination = !empty($request->booster_vaccination) ? $request->booster_vaccination : '';
         $medicine = !empty($request->medicine) ? json_decode($request->medicine) : '';
+        $pregnancy_age = !empty($request->pregnancy_age) ? json_decode($request->pregnancy_age) : '';
 
         $gads = Gad::with([
             'gender:id,gender_name',
@@ -339,6 +340,12 @@ class ReportsApiController extends Controller
                 }
             )
             ->when(
+                $pregnancy_age,
+                function (Builder $query) use ($pregnancy_age) {
+                    $query->where('pregnancy_age', $pregnancy_age);
+                }
+            )
+            ->when(
                 $medicine,
                 function ($query) use ($medicine) {
                     $query->whereHas(
@@ -354,7 +361,7 @@ class ReportsApiController extends Controller
 
         $items = $gads->firstItem();
         $gads->map(function ($gads, int $key) use ($items){
-            $gads['local_id'] = $items + $key;
+            $gads['item_no'] = $items + $key;
         });
 
         if ($gender_id) {
@@ -458,6 +465,12 @@ class ReportsApiController extends Controller
                         $booster_vaccination,
                         function (Builder $query) use ($booster_vaccination) {
                             $query->where('brand3', $booster_vaccination);
+                        }
+                    )
+                    ->when(
+                        $pregnancy_age,
+                        function (Builder $query) use ($pregnancy_age) {
+                            $query->where('pregnancy_age', $pregnancy_age);
                         }
                     )
                     ->when(
@@ -575,6 +588,12 @@ class ReportsApiController extends Controller
                         $booster_vaccination,
                         function (Builder $query) use ($booster_vaccination) {
                             $query->where('brand3', $booster_vaccination);
+                        }
+                    )
+                    ->when(
+                        $pregnancy_age,
+                        function (Builder $query) use ($pregnancy_age) {
+                            $query->where('pregnancy_age', $pregnancy_age);
                         }
                     )
                     ->when(
@@ -697,6 +716,12 @@ class ReportsApiController extends Controller
                     }
                 )
                 ->when(
+                    $pregnancy_age,
+                    function (Builder $query) use ($pregnancy_age) {
+                        $query->where('pregnancy_age', $pregnancy_age);
+                    }
+                )
+                ->when(
                     $medicine,
                     function ($query) use ($medicine) {
                         $query->whereHas(
@@ -809,6 +834,12 @@ class ReportsApiController extends Controller
                     $booster_vaccination,
                     function (Builder $query) use ($booster_vaccination) {
                         $query->where('brand3', $booster_vaccination);
+                    }
+                )
+                ->when(
+                    $pregnancy_age,
+                    function (Builder $query) use ($pregnancy_age) {
+                        $query->where('pregnancy_age', $pregnancy_age);
                     }
                 )
                 ->when(

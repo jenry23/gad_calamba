@@ -85,17 +85,6 @@
                                                 @blur="clearFocus"
                                                 required
                                             />
-                                            <label class="label">Second Vaccination</label>
-                                            <v-select
-                                                name="second_vaccination"
-                                                label="vaccination_name"
-                                                :value="entry.second_vaccination"
-                                                :options="lists.vaccination"
-                                                @input="updateSecondVaccination"
-                                                @focus="focusField('second_vaccination')"
-                                                @blur="clearFocus"
-                                                required
-                                            />
                                             <label class="label">Ethnicity</label>
                                             <v-select
                                                 name="ethnicity"
@@ -106,14 +95,6 @@
                                                 @focus="focusField('ethnicity')"
                                                 @blur="clearFocus"
                                                 required
-                                            />
-                                            <label class="label">Pregnancy Age</label>
-                                                <input
-                                                type="number"
-                                                @input="updatePregnancyAge"
-                                                :value="entry.pregnancy_age"
-                                                class="form-control"
-                                                name="age_from"
                                             />
                                         </div>
                                         <div class="col-md-6">
@@ -150,6 +131,28 @@
                                                 @blur="clearFocus"
                                                 required
                                             />
+                                            <label class="label">Maintenance Medicine</label>
+                                            <v-select
+                                                name="medicine"
+                                                label="medicine_name"
+                                                :value="entry.medicine"
+                                                :options="lists.medicine"
+                                                @input="updateMedicine"
+                                                @focus="focusField('medicine')"
+                                                @blur="clearFocus"
+                                                required
+                                            />
+                                            <label class="label">Pregnancy Age</label>
+                                                <input
+                                                type="number"
+                                                @input="updatePregnancyAge"
+                                                :value="entry.pregnancy_age"
+                                                class="form-control"
+                                                name="age_from"
+                                            />
+                                        </div>
+                                        <br/><br/>
+                                        <div class="col-md-4">
                                             <label class="label">First Vaccination</label>
                                             <v-select
                                                 name="first_vaccination"
@@ -161,6 +164,21 @@
                                                 @blur="clearFocus"
                                                 required
                                             />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="label">Second Vaccination</label>
+                                            <v-select
+                                                name="second_vaccination"
+                                                label="vaccination_name"
+                                                :value="entry.second_vaccination"
+                                                :options="lists.vaccination"
+                                                @input="updateSecondVaccination"
+                                                @focus="focusField('second_vaccination')"
+                                                @blur="clearFocus"
+                                                required
+                                            />
+                                        </div>
+                                        <div class="col-md-4">
                                             <label class="label">Booster</label>
                                             <v-select
                                                 name="booster_vaccination"
@@ -169,17 +187,6 @@
                                                 :options="lists.vaccination"
                                                 @input="updateBoosterVaccination"
                                                 @focus="focusField('booster_vaccination')"
-                                                @blur="clearFocus"
-                                                required
-                                            />
-                                            <label class="label">Medicine</label>
-                                            <v-select
-                                                name="medicine"
-                                                label="medicine_name"
-                                                :value="entry.medicine"
-                                                :options="lists.medicine"
-                                                @input="updateMedicine"
-                                                @focus="focusField('medicinee')"
                                                 @blur="clearFocus"
                                                 required
                                             />
@@ -475,8 +482,14 @@ export default {
             excel_name: 'gad.xls',
             columns: [
                 {
+                    title: 'Item No.',
+                    field: 'item_no',
+                    thComp: TranslatedHeader,
+                    sortable: true,
+                },
+                {
                     title: 'Local ID Number',
-                    field: 'local_id',
+                    field: 'gad_id',
                     thComp: TranslatedHeader,
                     sortable: true,
                 },
