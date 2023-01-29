@@ -869,6 +869,7 @@ class ReportsApiController extends Controller
     {
         ini_set('memory_limit', '900000M');
         ini_set("pcre.backtrack_limit", "5000000");
+        $request_age = null;
 
         $json_data = json_decode($request->slug);
         $barangay_id = $json_data->barangay ?? '';
@@ -876,7 +877,9 @@ class ReportsApiController extends Controller
         $sitio = $json_data->sitio ?? '';
         $sector = $json_data->sector ?? '';
         $gender = $json_data->gender ?? '';
-        $request_age = $json_data->age_from == 0 ? 1 : $json_data->age_from;
+        if($json_data->age_from) {
+            $request_age = $json_data->age_from == 0 ? 1 : $json_data->age_from;
+        }
         $age_from = !empty($request_age) ? Carbon::now()->subYears($request_age)->format('Y-m-d') : '';
         $age_to = !empty($json_data->age_to) ? Carbon::now()->subYears($json_data->age_to)->format('Y-m-d') : '';
         $household_id =  $json_data->household ?? '';
