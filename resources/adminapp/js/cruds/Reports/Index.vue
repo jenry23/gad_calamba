@@ -824,7 +824,7 @@ export default {
 			let data1 = this.entry
 			let final_data = {}
 				each(data1, (value, key) => {
-                if (['vaccination'].includes(key)) {
+                if (['first_vaccination', 'second_vaccination', 'booster_vaccination'].includes(key)) {
                     final_data[key] = value.vaccination_name
                 }
 				if (value) {

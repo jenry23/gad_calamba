@@ -30,7 +30,7 @@
     </br>
     <thead>
         <tr>
-            <th>ID</th>
+            <th>Item No.</th>
             <th>Member Name</th>
             <th>Sex</th>
             <th>Barangay</th>

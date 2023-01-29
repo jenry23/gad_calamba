@@ -876,7 +876,8 @@ class ReportsApiController extends Controller
         $sitio = $json_data->sitio ?? '';
         $sector = $json_data->sector ?? '';
         $gender = $json_data->gender ?? '';
-        $age_from = !empty($json_data->age_from) ? Carbon::now()->subYears($json_data->age_from)->format('Y-m-d') : '';
+        $request_age = $json_data->age_from == 0 ? 1 : $json_data->age_from;
+        $age_from = !empty($request_age) ? Carbon::now()->subYears($request_age)->format('Y-m-d') : '';
         $age_to = !empty($json_data->age_to) ? Carbon::now()->subYears($json_data->age_to)->format('Y-m-d') : '';
         $household_id =  $json_data->household ?? '';
         $gender_preference =  $json_data->gender_preference ?? '';
@@ -888,7 +889,11 @@ class ReportsApiController extends Controller
         $house_ownership =  $json_data->house_ownership ?? '';
         $vaccination =  $json_data->vaccination ?? '';
         $medicine =  $json_data->medicine ?? '';
-
+        $first_vaccination = $json_data->first_vaccination ?? '';
+        $second_vaccination = $json_data->second_vaccination ?? '';
+        $booster_vaccination = $json_data->booster_vaccination ?? '';
+        $medicine = $json_data->medicine ?? '';
+        $pregnancy_age = $json_data->pregnancy_age ?? '';
         $barangay = Barangay::find($barangay_id);
 
         $file_name = sprintf(
@@ -1012,9 +1017,27 @@ class ReportsApiController extends Controller
                 }
             )
             ->when(
-                $vaccination,
-                function (Builder $query) use ($vaccination) {
-                    $query->where('brand1', $vaccination);
+                $first_vaccination,
+                function (Builder $query) use ($first_vaccination) {
+                    $query->where('brand1', $first_vaccination);
+                }
+            )
+            ->when(
+                $second_vaccination,
+                function (Builder $query) use ($second_vaccination) {
+                    $query->where('brand2', $second_vaccination);
+                }
+            )
+            ->when(
+                $booster_vaccination,
+                function (Builder $query) use ($booster_vaccination) {
+                    $query->where('brand3', $booster_vaccination);
+                }
+            )
+            ->when(
+                $pregnancy_age,
+                function (Builder $query) use ($pregnancy_age) {
+                    $query->where('pregnancy_age', $pregnancy_age);
                 }
             )
             ->when(
