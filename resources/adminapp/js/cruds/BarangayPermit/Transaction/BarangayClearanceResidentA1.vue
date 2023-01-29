@@ -1,7 +1,7 @@
 <template>
     <section class="pdf-item">
-        <div class="card" style="width: 49rem">
-            <div class="card-body" style="height: 1060px">
+        <div class="card" style="width: 50rem">
+            <div class="card-body" style="height: 1093px">
                 <img src="/transaction/header.png" class="header-image" />
                 <div class="barangay-wrap">
                     <div class="row">
@@ -21,6 +21,7 @@
                                         </p>
                                     </div>
 								<div>
+                                <br><br>
 								<b>Address: </b><br>
                                 <p>{{ data.barangay.address}}</p>
                                 <b>Hotline No:</b><br>
@@ -46,7 +47,7 @@
                                                         <b>REPUBLIC OF THE PHILIPPINES</b>
                                                         <b>PROVINCE OF LAGUNA</b>
                                                         <b>CITY OF CALAMBA</b>
-                                                        <p style="font-weight: 900;text-transform: uppercase;margin-top: -8%;margin-left: 8px;">BARANGAY {{ data.barangay.barangay_name }}</p>
+                                                        <p style="font-weight: 900;text-transform: uppercase;margin-top: -6%;margin-left: 8px;">BARANGAY {{ data.barangay.barangay_name }}</p>
                                                     </p>
                                                 </div>
                                             </div>
@@ -345,8 +346,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <center>
-                                                        <img src="/transaction/finger_print.png"
-                                                        style="height: 77px;width: 240px;"/>
+                                                        <img src="/transaction/finger_print.png"/>
                                                     </center>
                                                 </div>
                                             </div>
@@ -369,9 +369,10 @@
     margin-top: -32px;
 }
 .bottom-image {
-    margin-top: -10%;
-    height: 20%;
-    width: 105.5%;
+    margin-top: -2%;
+    position: absolute;
+    height: 10%;
+    width: 100%;
     margin-left: -20px;
 }
 .header-image {

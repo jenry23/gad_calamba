@@ -52,7 +52,7 @@ use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
-
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 class ImportGads implements
     ToCollection,
     WithHeadingRow,
@@ -93,8 +93,37 @@ class ImportGads implements
             foreach ($data_row as $row) {
                 DB::transaction(
                     function () use ($row, $household_number) {
+                        $first_vaccine = null;
+                        $second_vaccine = null;
+                        $third_vaccine = null;
+                        $dob = null;
+
+                        if($row["date_of_1st_dosage_covid_19_vaccination_format_mmddyyyy"]) {
+                            $first_vaccine = is_string($row["date_of_1st_dosage_covid_19_vaccination_format_mmddyyyy"]) ?
+                                $row["date_of_1st_dosage_covid_19_vaccination_format_mmddyyyy"] :
+                                Date::excelToDateTimeObject($row["date_of_1st_dosage_covid_19_vaccination_format_mmddyyyy"])->format('Y-m-d');
+                        }
+
+                        if($row['date_of_2nd_dosage_covid_19_vaccination_format_mmddyyyy']) {
+                            $second_vaccine = is_string($row["date_of_2nd_dosage_covid_19_vaccination_format_mmddyyyy"]) ?
+                                $row["date_of_2nd_dosage_covid_19_vaccination_format_mmddyyyy"] :
+                                Date::excelToDateTimeObject($row["date_of_2nd_dosage_covid_19_vaccination_format_mmddyyyy"]);
+                        }
+
+                        if($row["date_of_covid_booster_format_mmddyyyy"]) {
+                            $third_vaccine = is_string($row["date_of_covid_booster_format_mmddyyyy"]) ?
+                                $row["date_of_covid_booster_format_mmddyyyy"] :
+                                Date::excelToDateTimeObject($row["date_of_covid_booster_format_mmddyyyy"]);
+                        }
+
+
+                        if($row["concatenated_format_mmddyyyy_auto_generated"]) {
+                            $dob = is_string($row["concatenated_format_mmddyyyy_auto_generated"]) ? $row["concatenated_format_mmddyyyy_auto_generated"] :
+                                Date::excelToDateTimeObject($row["concatenated_format_mmddyyyy_auto_generated"]);
+                        }
+
                         $barangay_id = $this->convertStringToID(Barangay::class, 'barangay_name', $row['barangay_dropdown_option']);
-                        $birthday = Carbon::parse($row["concatenated_format_mmddyyyy_auto_generated"])->format('Y-m-d');
+                        $birthday = Carbon::parse($dob)->format('Y-m-d');
                         $full_name = mb_substr(trim($row['first_name']), 0, 1) . mb_substr(trim($row['middle_name']), 0, 1) . mb_substr(trim($row['last_name']), 0, 1);
                         $gad_unique_id = 'LAG-CAL' . $barangay_id . '-' . $row['household_number'] . $full_name
                             . mb_substr($birthday, -2) . '-00-0000';
@@ -150,11 +179,11 @@ class ImportGads implements
                         $gad->no_cr_id = is_numeric($row["no_of_crs"]) ? (int) $row["no_of_crs"] : null;
                         $gad->full_immunization = $row["full_immunization_yes_public_hosp_center_yes_private_hosp_clinic_no"] ?? null;
                         $gad->covid_19_test = $row["covid_19_test_no_covid_test_tested_positive_for_covid19_tested_negative_for_covid19"] ?? null;
-                        $gad->first_date_vaccination = !empty($row["date_of_1st_dosage_covid_19_vaccination_format_mmddyyyy"]) ? Carbon::parse($row["date_of_1st_dosage_covid_19_vaccination_format_mmddyyyy"])->format('Y-m-d') : null;
+                        $gad->first_date_vaccination = !empty($first_vaccine) ? Carbon::parse($first_vaccine)->format('Y-m-d') : null;
                         $gad->brand1 = $row["brand_1"] ?? null;
-                        $gad->second_date_vaccination = !empty($row["date_of_2nd_dosage_covid_19_vaccination_format_mmddyyyy"]) ? Carbon::parse($row["date_of_2nd_dosage_covid_19_vaccination_format_mmddyyyy"])->format('Y-m-d') : null;
+                        $gad->second_date_vaccination = !empty($second_vaccine) ? Carbon::parse($second_vaccine)->format('Y-m-d') : null;
                         $gad->brand2 = $row["brand_2"] ?? null;
-                        $gad->booster_date_vaccination = !empty($row["date_of_covid_booster_format_mmddyyyy"]) ? Carbon::parse($row["date_of_covid_booster_format_mmddyyyy"])->format('Y-m-d') : null;
+                        $gad->booster_date_vaccination = !empty($third_vaccine) ? Carbon::parse($third_vaccine)->format('Y-m-d') : null;
                         $gad->brand3 = $row["brand_3"] ?? null;
                         $gad->pregnancy_age = $row["pregnancy_age"] ?? null;
                         $gad->prental_checkup = $row["with_prenatal_check_up_yes_public_hosp_center_yes_private_hosp_clinic_no"] ?? null;
