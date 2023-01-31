@@ -409,9 +409,9 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="footer">
+          <div class="footer">
         <img src="/transaction/footer_seal.png" class="bottom-image" />
+      </div>
       </div>
     </div>
   </section>
