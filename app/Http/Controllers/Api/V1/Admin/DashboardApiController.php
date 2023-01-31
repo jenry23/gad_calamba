@@ -22,6 +22,7 @@ use App\Models\Sector;
 use App\Models\Purok;
 use App\Models\Utilities;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Cache;
 
 class DashboardApiController extends Controller
 {
@@ -32,190 +33,180 @@ class DashboardApiController extends Controller
         ini_set('memory_limit', '5G');
 
         $user_with_barangay = Auth::user()->barangay;
+        $dashboard_data = [];
+        $dashboard_data_list = [];
 
         if (isset($user_with_barangay)) {
-            $total_people_count = Gad::where('barangay_id', $user_with_barangay)->count();
-            $total_male_count = Gad::where('barangay_id', $user_with_barangay)->where('gender_id', '1')->count();
-            $total_female_count = Gad::where('barangay_id', $user_with_barangay)->where('gender_id', '2')->count();
+            $dashboard_data_list = Cache::remember('dashboard_data'.$user_with_barangay, 220, function () use ($user_with_barangay) {
+                $data = [];
+                $data['total_people_count'] = Gad::select('barangay_id')->where('barangay_id', $user_with_barangay)->count();
+                $data['total_male_count'] = Gad::select('barangay_id')->where('barangay_id', $user_with_barangay)->where('gender_id', '1')->count();
+                $data['total_female_count'] = Gad::select('barangay_id')->where('barangay_id', $user_with_barangay)->where('gender_id', '2')->count();
 
-            // Total Senior
-            $total_senior_count = GadItemDetails::whereHas(
-                'gad',
-                function ($query) use ($user_with_barangay) {
-                    $query->where('barangay_id', $user_with_barangay);
+                // Total Senior
+                $data['total_senior_count'] = GadItemDetails::select(['barangay_id', 'item_id'])->whereHas(
+                    'gad',
+                    function ($query) use ($user_with_barangay) {
+                        $query->where('barangay_id', $user_with_barangay);
+                    }
+                )->where('item_name', 'sector')->where('item_id', '2')->count();
+                //Senior Male
+                $data['total_male_senior_count'] = GadItemDetails::whereHas(
+                    'gad',
+                    function ($query) use ($user_with_barangay) {
+                        $query->where('barangay_id', $user_with_barangay);
+                        $query->where('gender_id', 1);
+                    }
+                )->where('item_name', 'sector')->where('item_id', '2')->count();
+                //Senior Female
+                $data['total_female_senior_count'] = GadItemDetails::whereHas(
+                    'gad',
+                    function ($query) use ($user_with_barangay) {
+                        $query->where('barangay_id', $user_with_barangay);
+                        $query->where('gender_id', 2);
+                    }
+                )->where('item_name', 'sector')->where('item_id', '2')->count();
+
+                //Total Person With Disablitiy
+                $data['total_person_disability_count'] = GadItemDetails::whereHas(
+                    'gad',
+                    fn ($query) => $query->where('barangay_id', $user_with_barangay)
+                )->where('item_name', 'sector')->where('item_id', '1')->count();
+                //Person With Disablitiy Male
+                $data['total_male_disablity_count'] = GadItemDetails::whereHas(
+                    'gad',
+                    function ($query) use ($user_with_barangay) {
+                        $query->where('barangay_id', $user_with_barangay);
+                        $query->where('gender_id', 1);
+                    }
+                )->where('item_name', 'sector')->where('item_id', '1')->count();
+                //Person With Disablitiy Female
+                $data['total_female_disablity_count'] = GadItemDetails::whereHas(
+                    'gad',
+                    function ($query) use ($user_with_barangay) {
+                        $query->where('barangay_id', $user_with_barangay);
+                        $query->where('gender_id', 2);
+                    }
+                )->where('item_name', 'sector')->where('item_id', '1')->count();
+
+                $data['total_household'] = Gad::where('barangay_id', $user_with_barangay)->where('household_id', 1)->where('family_code', 'A')->count();
+                // Add Here Counting
+                $data['total_family'] = Gad::where('barangay_id', $user_with_barangay)->where('household_id', 1)->count();
+
+                $barangays = [];
+
+                $sitios = Sitio::where('barangay_id', $user_with_barangay)->get();
+                foreach ($sitios as $sitio) {
+                    $resident = Gad::select('id')->where('barangay_id', $user_with_barangay)->where('sitio_id', $sitio->id)->get();
+                    $sitio->count_resident = $resident->count();
                 }
-            )->where('item_name', 'sector')->where('item_id', '2')->count();
-            //Senior Male
-            $total_male_senior_count = GadItemDetails::whereHas(
-                'gad',
-                function ($query) use ($user_with_barangay) {
-                    $query->where('barangay_id', $user_with_barangay);
-                    $query->where('gender_id', 1);
+
+                $puroks = Purok::where('barangay_id', $user_with_barangay)->get();
+                foreach ($puroks as $purok) {
+                    $purok->count_resident = Gad::select('id')->where('barangay_id', $user_with_barangay)->where('purok_id', $purok->id)->count();
                 }
-            )->where('item_name', 'sector')->where('item_id', '2')->count();
-            //Senior Female
-            $total_female_senior_count = GadItemDetails::whereHas(
-                'gad',
-                function ($query) use ($user_with_barangay) {
-                    $query->where('barangay_id', $user_with_barangay);
-                    $query->where('gender_id', 2);
-                }
-            )->where('item_name', 'sector')->where('item_id', '2')->count();
 
-            //Total Person With Disablitiy
-            $total_person_disability_count = GadItemDetails::whereHas(
-                'gad',
-                fn ($query) => $query->where('barangay_id', $user_with_barangay)
-            )->where('item_name', 'sector')->where('item_id', '1')->count();
-            //Person With Disablitiy Male
-            $total_male_disablity_count = GadItemDetails::whereHas(
-                'gad',
-                function ($query) use ($user_with_barangay) {
-                    $query->where('barangay_id', $user_with_barangay);
-                    $query->where('gender_id', 1);
-                }
-            )->where('item_name', 'sector')->where('item_id', '1')->count();
-            //Person With Disablitiy Female
-            $total_female_disablity_count = GadItemDetails::whereHas(
-                'gad',
-                function ($query) use ($user_with_barangay) {
-                    $query->where('barangay_id', $user_with_barangay);
-                    $query->where('gender_id', 2);
-                }
-            )->where('item_name', 'sector')->where('item_id', '1')->count();
+                $data['puroks'] = $puroks;
+                $data['sitios'] = $sitios;
 
-            $total_household = Gad::where('barangay_id', $user_with_barangay)->where('household_id', 1)->where('family_code', 'A')->count();
-            // Add Here Counting
-            $total_family = Gad::where('barangay_id', $user_with_barangay)->where('household_id', 1)->count();
+                $data['total_voters_count'] = Gad::where('barangay_id', $user_with_barangay)->where('political_brgy_registered', $user_with_barangay)->count();
+                $data['total_voters_male_count'] = Gad::where('barangay_id', $user_with_barangay)->where('gender_id', 1)->where('political_brgy_registered', $user_with_barangay)->count();
+                $data['total_voters_female_count'] = Gad::where('barangay_id', $user_with_barangay)->where('gender_id', 2)->where('political_brgy_registered', $user_with_barangay)->count();
 
-            $barangays = [];
+                $data['transient_status_female'] = Gad::where('barangay_id', $user_with_barangay)->where('gender_id', 1)->whereDate('barangay_residence_year', '>', Carbon::now()->subMonth(6))->count();
+                $data['transient_status_female'] = Gad::where('barangay_id', $user_with_barangay)->where('gender_id', 2)->whereDate('barangay_residence_year', '>', Carbon::now()->subMonth(6))->count();
+                $data['immigrant_status_male'] = Gad::where('barangay_id', $user_with_barangay)->where('gender_id', 1)->whereBetween('barangay_residence_year', [Carbon::now()->subYear(2), Carbon::now()->subMonth(6)->addDay(1)])->count();
+                $data['immigrant_status_female'] = Gad::where('barangay_id', $user_with_barangay)->where('gender_id', 2)->whereBetween('barangay_residence_year', [Carbon::now()->subYear(2), Carbon::now()->subMonth(6)->addDay(1)])->count();
+                $data['native_status_male']  =
+                    Gad::where('barangay_id', $user_with_barangay)->where('gender_id', 1)->whereDate('barangay_residence_year', '<', Carbon::now()->subYear(2)->addDay(1))->count();
+                $data['native_status_female']  =
+                    Gad::where('barangay_id', $user_with_barangay)->where('gender_id', 2)->whereDate('barangay_residence_year', '<', Carbon::now()->subYear(2)->addDay(1))->count();
+                $data['total_male_migration_rate'] = Gad::where('barangay_id', $user_with_barangay)->whereNotNull('migration_rate_id')->where('gender_id', 1)->count();
+                $data['total_female_migration_rate'] = Gad::where('barangay_id', $user_with_barangay)->whereNotNull('migration_rate_id')->where('gender_id', 2)->count();
+                $data['is_barangay'] = 1;
 
-            $sitios = Sitio::where('barangay_id', $user_with_barangay)->get();
-            foreach ($sitios as $sitio) {
-                $resident = Gad::where('barangay_id', $user_with_barangay)->where('sitio_id', $sitio->id)->get();
-                $sitio->count_resident = $resident->count();
-            }
-
-            $puroks = Purok::where('barangay_id', $user_with_barangay)->get();
-            foreach ($puroks as $purok) {
-                $purok->count_resident = Gad::where('barangay_id', $user_with_barangay)->where('purok_id', $purok->id)->count();
-            }
-
-            $total_voters_count = Gad::where('barangay_id', $user_with_barangay)->where('political_brgy_registered', $user_with_barangay)->count();
-            $total_voters_male_count = Gad::where('barangay_id', $user_with_barangay)->where('gender_id', 1)->where('political_brgy_registered', $user_with_barangay)->count();
-            $total_voters_female_count = Gad::where('barangay_id', $user_with_barangay)->where('gender_id', 2)->where('political_brgy_registered', $user_with_barangay)->count();
-
-            $transient_status_male = Gad::where('barangay_id', $user_with_barangay)->where('gender_id', 1)->whereDate('barangay_residence_year', '>', Carbon::now()->subMonth(6))->count();
-            $transient_status_female = Gad::where('barangay_id', $user_with_barangay)->where('gender_id', 2)->whereDate('barangay_residence_year', '>', Carbon::now()->subMonth(6))->count();
-            $immigrant_status_male = Gad::where('barangay_id', $user_with_barangay)->where('gender_id', 1)->whereBetween('barangay_residence_year', [Carbon::now()->subYear(2), Carbon::now()->subMonth(6)->addDay(1)])->count();
-            $immigrant_status_female = Gad::where('barangay_id', $user_with_barangay)->where('gender_id', 2)->whereBetween('barangay_residence_year', [Carbon::now()->subYear(2), Carbon::now()->subMonth(6)->addDay(1)])->count();
-            $native_status_male  =
-                Gad::where('barangay_id', $user_with_barangay)->where('gender_id', 1)->whereDate('barangay_residence_year', '<', Carbon::now()->subYear(2)->addDay(1))->count();
-            $native_status_female  =
-                Gad::where('barangay_id', $user_with_barangay)->where('gender_id', 2)->whereDate('barangay_residence_year', '<', Carbon::now()->subYear(2)->addDay(1))->count();
-            $total_male_migration_rate = Gad::where('barangay_id', $user_with_barangay)->whereNotNull('migration_rate_id')->where('gender_id', 1)->count();
-            $total_female_migration_rate = Gad::where('barangay_id', $user_with_barangay)->whereNotNull('migration_rate_id')->where('gender_id', 2)->count();
-            $is_barangay = 1;
+                return $data;
+            });
         } else {
-            $total_people_count = Gad::all()->count();
-            $total_male_count = Gad::where('gender_id', '1')->count();
-            $total_female_count = Gad::where('gender_id', '2')->count();
+            $dashboard_data = Cache::remember('dashboard_data', 220, function () {
+                $data = [];
+                $data['total_people_count'] = Gad::select('id')->count();
+                $data['total_male_count'] = Gad::select('gender_id')->where('gender_id', '1')->count();
+                $data['total_female_count'] = Gad::select('gender_id')->where('gender_id', '2')->count();
 
-            $total_senior_count = GadItemDetails::where('item_name', 'sector')->where('item_id', '2')->count();
+                $data['total_senior_count'] = GadItemDetails::select('item_name')->where('item_name', 'sector')->where('item_id', '2')->count();
 
-            //Senior Male
-            $total_male_senior_count = $total_male_senior_count = GadItemDetails::whereHas(
-                'gad',
-                function ($query) {
-                    $query->where('gender_id', 1);
-                }
-            )->where('item_name', 'sector')->where('item_id', '2')->count();
-            //Senior Female
-            $total_female_senior_count = $total_female_senior_count = GadItemDetails::whereHas(
-                'gad',
-                function ($query) {
-                    $query->where('gender_id', 2);
-                }
-            )->where('item_name', 'sector')->where('item_id', '2')->count();
-            //Total Person With Disablitiy
-            $total_person_disability_count = GadItemDetails::where('item_name', 'sector')->where('item_id', '1')->count();
-            //Person With Disablitiy Male
-            $total_male_disablity_count = GadItemDetails::whereHas(
-                'gad',
-                function ($query) {
-                    $query->where('gender_id', 1);
-                }
-            )->where('item_name', 'sector')->where('item_id', '1')->count();
-            //Person With Disablitiy Female
-            $total_female_disablity_count = GadItemDetails::whereHas(
-                'gad',
-                function ($query) {
-                    $query->where('gender_id', 2);
-                }
-            )->where('item_name', 'sector')->where('item_id', '1')->count();
+                //Senior Male
+                $data['total_male_senior_count'] = $data['total_male_senior_count'] = GadItemDetails::select('id')->whereHas(
+                    'gad',
+                    function ($query) {
+                        $query->where('gender_id', 1);
+                    }
+                )->where('item_name', 'sector')->where('item_id', '2')->count();
+                //Senior Female
+                $data['total_female_senior_count'] = $data['total_female_senior_count'] = GadItemDetails::select('id')->whereHas(
+                    'gad',
+                    function ($query) {
+                        $query->where('gender_id', 2);
+                    }
+                )->where('item_name', 'sector')->where('item_id', '2')->count();
+                //Total Person With Disablitiy
+                $data['total_person_disability_count'] = GadItemDetails::select('id')->where('item_name', 'sector')->where('item_id', '1')->count();
+                //Person With Disablitiy Male
+                $data['total_male_disablity_count'] = GadItemDetails::select('id')->whereHas(
+                    'gad',
+                    function ($query) {
+                        $query->where('gender_id', 1);
+                    }
+                )->where('item_name', 'sector')->where('item_id', '1')->count();
+                //Person With Disablitiy Female
+                $data['total_female_disablity_count'] = GadItemDetails::select('id')->whereHas(
+                    'gad',
+                    function ($query) {
+                        $query->where('gender_id', 2);
+                    }
+                )->where('item_name', 'sector')->where('item_id', '1')->count();
 
-            $total_household = Gad::where('household_id', 1)->where('family_code', 'A')->count();
-            // Add Here Counting
-            $total_family = Gad::where('household_id', 1)->count();
-            $sitios = [];
-            $puroks = [];
+                $data['total_household'] = Gad::select('id')->where('household_id', 1)->where('family_code', 'A')->count();
+                // Add Here Counting
+                $data['total_family'] = Gad::select('id')->where('household_id', 1)->count();
+                $sitios = [];
+                $puroks = [];
 
-            $barangays = Barangay::all();
-            foreach ($barangays as $barangay) {
-                $barangay->count_resident = Gad::where('barangay_id', $barangay->id)->count();
-                $total = Gad::count();
-                if ($barangay->count_resident != 0) {
-                    $barangay->percent = number_format($barangay->count_resident / $total * 100, 2);
-                } else {
-                    $barangay->percent = 0;
-                }
-            }
+                $barangays = Barangay::all()->each(function (Barangay $barangay) {
+                    $barangay->count_resident = Gad::select('id')->where('barangay_id', $barangay->id)->count();
+                    $total = Gad::select('id')->count();
+                    if ($barangay->count_resident != 0) {
+                        $barangay->percent = number_format($barangay->count_resident / $total * 100, 2);
+                    } else {
+                        $barangay->percent = 0;
+                    }
+                    return $barangay;
+                });
+                $data['barangays'] = $barangays;
 
-            $total_voters_count = Gad::where('political_city_registered_id', 410)->count();
-            $total_voters_male_count = Gad::where('gender_id', 1)->where('political_city_registered_id', 410)->count();
-            $total_voters_female_count = Gad::where('gender_id', 2)->where('political_city_registered_id', 410)->count();
+                $data['total_voters_count'] = Gad::select('id')->where('political_city_registered_id', 410)->count();
+                $data['total_voters_male_count'] = Gad::select('id')->where('gender_id', 1)->where('political_city_registered_id', 410)->count();
+                $data['total_voters_female_count'] = Gad::select('id')->where('gender_id', 2)->where('political_city_registered_id', 410)->count();
 
-            $transient_status_male = Gad::where('gender_id', 1)->whereDate('calamba_residence_year', '>', Carbon::now()->subMonth(6))->count();
-            $transient_status_female = Gad::where('gender_id', 2)->whereDate('calamba_residence_year', '>', Carbon::now()->subMonth(6))->count();
-            $immigrant_status_male = Gad::where('gender_id', 1)->whereBetween('calamba_residence_year', [Carbon::now()->subYear(2), Carbon::now()->subMonth(6)->addDay(1)])->count();
-            $immigrant_status_female = Gad::where('gender_id', 2)->whereBetween('calamba_residence_year', [Carbon::now()->subYear(2), Carbon::now()->subMonth(6)->addDay(1)])->count();
-            $native_status_male  =
-                Gad::where('gender_id', 1)->whereDate('calamba_residence_year', '<', Carbon::now()->subYear(2)->addDay(1))->count();
-            $native_status_female  =
-                Gad::where('gender_id', 2)->whereDate('calamba_residence_year', '<', Carbon::now()->subYear(2)->addDay(1))->count();
-            $total_male_migration_rate = Gad::whereNotNull('migration_rate_id')->where('gender_id', 1)->count();
-            $total_female_migration_rate = Gad::whereNotNull('migration_rate_id')->where('gender_id', 2)->count();
-            $is_barangay = 0;
+                $data['transient_status_male'] = Gad::select('id')->where('gender_id', 1)->whereDate('calamba_residence_year', '>', Carbon::now()->subMonth(6))->count();
+                $data['transient_status_female'] = Gad::select('id')->where('gender_id', 2)->whereDate('calamba_residence_year', '>', Carbon::now()->subMonth(6))->count();
+                $data['immigrant_status_male'] = Gad::select('id')->where('gender_id', 1)->whereBetween('calamba_residence_year', [Carbon::now()->subYear(2), Carbon::now()->subMonth(6)->addDay(1)])->count();
+                $data['immigrant_status_female'] = Gad::select('id')->where('gender_id', 2)->whereBetween('calamba_residence_year', [Carbon::now()->subYear(2), Carbon::now()->subMonth(6)->addDay(1)])->count();
+                $data['native_status_male']  =
+                    Gad::select('id')->where('gender_id', 1)->whereDate('calamba_residence_year', '<', Carbon::now()->subYear(2)->addDay(1))->count();
+                $data['native_status_female']  =
+                    Gad::select('id')->where('gender_id', 2)->whereDate('calamba_residence_year', '<', Carbon::now()->subYear(2)->addDay(1))->count();
+                $data['total_male_migration_rate'] = Gad::select('id')->whereNotNull('migration_rate_id')->where('gender_id', 1)->count();
+                $data['total_female_migration_rate'] = Gad::select('id')->whereNotNull('migration_rate_id')->where('gender_id', 2)->count();
+                $data['is_barangay'] = 0;
+
+                return $data;
+            });
         }
+
         return response([
-            'data' => [
-                'total_people_count' => $total_people_count,
-                'total_male_count' => $total_male_count,
-                'total_female_count' => $total_female_count,
-                'total_senior_count' => $total_senior_count,
-                'total_male_senior_count' => $total_male_senior_count,
-                'total_female_senior_count' => $total_female_senior_count,
-                'total_person_disability_count' => $total_person_disability_count,
-                'total_male_disablity_count' => $total_male_disablity_count,
-                'total_female_disablity_count' => $total_female_disablity_count,
-                'total_household' => $total_household,
-                'total_family' => $total_family,
-                'total_voters_count' => $total_voters_count,
-                'total_voters_male_count' => $total_voters_male_count,
-                'total_voters_female_count' => $total_voters_female_count,
-                'barangays' => $barangays,
-                'immigrant_status_male' => $immigrant_status_male,
-                'immigrant_status_female' => $immigrant_status_female,
-                'native_status_male' => $native_status_male,
-                'native_status_female' => $native_status_female,
-                'transient_status_male' => $transient_status_male,
-                'transient_status_female' => $transient_status_female,
-                'total_male_migration_rate' => $total_male_migration_rate,
-                'total_female_migration_rate' => $total_female_migration_rate,
-                'sitios' => $sitios ? $sitios : [],
-                'puroks' => $puroks ? $puroks : [],
-                'is_barangay' => $is_barangay
-            ]
+            'data' => $user_with_barangay ? $dashboard_data_list : $dashboard_data
         ]);
     }
     public function getUtilities(Request $request)

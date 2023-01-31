@@ -147,10 +147,11 @@
 				resident_required: false,
 				transaction_name: null,
 				result: {},
+				loading: false,
 			}
 		},
 		computed: {
-			...mapGetters('BarangayPermitSingle', ['entry', 'loading', 'lists', 'data'])
+			...mapGetters('BarangayPermitSingle', ['entry', 'lists', 'data'])
 		},
 		mounted () {
 			this.fetchCreateData()
