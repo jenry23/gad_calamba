@@ -5,7 +5,7 @@
         <img src="/transaction/header.png" class="header-image" />
         <div class="barangay-wrap">
           <div class="row">
-            <div class="col-md-3" style="border-right: 3px solid black">
+                <div class="col-md-3" style="border-right: 3px solid black;font-size: 0.7rem;">
               <b>
                 <center>
                   <div
@@ -19,14 +19,14 @@
                         style="text-transform: uppercase"
                         >{{ sanggunian.barangay_name }}</b
                       ><br />
-                      {{ sanggunian.barangay_sanggunian_category.category_name }}
+                      <span style="font-size: 0.6rem;">{{ sanggunian.barangay_sanggunian_category.category_name }}</span>
                     </p>
                     <p v-else>
                       <b style="text-transform: uppercase"
                         >Hon.{{ sanggunian.barangay_name }}</b
                       >
                       <br />
-                      {{ sanggunian.barangay_sanggunian_category.category_name }}
+                      <span style="font-size: 0.6rem;">{{ sanggunian.barangay_sanggunian_category.category_name }}</span>
                       <br />
                     </p>
                   </div>
