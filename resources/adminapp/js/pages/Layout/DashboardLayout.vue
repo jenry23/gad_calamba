@@ -61,13 +61,7 @@
 								icon: 'perm_data_setting',
 								path: { name: 'generate_reports.index' },
 								gate: 'generate_reports_access'
-							},
-							{
-								title: 'Barangay Records',
-								icon: 'perm_data_setting',
-								path: { name: 'barangay_records.index' },
-								gate: 'generate_reports_access'
-							},
+							}
 						]
 					},
 					{
@@ -81,6 +75,12 @@
 								icon: 'perm_data_setting',
 								path: { name: 'barangay_permit.index' },
 								gate: 'barangay_permit_access'
+							},
+							{
+								title: 'Barangay Records',
+								icon: 'perm_data_setting',
+								path: { name: 'barangay_records.index' },
+								gate: 'generate_reports_access'
 							},
 						]
 					},

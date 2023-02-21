@@ -19,8 +19,6 @@
 					<template v-for="(item, i) in sidebarLinks" class="sidebar">
 						<div v-if="item.title === 'Services' && barangay.hotline_no !== null">
 						</div>
-						<div v-else-if="item.children && item.children.title === 'Barangay Records' && barangay.hotline_no !== null">
-						</div>
 						<sidebar-item-group v-else-if="item.children && $can(item.gate)" :key="`group-${i}`" :item="item">
 						</sidebar-item-group>
 						<sidebar-link v-else :key="`item-${i}`" :item="item"></sidebar-link>
