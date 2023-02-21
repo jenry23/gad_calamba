@@ -7,7 +7,7 @@
           <div class="row">
                 <div class="col-md-3" style="border-right: 3px solid black;font-size: 0.7rem;">
               <b>
-                <center>
+                <center style="margin-top: 63%;">
                   <div
                     v-for="sanggunian in data.barangay_sanggunian"
                     :key="sanggunian.id"
@@ -60,7 +60,7 @@
                     <div class="text-center">
                       <p style="font-weight: 700">
                         <b>REPUBLIC OF THE PHILIPPINES</b>
-                        <b>PROVINCE OF LAGUNA</b>
+                        <b>PROVINCE OF LAGUNA</b><br>
                         <b>CITY OF CALAMBA</b>
                       </p>
 
@@ -84,12 +84,12 @@
                     />
                   </div>
                   <div class="col-md-12 text-center">
-                    <h3 style="font-weight: 600; font-size: 1.5rem">
+                    <h3 style="font-weight: 600; font-size: 1.4rem;margin-top: -12px;">
                       BARANGAY CERTIFICATION<br />
                       (B.5 RA 11261 or First Time Jobseekers Act of 2019)
                     </h3>
                   </div>
-                  <div class="container" style="margin-top: -7%">
+                  <div class="container" style="margin-top: -9%">
                     <div class="barangay-body-paragraph">
                       <p class="text-justify">
                         This is to certify that person, whose personal details
@@ -175,20 +175,18 @@
                     <div class="row">
                       <div class="col-md-6">
                         <div class="pull-left">Issued by:</div>
-                        <br />
+                        <br /><br />
                         <p>
-                          <u>
-                            <b style="text-transform: uppercase"
-                              >{{data.barangay_sanggunian[data.barangay_sanggunian.length - 2].barangay_name}}
-                            </b></u
-                          >
+                              <b style="text-transform: uppercase"><u>
+                                {{data.barangay_sanggunian[data.barangay_sanggunian.length - 2].barangay_name}}
+                              </u></b>
                           <br />
                           Barangay Secretary
                         </p>
                       </div>
                       <div class="col-md-6">
                         <div class="pull-left">Approved by:</div>
-                        <br />
+                        <br /><br />
                         <p>
                           <b style="text-transform: uppercase"
                             ><u
@@ -236,7 +234,6 @@
   margin-top: -32px;
 }
 .bottom-image {
-  margin-top: 4%;
   position: absolute;
   width: 100%;
   margin-left: -20px;

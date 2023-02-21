@@ -7,7 +7,7 @@
           <div class="row">
                 <div class="col-md-3" style="border-right: 3px solid black;font-size: 0.7rem;">
               <b>
-                <center>
+                <center style="margin-top: 63%;">
                   <div
                     v-for="sanggunian in data.barangay_sanggunian"
                     :key="sanggunian.id"
@@ -40,13 +40,13 @@
                 </center>
               </b>
             </div>
-            <div class="col-md-9">
-              <img
+               <img
                 class="barangay-watermark"
                 :src="data.logo"
                 style="width: 574px"
                 alt=""
               />
+            <div class="col-md-9">
               <div class="barangay-content">
                 <div class="row">
                   <div class="col-md-3">
@@ -60,7 +60,7 @@
                     <div class="text-center">
                       <p style="font-weight: 700">
                         <b>REPUBLIC OF THE PHILIPPINES</b>
-                        <b>PROVINCE OF LAGUNA</b>
+                        <b>PROVINCE OF LAGUNA</b><br>
                         <b>CITY OF CALAMBA</b>
                       </p>
 
@@ -84,13 +84,13 @@
                     />
                   </div>
                   <div class="col-md-12 text-center">
-                    <h3 style="font-weight: 600; font-size: 1.5rem">
+                    <h3 style="font-weight: 600; font-size: 1.5rem;margin-top: -12px;">
                       BARANGAY CLEARANCE<br />
                       (A.2 for Individual/Private/ Gov’t Office to Conduct an
                       Activity)
                     </h3>
                   </div>
-                  <div class="container" style="margin-top: -7%">
+                  <div class="container" style="margin-top: -9%">
                     <div class="barangay-body-paragraph">
                       <p class="text-justify">
                         Pursuant to the existing ordinance of this barangay,
@@ -149,20 +149,18 @@
                       <div class="row">
                         <div class="col-md-6">
                           <div class="pull-left">Issued by:</div>
-                          <br />
+                          <br /><br />
                           <p>
-                            <u>
-                              <b style="text-transform: uppercase"
-                                >{{data.barangay_sanggunian[data.barangay_sanggunian.length - 2].barangay_name}}
-                              </b></u
-                            >
+                              <b style="text-transform: uppercase"><u>
+                                {{data.barangay_sanggunian[data.barangay_sanggunian.length - 2].barangay_name}}
+                              </u></b>
                             <br />
                             Barangay Secretary
                           </p>
                         </div>
                         <div class="col-md-6">
                           <div class="pull-left">Approved by:</div>
-                          <br />
+                          <br /><br />
                           <p>
                             <b style="text-transform: uppercase"
                               ><u
@@ -225,6 +223,7 @@
   margin-top: 25%;
   opacity: 0.2;
   position: absolute;
+  margin-left: 25%;
 }
 .barangay-finger-print {
   margin-right: 10%;

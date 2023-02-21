@@ -1,13 +1,13 @@
 <template>
   <section class="pdf-item">
     <div class="card" style="width: 50rem">
-      <div class="card-body" style="height: 1093px">
+      <div class="card-body" style="height: 1016px">
         <img src="/transaction/header.png" class="header-image" />
         <div class="barangay-wrap">
           <div class="row">
                 <div class="col-md-3" style="border-right: 3px solid black;font-size: 0.7rem;">
               <b>
-                <center>
+                <center style="margin-top: 63%;">
                   <div
                     v-for="sanggunian in data.barangay_sanggunian"
                     :key="sanggunian.id"
@@ -40,13 +40,13 @@
                 </center>
               </b>
             </div>
-            <div class="col-md-9">
-              <img
+             <img
                 class="barangay-watermark"
                 :src="data.logo"
                 style="width: 574px"
                 alt=""
               />
+            <div class="col-md-9">
               <div class="barangay-content">
                 <div class="row">
                   <div class="col-md-3">
@@ -60,7 +60,7 @@
                     <div class="text-center">
                       <p style="font-weight: 700">
                         <b>REPUBLIC OF THE PHILIPPINES</b>
-                        <b>PROVINCE OF LAGUNA</b>
+                        <b>PROVINCE OF LAGUNA</b><br>
                         <b>CITY OF CALAMBA</b>
                       </p>
 
@@ -85,12 +85,12 @@
                   </div>
                 </div>
                 <div class="col-md-12 text-center">
-                  <h3 style="font-weight: 600; font-size: 1.5rem">
+                  <h3 style="font-weight: 600; font-size: 1.5rem;margin-top: -12px;">
                     BARANGAY CERTIFICATION <br />
-                    (Residency)
+                    (B.1 Residency)
                   </h3>
                 </div>
-                <div class="container" style="margin-top: -7%">
+                <div class="container" style="margin-top: -9%">
                   <div class="barangay-body-paragraph">
                     <p class="text-justify">
                       This is to certify that person, whose personal details
@@ -153,186 +153,65 @@
                       the following purpose/s.
                     </p>
                     <div>
-                      <table>
+                     <table>
                         <tbody>
                           <tr>
                             <td>
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input
-                                    class="form-check-input"
-                                    type="checkbox"
-                                    value=""
-                                  />
-                                  <span class="form-check-sign">
-                                    <span class="check"></span>
-                                  </span>
-                                </label>
-                              </div>
+                            <input type="checkbox" name="name1" />&nbsp;
                             </td>
-                            <td style="width: 50%">Employment Purposes</td>
+                            <td>Employment Purposes</td>
                             <td>
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input
-                                    class="form-check-input"
-                                    type="checkbox"
-                                    value=""
-                                  />
-                                  <span class="form-check-sign">
-                                    <span class="check"></span>
-                                  </span>
-                                </label>
-                              </div>
+                              <input type="checkbox" name="name4" />&nbsp;
                             </td>
                             <td>School / SSS / GSIS Reference</td>
                           </tr>
                           <tr>
                             <td>
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input
-                                    class="form-check-input"
-                                    type="checkbox"
-                                    value=""
-                                  />
-                                  <span class="form-check-sign">
-                                    <span class="check"></span>
-                                  </span>
-                                </label>
-                              </div>
+                                <input type="checkbox" name="name2" />&nbsp;
                             </td>
                             <td>Business Requirement</td>
                             <td>
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input
-                                    class="form-check-input"
-                                    type="checkbox"
-                                    value=""
-                                  />
-                                  <span class="form-check-sign">
-                                    <span class="check"></span>
-                                  </span>
-                                </label>
-                              </div>
+                              <input type="checkbox" name="name4" />&nbsp;
                             </td>
                             <td>Fire Arms / Drivers License</td>
                           </tr>
 
                           <tr>
                             <td>
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input
-                                    class="form-check-input"
-                                    type="checkbox"
-                                    value=""
-                                  />
-                                  <span class="form-check-sign">
-                                    <span class="check"></span>
-                                  </span>
-                                </label>
-                              </div>
+                               <input type="checkbox" name="name3" />&nbsp;
                             </td>
                             <td>Bank Requirement</td>
                             <td>
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input
-                                    class="form-check-input"
-                                    type="checkbox"
-                                    value=""
-                                  />
-                                  <span class="form-check-sign">
-                                    <span class="check"></span>
-                                  </span>
-                                </label>
-                              </div>
+                              <input type="checkbox" name="name4" />&nbsp;
                             </td>
                             <td>Electric / Water Connection</td>
                           </tr>
 
                           <tr>
                             <td>
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input
-                                    class="form-check-input"
-                                    type="checkbox"
-                                    value=""
-                                  />
-                                  <span class="form-check-sign">
-                                    <span class="check"></span>
-                                  </span>
-                                </label>
-                              </div>
+                               <input type="checkbox" name="name5" />&nbsp;
                             </td>
                             <td>NBI Requirement</td>
                             <td>
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input
-                                    class="form-check-input"
-                                    type="checkbox"
-                                    value=""
-                                  />
-                                  <span class="form-check-sign">
-                                    <span class="check"></span>
-                                  </span>
-                                </label>
-                              </div>
+                              <input type="checkbox" name="name6" />&nbsp;
                             </td>
                             <td>Senior Citizens Requirement</td>
                           </tr>
 
                           <tr>
                             <td>
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input
-                                    class="form-check-input"
-                                    type="checkbox"
-                                    value=""
-                                  />
-                                  <span class="form-check-sign">
-                                    <span class="check"></span>
-                                  </span>
-                                </label>
-                              </div>
+                              <input type="checkbox" name="name7" />&nbsp;
                             </td>
                             <td>Medical Aid Requirement</td>
                             <td>
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input
-                                    class="form-check-input"
-                                    type="checkbox"
-                                    value=""
-                                  />
-                                  <span class="form-check-sign">
-                                    <span class="check"></span>
-                                  </span>
-                                </label>
-                              </div>
+                              <input type="checkbox" name="name8" />&nbsp;
                             </td>
                             <td>Overseas / Travel Requirement</td>
                           </tr>
 
                           <tr>
                             <td>
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <input
-                                    class="form-check-input"
-                                    type="checkbox"
-                                    value=""
-                                  />
-                                  <span class="form-check-sign">
-                                    <span class="check"></span>
-                                  </span>
-                                </label>
-                              </div>
+                              <input type="checkbox" name="name9" />&nbsp;
                             </td>
                             <td>Other Requirements (Specify):</td>
                             <td></td>
@@ -363,20 +242,18 @@
                     <div class="row">
                       <div class="col-md-6">
                         <div class="pull-left">Issued by:</div>
-                        <br />
+                        <br /><br />
                         <p>
-                          <u>
-                            <b style="text-transform: uppercase"
-                              >{{data.barangay_sanggunian[data.barangay_sanggunian.length - 2].barangay_name}}
-                            </b></u
-                          >
+                           <b style="text-transform: uppercase"><u>
+                              {{data.barangay_sanggunian[data.barangay_sanggunian.length - 2].barangay_name}}
+                            </u></b>
                           <br />
                           Barangay Secretary
                         </p>
                       </div>
                       <div class="col-md-6">
                         <div class="pull-left">Approved by:</div>
-                        <br />
+                        <br /><br />
                         <p>
                           <b style="text-transform: uppercase"
                             ><u
@@ -454,6 +331,7 @@
   margin-top: 25%;
   opacity: 0.2;
   position: absolute;
+  margin-left: 25%;
 }
 .barangay-finger-print {
   margin-right: 10%;

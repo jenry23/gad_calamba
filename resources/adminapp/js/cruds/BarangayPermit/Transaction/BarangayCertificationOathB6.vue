@@ -60,7 +60,7 @@
                     <div class="text-center">
                       <p style="font-weight: 700">
                         <b>REPUBLIC OF THE PHILIPPINES</b>
-                        <b>PROVINCE OF LAGUNA</b>
+                        <b>PROVINCE OF LAGUNA</b><br>
                         <b>CITY OF CALAMBA</b>
                       </p>
 
@@ -144,18 +144,17 @@
                           <br />
                           <br />
                           <p>
-                            <u>
-                              <b style="text-transform: uppercase"
-                                >{{data.barangay_sanggunian[data.barangay_sanggunian.length - 2].barangay_name}}
-                              </b></u
-                            >
+
+                              <b style="text-transform: uppercase"> <u>
+                                {{data.barangay_sanggunian[data.barangay_sanggunian.length - 2].barangay_name}}
+                              </u></b>
                             <br />
                             Barangay Secretary
                           </p>
                         </div>
                         <div class="col-md-6">
                           <div class="pull-left">Approved by:</div>
-						  <br />
+                          <br />
                           <br />
                           <p>
                             <b style="text-transform: uppercase"

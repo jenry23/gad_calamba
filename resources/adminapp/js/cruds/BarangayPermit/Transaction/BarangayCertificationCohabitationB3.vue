@@ -7,7 +7,7 @@
           <div class="row">
                 <div class="col-md-3" style="border-right: 3px solid black;font-size: 0.7rem;">
               <b>
-                <center>
+                <center style="margin-top: 63%;">
                   <div
                     v-for="sanggunian in data.barangay_sanggunian"
                     :key="sanggunian.id"
@@ -40,13 +40,13 @@
                 </center>
               </b>
             </div>
-            <div class="col-md-9">
-              <img
+             <img
                 class="barangay-watermark"
                 :src="data.logo"
                 style="width: 574px"
                 alt=""
               />
+            <div class="col-md-9">
               <div class="barangay-content">
                 <div class="row">
                   <div class="col-md-3">
@@ -60,7 +60,7 @@
                     <div class="text-center">
                       <p style="font-weight: 700">
                         <b>REPUBLIC OF THE PHILIPPINES</b>
-                        <b>PROVINCE OF LAGUNA</b>
+                        <b>PROVINCE OF LAGUNA</b><br>
                         <b>CITY OF CALAMBA</b>
                       </p>
 
@@ -84,14 +84,14 @@
                     />
                   </div>
                   <div class="col-md-12 text-center">
-                    <h3 style="font-weight: 600; font-size: 1.5rem">
+                    <h3 style="font-weight: 600; font-size: 1.5rem; margin-top: -12px;">
                       BARANGAY CERTIFICATION<br />
                       (B.3 Cohabitation)
                     </h3>
                   </div>
-                  <div class="container" style="margin-top: -7%">
+                  <div class="container" style="margin-top: -9%">
                     <div class="barangay-body-paragraph">
-                      <h4 class="text-justify">
+                      <p class="text-justify">
                         <b>
                           This is to certify that {{ data.full_name }} of legal
                           age, is a bonafide and
@@ -99,23 +99,23 @@
                           He/She is residing at {{data.address}}, Barangay
                           {{data.barangay.barangay_name}}, Calamba City, Laguna.
                         </b>
-                      </h4>
+                      </p>
                       <br />
-                      <h4 class="text-justify">
+                      <p class="text-justify">
                         <b>
                           This is to certify further that the aforementioned
                           person is the live-in partner of
-                          <input type="text" style="width: 29%" />. They are
+                          <input type="text" style="width: 60%" />. They are
                           living together since
-                          <input type="text" style="width: 20%" />.
+                          <input type="text" style="width: 30%" />.
                         </b>
-                      </h4>
-                      <h4 class="text-justify mt-4">
+                      </p>
+                      <p class="text-justify mt-4">
                         <b>
                           This certification is being issued for whatever legal
                           purposes this may best serve.
                         </b>
-                      </h4>
+                      </p>
                       <p class="text-justify mt-3">
                         Given this
                         {{ this.date.toLocaleString('en-us', { month:'long'}) }}
@@ -133,20 +133,18 @@
                       <div class="row">
                         <div class="col-md-6">
                           <div class="pull-left">Issued by:</div>
-                          <br />
+                          <br /> <br /> <br />
                           <p>
-                            <u>
-                              <b style="text-transform: uppercase"
-                                >{{data.barangay_sanggunian[data.barangay_sanggunian.length - 2].barangay_name}}
-                              </b></u
-                            >
+                              <b style="text-transform: uppercase"><u>
+                                {{data.barangay_sanggunian[data.barangay_sanggunian.length - 2].barangay_name}}
+                              </u></b>
                             <br />
                             Barangay Secretary
                           </p>
                         </div>
                         <div class="col-md-6">
                           <div class="pull-left">Approved by:</div>
-                          <br />
+                          <br /> <br /> <br />
                           <p>
                             <b style="text-transform: uppercase"
                               ><u
@@ -209,6 +207,7 @@
   margin-top: 25%;
   opacity: 0.2;
   position: absolute;
+  margin-left: 25%;
 }
 .barangay-finger-print {
   margin-right: 10%;
