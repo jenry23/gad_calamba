@@ -7,7 +7,7 @@
           <div class="row">
                 <div class="col-md-3" style="border-right: 3px solid black;font-size: 0.7rem;">
               <b>
-                <center>
+                <center style="margin-top: 63%;">
                   <div
                     v-for="sanggunian in data.barangay_sanggunian"
                     :key="sanggunian.id"
@@ -84,14 +84,14 @@
                     />
                   </div>
                   <div class="col-md-12 text-center">
-                    <h3 style="font-weight: 600; font-size: 1.5rem">
+                    <h3 style="font-weight: 600; font-size: 1.5rem; margin-top: -12px;">
                       OATH OF UNDERTAKING
                     </h3>
                   </div>
                   <!-- <div class="barangay-finger-print">
 										<img src="/transaction/finger_print.png" class="pull-right" />
 									</div> -->
-                  <div class="container" style="margin-top: -7%">
+                  <div class="container" style="margin-top: -9%">
                     <div class="barangay-body-paragraph">
                       <p class="text-justify">
                         I, {{ data.full_name }}, {{ data.age }} of age, resident
