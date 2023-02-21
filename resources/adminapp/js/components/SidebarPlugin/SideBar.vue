@@ -17,9 +17,12 @@
 			<ul class="nav">
 				<slot>
 					<template v-for="(item, i) in sidebarLinks" class="sidebar">
-						<sidebar-item-group v-if="item.children && $can(item.gate)" :key="`group-${i}`" :item="item">
+						<div v-if="item.title === 'Services' && barangay.hotline_no !== null">
+						</div>
+						<div v-else-if="item.children && item.children.title === 'Barangay Records' && barangay.hotline_no !== null">
+						</div>
+						<sidebar-item-group v-else-if="item.children && $can(item.gate)" :key="`group-${i}`" :item="item">
 						</sidebar-item-group>
-
 						<sidebar-link v-else :key="`item-${i}`" :item="item"></sidebar-link>
 					</template>
 				</slot>
@@ -86,6 +89,7 @@
 			return {
 				user: [],
 				roles: [],
+				barangay: [],
 				backgroundColor: 'white',
 				itemColor: 'green',
 			}
@@ -120,6 +124,7 @@
 				axios.get('users/get-user-details').then(response => {
 					this.user = response.data.data
 					this.roles = this.user.roles[0];
+					this.barangay = this.user.barangays
 					if (this.roles.title === 'Barangay') {
 						this.backgroundColor = 'white';
 						this.itemColor = 'green';
