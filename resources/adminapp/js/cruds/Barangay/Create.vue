@@ -53,7 +53,6 @@
                       @input="updateAddress"
                       @focus="focusField('address')"
                       @blur="clearFocus"
-                      required
                     />
                   </div>
                   <div
@@ -71,7 +70,6 @@
                       @input="updateHotlineNo"
                       @focus="focusField('hotline_no')"
                       @blur="clearFocus"
-                      required
                     />
                   </div>
                 </div>
