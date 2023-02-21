@@ -17,7 +17,7 @@
 			<ul class="nav">
 				<slot>
 					<template v-for="(item, i) in sidebarLinks" class="sidebar">
-						<div v-if="barangay && barangay.hotline_no !== null && item.title === 'Services'">
+						<div v-if="barangay && barangay.hotline_no === null && item.title === 'Services'">
 						</div>
 						<sidebar-item-group v-else-if="item.children && $can(item.gate)" :key="`group-${i}`" :item="item">
 						</sidebar-item-group>
