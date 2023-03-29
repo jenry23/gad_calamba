@@ -96,6 +96,17 @@
                                                 @blur="clearFocus"
                                                 required
                                             />
+											<label>Birthdate</label>
+											<datetime-picker
+												class="form-control"
+												type="text"
+												:value="entry.birth_date"
+                                                picker="monthyear"
+												@input="updateBirthdate"
+												@focus="focusField('birthdate')"
+												@blur="clearFocus"
+											>
+											</datetime-picker>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="label">Religion</label>
@@ -150,6 +161,16 @@
                                                 class="form-control"
                                                 name="age_from"
                                             />
+                                            <label>Educational Status</label>
+                                                <v-select
+                                                    name="educational_status"
+                                                    label="educational_status_name"
+                                                    :value="entry.educational_status"
+                                                    :options="lists.educational_status"
+                                                    @input="updateEducationalStatus"
+                                                    @focus="focusField('educational_status')"
+                                                    @blur="clearFocus"
+                                                />
                                         </div>
                                         <br/><br/>
                                         <div class="col-md-4">
@@ -439,6 +460,7 @@ import { each } from 'lodash'
 import { mapGetters, mapActions } from 'vuex'
 import PieChart from "@components/Charts/Pie";
 import DatatablesFields from '@components/Datatables/DatatablesFields'
+import DatatableDateFormat from '@components/Datatables/DatatableDateFormat'
 import DatatablesFieldsId from '@components/Datatables/DatatablesFieldsId'
 import DatatablesFieldsMultiple from '@components/Datatables/DatatablesFieldsMultiple'
 import TranslatedHeader from '@components/Datatables/TranslatedHeader'
@@ -510,6 +532,12 @@ export default {
                     field: 'barangay.barangay_name',
                     tdComp: DatatablesFields,
                     thComp: TranslatedHeader,
+                },
+                {
+                    title: 'Birthday',
+                    field: 'birth_date',
+                    thComp: TranslatedHeader,
+                    tdComp: DatatableDateFormat,
                 },
                 {
                     title: 'Age',
@@ -811,6 +839,8 @@ export default {
             'setBoosterVaccination',
             'setMedicine',
             'setPregnancyAge',
+            'setBirthdate',
+            'setEducationalStatus',
         ]),
 
         async fetchData () {
@@ -919,6 +949,12 @@ export default {
         },
         updateAgeFrom (e) {
             this.setAgeFrom(e.target.value)
+        },
+        updateEducationalStatus (value) {
+            this.setEducationalStatus(value)
+        },
+        updateBirthdate (e) {
+            this.setBirthdate(e.target.value)
         },
         submitForm () {
             this.searchData()

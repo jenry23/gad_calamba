@@ -86,7 +86,7 @@
                   <div class="col-md-12 text-center">
                     <h3 style="font-weight: 600; font-size: 1.4rem;margin-top: -12px;">
                       BARANGAY CERTIFICATION<br />
-                      (B.5 RA 11261 or First Time Jobseekers Act of 2019)
+                      (RA 11261 or First Time Jobseekers Act of 2019)
                     </h3>
                   </div>
                   <div class="container" style="margin-top: -9%">

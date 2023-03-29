@@ -87,7 +87,7 @@
                 <div class="col-md-12 text-center">
                   <h3 style="font-weight: 600; font-size: 1.5rem;margin-top: -12px;">
                     BARANGAY CERTIFICATION <br />
-                    (B.1 Residency)
+                    (Residency)
                   </h3>
                 </div>
                 <div class="container" style="margin-top: -9%">

@@ -29,6 +29,8 @@ function initialState() {
         booster_vaccination: '',
         pregnancy_age: '',
         medicine: '',
+        birth_date: '',
+        educational_status: '',
       },
       lists: {
         barangay: [],
@@ -47,6 +49,7 @@ function initialState() {
         booster_vaccination: [],
         other_info: [],
         medicine: [],
+        educational_status: [],
       },
       others:{
         purok:[],
@@ -218,6 +221,12 @@ function initialState() {
     setDescription({ commit }, value) {
       commit('setDescription', value)
     },
+    setBirthdate({ commit }, value) {
+      commit('setBirthdate', value)
+    },
+    setEducationalStatus({ commit }, value) {
+      commit('setEducationalStatus', value)
+    },
     setCreatedAt({ commit }, value) {
       commit('setCreatedAt', value)
     },
@@ -326,6 +335,12 @@ function initialState() {
     },
     setMedicine (state, value) {
       state.entry.medicine = value
+    },
+    setBirthdate (state, value) {
+      state.entry.birth_date = value
+    },
+    setEducationalStatus (state, value) {
+      state.entry.educational_status = value
     },
     setCreatedAt(state, value) {
       state.entry.created_at = value

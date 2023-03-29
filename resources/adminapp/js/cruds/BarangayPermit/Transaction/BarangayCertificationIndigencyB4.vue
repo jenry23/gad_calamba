@@ -86,7 +86,7 @@
                   <div class="col-md-12 text-center">
                     <h3 style="font-weight: 600; font-size: 1.5rem;margin-top: -12px;">
                       BARANGAY CERTIFICATION<br />
-                      (B.4 Indigency)
+                      (Indigency)
                     </h3>
                   </div>
                   <div class="container" style="margin-top: -9%">
@@ -177,6 +177,18 @@
                               > </b
                             ><br />
                             Barangay Chairman
+                            <br><br>
+                            <div class="col-md-10">
+                              <v-easy-camera
+                                v-model="picture"
+                                :startOnMounted="startCamera"
+                                ref="camera"
+                              >
+                              </v-easy-camera>
+                              <button class="btn btn-success" @click="startPicture">
+                                Photo
+                              </button>
+                            </div>
                           </p>
                         </div>
                       </div>
@@ -251,7 +263,12 @@ input {
 }
 </style>
 <script>
+import EasyCamera from 'easy-vue-camera';
+
 export default {
+    components: {
+        'v-easy-camera': EasyCamera
+    },
     props: {
         data: {
             type: Object,
@@ -260,8 +277,15 @@ export default {
     },
     data () {
         return {
-            date: new Date()
+          date: new Date(),
+          picture: '',
+          startCamera: true,
         }
-    },
+  },
+  methods: {
+        startPicture () {
+            this.$refs.camera.snap();
+        }
+  }
 }
 </script>

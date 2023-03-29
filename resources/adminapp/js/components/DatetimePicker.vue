@@ -13,7 +13,7 @@ export default {
       type: String,
       default: 'datetime',
       validator: value => {
-        let acceptedValues = ['datetime', 'date', 'time']
+        let acceptedValues = ['datetime', 'date', 'time', 'monthyear']
         return acceptedValues.indexOf(value) !== -1
       }
     }
@@ -26,15 +26,17 @@ export default {
   mounted() {
     let el = this.$refs[this.ref]
     let format = this.$headMeta('moment_datetime_format')
-
     if (this.picker === 'date') {
-      format = this.$headMeta('moment_date_format')
+      format = 'DD MMMM YYYY'
+        // this.$headMeta('moment_date_format')
     } else if (this.picker === 'time') {
       format = this.$headMeta('moment_time_format')
+    } else if (this.picker === 'monthyear') {
+      format = 'MM YYYY';
     }
 
     this.$jquery(el).datetimepicker({
-      format: 'DD MMMM YYYY',
+      format: format,
       icons: {
         time: 'fa fa-clock-o',
         date: 'fa fa-calendar',

@@ -7,6 +7,7 @@ use App\Http\Resources\Admin\ReportsResource;
 use App\Models\Barangay;
 use App\Models\CivilStatus;
 use App\Models\EducationalAttaintment;
+use App\Models\EducationalStatus;
 use App\Models\Ethnicity;
 use App\Models\Gad;
 use App\Models\Gender;
@@ -68,6 +69,7 @@ class ReportsApiController extends Controller
         $house_ownership = HouseOwnership::all();
         $vaccination = Vaccination::all();
         $medicine = Medicine::all();
+        $educational_status = EducationalStatus::all();
 
         return response([
             'meta' => [
@@ -84,6 +86,7 @@ class ReportsApiController extends Controller
                 'house_ownership' => $house_ownership,
                 'vaccination' => $vaccination,
                 'medicine' => $medicine,
+                'educational_status' => $educational_status,
                 'user' => Auth::user()
             ]
         ]);
@@ -197,26 +200,28 @@ class ReportsApiController extends Controller
     public function getData(Request $request)
     {
         $request_age = $request->age_from == 0 ? 1 : $request->age_from;
-        $barangay_id = !empty($request->barangay) ? json_decode($request->barangay) : '';
-        $purok_id = !empty($request->purok) ? json_decode($request->purok) : '';
-        $sitio_id = !empty($request->sitio) ? json_decode($request->sitio) : '';
-        $sector_id = !empty($request->sector) ? json_decode($request->sector) : '';
-        $gender_id =  !empty($request->gender) ? json_decode($request->gender) : '';
+        $barangay_id = !empty($request->barangay) ? $request->barangay : '';
+        $purok_id = !empty($request->purok) ? $request->purok : '';
+        $sitio_id = !empty($request->sitio) ? $request->sitio : '';
+        $sector_id = !empty($request->sector) ? $request->sector : '';
+        $gender_id =  !empty($request->gender) ? $request->gender : '';
         $age_from = !empty($request->age_from) ? Carbon::now()->subYears($request_age)->format('Y-m-d') : '';
         $age_to = !empty($request->age_to) ? Carbon::now()->subYears($request->age_to)->format('Y-m-d') : '';
-        $household_id = !empty($request->household) ? json_decode($request->household) : '';
-        $gender_preference = !empty($request->gender_preference) ? json_decode($request->gender_preference) : '';
-        $civil_status = !empty($request->civil_status) ? json_decode($request->civil_status) : '';
-        $educational_attaintment = !empty($request->educational_attaintment) ? json_decode($request->educational_attaintment) : '';
-        $ethnicity = !empty($request->ethnicity) ? json_decode($request->ethnicity) : '';
-        $religion = !empty($request->religion) ? json_decode($request->religion) : '';
-        $occupation = !empty($request->occupation) ? json_decode($request->occupation) : '';
-        $house_ownership = !empty($request->house_ownership) ? json_decode($request->house_ownership) : '';
+        $household_id = !empty($request->household) ? $request->household : '';
+        $gender_preference = !empty($request->gender_preference) ? $request->gender_preference : '';
+        $civil_status = !empty($request->civil_status) ? $request->civil_status : '';
+        $educational_attaintment = !empty($request->educational_attaintment) ? $request->educational_attaintment : '';
+        $ethnicity = !empty($request->ethnicity) ? $request->ethnicity : '';
+        $religion = !empty($request->religion) ? $request->religion : '';
+        $occupation = !empty($request->occupation) ? $request->occupation : '';
+        $house_ownership = !empty($request->house_ownership) ? $request->house_ownership : '';
         $first_vaccination = !empty($request->first_vaccination) ? $request->first_vaccination : '';
         $second_vaccination = !empty($request->second_vaccination) ? $request->second_vaccination : '';
         $booster_vaccination = !empty($request->booster_vaccination) ? $request->booster_vaccination : '';
-        $medicine = !empty($request->medicine) ? json_decode($request->medicine) : '';
-        $pregnancy_age = !empty($request->pregnancy_age) ? json_decode($request->pregnancy_age) : '';
+        $medicine = !empty($request->medicine) ? $request->medicine : '';
+        $pregnancy_age = !empty($request->pregnancy_age) ? $request->pregnancy_age : '';
+        $birth_date = !empty($request->birth_date) ? $request->birth_date : '';
+        $educational_status = !empty($request->educational_status) ? $request->educational_status : '';
 
         $gads = Gad::with([
             'gender:id,gender_name',
@@ -234,9 +239,23 @@ class ReportsApiController extends Controller
         ])
             ->where('barangay_id', $barangay_id)
             ->when(
+                $educational_status,
+                function (Builder $query) use ($educational_status) {
+                    $query->where('educational_status_id', $educational_status);
+                }
+            )
+            ->when(
                 $sitio_id,
                 function (Builder $query) use ($sitio_id) {
                     $query->where('sitio_id', $sitio_id);
+                }
+            )
+            ->when(
+                $birth_date,
+                function (Builder $query) use ($birth_date) {
+                    [$month, $year] = explode(' ', $birth_date);
+                    $query->whereMonth('birth_date', $month);
+                    $query->whereYear('birth_date', $year);
                 }
             )
             ->when(
@@ -300,7 +319,7 @@ class ReportsApiController extends Controller
                         function (Builder $query) use ($ethnicity) {
                             $query->where('item_id', $ethnicity)->where('item_type', Ethnicity::class);
                         }
-                );
+                    );
                 }
             )
             ->when(
@@ -360,7 +379,7 @@ class ReportsApiController extends Controller
             ->paginate();
 
         $items = $gads->firstItem();
-        $gads->map(function ($gads, int $key) use ($items){
+        $gads->map(function ($gads, int $key) use ($items) {
             $gads['item_no'] = $items + $key;
         });
 
@@ -877,7 +896,7 @@ class ReportsApiController extends Controller
         $sitio = $json_data->sitio ?? '';
         $sector = $json_data->sector ?? '';
         $gender = $json_data->gender ?? '';
-        if(!empty($json_data->age_from)) {
+        if (!empty($json_data->age_from)) {
             $request_age = $json_data->age_from == 0 ? 1 : $json_data->age_from;
         }
         $age_from = !empty($request_age) ? Carbon::now()->subYears($request_age)->format('Y-m-d') : '';
