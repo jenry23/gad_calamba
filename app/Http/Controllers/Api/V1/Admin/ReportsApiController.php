@@ -245,12 +245,6 @@ class ReportsApiController extends Controller
                 }
             )
             ->when(
-                $sitio_id,
-                function (Builder $query) use ($sitio_id) {
-                    $query->where('sitio_id', $sitio_id);
-                }
-            )
-            ->when(
                 $birth_date,
                 function (Builder $query) use ($birth_date) {
                     [$month, $year] = explode(' ', $birth_date);
@@ -387,6 +381,20 @@ class ReportsApiController extends Controller
             if ($gender_id == 1) {
                 $male = Gad::where('barangay_id', $barangay_id)
                     ->when(
+                        $educational_status,
+                        function (Builder $query) use ($educational_status) {
+                            $query->where('educational_status_id', $educational_status);
+                        }
+                    )
+                    ->when(
+                        $birth_date,
+                        function (Builder $query) use ($birth_date) {
+                            [$month, $year] = explode(' ', $birth_date);
+                            $query->whereMonth('birth_date', $month);
+                            $query->whereYear('birth_date', $year);
+                        }
+                    )
+                    ->when(
                         $sitio_id,
                         function (Builder $query) use ($sitio_id) {
                             $query->where('sitio_id', $sitio_id);
@@ -509,6 +517,20 @@ class ReportsApiController extends Controller
                 $female = 0;
             } else {
                 $female = Gad::where('barangay_id', $barangay_id)
+                    ->when(
+                        $educational_status,
+                        function (Builder $query) use ($educational_status) {
+                            $query->where('educational_status_id', $educational_status);
+                        }
+                    )
+                    ->when(
+                        $birth_date,
+                        function (Builder $query) use ($birth_date) {
+                            [$month, $year] = explode(' ', $birth_date);
+                            $query->whereMonth('birth_date', $month);
+                            $query->whereYear('birth_date', $year);
+                        }
+                    )
                     ->when(
                         $sitio_id,
                         function (Builder $query) use ($sitio_id) {
@@ -635,6 +657,20 @@ class ReportsApiController extends Controller
             $male = Gad::where('barangay_id', $barangay_id)
                 ->where('gender_id', '1')
                 ->when(
+                    $educational_status,
+                    function (Builder $query) use ($educational_status) {
+                        $query->where('educational_status_id', $educational_status);
+                    }
+                )
+                ->when(
+                    $birth_date,
+                    function (Builder $query) use ($birth_date) {
+                        [$month, $year] = explode(' ', $birth_date);
+                        $query->whereMonth('birth_date', $month);
+                        $query->whereYear('birth_date', $year);
+                    }
+                )
+                ->when(
                     $sitio_id,
                     function (Builder $query) use ($sitio_id) {
                         $query->where('sitio_id', $sitio_id);
@@ -755,6 +791,20 @@ class ReportsApiController extends Controller
 
             $female = Gad::where('barangay_id', $barangay_id)
                 ->where('gender_id', '2')
+                ->when(
+                    $educational_status,
+                    function (Builder $query) use ($educational_status) {
+                        $query->where('educational_status_id', $educational_status);
+                    }
+                )
+                ->when(
+                    $birth_date,
+                    function (Builder $query) use ($birth_date) {
+                        [$month, $year] = explode(' ', $birth_date);
+                        $query->whereMonth('birth_date', $month);
+                        $query->whereYear('birth_date', $year);
+                    }
+                )
                 ->when(
                     $sitio_id,
                     function (Builder $query) use ($sitio_id) {

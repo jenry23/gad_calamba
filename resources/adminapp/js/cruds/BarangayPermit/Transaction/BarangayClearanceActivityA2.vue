@@ -167,7 +167,7 @@
                                 {{data.barangay_sanggunian[0].barangay_name}}</u
                               > </b
                             ><br />
-                            Barangay Chairman
+                            Punong Barangay
                           </p>
                         </div>
                       </div>
