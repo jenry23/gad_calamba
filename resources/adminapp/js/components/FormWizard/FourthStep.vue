@@ -279,13 +279,13 @@ export default {
             this.model.brand3 = e;
         },
         updateBrandDate1 (e) {
-            this.model.first_date_vaccination = e;
+            this.model.first_date_vaccination = e.target.value;
         },
         updateBrandDate2 (e) {
-            this.model.second_date_vaccination = e;
+            this.model.second_date_vaccination = e.target.value;
         },
         updateBrandDate3 (e) {
-            this.model.booster_date_vaccination = e;
+            this.model.booster_date_vaccination = e.target.value;
         },
         focusField (name) {
             this.activeField = name;

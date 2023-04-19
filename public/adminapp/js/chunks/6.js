@@ -976,13 +976,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.model.brand3 = e;
     },
     updateBrandDate1: function updateBrandDate1(e) {
-      this.model.first_date_vaccination = e;
+      this.model.first_date_vaccination = e.target.value;
     },
     updateBrandDate2: function updateBrandDate2(e) {
-      this.model.second_date_vaccination = e;
+      this.model.second_date_vaccination = e.target.value;
     },
     updateBrandDate3: function updateBrandDate3(e) {
-      this.model.booster_date_vaccination = e;
+      this.model.booster_date_vaccination = e.target.value;
     },
     focusField: function focusField(name) {
       this.activeField = name;
