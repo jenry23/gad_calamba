@@ -13,7 +13,7 @@ export default {
       type: String,
       default: 'datetime',
       validator: value => {
-        let acceptedValues = ['datetime', 'date', 'time', 'monthyear']
+        let acceptedValues = ['datetime', 'date', 'time', 'month']
         return acceptedValues.indexOf(value) !== -1
       }
     }
@@ -31,8 +31,8 @@ export default {
         // this.$headMeta('moment_date_format')
     } else if (this.picker === 'time') {
       format = this.$headMeta('moment_time_format')
-    } else if (this.picker === 'monthyear') {
-      format = 'MM YYYY';
+    } else if (this.picker === 'month') {
+      format = 'MM';
     }
 
     this.$jquery(el).datetimepicker({

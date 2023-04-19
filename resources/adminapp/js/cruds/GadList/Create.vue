@@ -154,6 +154,7 @@
 		methods: {
 			...mapActions('GadListSingle', ['fetchCreateData']),
 			onComplete () {
+				console.log(this.finalModel)
 				axios.post('gad', this.finalModel)
 					.then(response => {
 						this.$eventHub.$emit('create-success')

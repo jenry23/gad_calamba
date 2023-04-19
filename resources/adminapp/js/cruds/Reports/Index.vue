@@ -101,7 +101,7 @@
 												class="form-control"
 												type="text"
 												:value="entry.birth_date"
-                                                picker="monthyear"
+                                                picker="month"
 												@input="updateBirthdate"
 												@focus="focusField('birthdate')"
 												@blur="clearFocus"

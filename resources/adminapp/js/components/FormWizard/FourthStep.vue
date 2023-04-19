@@ -132,7 +132,7 @@
                                     label="vaccination_name"
                                     :key="'brand1_id-field'"
                                     :v-model="model.brand1"
-                                    :options="lists.vaccanation"
+                                    :options="lists.vaccination"
                                     @input="updateBrand1"
                                     @blur="clearFocus"
                                 />
@@ -156,7 +156,7 @@
                                     label="vaccination_name"
                                     :key="'brand2_id-field'"
                                     :v-model="model.brand2"
-                                    :options="lists.vaccanation"
+                                    :options="lists.vaccination"
                                     @input="updateBrand2"
                                     @blur="clearFocus"
                                 />
@@ -180,7 +180,7 @@
                                     label="vaccination_name"
                                     :key="'brand3_id-field'"
                                     :v-model="model.brand3"
-                                    :options="lists.vaccanation"
+                                    :options="lists.vaccination"
                                     @input="updateBrand3"
                                     @blur="clearFocus"
                                 />

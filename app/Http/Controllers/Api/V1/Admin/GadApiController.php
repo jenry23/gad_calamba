@@ -15,7 +15,7 @@ use App\Models\EducationalAttaintment;
 use App\Models\EducationalStatus;
 use App\Models\Ethnicity;
 use App\Models\Gad;
-use App\Models\Vaccanation;
+use App\Models\Vaccination;
 use App\Models\GadItemDetails;
 use App\Models\Gender;
 use App\Models\GenderPreference;
@@ -70,12 +70,12 @@ class GadApiController extends Controller
         // Sustained if data is family members
         // Household No House Type Resident And Barangay
         $household_head = Gad::where('household_no', $request->household_no)->first();
-        $barangay_id = $household_head ? $household_head->barangay_id : $request->barangay_id['id'];
-        $building_no = $household_head ? $household_head->building_no : $request->building_no;
-        $house_unit = $household_head ? $household_head->house_unit : $request->house_unit;
-        $block_lot_house_id = $household_head ? $household_head->block_lot_house_id : $request->block_lot_house_id;
-        $sitio_id = $household_head ? $household_head->sitio_id : $request->sitio['id'];
-        $purok_id = $household_head ? $household_head->purok_id : $request->purok_id['id'];
+        $barangay_id = $household_head ? $household_head->barangay_id : $request->barangay_id['id'] ?? null;
+        $building_no = $household_head ? $household_head->building_no : $request->building_no ?? null;
+        $house_unit = $household_head ? $household_head->house_unit : $request->house_unit ?? null;
+        $block_lot_house_id = $household_head ? $household_head->block_lot_house_id : $request->block_lot_house_id ?? null;
+        $sitio_id = $household_head ? $household_head->sitio_id : $request->sitio['id'] ?? null;
+        $purok_id = $household_head ? $household_head->purok_id : $request->purok_id['id'] ?? null;
         $birthday = $request->birthdate ? Carbon::parse($request->birthdate)->format('Y-m-d') : null;
         $full_name = substr(trim($request->first_name), 0, 1) . substr(trim($request->middle_name), 0, 1) . substr(trim($request->last_name), 0, 1);
 
@@ -92,10 +92,10 @@ class GadApiController extends Controller
             "household_id" => $request->household_id ? $request->household_id['id'] : null,
             "gender_id" => $request->gender_id ? $request->gender_id['id'] : null,
             "civil_status_id" => $request->civil_status_id ? $request->civil_status_id['id'] : null,
-            "spouse_first_name" => $request->spouse_first_name,
-            "spouse_middle_name" => $request->spouse_middle_name,
-            "spouse_last_name" => $request->spouse_last_name,
-            "birthdate" => $birthday,
+            "spouse_first_name" => $request->spouse_first_name ?? null,
+            "spouse_middle_name" => $request->spouse_middle_name ?? null,
+            "spouse_last_name" => $request->spouse_last_name ?? null,
+            "birthdate" => $birthday ?? null,
             "gender_preference_id" => $request->gender_preference_id ? $request->gender_preference_id['id'] : null,
             "valid_id" => $request->valid_id ? $request->valid_id['id'] : null,
             "sector_id" => $request->sector_id ? $request->sector_id['id'] : null,
@@ -108,11 +108,11 @@ class GadApiController extends Controller
             "political_province_registered_id" => $request->political_province_registered_id ? $request->political_province_registered_id['id'] : null,
             "political_brgy_registered" => $request->political_brgy_registered ? $request->political_brgy_registered['id'] : null,
             "political_precinct_no" => $request->precinct_no ?? null,
-            "building_no" => $building_no,
-            "house_unit" => $house_unit,
-            "block_lot_house_id" => $block_lot_house_id,
-            "sitio_id" => $sitio_id,
-            "purok_id" => $purok_id,
+            "building_no" => $building_no ?? null,
+            "house_unit" => $house_unit ?? null,
+            "block_lot_house_id" => $block_lot_house_id ?? null,
+            "sitio_id" => $sitio_id ?? null,
+            "purok_id" => $purok_id ?? null,
             "barangay_id" => $barangay_id,
             "calamba_residence_year" => !empty($request->calamba_residence_year) ? Carbon::parse($request->calamba_residence_year)->format('Y-m-d') : null,
             "barangay_residence_year" => !empty($request->barangay_residence_year) ? Carbon::parse($request->barangay_residence_year)->format('Y-m-d') : null,
@@ -135,7 +135,7 @@ class GadApiController extends Controller
             'pregnancy_age' => $request->pregnancy_age ?? null,
             'prental_checkup' => $request->prental_checkup ?? null,
             'postnatal_checkup' => $request->postnatal_checkup ?? null,
-            'household_no' => $request->household_no
+            'household_no' => $request->household_no ?? null
         );
 
 
@@ -224,7 +224,7 @@ class GadApiController extends Controller
         $hard_skill = HardSkill::all();
         $hobbies = Hobbies::all();
         $sports = Sports::all();
-        $vaccanation = Vaccanation::all();
+        $vaccination = Vaccination::all();
         $appliance = Appliances::all();
         $house_ownership = HouseOwnership::all();
         $house_type = HouseType::all();
@@ -269,7 +269,7 @@ class GadApiController extends Controller
                 'hard_skill' => $hard_skill,
                 'hobbies' => $hobbies,
                 'sports' => $sports,
-                'vaccanation' => $vaccanation,
+                'vaccination' => $vaccination,
                 'appliance' =>  $appliance,
                 'house_ownership' => $house_ownership,
                 'house_type' => $house_type,
@@ -330,7 +330,7 @@ class GadApiController extends Controller
         $hard_skill = HardSkill::all();
         $hobbies = Hobbies::all();
         $sports = Sports::all();
-        $vaccanation = Vaccanation::all();
+        $vaccination = Vaccination::all();
         $appliance = Appliances::all();
         $house_ownership = HouseOwnership::all();
         $house_type = HouseType::all();
@@ -375,7 +375,7 @@ class GadApiController extends Controller
                 'hard_skill' => $hard_skill,
                 'hobbies' => $hobbies,
                 'sports' => $sports,
-                'vaccanation' => $vaccanation,
+                'vaccination' => $vaccination,
                 'appliance' =>  $appliance,
                 'house_ownership' => $house_ownership,
                 'house_type' => $house_type,

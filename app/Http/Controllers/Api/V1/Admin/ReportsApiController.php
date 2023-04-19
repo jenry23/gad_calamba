@@ -247,9 +247,7 @@ class ReportsApiController extends Controller
             ->when(
                 $birth_date,
                 function (Builder $query) use ($birth_date) {
-                    [$month, $year] = explode(' ', $birth_date);
-                    $query->whereMonth('birth_date', $month);
-                    $query->whereYear('birth_date', $year);
+                    $query->whereMonth('birth_date', $birth_date);
                 }
             )
             ->when(
@@ -389,9 +387,7 @@ class ReportsApiController extends Controller
                     ->when(
                         $birth_date,
                         function (Builder $query) use ($birth_date) {
-                            [$month, $year] = explode(' ', $birth_date);
-                            $query->whereMonth('birth_date', $month);
-                            $query->whereYear('birth_date', $year);
+                            $query->whereMonth('birth_date', $birth_date);
                         }
                     )
                     ->when(
@@ -526,9 +522,7 @@ class ReportsApiController extends Controller
                     ->when(
                         $birth_date,
                         function (Builder $query) use ($birth_date) {
-                            [$month, $year] = explode(' ', $birth_date);
-                            $query->whereMonth('birth_date', $month);
-                            $query->whereYear('birth_date', $year);
+                            $query->whereMonth('birth_date', $birth_date);
                         }
                     )
                     ->when(
@@ -665,9 +659,7 @@ class ReportsApiController extends Controller
                 ->when(
                     $birth_date,
                     function (Builder $query) use ($birth_date) {
-                        [$month, $year] = explode(' ', $birth_date);
-                        $query->whereMonth('birth_date', $month);
-                        $query->whereYear('birth_date', $year);
+                        $query->whereMonth('birth_date', $birth_date);
                     }
                 )
                 ->when(
@@ -800,9 +792,7 @@ class ReportsApiController extends Controller
                 ->when(
                     $birth_date,
                     function (Builder $query) use ($birth_date) {
-                        [$month, $year] = explode(' ', $birth_date);
-                        $query->whereMonth('birth_date', $month);
-                        $query->whereYear('birth_date', $year);
+                        $query->whereMonth('birth_date', $birth_date);
                     }
                 )
                 ->when(
