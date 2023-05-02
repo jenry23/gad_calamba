@@ -9,7 +9,7 @@
 						</div>
 						<h4 class="card-title">
 							Table
-							<strong>Gad</strong>
+							<strong>Household Deceased</strong>
 						</h4>
 					</div>
 					<div class="card-body">
@@ -63,7 +63,8 @@
 </template>
 
 <script>
-	import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
+import DatatablesFields from '@components/Datatables/DatatablesFields'
 	import DatatableActions from '@components/Datatables/DatatableActions'
 	import TranslatedHeader from '@components/Datatables/TranslatedHeader'
 	import HeaderSettings from '@components/Datatables/HeaderSettings'
@@ -72,39 +73,38 @@
 	export default {
 		components: {
 			GlobalSearch,
-			HeaderSettings
+			HeaderSettings,
+			DatatablesFields
 		},
 		data () {
 			return {
 				columns: [
 					{
-						title: 'ID',
+						title: 'Gad ID',
 						field: 'id',
 						thComp: TranslatedHeader,
 						sortable: true,
 					},
 					{
-						title: 'First Name',
-						field: 'first_name',
+						title: 'Full Name',
+						field: 'full_name',
 						thComp: TranslatedHeader,
 						sortable: true
 					},
 					{
-						title: 'Civil Status',
-						field: 'civil_status_id',
+						title: 'Address',
+						field: 'address',
 						thComp: TranslatedHeader,
 						sortable: true
 					},
 					{
-						title: 'Actions',
+						title: 'Barangay',
+						field: 'barangay.barangay_name',
 						thComp: TranslatedHeader,
-						tdComp: DatatableActions,
-						visible: true,
-						thClass: 'text-right',
-						tdClass: 'text-right td-actions',
+						tdComp: DatatablesFields
 					}
 				],
-				query: { sort: 'id', order: 'desc', limit: 100, s: '' },
+				query: { sort: 'id', order: 'desc', limit: 100, s: '', isDeleted: 1 },
 				xprops: {
 					module: 'GadListIndex',
 					route: 'gad_list',
@@ -120,8 +120,17 @@
 		},
 		mounted () {
 		},
+		watch: {
+			query: {
+			handler(query) {
+				this.setQuery(query)
+				this.fetchIndexData()
+			},
+			deep: true
+			}
+		},
 		methods: {
-			...mapActions('GadListIndex', ['fetchShowExpensesAccount', 'resetState', 'resetState', 'setQuery', 'setExpense']),
+			...mapActions('GadListIndex', ['fetchIndexData', 'resetState', 'resetState', 'setQuery']),
 			focusField (name) {
 				this.activeField = name
 			},

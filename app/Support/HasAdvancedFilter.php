@@ -13,6 +13,7 @@ trait HasAdvancedFilter
             'order_direction' => request('order', 'desc'),
             'limit'           => request('limit', 10),
             's'               => request('s', null),
+            'is_deleted'      => request('isDeleted', null)
         ])
             ->paginate(request('limit', 10));
     }
@@ -26,6 +27,7 @@ trait HasAdvancedFilter
             'order_direction' => 'sometimes|required|in:asc,desc',
             'limit'           => 'sometimes|required|integer|min:1',
             's'               => 'sometimes|nullable|string',
+            'is_deleted'      => 'sometimes|nullable|integer|min:1',
 
             // advanced filter
             'filter_match' => 'sometimes|required|in:and,or',

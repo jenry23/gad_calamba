@@ -1551,6 +1551,13 @@
 						>
 							{{ $t('global.save') }}
 						</vue-button-spinner>
+						<button
+							type="button"
+							class="btn btn-danger"
+							@click="isDeceased"
+						>
+						Deceased
+						</button>
 						<!-- <a href="javascript:;" class="btn btn-info btn-round"
                         >Follow</a
                     > -->
@@ -2036,6 +2043,27 @@ option:disabled {
 						_.delay(() => {
 							this.status = "";
 						}, 3000);
+					});
+			},
+
+			isDeceased () {
+				let id = this.$route.params.id;
+
+				axios.post('gad/deceased', { id : id }).then(response => {
+					this.$eventHub.$emit('delete-success')
+					this.$router.push({ name: 'dashboard' })
+				}).catch(error => {
+						this.$swal({
+							title: 'Error',
+							text: error.response.data.message,
+							type: 'warning',
+							showCancelButton: true,
+							focusCancel: true,
+							reverseButtons: true
+						})
+						this.errors = true;
+					}).finally(() => {
+						this.loading = false
 					});
 			},
 

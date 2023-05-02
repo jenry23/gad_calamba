@@ -1,7 +1,7 @@
 const set = key => (state, val) => {
     state[key] = val
   }
-  
+
   function initialState() {
     return {
       data: [],
@@ -10,17 +10,17 @@ const set = key => (state, val) => {
       loading: false
     }
   }
-  
+
   const route = 'gad'
-  
+
   const getters = {
     data: state => state.data,
     total: state => state.total,
     loading: state => state.loading
   }
-  
+
   const actions = {
-    fetchIndexData({ commit, state }) {
+    fetchIndexData ({ commit, state }) {
       commit('setLoading', true)
       axios
         .get(route, { params: state.query })
@@ -80,7 +80,7 @@ const set = key => (state, val) => {
       commit('resetState')
     }
   }
-  
+
   const mutations = {
     setData: set('data'),
     setTotal: set('total'),
@@ -93,7 +93,7 @@ const set = key => (state, val) => {
       Object.assign(state, initialState())
     }
   }
-  
+
   export default {
     namespaced: true,
     state: initialState,
@@ -101,4 +101,3 @@ const set = key => (state, val) => {
     actions,
     mutations
   }
-  

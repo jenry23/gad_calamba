@@ -22,9 +22,18 @@ class FilterQueryBuilder
             }
         }
 
+        $this->isDeleted($query, $data);
+
         $this->makeOrder($query, $data);
 
         return $query;
+    }
+
+    protected function isDeleted($query, $data)
+    {
+        if ($data['is_deleted']) {
+            $query->with(['barangay'])->onlyTrashed();
+        }
     }
 
     protected function makeOrder($query, $data)
@@ -32,8 +41,7 @@ class FilterQueryBuilder
         if ($this->isNestedColumn($data['order_column'])) {
             [$relationship, $column] = explode('.', $data['order_column']);
             $callable                = Str::camel($relationship);
-            $belongs                 = $this->model->{$callable}(
-            );
+            $belongs                 = $this->model->{$callable}();
             $relatedModel = $belongs->getModel();
             $relatedTable = $relatedModel->getTable();
             $as           = "prefix_{$relatedTable}";
@@ -59,6 +67,7 @@ class FilterQueryBuilder
 
     protected function makeFilter($query, $filter)
     {
+
         if ($this->isNestedColumn($filter['column'])) {
             [$relation, $filter['column']] = explode('.', $filter['column']);
             $callable                      = Str::camel($relation);

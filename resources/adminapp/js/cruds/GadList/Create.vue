@@ -158,7 +158,6 @@
 				axios.post('gad', this.finalModel)
 					.then(response => {
 						this.$eventHub.$emit('create-success')
-						console.log(response.data.data)
 						this.$router.push({
 							name: 'gad_list.household', params: { id : response.data.data.household_no}
 						});

@@ -53,6 +53,7 @@ use Maatwebsite\Excel\Concerns\ToCollection;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
+
 class ImportGads implements
     ToCollection,
     WithHeadingRow,
@@ -98,26 +99,26 @@ class ImportGads implements
                         $third_vaccine = null;
                         $dob = null;
 
-                        if($row["date_of_1st_dosage_covid_19_vaccination_format_mmddyyyy"]) {
+                        if ($row["date_of_1st_dosage_covid_19_vaccination_format_mmddyyyy"]) {
                             $first_vaccine = is_string($row["date_of_1st_dosage_covid_19_vaccination_format_mmddyyyy"]) ?
                                 $row["date_of_1st_dosage_covid_19_vaccination_format_mmddyyyy"] :
                                 Date::excelToDateTimeObject($row["date_of_1st_dosage_covid_19_vaccination_format_mmddyyyy"])->format('Y-m-d');
                         }
 
-                        if($row['date_of_2nd_dosage_covid_19_vaccination_format_mmddyyyy']) {
+                        if ($row['date_of_2nd_dosage_covid_19_vaccination_format_mmddyyyy']) {
                             $second_vaccine = is_string($row["date_of_2nd_dosage_covid_19_vaccination_format_mmddyyyy"]) ?
                                 $row["date_of_2nd_dosage_covid_19_vaccination_format_mmddyyyy"] :
                                 Date::excelToDateTimeObject($row["date_of_2nd_dosage_covid_19_vaccination_format_mmddyyyy"]);
                         }
 
-                        if($row["date_of_covid_booster_format_mmddyyyy"]) {
+                        if ($row["date_of_covid_booster_format_mmddyyyy"]) {
                             $third_vaccine = is_string($row["date_of_covid_booster_format_mmddyyyy"]) ?
                                 $row["date_of_covid_booster_format_mmddyyyy"] :
                                 Date::excelToDateTimeObject($row["date_of_covid_booster_format_mmddyyyy"]);
                         }
 
 
-                        if($row["concatenated_format_mmddyyyy_auto_generated"]) {
+                        if ($row["concatenated_format_mmddyyyy_auto_generated"]) {
                             $dob = is_string($row["concatenated_format_mmddyyyy_auto_generated"]) ? $row["concatenated_format_mmddyyyy_auto_generated"] :
                                 Date::excelToDateTimeObject($row["concatenated_format_mmddyyyy_auto_generated"]);
                         }
@@ -218,8 +219,12 @@ class ImportGads implements
                         $this->addGadDetailsItem($gad_id, Sports::class, $this->convertStringToID(Sports::class, 'sports_name', $row["sports_1_not_required_dropdown_option"]), 'sports');
                         $this->addGadDetailsItem($gad_id, Sports::class, $this->convertStringToID(Sports::class, 'sports_name', $row["sports_2_not_required_dropdown_option"]), 'sports');
                         $this->addGadDetailsItem($gad_id, Ethnicity::class, $this->convertStringToID(Ethnicity::class, 'ethnicity_name', $row["ethnicity_no_01_not_required_dropdown_option"]), 'ethnicity');
-                        $this->addGadDetailsItem($gad_id, Sector::class, $this->convertStringToID(Sector::class, 'sector_name', $row["sector_no_01_not_required_dropdown_option"]), 'sector');
-                        $this->addGadDetailsItem($gad_id, Sector::class, $this->convertStringToID(Sector::class, 'sector_name', $row["sector_no_02_not_required_dropdown_option"]), 'sector');
+                        if ($row["sector_no_01_not_required_dropdown_option"] !== 'Senior Citizen') {
+                            $this->addGadDetailsItem($gad_id, Sector::class, $this->convertStringToID(Sector::class, 'sector_name', $row["sector_no_01_not_required_dropdown_option"]), 'sector');
+                        }
+                        if ($row["sector_no_02_not_required_dropdown_option"] !== 'Senior Citizen') {
+                            $this->addGadDetailsItem($gad_id, Sector::class, $this->convertStringToID(Sector::class, 'sector_name', $row["sector_no_02_not_required_dropdown_option"]), 'sector');
+                        }
                         $this->addGadDetailsItem($gad_id, Utilities::class, $this->convertStringToID(Utilities::class, 'utilities_name', $row["utilities_no_01_not_required_dropdown_option"]), 'utilities');
                         $this->addGadDetailsItem($gad_id, Utilities::class, $this->convertStringToID(Utilities::class, 'utilities_name', $row["utilities_no_02_not_required_dropdown_option"]), 'utilities');
                         $this->addGadDetailsItem($gad_id, Utilities::class, $this->convertStringToID(Utilities::class, 'utilities_name', $row["utilities_no_03_not_required_dropdown_option"]), 'utilities');

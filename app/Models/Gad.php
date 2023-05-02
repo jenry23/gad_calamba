@@ -33,6 +33,7 @@ class Gad extends Model implements HasMedia
     protected $appends = [
         'full_name',
         'age',
+        'address',
         'sector_name',
         'health_condition',
         'disability_condition',
@@ -535,6 +536,14 @@ class Gad extends Model implements HasMedia
     public function getGenderNameAttribute()
     {
         return !empty($this->gender) ? $this->gender->gender_name : '';
+    }
+
+    public function getAddressAttribute()
+    {
+        $purok_name =  $this->purok ? $this->purok->purok_name : null;
+        $sitio_name =  $this->sitio ? $this->sitio->sitio_name : null;
+
+        return $this->block_lot_house_id . ' ' . $purok_name . ' ' . $sitio_name;
     }
 
     public function getAgeAttribute()

@@ -30,6 +30,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     Route::get('gad/household/{household_id}', 'GadApiController@householdData')->name('gad.householdData');
     Route::get('gad/show-data/{id}/{barangay_id}', 'GadApiController@showData')->name('gad.showData');
     Route::get('gad/barangay', 'GadApiController@showBarangay')->name('gad.showBarangay');
+    Route::post('gad/deceased', 'GadApiController@deceased');
     Route::post('gad/import-excel', 'GadApiController@importExcel');
     Route::post('gad/delete-data', 'GadApiController@deleteData');
     Route::resource('gad', 'GadApiController');

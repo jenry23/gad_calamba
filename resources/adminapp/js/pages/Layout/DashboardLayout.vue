@@ -85,11 +85,16 @@
 						]
 					},
 					{
-						title: 'Household Update',
+						title: 'Household',
 						icon: 'contacts',
 						path: { name: 'gad' },
 						gate: 'gad_access',
 						children: [
+							{
+								title: 'Deceased',
+								icon: 'users',
+								path: { name: 'gad_list.index' },
+							},
 							{
 								title: 'New Household',
 								icon: 'users',

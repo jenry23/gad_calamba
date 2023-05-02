@@ -403,9 +403,9 @@ class GadApiController extends Controller
 
             $gad->household_names = !empty($gad->household) ? $gad->household->household_name : '';
             $gad->civil_status_names = !empty($gad->civil_status) ? $gad->civil_status->civil_status_name : '';
-            $gad->purok_names =  !empty($gad->purok) ? $gad->purok->purok_name : '';
-            $gad->sitio_names =  !empty($gad->sitio) ? $gad->sitio->sitio_name : '';
-            $gad->native_citys =  !empty($gad->native_city) ? $gad->native_city->city_name : '';
+            $gad->purok_names = !empty($gad->purok) ? $gad->purok->purok_name : '';
+            $gad->sitio_names = !empty($gad->sitio) ? $gad->sitio->sitio_name : '';
+            $gad->native_citys = !empty($gad->native_city) ? $gad->native_city->city_name : '';
             $gad->native_provinces =  !empty($gad->native_province) ? $gad->native_province->province_name : '';
             $gad->work_location_citys =  !empty($gad->work_location_city) ? $gad->work_location_city->city_name : '';
             $gad->work_location_provinces =  !empty($gad->work_location_province) ? $gad->work_location_province->province_name : '';
@@ -759,5 +759,15 @@ class GadApiController extends Controller
         $media         = $model->addMediaFromRequest('file')->toMediaCollection($request->input('collection_name'));
 
         return response()->json($media, Response::HTTP_CREATED);
+    }
+
+    public function deceased(Request $request)
+    {
+        $gad_id = $request->id;
+
+        DB::transaction(function () use ($gad_id) {
+            $gad = Gad::findOrFail($gad_id);
+            $gad->delete();
+        });
     }
 }
