@@ -9,7 +9,7 @@
 						</div>
 						<h4 class="card-title">
 							Table
-							<strong>Household Deceased</strong>
+							<strong>Household Status</strong>
 						</h4>
 					</div>
 					<div class="card-body">
@@ -80,8 +80,8 @@ import DatatablesFields from '@components/Datatables/DatatablesFields'
 			return {
 				columns: [
 					{
-						title: 'Gad ID',
-						field: 'id',
+						title: 'ID Number',
+						field: 'item_no',
 						thComp: TranslatedHeader,
 						sortable: true,
 					},
@@ -94,6 +94,18 @@ import DatatablesFields from '@components/Datatables/DatatablesFields'
 					{
 						title: 'Address',
 						field: 'address',
+						thComp: TranslatedHeader,
+						sortable: true
+					},
+					{
+						title: 'Status',
+						field: 'remarks',
+						thComp: TranslatedHeader,
+						sortable: true
+					},
+					{
+						title: 'Age',
+						field: 'age',
 						thComp: TranslatedHeader,
 						sortable: true
 					},

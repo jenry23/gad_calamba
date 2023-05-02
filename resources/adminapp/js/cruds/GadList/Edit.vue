@@ -1542,6 +1542,14 @@
 						>
 							Transfer Resident
 						</button>
+						<button
+							type="button"
+							class="btn btn-danger"
+							data-toggle="modal"
+							data-target="#changeStatus"
+						>
+							Status
+						</button>
 						<vue-button-spinner
 							v-if="isDisabled"
 							class="btn-success"
@@ -1551,16 +1559,37 @@
 						>
 							{{ $t('global.save') }}
 						</vue-button-spinner>
-						<button
-							type="button"
-							class="btn btn-danger"
-							@click="isDeceased"
-						>
-						Deceased
-						</button>
-						<!-- <a href="javascript:;" class="btn btn-info btn-round"
-                        >Follow</a
-                    > -->
+					</div>
+				</div>
+			</div>
+			<!-- Change Status -->
+			<div
+				class="modal fade"
+				id="changeStatus"
+				tabindex="-1"
+				role="dialog"
+				aria-labelledby="changeStatuslLabel"
+				aria-hidden="true"
+			>
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="changeStatuslLabel">Update Status</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<label>Status</label>
+							<select class="custom-select my-1 mr-sm-2" v-model="resident_status">
+								<option value="Deceased">Deceased</option>
+								<option value="Deactivate">Deactivate</option>
+							</select>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-success" @click="isDeceased">Save changes</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -1674,6 +1703,7 @@ option:disabled {
 			return {
 				status: "",
 				activeField: "",
+				resident_status: "",
 			};
 		},
 		computed: {
@@ -2034,6 +2064,7 @@ option:disabled {
 
 			submitForm () {
 				$('#exampleModal').modal('hide');
+				$('#changeStatus').modal('hide');
 				this.updateData()
 					.then(() => {
 						this.$eventHub.$emit("update-success");
@@ -2047,11 +2078,13 @@ option:disabled {
 			},
 
 			isDeceased () {
+				$('#exampleModal').modal('hide');
+				$('#changeStatus').modal('hide');
 				let id = this.$route.params.id;
 
-				axios.post('gad/deceased', { id : id }).then(response => {
+				axios.post('gad/deceased', { id : id, status: this.resident_status }).then(response => {
+					this.$router.push({ name: 'gad' })
 					this.$eventHub.$emit('delete-success')
-					this.$router.push({ name: 'dashboard' })
 				}).catch(error => {
 						this.$swal({
 							title: 'Error',
@@ -2062,9 +2095,7 @@ option:disabled {
 							reverseButtons: true
 						})
 						this.errors = true;
-					}).finally(() => {
-						this.loading = false
-					});
+					})
 			},
 
 			focusField (name) {

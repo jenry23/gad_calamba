@@ -57,6 +57,11 @@
 						gate: 'reports_access',
 						children: [
 							{
+								title: 'Status',
+								icon: 'users',
+								path: { name: 'gad_list.index' },
+							},
+							{
 								title: 'Generate Report',
 								icon: 'perm_data_setting',
 								path: { name: 'generate_reports.index' },
@@ -90,11 +95,6 @@
 						path: { name: 'gad' },
 						gate: 'gad_access',
 						children: [
-							{
-								title: 'Deceased',
-								icon: 'users',
-								path: { name: 'gad_list.index' },
-							},
 							{
 								title: 'New Household',
 								icon: 'users',

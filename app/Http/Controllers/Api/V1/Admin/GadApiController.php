@@ -62,7 +62,14 @@ class GadApiController extends Controller
     {
         abort_if(Gate::denies('gad_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new GadResource(Gad::advancedFilter());
+        $gads = Gad::advancedFilter();
+
+        $items = $gads->firstItem();
+        $gads->map(function ($gads, int $key) use ($items) {
+            $gads['item_no'] = $items + $key;
+        });
+
+        return new GadResource($gads);
     }
 
     public function store(Request $request)
@@ -764,10 +771,14 @@ class GadApiController extends Controller
     public function deceased(Request $request)
     {
         $gad_id = $request->id;
+        $status = $request->status;
 
-        DB::transaction(function () use ($gad_id) {
+        DB::transaction(function () use ($gad_id, $status) {
             $gad = Gad::findOrFail($gad_id);
+            $gad->update(['remarks' => $status]);
             $gad->delete();
         });
+
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 }
