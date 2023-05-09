@@ -53,6 +53,8 @@ use Maatwebsite\Excel\Concerns\ToCollection;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
+use Maatwebsite\Excel\Concerns\WithProgressBar;
+use App\Models\UploadProcessor;
 
 class ImportGads implements
     ToCollection,
@@ -63,10 +65,18 @@ class ImportGads implements
     SkipsOnError,
     WithValidation,
     WithBatchInserts,
-    WithChunkReading
+    WithChunkReading,
+    WithProgressBar
 {
     use RemembersChunkOffset;
     use Importable;
+
+    private int $processor_id;
+
+    public function __construct($processor_id)
+    {
+        $this->processor_id = $processor_id;
+    }
 
     public function rules(): array
     {
@@ -117,9 +127,9 @@ class ImportGads implements
                                 Date::excelToDateTimeObject($row["date_of_covid_booster_format_mmddyyyy"]);
                         }
 
-
                         if ($row["concatenated_format_mmddyyyy_auto_generated"]) {
-                            $dob = is_string($row["concatenated_format_mmddyyyy_auto_generated"]) ? $row["concatenated_format_mmddyyyy_auto_generated"] :
+                            $dob = is_string($row["concatenated_format_mmddyyyy_auto_generated"]) ?
+                                $row["concatenated_format_mmddyyyy_auto_generated"] :
                                 Date::excelToDateTimeObject($row["concatenated_format_mmddyyyy_auto_generated"]);
                         }
 
@@ -245,6 +255,15 @@ class ImportGads implements
             }
         });
 
+        $total_row = $rows->count();
+
+        UploadProcessor
+            ::findOrFail($this->processor_id)
+            ->update([
+                'upload_output' => "Imported $total_row rows",
+                'status' => 'Success'
+            ]);
+
         return true;
     }
 
@@ -253,6 +272,7 @@ class ImportGads implements
         $result = substr($data, 0, 2);
         return (int) $result;
     }
+
     private function convertStringToID($class, $fields, $query, $barangay_id = null)
     {
         $id = null;

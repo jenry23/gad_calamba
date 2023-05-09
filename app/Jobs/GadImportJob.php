@@ -10,20 +10,23 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ImportGads;
+use App\Models\UploadProcessor;
+use App\Models\Gad;
+use Exception;
 
 class GadImportJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $file;
+    protected $processor_id;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($file)
+    public function __construct($processor_id)
     {
-        $this->file = $file;
+        $this->processor_id = $processor_id;
     }
 
     /**
@@ -33,7 +36,66 @@ class GadImportJob implements ShouldQueue
      */
     public function handle()
     {
-        Excel::import(new ImportGads(), $this->file);
-        echo "Import finished.";
+        ini_set('memory_limit', '5G');
+
+        try {
+            $processor = UploadProcessor::findOrFail($this->processor_id);
+
+            Excel::import(new ImportGads($this->processor_id), $processor->path);
+
+            Gad::all()->groupBy('household_no')->map(function ($gads) {
+                $spouse_gad = $gads->filter(function ($spouse) {
+                    return $spouse->household_id == 2;
+                })->first();
+
+                $household_gad = $gads->filter(function ($spouse) {
+                    return $spouse->household_id == 1;
+                })->first();
+
+                if (isset($spouse_gad)) {
+                    $data = [
+                        'spouse_first_name' => $spouse_gad->first_name ? $spouse_gad->first_name : '',
+                        'spouse_last_name' => $spouse_gad->last_name ?  $spouse_gad->last_name : '',
+                        'spouse_middle_name' => $spouse_gad->middle_name ? $spouse_gad->middle_name : '',
+                        'spouse_extension_name' => $spouse_gad->extension_name ? $spouse_gad->extension_name : '',
+                    ];
+                    $main = $gads->filter(function ($spouse) {
+                        return $spouse->household_id == 1;
+                    })->first();
+
+                    if (isset($main)) {
+                        $main->update($data);
+                    }
+                }
+
+                if (isset($household_gad)) {
+                    $data = [
+                        'spouse_first_name' => $household_gad->first_name ? $household_gad->first_name : '',
+                        'spouse_last_name' => $household_gad->last_name ?  $household_gad->last_name : '',
+                        'spouse_middle_name' => $household_gad->middle_name ? $household_gad->middle_name : '',
+                        'spouse_extension_name' => $household_gad->extension_name ? $household_gad->extension_name : '',
+                    ];
+                    $main = $gads->filter(function ($spouse) {
+                        return $spouse->household_id == 2;
+                    })->first();
+
+                    if (isset($main)) {
+                        $main->update($data);
+                    }
+                }
+            });
+        } catch (Exception $e) {
+            $this->updateProcessor($e);
+        }
+    }
+
+    private function updateProcessor($exception): void
+    {
+        UploadProcessor
+            ::findOrFail($this->processor_id)
+            ->update([
+                'upload_output' => json_encode(['error' => $exception->getMessage()]),
+                'status' => 'Failed'
+            ]);
     }
 }

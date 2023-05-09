@@ -79,6 +79,12 @@ const routes = [
             meta: { title: 'Gad' }
           },
           {
+            path: 'gad-list/import',
+            name: 'gad_list.import',
+            component: () => import('@cruds/GadList/Import.vue'),
+            meta: { title: 'Gad Import' }
+          },
+          {
             path: 'gad-list/:id/household',
             name: 'gad_list.household',
             component: () => import('@cruds/GadList/CreateHousehold.vue'),

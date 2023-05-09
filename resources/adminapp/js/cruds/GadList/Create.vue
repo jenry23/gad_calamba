@@ -1,49 +1,5 @@
 <template>
 	<div id="row">
-		<div class="loader" v-if="loading"></div>
-		<div class="float-right">
-			<input type="file" @change="importFile($event)" class="form-control" />
-		</div>
-		<div class="float-left" style="background-color: green"></div>
-		<br />
-		<div class="contact-form-success alert alert-success mt-4" v-if="success">
-			<strong>Success!</strong> Your post is created.
-		</div>
-
-		<div class="contact-form-error alert alert-danger mt-4" v-if="errors">
-			<strong>Error!</strong> There was an error sending your request.
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<div class="form-group bmd-form-group">
-					<v-select
-						name="barangay_id"
-						label="barangay_name"
-						:key="'barangay_id-field'"
-						:value="barangay_id"
-						style="background-color: white"
-						placeholder="Select Barangay"
-						:options="lists.barangay"
-						@input="updateBarangayID"
-					/>
-				</div>
-			</div>
-			<!-- <div class="col-md-3 mt-2">
-				<datetime-picker
-					class="form-control popcom-input"
-					type="text"
-					picker="date"
-					format="yyyy"
-					placeholder=" Select Date"
-					style="background-color: white"
-					@input="updateDate"
-					:value="date"
-				></datetime-picker>
-			</div> -->
-			<div class="col-md-3 mt-2">
-				<button @click="deleteButton" class="btn btn-sm btn-success">Delete</button>
-			</div>
-		</div>
 		<div class="card">
 			<form-wizard
 				@on-complete="onComplete"
@@ -89,23 +45,7 @@
 		</div>
 	</div>
 </template>
-<style scoped>
-.loader {
-	position: absolute;
-	top: 0px;
-	right: 0px;
-	width: 100%;
-	height: 100%;
-	background-color: #eceaea;
-	background-image: url('https://04.cadwork.com/wp-content/uploads/2019/08/ajax-loader.gif');
-	background-size: 300px;
-	background-repeat: no-repeat;
-	background-position: center;
-	z-index: 10000000;
-	opacity: 0.8;
-	filter: alpha(opacity=40);
-}
-</style>
+
 <script>
 	import { mapGetters, mapActions } from 'vuex'
 	import DateRangePicker from 'vue2-daterange-picker'

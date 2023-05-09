@@ -50,11 +50,12 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Collection;
+use App\Models\UploadProcessor;
 
 class GadApiController extends Controller
 {
@@ -697,57 +698,26 @@ class GadApiController extends Controller
         $message = '';
 
         try {
-            $file = $request->file('import_file')->store('temp');
+            $files = $request->file('import_file');
+            $file = $files->store('temp');
+            $file_name = $files->getClientOriginalName();
             $path = storage_path('app') . '/' . $file;
-            // Excel::import(new ImportGads, request()->file('import_file'));
-            dispatch(new GadImportJob($path));
+
+            $processor = UploadProcessor::create([
+                'file_name' => $file_name,
+                'isSuccess' => true,
+                'size' => $files->getSize(),
+                'status' => 'Processing',
+                'path' => $path,
+                'uploaded_by' => auth()->id(),
+            ]);
+
+            dispatch(new GadImportJob($processor->id));
+
             $message = 'Success';
         } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
             $message = $e->getMessage();
         }
-
-        // Reference Per Barangay Also
-        Gad::all()->groupBy('household_no')->map(function ($gads) {
-            $spouse_gad = $gads->filter(function ($spouse) {
-                return $spouse->household_id == 2;
-            })->first();
-
-            $household_gad = $gads->filter(function ($spouse) {
-                return $spouse->household_id == 1;
-            })->first();
-
-            if (isset($spouse_gad)) {
-                $data = [
-                    'spouse_first_name' => $spouse_gad->first_name ? $spouse_gad->first_name : '',
-                    'spouse_last_name' => $spouse_gad->last_name ?  $spouse_gad->last_name : '',
-                    'spouse_middle_name' => $spouse_gad->middle_name ? $spouse_gad->middle_name : '',
-                    'spouse_extension_name' => $spouse_gad->extension_name ? $spouse_gad->extension_name : '',
-                ];
-                $main = $gads->filter(function ($spouse) {
-                    return $spouse->household_id == 1;
-                })->first();
-
-                if (isset($main)) {
-                    $main->update($data);
-                }
-            }
-
-            if (isset($household_gad)) {
-                $data = [
-                    'spouse_first_name' => $household_gad->first_name ? $household_gad->first_name : '',
-                    'spouse_last_name' => $household_gad->last_name ?  $household_gad->last_name : '',
-                    'spouse_middle_name' => $household_gad->middle_name ? $household_gad->middle_name : '',
-                    'spouse_extension_name' => $household_gad->extension_name ? $household_gad->extension_name : '',
-                ];
-                $main = $gads->filter(function ($spouse) {
-                    return $spouse->household_id == 2;
-                })->first();
-
-                if (isset($main)) {
-                    $main->update($data);
-                }
-            }
-        });
 
         return response()->json($message, Response::HTTP_OK);
     }
@@ -780,5 +750,12 @@ class GadApiController extends Controller
         });
 
         return response(null, Response::HTTP_NO_CONTENT);
+    }
+
+    public function upload_processor()
+    {
+        $upload_processor = UploadProcessor::paginate();
+
+        return new GadResource($upload_processor);
     }
 }

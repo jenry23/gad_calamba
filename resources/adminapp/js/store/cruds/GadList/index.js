@@ -36,6 +36,24 @@ const set = key => (state, val) => {
           commit('setLoading', false)
         })
     },
+
+    fetchImportData ({ commit, state }) {
+      commit('setLoading', true)
+      axios
+        .get('gad/upload-processor', { params: state.query })
+        .then(response => {
+          commit('setData', response.data.data)
+          commit('setTotal', response.data.total)
+        })
+        .catch(error => {
+          message = error.response.data.message || error.message
+          // TODO error handling
+        })
+        .finally(() => {
+          commit('setLoading', false)
+        })
+    },
+
     fetchArchivedData({ commit, state }) {
       commit('setLoading', true)
       axios
@@ -52,6 +70,7 @@ const set = key => (state, val) => {
           commit('setLoading', false)
         })
     },
+
     destroyData({ commit, state, dispatch }, id) {
       axios
         .delete(`${route}/${id}`)
@@ -64,7 +83,6 @@ const set = key => (state, val) => {
         })
     },
     restoreData({ commit, state, dispatch},id){
-      console.log(id);
       axios.get(`${route}/restored/${id}`)
       .then(response => {
         dispatch('fetchIndexData')

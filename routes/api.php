@@ -25,6 +25,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     Route::post('gad/media', 'GadApiController@storeMedia')->name('gad.storeMedia');
     Route::get('gad/get-data/{id}', 'GadApiController@getData')->name('gad.getData');
     Route::get('gad/get-name', 'GadApiController@getName')->name('gad.getName');
+    Route::get('gad/upload-processor', 'GadApiController@upload_processor')->name('gad.uploadProcessor');
     Route::get('gad/first-data', 'GadApiController@firstData')->name('gad.firstData');
     Route::get('gad/third-data', 'GadApiController@thirdData')->name('gad.thirdData');
     Route::get('gad/household/{household_id}', 'GadApiController@householdData')->name('gad.householdData');
