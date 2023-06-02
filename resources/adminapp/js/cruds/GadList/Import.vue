@@ -93,23 +93,6 @@
 		</div>
 	</div>
 </template>
-<style scoped>
-.loader {
-	position: absolute;
-	top: 0px;
-	right: 0px;
-	width: 100%;
-	height: 100%;
-	background-color: #eceaea;
-	background-image: url('https://04.cadwork.com/wp-content/uploads/2019/08/ajax-loader.gif');
-	background-size: 300px;
-	background-repeat: no-repeat;
-	background-position: center;
-	z-index: 10000000;
-	opacity: 0.8;
-	filter: alpha(opacity=40);
-}
-</style>
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import DatatablesFields from '@components/Datatables/DatatablesFields'

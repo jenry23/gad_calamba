@@ -754,7 +754,7 @@ class GadApiController extends Controller
 
     public function upload_processor()
     {
-        $upload_processor = UploadProcessor::paginate();
+        $upload_processor = UploadProcessor::orderBy('id', 'DESC')->paginate(10);
 
         return new GadResource($upload_processor);
     }

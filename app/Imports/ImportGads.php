@@ -72,6 +72,7 @@ class ImportGads implements
     use Importable;
 
     private int $processor_id;
+    private $rows = 0;
 
     public function __construct($processor_id)
     {
@@ -250,19 +251,13 @@ class ImportGads implements
                         $this->addGadDetailsItem($gad_id, Organization::class, $this->convertStringToID(Organization::class, 'organization_name', $row["organizations_involved_no_02_not_required"]), 'organization');
                         $this->addGadDetailsItem($gad_id, Medicine::class, $this->convertStringToID(Medicine::class, 'medicine_name', $row["maintaining_medicine_no_01"]), 'medicine');
                         $this->addGadDetailsItem($gad_id, Medicine::class, $this->convertStringToID(Medicine::class, 'medicine_name', $row["maintaining_medicine_no_02"]), 'medicine');
+
+                        ++$this->rows;
                     }
                 );
             }
         });
 
-        $total_row = $rows->count();
-
-        UploadProcessor
-            ::findOrFail($this->processor_id)
-            ->update([
-                'upload_output' => "Imported $total_row rows",
-                'status' => 'Success'
-            ]);
 
         return true;
     }
@@ -328,5 +323,10 @@ class ImportGads implements
         return [
             'input_encoding' => 'ISO-8859-1'
         ];
+    }
+
+    public function getRowCount(): int
+    {
+        return $this->rows;
     }
 }

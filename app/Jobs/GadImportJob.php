@@ -40,9 +40,18 @@ class GadImportJob implements ShouldQueue
 
         try {
             $processor = UploadProcessor::findOrFail($this->processor_id);
+            $imports = new ImportGads($this->processor_id);
 
-            Excel::import(new ImportGads($this->processor_id), $processor->path);
+            Excel::import($imports, $processor->path);
 
+            $total_row = $imports->getRowCount();
+
+            UploadProcessor
+                ::findOrFail($this->processor_id)
+                ->update([
+                    'upload_output' => "Imported $total_row rows",
+                    'status' => 'Success'
+                ]);
             Gad::all()->groupBy('household_no')->map(function ($gads) {
                 $spouse_gad = $gads->filter(function ($spouse) {
                     return $spouse->household_id == 2;
