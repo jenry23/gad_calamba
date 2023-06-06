@@ -101,13 +101,17 @@
 						<div class="card-header">
 							Total Residents / Respondents
 							<h3 class="card-title" style="color: white">
-								{{ numberFormat(data.total_people_count) }}
+								<number class="counter" :from="0" :to="data.total_people_count" :duration="5" :delay="0"
+								:format="theFormat"  @complete="completed(data.total_people_count)"
+								 easing="Power1.easeOut" />
 							</h3>
 						</div>
 						<div class="row">
 							<div class="col-md-6">
 								<h5>Male</h5>
-								<h3 style="margin-top: -20px">{{ numberFormat(data.total_male_count) }}</h3>
+								<h3 style="margin-top: -20px">
+									<number class="counter" :from="0" :to="data.total_male_count" :duration="5" :delay="0"  easing="Power1.easeOut" />
+								</h3>
 							</div>
 							<div class="col-md-6">
 								<h5>Female</h5>
@@ -393,6 +397,14 @@
 				'setQuery',
 				'resetState'
 			]),
+
+			theFormat (number) {
+				return Number(number).toLocaleString().replace('.', '').replace(/.{0,3}$/, '');
+			},
+
+			completed (number) {
+				return Number(number).toLocaleString();
+			},
 
 			educationalAttaintmentGraph () {
 				axios.get(`dashboard/educational`).then(response => {

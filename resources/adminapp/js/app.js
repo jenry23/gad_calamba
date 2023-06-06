@@ -30,6 +30,10 @@ Vue.use(GlobalComponents)
 Vue.use(GlobalDirectives)
 Vue.use(GlobalMixins)
 
+// Animation Number
+import VueNumber from 'vue-number-animation'
+
+Vue.use(VueNumber)
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

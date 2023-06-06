@@ -105,7 +105,7 @@
 								title: 'Import Household',
 								icon: 'users',
 								path: { name: 'gad_list.import' },
-								gate: 'gad_list_access',
+								gate: 'gad_import_access',
 							},
 							{
 								title: 'New Individual Resident',

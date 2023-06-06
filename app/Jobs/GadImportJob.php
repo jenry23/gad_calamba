@@ -52,6 +52,7 @@ class GadImportJob implements ShouldQueue
                     'upload_output' => "Imported $total_row rows",
                     'status' => 'Success'
                 ]);
+
             Gad::all()->groupBy('household_no')->map(function ($gads) {
                 $spouse_gad = $gads->filter(function ($spouse) {
                     return $spouse->household_id == 2;
